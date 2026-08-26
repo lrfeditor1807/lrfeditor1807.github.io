@@ -1,0 +1,32 @@
+/* Simple responsive styles for the Top 1000 YouTube videos app */
+:root{
+  --bg:#0f1724;
+  --card:#0b1220;
+  --muted:#93a3bf;
+  --accent:#ff0000;
+  --glass: rgba(255,255,255,0.03);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  background:linear-gradient(180deg,var(--bg),#071021);
+  color:#e6eef8;
+}
+.container{max-width:1100px;margin:24px auto;padding:18px}
+.site-header{text-align:center;padding:28px 12px}
+.subtitle{color:var(--muted);margin-top:6px}
+.controls{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:12px}
+.file-label input{display:inline-block;margin-left:8px}
+.right-controls{display:flex;gap:8px;align-items:center}
+#tableWrap{background:var(--card);border-radius:10px;padding:8px;overflow:auto}
+table{width:100%;border-collapse:collapse}
+thead th{position:sticky;top:0;background:linear-gradient(180deg,rgba(255,255,255,0.03),transparent);padding:10px;text-align:left}
+tbody td{padding:10px;border-top:1px solid rgba(255,255,255,0.03)}
+.thumbnail{width:120px;height:68px;object-fit:cover;border-radius:6px}
+.pagination{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.page-btn{background:var(--glass);color:var(--muted);padding:6px 10px;border-radius:6px;border:none;cursor:pointer}
+.page-btn.active{background:var(--accent);color:#fff}
+.notes{color:var(--muted);margin-top:14px;text-align:center}
+@media (max-width:700px){.thumbnail{width:96px;height:54px}.controls{flex-direction:column;align-items:stretch}.right-controls{justify-content:space-between}}
