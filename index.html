@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" class="notranslate" translate="no">
+<head>
+    <title>LogoRemakeFour</title>
+    <meta id="viewPortMeta" name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="UWnxfeRniUm-l7GAbNdqfZQmCCaAU3HB6jGOuEHZ26k" />
+
+    <link rel="icon" href="app/img/favicon-lrfeditor1807-on-github.ico" type="image/png">
+    <link rel="manifest" href="app/manifest.webmanifest">
+
+    <link rel="stylesheet" href="app/css/fontawesome/css/all.css">
+    <link rel="stylesheet" href="app/css/custom.css">
+    <link rel="stylesheet" href="app/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="app/css/skeleton.css">
+    <link rel="stylesheet" href="app/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="app/css/grid-styles.css">
+</head>
+<body onload="window.loaded = true;">
+<div style="display: none" aria-hidden="false">
+    {{ $t('accessKey1NavigationAccessKey2Main') }}
+</div>
+<div id="app" class="holy-grail">
+    <h1 class="sr-only">LogoRemakeFour</h1>
+    <div id="touchElement" class="grid-container" style="z-index: 2; display: none; -webkit-touch-callout: none; -webkit-user-select: none;">
+    </div>
+    <audio style="display: none" id="audioPlayer" src="" preload="spotify"></audio>
+    <video style="display: none" id="videoPlayer" src="" preload="youtube"></video>
+    <notification-bar ref="notificationBar"></notification-bar>
