@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AsTeRICS Grid - AAC demo</title>
+  <link rel="stylesheet" href="/assets/aasterics-grid/styles.css">
+</head>
+<body>
+  <header>
+    <h1>AsTeRICS Grid (AAC) — Demo</h1>
+    <div class="controls">
+      <label>Rows: <input id="rows" type="number" min="1" max="8" value="3"></label>
+      <label>Cols: <input id="cols" type="number" min="1" max="8" value="3"></label>
+      <button id="regen">Generate Grid</button>
+
+      <label>Scan interval (ms): <input id="scanInterval" type="number" min="200" value="800"></label>
+      <button id="toggleScan">Start Scanning</button>
+
+      <button id="export">Export JSON</button>
+      <button id="importBtn">Import JSON</button>
+      <input id="importFile" type="file" accept="application/json" style="display:none">
+    </div>
+  </header>
+
+  <main>
+    <div id="grid" class="grid" role="grid" aria-label="AAC Grid"></div>
+  </main>
+
+  <aside class="editor" id="editor">
+    <h2>Edit Cell</h2>
+    <label>Label: <input id="cellLabel" type="text"></label>
+    <label>Phrase: <input id="cellPhrase" type="text"></label>
+    <button id="saveCell">Save</button>
+    <button id="closeEditor">Close</button>
+  </aside>
+
+  <template id="cell-template">
+    <button class="cell" role="gridcell" tabindex="-1">
+      <div class="label"></div>
+    </button>
+  </template>
+
+  <script src="/assets/aasterics-grid/grid.js" defer></script>
+</body>
+</html>
