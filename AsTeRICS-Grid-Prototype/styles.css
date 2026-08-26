@@ -1,0 +1,36 @@
+:root{
+  --bg:#f7f9fc;
+  --panel:#fff;
+  --accent:#1976d2;
+  --muted:#666;
+  --cell-bg:#ffffff;
+  --cell-border:#e0e0e0;
+  --modal-bg: rgba(0,0,0,0.45);
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial}
+body{background:var(--bg);color:#111;display:flex;flex-direction:column}
+header{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--panel);border-bottom:1px solid #e6eef8}
+header h1{margin:0;font-size:16px}
+.top-controls{display:flex;gap:8px;align-items:center}
+.top-controls select, .top-controls button{padding:6px 8px;border:1px solid #cbdff4;background:white;border-radius:4px}
+main{flex:1;padding:12px}
+#gridContainer{display:grid;gap:10px;align-content:start}
+.board-controls{margin-bottom:8px}
+.cell{background:var(--cell-bg);border:1px solid var(--cell-border);border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px;cursor:pointer;user-select:none;min-height:80px}
+.cell-img img{max-width:100%;max-height:64px;display:block}
+.cell-label{margin-top:6px;font-size:14px;color:var(--muted);text-align:center;word-wrap:break-word}
+.modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:var(--modal-bg);z-index:60}
+.modal.hidden{display:none}
+.modal-content{background:var(--panel);padding:16px;border-radius:8px;max-width:920px;width:94%;max-height:90vh;overflow:auto;position:relative}
+.close{position:absolute;right:8px;top:8px;border:0;background:transparent;font-size:22px;cursor:pointer}
+.form-row{margin-bottom:8px;display:flex;gap:8px;align-items:center}
+.form-row label{min-width:120px}
+.form-row input, .form-row select, .form-row textarea{flex:1;padding:6px;border:1px solid #ddd;border-radius:4px}
+.controls-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.small{font-size:13px;color:var(--muted)}
+footer{padding:8px 12px;background:linear-gradient(180deg,transparent,#fff);border-top:1px solid #eee}
+.toolbar{display:flex;gap:6px;margin-bottom:8px}
+.embed-frame{width:100%;height:480px;border:1px solid #ddd}
+.drawing-canvas{border:1px solid #ddd;background:white;display:block;margin:8px 0;width:100%;height:400px}
+.login-form{max-width:420px}
