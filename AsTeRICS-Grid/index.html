@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AsTeRICS Grid (Demo)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>AsTeRICS Grid — Demo</h1>
+    <div class="header-actions">
+      <span id="online-indicator" class="chip">offline</span>
+      <button id="login-btn">Login</button>
+      <button id="settings-btn">Settings</button>
+      <button id="about-btn">About</button>
+    </div>
+  </header>
+
+  <main>
+    <aside id="boards-list" class="panel">
+      <h2>Boards</h2>
+      <ul id="boards-ul"></ul>
+      <button id="new-board-btn">New board</button>
+    </aside>
+
+    <section id="grid-area">
+      <div id="board-title-row">
+        <h2 id="board-title">Board</h2>
+        <div class="board-actions">
+          <button id="matrix-btn">Matrix</button>
+          <button id="pictionary-btn">Pictionary</button>
+          <button id="camera-btn">Camera</button>
+          <button id="youtube-btn">YouTube</button>
+          <button id="spotify-btn">Spotify</button>
+          <button id="record-voice-btn">Record Voice</button>
+          <button id="embed-url-btn">Embed URL</button>
+          <button id="scratch-btn">Scratch</button>
+        </div>
+      </div>
+
+      <div id="grid"></div>
+
+      <div id="status" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <!-- Modals -->
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close">✕</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Templates -->
+  <template id="cell-edit-template">
+    <h3>Edit Cell</h3>
+    <label>
+      Label:
+      <input type="text" id="cell-label" />
+    </label>
+    <label>
+      Image URL:
+      <input type="url" id="cell-image-url" placeholder="https://..." />
+    </label>
+    <label>
+      Image source:
+      <select id="cell-image-src">
+        <option value="custom">Custom</option>
+        <option value="arasaac">ARASAAC</option>
+        <option value="opensymbols">OpenSymbols</option>
+        <option value="google">Google</option>
+      </select>
+    </label>
+    <div class="small">Tip: paste ARASAAC/OpenSymbols image URLs or a Google Images link. You can also paste a data URL.</div>
+    <label>
+      Action:
+      <select id="cell-action">
+        <option value="speak">Speak</option>
+        <option value="open_board">Navigate to board</option>
+        <option value="youtube">YouTube</option>
+        <option value="spotify">Spotify</option>
+        <option value="text_cell">Text Cell</option>
+        <option value="record_voice">Record Voice</option>
+        <option value="embed_url">Embed URL</option>
+        <option value="scratch">Scratch</option>
+        <option value="camera">Camera</option>
+        <option value="pictionary">Pictionary</option>
+      </select>
+    </label>
+    <label id="action-value-label">Action value (e.g. board name, URL, youtube id):
+      <input type="text" id="cell-action-value" />
+    </label>
+    <div class="modal-actions">
+      <button id="save-cell-btn">Save</button>
+      <button id="delete-cell-btn">Delete</button>
+    </div>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
