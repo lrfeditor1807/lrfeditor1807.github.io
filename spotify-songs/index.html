@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Spotify — Hip-Hop Playlist (Mock)</title>
+  <style>
+    :root{
+      --bg:#121212; --panel:#181818; --muted:#b3b3b3; --accent:#1db954;
+      --row-hover:#262626; --glass:rgba(255,255,255,0.03);
+      font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,#0b0b0b 0%, #131313 100%);color:#fff}
+    .app{max-width:980px;margin:36px auto;padding:20px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,0.6)}
+    header{display:flex;gap:16px;align-items:center}
+    .cover{width:120px;height:120px;background:var(--glass);border-radius:8px;flex:0 0 120px;display:flex;align-items:center;justify-content:center;}
+    .cover img{width:100%;height:100%;object-fit:cover;border-radius:6px}
+    .meta h1{margin:0;font-size:20px;letter-spacing:0.4px}
+    .meta p{margin:6px 0 0;color:var(--muted);font-size:14px}
+    .controls{display:flex;gap:12px;margin-left:auto}
+    .btn{background:var(--accent);border:none;padding:10px 14px;border-radius:999px;color:#000;font-weight:700;cursor:pointer}
+    .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);font-weight:600}
+    .playlist{margin-top:20px}
+    .row{display:grid;grid-template-columns:48px 1fr 200px 80px;gap:12px;align-items:center;padding:12px;border-radius:8px;margin-bottom:6px;background:transparent;}
+    .row:hover{background:var(--row-hover)}
+    .track-num{color:var(--muted);text-align:center}
+    .track-info{display:flex;gap:12px;align-items:center}
+    .thumb{width:48px;height:48px;border-radius:6px;overflow:hidden;flex:0 0 48px}
+    .thumb img{width:100%;height:100%;object-fit:cover}
+    .title{font-weight:600}
+    .artist{color:var(--muted);font-size:13px;margin-top:3px}
+    .album{color:var(--muted);font-size:13px}
+    .duration{color:var(--muted);text-align:right}
+    .play-btn{background:transparent;border:none;color:var(--muted);cursor:pointer;padding:8px;border-radius:6px}
+    .play-btn.playing{color:var(--accent)}
+    .search{margin-top:14px;display:flex;gap:8px}
+    .search input{flex:1;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:#fff}
+    @media(max-width:720px){
+      .row{grid-template-columns:36px 1fr 120px 60px}
+      .cover{display:none}
+      .controls{margin-left:0}
+    }
+  </style>
+</head>
+<body>
+  <main class="app" role="main">
+    <header>
+      <div class="cover" aria-hidden="true">
+        <img src="https://via.placeholder.com/300/1db954/0a0a0a?text=Hip-Hop" alt="">
+      </div>
+      <div class="meta">
+        <h1>Hip-Hop — Mock Spotify Playlist</h1>
+        <p>Curated (mock) playlist featuring: Rick Astley, Shakira, Movimento Original, Stailok, Adele, Santaferia, Cachureos</p>
+      </div>
+
+      <div class="controls" role="group" aria-label="Playlist controls">
+        <button class="btn" id="playAll">Play</button>
+        <button class="btn secondary" id="shuffle">Shuffle</button>
+      </div>
+    </header>
+
+    <div class="search" aria-hidden="false">
+      <input id="filter" placeholder="Filter by title or artist…" aria-label="Filter playlist" />
+      <button class="btn secondary" id="clear">Clear</button>
+    </div>
+
+    <section class="playlist" id="playlist" aria-label="Playlist">
+      <!-- Rows injected by JavaScript -->
+    </section>
+
+    <p style="color:var(--muted);font-size:13px;margin-top:18px">
+      Note: This is a mock Spotify-style interface for demonstration. Play buttons produce a short generated preview tone (no copyrighted audio).
+    </p>
+  </main>
+
+  <script>
+    // Data: requested artists included (titles are mock/fictional)
+    const songs = [
+      {title:"Never Gonna Give You Bars", artist:"Rick Astley", album:"Remixed Classics", duration:"3:12", img:"https://via.placeholder.com/64/ff6b6b/000?text=RA"},
+      {title:"Flow del Amor", artist:"Shakira", album:"Ritmo Urbano", duration:"2:58", img:"https://via.placeholder.com/64/f7b267/000?text=S"},
+      {title:"Movimento Freestyle", artist:"Movimento Original", album:"Original Beats", duration:"3:34", img:"https://via.placeholder.com/64/4ecdc4/000?text=MO"},
+      {title:"Stailok Street", artist:"Stailok", album:"Streets & Stories", duration:"3:06", img:"https://via.placeholder.com/64/5f27cd/fff?text=S"},
+      {title:"Rolling in the Flow", artist:"Adele", album:"Late Nights", duration:"4:01", img:"https://via.placeholder.com/64/ff9f1c/000?text=A"},
+      {title:"Santaferia Vibes", artist:"Santaferia", album:"Carnaval Beats", duration:"3:22", img:"https://via.placeholder.com/64/54a0ff/fff?text=SF"},
+      {title:"Cachu Rap", artist:"Cachureos", album:"Kids & Beats", duration:"2:49", img:"https://via.placeholder.com/64/1dd1a1/000?text=C"}
+    ];
+
+    const playlistEl = document.getElementById('playlist');
+    const filterInput = document.getElementById('filter');
+    const clearBtn = document.getElementById('clear');
+    let currentPlaying = null;
+
+    // Render the playlist
+    function render(list){
+      playlistEl.innerHTML = "";
+      list.forEach((s, i) => {
+        const row = document.createElement('div');
+        row.className = 'row';
+        row.dataset.index = i;
+        row.innerHTML = `
+          <div class="track-num">${i+1}</div>
+          <div class="track-info">
+            <div class="thumb"><img src="${s.img}" alt="${s.title} album art"></div>
+            <div>
+              <div class="title">${escapeHtml(s.title)}</div>
+              <div class="artist">${escapeHtml(s.artist)}</div>
+            </div>
+          </div>
+          <div class="album">${escapeHtml(s.album)}</div>
+          <div style="display:flex;align-items:center;justify-content:flex-end;gap:10px">
+            <button class="play-btn" aria-label="Play preview for ${escapeHtml(s.title)}" data-index="${i}">
+              ▶
+            </button>
+            <div class="duration">${s.duration}</div>
+          </div>
+        `;
+        playlistEl.appendChild(row);
+      });
+      attachPlayHandlers();
+    }
+
+    // Simple HTML escape
+    function escapeHtml(text){ return text.replace(/[&<>"']/g, m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' })[m]); }
+
+    // WebAudio preview generator: plays a short few-note motif
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    const ctx = AudioCtx ? new AudioCtx() : null;
+
+    function playPreview(index){
+      if(!ctx) return alert("AudioContext not supported in this browser.");
+      stopPreview(); // stop any current
+      const now = ctx.currentTime;
+      const master = ctx.createGain();
+      master.gain.setValueAtTime(0.0001, now);
+      master.gain.exponentialRampToValueAtTime(0.25, now+0.02);
+      master.connect(ctx.destination);
+
+      // create a short 3-note motif whose pitches vary by index (so each track sounds different)
+      const freqs = [220, 330, 440].map(f => f * (1 + (index * 0.03)));
+      const oscillators = freqs.map((freq, i) => {
+        const o = ctx.createOscillator();
+        o.type = (i%2===0) ? 'sawtooth' : 'square';
+        o.frequency.setValueAtTime(freq, now + i*0.12);
+        const g = ctx.createGain();
+        g.gain.setValueAtTime(0, now + i*0.12);
+        g.gain.linearRampToValueAtTime(0.18, now + i*0.12 + 0.02);
+        g.gain.exponentialRampToValueAtTime(0.0001, now + i*0.12 + 0.7);
+        o.connect(g); g.connect(master);
+        o.start(now + i*0.12);
+        o.stop(now + i*0.12 + 0.75);
+        return o;
+      });
+
+      currentPlaying = {oscillators, master};
+      // ensure master fades out
+      master.gain.exponentialRampToValueAtTime(0.0001, now + 2);
+      // clear reference after completion
+      setTimeout(()=> { currentPlaying = null; updatePlayButtonState(null); }, 1400);
+    }
+
+    function stopPreview(){
+      if(!currentPlaying) return;
+      try{
+        currentPlaying.oscillators.forEach(o=>{ try{o.stop();}catch(e){} });
+        currentPlaying.master.disconnect();
+      }catch(e){}
+      currentPlaying = null;
+      updatePlayButtonState(null);
+    }
+
+    function attachPlayHandlers(){
+      document.querySelectorAll('.play-btn').forEach(btn => {
+        btn.onclick = (ev) => {
+          const idx = Number(btn.dataset.index);
+          if(currentPlaying && currentPlaying.index === idx){
+            stopPreview();
+            return;
+          }
+          // mark which is playing for icon update
+          updatePlayButtonState(idx);
+          playPreview(idx);
+          // set property to let the preview function clear it after finishing
+          if(currentPlaying) currentPlaying.index = idx;
+        };
+      });
+    }
+
+    function updatePlayButtonState(activeIndex){
+      document.querySelectorAll('.play-btn').forEach(btn => {
+        const idx = Number(btn.dataset.index);
+        if(activeIndex !== null && idx === activeIndex){
+          btn.classList.add('playing');
+          btn.textContent = "❚❚";
+        } else {
+          btn.classList.remove('playing');
+          btn.textContent = "▶";
+        }
+      });
+    }
+
+    // Simple filter
+    filterInput.addEventListener('input', ()=> {
+      const q = filterInput.value.trim().toLowerCase();
+      if(!q) return render(songs);
+      const filtered = songs.filter(s => (s.title + ' ' + s.artist + ' ' + s.album).toLowerCase().includes(q));
+      render(filtered);
+    });
+    clearBtn.addEventListener('click', ()=> { filterInput.value=''; render(songs); });
+
+    // Play All: plays previews sequentially (short) using setTimeout
+    document.getElementById('playAll').addEventListener('click', async () => {
+      stopPreview();
+      const order = Array.from({length:songs.length}, (_,i)=>i);
+      for(let i of order){
+        updatePlayButtonState(i);
+        playPreview(i);
+        // wait ~900ms per preview to create a quick "play all" demo
+        await new Promise(r => setTimeout(r, 900));
+      }
+      updatePlayButtonState(null);
+    });
+
+    // Shuffle: simple Fisher-Yates and render
+    document.getElementById('shuffle').addEventListener('click', () => {
+      const arr = songs.slice();
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      render(arr);
+    });
+
+    // initial render
+    render(songs);
+
+    // stop audio when navigating away
+    window.addEventListener('pagehide', stopPreview);
+    window.addEventListener('beforeunload', stopPreview);
+  </script>
+</body>
+  </html>
