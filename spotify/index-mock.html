@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Mock Spotify Grid</title>
+  <style>
+    body { font-family: system-ui, Arial; display:flex; align-items:center; justify-content:center; height:100vh; margin:0; background:#121212; color:#fff; }
+    .grid { display:grid; grid-template-columns:repeat(4,160px); gap:12px; }
+    .tile { background:#1e1e1e; border-radius:8px; padding:12px; text-align:center; cursor:pointer; user-select:none; transition:transform .12s, box-shadow .12s; }
+    .tile:hover { transform:translateY(-4px); box-shadow:0 8px 20px rgba(0,0,0,.6); }
+    .tile.playing { outline:3px solid #1db954; box-shadow:0 12px 30px rgba(29,185,84,.15); }
+    .title { font-weight:600; margin-top:8px; font-size:14px; }
+    .artist { color:#b3b3b3; font-size:12px; margin-top:4px; }
+    .controls { margin-top:16px; display:flex; gap:8px; justify-content:center; }
+    button { background:#1db954; color:#000; border:0; padding:8px 12px; border-radius:8px; cursor:pointer; }
+  </style>
+</head>
+<body>
+  <div>
+    <div class="grid" id="grid"></div>
+    <div class="controls">
+      <button id="pauseBtn">Pause</button>
+      <button id="stopBtn">Stop</button>
+    </div>
+  </div>
+
+  <script>
+    const tracks = [
+      {id: 't1', title: 'Sunrise', artist: 'Artist A'},
+      {id: 't2', title: 'Neon Drive', artist: 'Artist B'},
+      {id: 't3', title: 'Nightfall', artist: 'Artist C'},
+      {id: 't4', title: 'Retro Beat', artist: 'Artist D'},
+      {id: 't5', title: 'Ocean View', artist: 'Artist E'},
+      {id: 't6', title: 'City Lights', artist: 'Artist F'},
+      {id: 't7', title: 'Cloud Nine', artist: 'Artist G'},
+      {id: 't8', title: 'Pulse', artist: 'Artist H'}
+    ];
+
+    const grid = document.getElementById('grid');
+    let current = null;
+    tracks.forEach(t => {
+      const el = document.createElement('div');
+      el.className = 'tile';
+      el.dataset.id = t.id;
+      el.innerHTML = `<div class="art" style="height:90px; background:linear-gradient(45deg,#333,#222); border-radius:6px;"></div>
+                      <div class="title">${t.title}</div>
+                      <div class="artist">${t.artist}</div>`;
+      el.addEventListener('click', () => play(t.id, el));
+      grid.appendChild(el);
+    });
+
+    function play(id, el) {
+      if (current && current.el) current.el.classList.remove('playing');
+      current = {id, el};
+      el.classList.add('playing');
+      console.log('Playing', id);
+      // Insert actual audio playback or API call here if needed
+    }
+
+    document.getElementById('pauseBtn').addEventListener('click', () => {
+      if (current && current.el) {
+        current.el.classList.remove('playing');
+        console.log('Paused', current.id);
+      }
+    });
+
+    document.getElementById('stopBtn').addEventListener('click', () => {
+      if (current && current.el) {
+        current.el.classList.remove('playing');
+        console.log('Stopped', current.id);
+        current = null;
+      }
+    });
+  </script>
+</body>
+</html>
