@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AsTeRICS Grid — ARASAAC Board with Google Ads (demo)</title>
+  <!--
+    IMPORTANT: Replace YOUR_ADSENSE_CLIENT_ID with your AdSense publisher ID (ca-pub-XXXXXXXXXXXX).
+    Example:
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234567890123456"
+              crossorigin="anonymous"></script>
+
+    AdSense requires site verification / policy compliance; use only your own publisher ID.
+  -->
+  <!-- Google Ads placeholder script: uncomment and replace client param to enable ads -->
+  <!--
+  <script async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=YOUR_ADSENSE_CLIENT_ID"
+    crossorigin="anonymous"></script>
+  -->
+  <style>
+    :root{
+      --cell-size: 140px;
+      --gap: 8px;
+      --bg: #f5f7fa;
+      --cell-bg: #fff;
+      --accent: #2b87f0;
+      --muted: #666;
+    }
+    body{ font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial; margin:0; background:var(--bg); color:#111; display:flex; flex-direction:column; min-height:100vh; }
+    header{ background:#fff; padding:10px 14px; display:flex; gap:12px; align-items:center; border-bottom:1px solid #e0e6ef; }
+    .brand{ font-weight:700; font-size:1.1rem; color:var(--accent); }
+    .controls{ margin-left:auto; display:flex; gap:8px; align-items:center; }
+    .status{ font-size:0.9rem; color:var(--muted); }
+    button.btn{ background:var(--accent); color:#fff; border:0; padding:8px 10px; border-radius:6px; cursor:pointer; }
+    button.secondary{ background:#fff; border:1px solid #d6dbe6; color:#222; padding:8px 10px; border-radius:6px; cursor:pointer; }
+
+    main{ padding:12px; flex:1; display:flex; gap:12px; align-items:flex-start; }
+    .board{ flex:1; display:grid; grid-template-columns: repeat(auto-fill,minmax(var(--cell-size),1fr)); gap:var(--gap); align-content:start; }
+    .cell{ background:var(--cell-bg); border-radius:10px; padding:6px; display:flex; flex-direction:column; gap:6px; align-items:center; justify-content:center; text-align:center; min-height:var(--cell-size); cursor:pointer; user-select:none; }
+    .cell img{ width:72px; height:72px; object-fit:contain; background:transparent; }
+    .label{ font-size:0.95rem; font-weight:600; color:#222; }
+    .muted{ font-size:0.85rem; color:var(--muted); }
+
+    .side{ width:360px; max-width:40%; display:flex; flex-direction:column; gap:12px; }
+    .panel{ background:var(--cell-bg); padding:12px; border-radius:10px; }
+    .mini-grid{ display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+    .modal{ position:fixed; inset:0; background:rgba(0,0,0,0.45); display:none; align-items:center; justify-content:center; z-index:50; }
+    .modal .dialog{ width:90%; max-width:900px; background:#fff; border-radius:10px; padding:16px; max-height:90vh; overflow:auto; }
+    footer{ padding:10px 12px; font-size:0.9rem; color:var(--muted); border-top:1px solid #e8eef8; background:#fff; display:flex; justify-content:space-between; align-items:center;}
+    .ads-slot{ width:100%; display:flex; justify-content:center; align-items:center; min-height:90px; background:#fafafa; border-radius:8px; border:1px dashed #e0e6ef; color:var(--muted); }
+    .kbd{ font-family: monospace; background:#f1f5fb; padding:6px 8px; border-radius:6px; }
+
+    /* Pictionary canvas */
+    #drawCanvas{ border-radius:8px; background:white; width:100%; height:400px; touch-action: none; }
+
+    @media (max-width:900px){ main{ flex-direction:column; } .side{ width:auto; max-width:none; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">AsTeRICS Grid — Communicator (demo)</div>
+    <div class="muted">ARASAAC Board — Español</div>
+    <div class="controls">
+      <div class="status" id="loginStatus">Offline</div>
+      <button class="btn" id="toggleLogin">Go Online</button>
+      <button class="secondary" id="openSettings">Settings</button>
+      <button class="secondary" id="openAbout">About</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Grid with Spanish pictograms -->
+    <section class="board" id="mainBoard" aria-label="AsTeRICS Grid Board">
+      <!-- Replace data-src / img src placeholders with ARASAAC/OpenSymbols/Google images.
+           Example ARASAAC URL format (verify license): https://static.arasaac.org/pictograms/<ID>/<file>.png
+      -->
+      <div class="cell action-speak" data-text="Yo">
+        <img alt="YO pictogram" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><rect width='100%' height='100%' fill='%23fff'/><text x='50%' y='55%' text-anchor='middle' font-size='36' fill='%23222' font-family='Arial'>YO</text></svg>">
+        <div class="label">YO</div>
+      </div>
+
+      <div class="cell action-speak" data-text="Quiero">
+        <img alt="QUIERO pictogram" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><rect width='100%' height='100%' fill='%23fff'/><text x='50%' y='55%' text-anchor='middle' font-size='26' fill='%23222' font-family='Arial'>QUIERO</text></svg>">
+        <div class="label">QUIERO</div>
+      </div>
+
+      <div class="cell action-speak" data-text="Comer">
+        <img alt="COMER pictogram" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><rect width='100%' height='100%' fill='%23fff'/><text x='50%' y='55%' text-anchor='middle' font-size='30' fill='%23222' font-family='Arial'>COMER</text></svg>">
+        <div class="label">COMER</div>
+      </div>
+
+      <div class="cell action-speak" data-text="Beber">
+        <img alt="BEBER pictogram" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><rect width='100%' height='100%' fill='%23fff'/><text x='50%' y='55%' text-anchor='middle' font-size='30' fill='%23222' font-family='Arial'>BEBER</text></svg>">
+        <div class="label">BEBER</div>
+      </div>
+
+      <div class="cell action-speak" data-text="Comprar">
+        <img alt="COMPRAR pictogram" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><rect width='100%' height='100%' fill='%23fff'/><text x='50%' y='55%' text-anchor='middle' font-size='24' fill='%23222' font-family='Arial'>COMPRAR</text></svg>">
+        <div class="label">COMPRAR</div>
+      </div>
+
+      <div class="cell action-speak" data-text="Alimentos">
+        <img alt="ALIMENTOS pictogram" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><rect width='100%' height='100%' fill='%23fff'/><text x='50%' y='55%' text-anchor='middle' font-size='20' fill='%23222' font-family='Arial'>ALIMENTOS</text></svg>">
+        <div class="label">ALIMENTOS</div>
+      </div>
+
+      <div class="cell action-speak" data-text="Manzana">
+        <img alt="MANZANA pictogram" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><rect width='100%' height='100%' fill='%23fff'/><text x='50%' y='55%' text-anchor='middle' font-size='26' fill='%23222' font-family='Arial'>MANZANA</text></svg>">
+        <div class="label">MANZANA</div>
+      </div>
+
+      <div class="cell action-speak" data-text="Galletas">
+        <img alt="GALLETAS pictogram" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><rect width='100%' height='100%' fill='%23fff'/><text x='50%' y='55%' text-anchor='middle' font-size='22' fill='%23222' font-family='Arial'>GALLETAS</text></svg>">
+        <div class="label">GALLETAS</div>
+      </div>
+
+      <div class="cell action-speak" data-text="Jugo">
+        <img alt="JUGO pictogram" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><rect width='100%' height='100%' fill='%23fff'/><text x='50%' y='55%' text-anchor='middle' font-size='30' fill='%23222' font-family='Arial'>JUGO</text></svg>">
+        <div class="label">JUGO</div>
+      </div>
+
+      <div class="cell action-speak" data-text="Leche">
+        <img alt="LECHE pictogram" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><rect width='100%' height='100%' fill='%23fff'/><text x='50%' y='55%' text-anchor='middle' font-size='30' fill='%23222' font-family='Arial'>LECHE</text></svg>">
+        <div class="label">LECHE</div>
+      </div>
+
+      <div class="cell action-speak" data-text="Agua">
+        <img alt="AGUA pictogram" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><rect width='100%' height='100%' fill='%23fff'/><text x='50%' y='55%' text-anchor='middle' font-size='30' fill='%23222' font-family='Arial'>AGUA</text></svg>">
+        <div class="label">AGUA</div>
+      </div>
+
+      <!-- Action cells -->
+      <div class="cell" id="matrixBtn"><img alt="Matrix" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><rect width='100%' height='100%' fill='%23e9f2ff'/><text x='50%' y='55%' text-anchor='middle' font-size='20' fill='%232b87f0' font-family='Arial'>MATRIX</text></svg><div class="label">Matriz</div></div>
+
+      <div class="cell" id="youtubeBtn"><img alt="YouTube" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><rect width='100%' height='100%' fill='%23fff1f0'/><text x='50%' y='55%' text-anchor='middle' font-size='20' fill='%23ff0000' font-family='Arial'>YouTube</text></svg><div class="label">YouTube</div></div>
+
+      <div class="cell" id="spotifyBtn"><img alt="Spotify" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><rect width='100%' height='100%' fill='%effff2'/><text x='50%' y='55%' text-anchor='middle' font-size='20' fill='%2300c46b' font-family='Arial'>Spotify</text></svg><div class="label">Spotify</div></div>
+
+      <div class="cell" id="textCellBtn"><img alt="Text" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><rect width='100%' height='100%' fill='%23fff7e7'/><text x='50%' y='55%' text-anchor='middle' font-size='20' fill='%23b36b00' font-family='Arial'>Texto</text></svg><div class="label">Text Cell</div></div>
+
+      <div class="cell" id="recordBtn"><img alt="Record voice" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><rect width='100%' height='100%' fill='%23fff0f5'/><text x='50%' y='55%' text-anchor='middle' font-size='20' fill='%23b0003a' font-family='Arial'>Record</text></svg><div class="label">Record Voice</div></div>
+
+      <div class="cell" id="embedUrlBtn"><img alt="Embed URL" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><rect width='100%' height='100%' fill='%23eef8f7'/><text x='50%' y='55%' text-anchor='middle' font-size='18' fill='%23007a6b' font-family='Arial'>Embed</text></svg><div class="label">Embed URL</div></div>
+
+      <div class="cell" id="scratchBtn"><img alt="Scratch project" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><rect width='100%' height='100%' fill='%23fff8ee'/><text x='50%' y='55%' text-anchor='middle' font-size='18' fill='%238b5e00' font-family='Arial'>Scratch</text></svg><div class="label">Scratch</div></div>
+
+      <div class="cell" id="cameraBtn"><img alt="Camera" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><rect width='100%' height='100%' fill='%23f7fbff'/><text x='50%' y='55%' text-anchor='middle' font-size='18' fill='%230057a7' font-family='Arial'>Camera</text></svg><div class="label">Camera</div></div>
+
+      <div class="cell" id="navigateBtn"><img alt="Navigate" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><rect width='100%' height='100%' fill='%23f6fff7'/><text x='50%' y='55%' text-anchor='middle' font-size='18' fill='%23008a3b' font-family='Arial'>Navigate</text></svg><div class="label">Another Board</div></div>
+
+      <div class="cell" id="pictionaryBtn"><img alt="Pictionary" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><rect width='100%' height='100%' fill='%23fffdf0'/><text x='50%' y='55%' text-anchor='middle' font-size='18' fill='%23b36b00' font-family='Arial'>Pictionary</text></svg><div class="label">Pictionary</div></div>
+    </section>
+
+    <!-- Right side: controls, media, and ad slot -->
+    <aside class="side">
+      <div class="panel">
+        <strong>Playback / Output</strong>
+        <div id="speakPreview" class="muted" style="margin-top:8px;">Selecciona una celda para hablar.</div>
+        <div style="margin-top:8px;">
+          <button id="stopSpeech" class="secondary">Stop speech</button>
+          <button id="clearOutput" class="secondary">Clear</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <strong>Ad Slot (Google Ads)</strong>
+        <div class="ads-slot" id="adsSlot">
+          <!-- Example AdSense responsive slot (uncomment script earlier and replace client ID).
+               Replace data-ad-client / data-ad-slot if you use a different placement strategy.
+               DO NOT paste your real client ID into shared code unless this page is under your control.
+          -->
+          <!-- Example ins tag for an ad (uncomment and set attributes when ready): 
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client="YOUR_ADSENSE_CLIENT_ID"
+               data-ad-slot="YOUR_AD_SLOT_ID"
+               data-ad-format="auto"
+               data-full-width-responsive="true"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+          -->
+          Demo ad placeholder — replace with your AdSense slot.
+        </div>
+      </div>
+
+      <div class="panel">
+        <strong>Saved media</strong>
+        <div id="mediaList" style="margin-top:8px;" class="muted">Sin grabaciones aún.</div>
+      </div>
+
+      <div class="panel">
+        <strong>Board navigation</strong>
+        <div style="margin-top:8px;" class="mini-grid">
+          <button id="openBoard2" class="btn">Open Board 2</button>
+          <button id="backToMain" class="secondary">Main Board</button>
+          <button id="saveConfig" class="secondary">Save Config</button>
+          <button id="loadConfig" class="secondary">Load Config</button>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <footer>
+    <div>Attribution: Replace placeholders with ARASAAC/OpenSymbols pictograms and list licenses in About.</div>
+    <div class="muted">Demo — ads disabled until you add your AdSense client ID</div>
+  </footer>
+
+  <!-- Modals -->
+  <div class="modal" id="modal">
+    <div class="dialog" role="dialog" aria-modal="true" id="modalContent">
+      <button id="closeModal" class="secondary" style="float:right">Close</button>
+      <div id="modalInner"></div>
+    </div>
+  </div>
+
+<script>
+  /* Basic behavior: TTS, actions, modals, camera, recorder, pictionary, settings, login state, and media storage.
+     Replace placeholder images with ARASAAC/OpenSymbols URLs, and uncomment/replace AdSense script with your client ID.
+  */
+
+  // Speech
+  const speakPreview = document.getElementById('speakPreview');
+  let synth = window.speechSynthesis;
+  let currentUtterance = null;
+  function speak(text, lang = localStorage.getItem('asterics-speech-lang') || 'es-ES'){
+    if(!synth) return;
+    stopSpeech();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = lang;
+    u.rate = 1;
+    currentUtterance = u;
+    synth.speak(u);
+    speakPreview.textContent = 'Speaking: ' + text;
+  }
+  function stopSpeech(){ if(synth && synth.speaking) synth.cancel(); currentUtterance = null; speakPreview.textContent = 'Stopped.'; }
+
+  // Hook pictogram cells to speak
+  document.querySelectorAll('.action-speak').forEach(el=>{
+    el.addEventListener('click', ()=> {
+      const text = el.dataset.text || el.querySelector('.label')?.textContent || '';
+      speak(text);
+    });
+  });
+
+  document.getElementById('stopSpeech').addEventListener('click', stopSpeech);
+  document.getElementById('clearOutput').addEventListener('click', ()=> speakPreview.textContent='');
+
+  // Modal helper
+  const modal = document.getElementById('modal');
+  const modalInner = document.getElementById('modalInner');
+  const closeModal = document.getElementById('closeModal');
+  closeModal.addEventListener('click', ()=> modal.style.display='none');
+
+  // Matrix UI
+  document.getElementById('matrixBtn').addEventListener('click', ()=> {
+    modalInner.innerHTML = `
+      <h2>Matriz de escritura</h2>
+      <p>Construye texto y háblalo.</p>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <input id="matrixText" style="flex:1;padding:8px;font-size:1rem;" placeholder="Texto...">
+        <button id="matrixSpeak" class="btn">Hablar</button>
+      </div>
+      <div style="margin-top:12px;">
+        <div style="display:grid;grid-template-columns:repeat(10,1fr);gap:6px;">
+          ${'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map(c=>`<button class="charBtn" style="padding:8px;border-radius:6px">${c}</button>`).join('')}
+          <button class="charBtn" style="grid-column:span 2">ESP</button>
+          <button id="charSpace" class="charBtn" style="grid-column:span 2">SPACE</button>
+          <button id="charBack" class="charBtn" style="grid-column:span 2">BACK</button>
+        </div>
+      </div>`;
+    modal.style.display='flex';
+    document.querySelectorAll('.charBtn').forEach(b=>{
+      b.addEventListener('click', ()=> { const t = document.getElementById('matrixText'); t.value += b.textContent.trim(); });
+    });
+    document.getElementById('charSpace').addEventListener('click', ()=> document.getElementById('matrixText').value += ' ');
+    document.getElementById('charBack').addEventListener('click', ()=> {
+      const t = document.getElementById('matrixText'); t.value = t.value.slice(0,-1);
+    });
+    document.getElementById('matrixSpeak').addEventListener('click', ()=> {
+      const t = document.getElementById('matrixText').value;
+      speak(t || ' ');
+      modal.style.display='none';
+    });
+  });
+
+  // YouTube embed
+  document.getElementById('youtubeBtn').addEventListener('click', ()=> {
+    const video = prompt('YouTube video ID or full URL (e.g. dQw4w9WgXcQ):');
+    if(!video) return;
+    let id = video;
+    try{ if(video.includes('youtube')) { const u = new URL(video); id = u.searchParams.get('v') || u.pathname.split('/').pop(); } }catch(e){}
+    modalInner.innerHTML = `<h2>YouTube</h2><div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;"><iframe src="https://www.youtube.com/embed/${id}" style="position:absolute;left:0;top:0;width:100%;height:100%;border:0;" allowfullscreen></iframe></div>`;
+    modal.style.display='flex';
+  });
+
+  // Spotify opens in new tab
+  document.getElementById('spotifyBtn').addEventListener('click', ()=> {
+    const url = prompt('Paste a Spotify track/playlist URI or URL:','https://open.spotify.com/');
+    if(!url) return;
+    window.open(url, '_blank');
+  });
+
+  // Text cell
+  document.getElementById('textCellBtn').addEventListener('click', ()=> {
+    const t = prompt('Enter the text to say:','Hola, quiero comer.');
+    if(!t) return;
+    speak(t);
+    addToMediaList('Texto: '+t);
+  });
+
+  // Voice recorder (MediaRecorder) — requires HTTPS / localhost
+  let mediaRecorder = null;
+  let recordedChunks = [];
+  document.getElementById('recordBtn').addEventListener('click', async ()=> {
+    modalInner.innerHTML = `<h2>Record Voice</h2><p>Click Start to begin recording (requires HTTPS / localhost)</p>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <button id="startRec" class="btn">Start</button>
+        <button id="stopRec" class="secondary">Stop</button>
+        <div id="recState" clas
