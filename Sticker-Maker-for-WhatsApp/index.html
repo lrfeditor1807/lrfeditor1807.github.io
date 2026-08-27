@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>WhatsApp Sticker Maker — Sample Sticker Pack</title>
+  <style>
+    :root{--accent:#2b8ef6;--bg:#f7fbff;--card:#ffffff;--muted:#6b7280}
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;margin:0;background:var(--bg);color:#111}
+    header{background:linear-gradient(90deg,var(--accent),#6ec1ff);color:white;padding:18px 24px}
+    .container{max-width:980px;margin:20px auto;padding:18px}
+    .card{background:var(--card);border-radius:12px;padding:16px;box-shadow:0 6px 18px rgba(10,20,40,.06);margin-bottom:16px}
+    label{display:block;font-weight:600;margin-bottom:6px}
+    input[type="text"], input[type="file"], textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #e6eef9}
+    .row{display:flex;gap:12px}
+    .col{flex:1}
+    .u-center{text-align:center}
+    #dropzone{border:2px dashed #d6e9ff;border-radius:10px;padding:20px;background:linear-gradient(180deg,#fff,#f0fbff);cursor:pointer}
+    #previewList{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px}
+    .preview{width:120px;background:#fbfcfe;border-radius:8px;padding:8px;text-align:center;border:1px solid #eef6ff}
+    .preview img{width:96px;height:96px;object-fit:contain;border-radius:8px;background:transparent}
+    .preview .meta{margin-top:8px;font-size:13px;color:var(--muted)}
+    button{background:var(--accent);color:white;padding:10px 14px;border-radius:8px;border:0;cursor:pointer;font-weight:600}
+    button.ghost{background:#eef6ff;color:var(--accent)}
+    .muted{color:var(--muted);font-size:13px}
+    .small{font-size:13px}
+    .controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .error{color:#b00020;margin-top:8px}
+    footer{margin:28px 0;color:var(--muted);font-size:13px;text-align:center}
+  </style>
+  <!-- JSZip from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/jszip@4.1.0/dist/jszip.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1 style="margin:0">WhatsApp Sticker Maker</h1>
+    <div style="opacity:.95;margin-top:6px">Create a WhatsApp sticker pack named "Sample Sticker Pack" (client-side — no server required)</div>
+  </header>
+
+  <div class="container">
+    <div class="card">
+      <label>Sticker pack name</label>
+      <input id="packName" type="text" value="Sample Sticker Pack" />
+      <div style="margin-top:10px" class="row">
+        <div class="col">
+          <label>Publisher / Author</label>
+          <input id="publisher" type="text" value="Your Name" />
+        </div>
+        <div class="col">
+          <label>Description (optional)</label>
+          <input id="description" type="text" value="Created with Sticker Maker" />
+        </div>
+      </div>
+      <p class="muted small" style="margin-top:8px">
+        Upload images (PNG/JPG/WebP). They will be resized to 512×512 webp with transparency. A 96×96 tray image will be generated from the first sticker.
+      </p>
+    </div>
+
+    <div class="card">
+      <label>Add images</label>
+      <div id="dropzone" tabindex="0">Click or drag images here (or use the Upload button)</div>
+      <input id="fileInput" type="file" accept="image/*" multiple style="display:none" />
+      <div id="previewList" aria-live="polite"></div>
+
+      <div style="margin-top:12px" class="controls">
+        <button id="uploadBtn" class="ghost">Upload</button>
+        <button id="clearBtn" class="ghost">Clear All</button>
+        <div style="flex:1"></div>
+        <button id="generateBtn">Generate ZIP (Download)</button>
+      </div>
+
+      <div id="error" class="error" role="alert" style="display:none"></div>
+      <p class="muted small" style="margin-top:8px">Minimum 3 stickers for WhatsApp packs. Filenames inside the ZIP will be sticker1.webp, sticker2.webp, ...</p>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-top:0">Preview / Per-sticker options</h3>
+      <p class="muted small">You can remove images or add emojis for each sticker (emojis are optional and included in metadata).</p>
+      <div id="previewGrid"></div>
+    </div>
+
+    <footer>
+      Note: This tool creates a ZIP containing .webp stickers, a tray.png and metadata.json suitable for use by sticker-pack tooling and app templates (Android & iOS developer workflows). To add to WhatsApp you can:
+      <ul style="text-align:left;display:inline-block;margin:8px 0;padding-left:18px">
+        <li>Use a sticker-import app on Android or</li>
+        <li>Use the official WhatsApp sticker app template (developers) to build and install a pack</li>
+      </ul>
+    </footer>
+  </div>
+
+<script>
+(() => {
+  const fileInput = document.getElementById('fileInput');
+  const dropzone = document.getElementById('dropzone');
+  const uploadBtn = document.getElementById('uploadBtn');
+  const clearBtn = document.getElementById('clearBtn');
+  const previewList = document.getElementById('previewList');
+  const previewGrid = document.getElementById('previewGrid');
+  const generateBtn = document.getElementById('generateBtn');
+  const errorBox = document.getElementById('error');
+
+  let stickers = []; // {file:File, url:objectURL, emoji:string, id:number}
+
+  function showError(msg) {
+    errorBox.style.display = 'block';
+    errorBox.textContent = msg;
+    setTimeout(()=>{ errorBox.style.display='none'; }, 6000);
+  }
+
+  function addFiles(files) {
+    Array.from(files).forEach(f => {
+      if (!f.type.startsWith('image/')) return;
+      const id = Date.now() + Math.random();
+      const url = URL.createObjectURL(f);
+      stickers.push({file: f, url, emoji: '', id});
+    });
+    renderPreviews();
+  }
+
+  function renderPreviews() {
+    previewList.innerHTML = '';
+    previewGrid.innerHTML = '';
+    stickers.forEach((s, index) => {
+      const div = document.createElement('div');
+      div.className = 'preview';
+      div.innerHTML = `
+        <img src="${s.url}" alt="sticker ${index+1}" />
+        <div class="meta">#${index+1}</div>
+        <div style="margin-top:8px">
+          <button data-action="remove" data-id="${s.id}" class="ghost" style="font-size:12px;padding:6px">Remove</button>
+        </div>
+      `;
+      previewList.appendChild(div);
+
+      // per-sticker control
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.style.width = '100%';
+      card.style.marginBottom = '10px';
+      card.innerHTML = `
+        <div style="display:flex;gap:12px;align-items:center">
+          <img src="${s.url}" width="72" height="72" style="border-radius:8px;object-fit:cover;background:#fff;border:1px solid #eee" />
+          <div style="flex:1">
+            <div style="display:flex;gap:8px;align-items:center">
+              <input data-emoji-for="${s.id}" placeholder="Add emoji (optional)" style="padding:8px;border-radius:8px;border:1px solid #e6eef9;flex:1" value="${s.emoji}" />
+              <button data-action="remove" data-id="${s.id}" class="ghost">Remove</button>
+            </div>
+            <div class="muted small" style="margin-top:6px">Filename preview: sticker${index+1}.webp</div>
+          </div>
+        </div>
+      `;
+      previewGrid.appendChild(card);
+    });
+  }
+
+  // Event delegation for remove and emoji input
+  previewGrid.addEventListener('input', (ev) => {
+    const target = ev.target;
+    const id = target.getAttribute('data-emoji-for');
+    if (id) {
+      const s = stickers.find(x=>String(x.id)===String(id));
+      if (s) s.emoji = target.value.trim();
+    }
+  });
+
+  previewGrid.addEventListener('click', (ev) => {
+    const btn = ev.target.closest('button[data-action="remove"]');
+    if (!btn) return;
+    const id = btn.getAttribute('data-id');
+    stickers = stickers.filter(x => String(x.id) !== String(id));
+    renderPreviews();
+  });
+
+  previewList.addEventListener('click', (ev) => {
+    const btn = ev.target.closest('button[data-action="remove"]');
+    if (!btn) return;
+    const id = btn.getAttribute('data-id');
+    stickers = stickers.filter(x => String(x.id) !== String(id));
+    renderPreviews();
+  });
+
+  dropzone.addEventListener('click', () => fileInput.click());
+  uploadBtn.addEventListener('click', () => fileInput.click());
+
+  dropzone.addEventListener('dragover', (ev) => {
+    ev.preventDefault();
+    dropzone.style.borderColor = '#7fc3ff';
+  });
+  dropzone.addEventListener('dragleave', () => {
+    dropzone.style.borderColor = '#d6e9ff';
+  });
+  dropzone.addEventListener('drop', (ev) => {
+    ev.preventDefault();
+    dropzone.style.borderColor = '#d6e9ff';
+    addFiles(ev.dataTransfer.files);
+  });
+
+  fileInput.addEventListener('change', (ev) => {
+    addFiles(ev.target.files);
+    fileInput.value = '';
+  });
+
+  clearBtn.addEventListener('click', () => {
+    stickers.forEach(s=>URL.revokeObjectURL(s.url));
+    stickers = [];
+    renderPreviews();
+  });
+
+  // Image processing helpers
+  function loadImage(url) {
+    return new Promise((res, rej) => {
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = () => res(img);
+      img.onerror = rej;
+      img.src = url;
+    });
+  }
+
+  // Resize and center-crop/pad to target size; returns Blob of requested mime
+  async function imageToWebPBlob(imgOrFile, targetSize=512, quality=0.92) {
+    let img;
+    if (imgOrFile instanceof HTMLImageElement) img = imgOrFile;
+    else {
+      const url = (imgOrFile instanceof File) ? URL.createObjectURL(imgOrFile) : imgOrFile;
+      img = await loadImage(url);
+      if (imgOrFile instanceof File) URL.revokeObjectURL(url);
+    }
+    // create canvas with transparency
+    const canvas = document.createElement('canvas');
+    canvas.width = targetSize;
+    canvas.height = targetSize;
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    // calculate fit (contain) preserving aspect ratio, centered
+    const ratio = Math.min(targetSize / img.width, targetSize / img.height);
+    const w = Math.round(img.width * ratio);
+    const h = Math.round(img.height * ratio);
+    const dx = Math.round((targetSize - w) / 2);
+    const dy = Math.round((targetSize - h) / 2);
+    ctx.drawImage(img, 0,0,img.width,img.height, dx, dy, w, h);
+
+    return await new Promise((res) => {
+      // Prefer image/webp output
+      canvas.toBlob(blob => res(blob), 'image/webp', quality);
+    });
+  }
+
+  async function imageToPNGBlob(imgOrFile, size=96) {
+    let img;
+    if (imgOrFile instanceof HTMLImageElement) img = imgOrFile;
+    else {
+      const url = (imgOrFile instanceof File) ? URL.createObjectURL(imgOrFile) : imgOrFile;
+      img = await loadImage(url);
+      if (imgOrFile instanceof File) URL.revokeObjectURL(url);
+    }
+    const canvas = document.createElement('canvas');
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    const ratio = Math.min(size / img.width, size / img.height);
+    const w = Math.round(img.width * ratio);
+    const h = Math.round(img.height * ratio);
+    const dx = Math.round((size - w) / 2);
+    const dy = Math.round((size - h) / 2);
+    ctx.drawImage(img, 0,0,img.width,img.height, dx, dy, w, h);
+    return await new Promise((res) => {
+      canvas.toBlob(blob => res(blob), 'image/png');
+    });
+  }
+
+  // Generate ZIP
+  async function generateZip() {
+    const packName = document.getElementById('packName').value.trim() || 'Sample Sticker Pack';
+    const publisher = document.getElementById('publisher').value.trim() || 'Unknown';
+    const description = document.getElementById('description').value.trim() || '';
+
+    if (stickers.length < 3) {
+      showError('WhatsApp sticker packs require at least 3 stickers. Please add more images.');
+      return;
+    }
+
+    generateBtn.disabled = true;
+    generateBtn.textContent = 'Processing... (this may take a moment)';
+
+    const zip = new JSZip();
+    const stickersFolder = zip.folder('stickers') || zip;
+
+    // convert each sticker to webp
+    const stickerFiles = [];
+    for (let i=0;i<stickers.length;i++) {
+      const s = stickers[i];
+      try {
+        const img = await loadImage(s.url);
+        const webpBlob = await imageToWebPBlob(img, 512, 0.92);
+        const filename = `sticker${i+1}.webp`;
+        stickerFiles.push({filename, blob:webpBlob, emoji: s.emoji});
+        stickersFolder.file(filename, webpBlob);
+      } catch (err) {
+        console.error('Failed converting image', err);
+        showError('One image failed to process; see console for details.');
+      }
+    }
+
+    // tray image from first sticker, png 96x96
+    let trayBlob;
+    try {
+      const firstImg = await loadImage(stickers[0].url);
+      trayBlob = await imageToPNGBlob(firstImg, 96);
+      zip.file('tray.png', trayBlob);
+    } catch (err) {
+      console.warn('Tray image generation failed', err);
+    }
+
+    // metadata.json according to WhatsApp pack metadata (extra fields allowed)
+    const metadata = {
+      name: packName,
+      publisher: publisher,
+      publisher_email: "",
+      publisher_website: "",
+      privacy_policy_website: "",
+      license_agreement_website: "",
+      tray_image_file: "tray.png",
+      // custom description field
+      description: description,
+      stickers: stickerFiles.map(s => ({
+        image_file: `sticker${stickerFiles.indexOf(s)+1}.webp`,
+        emojis: (s.emoji && s.emoji.length) ? [s.emoji] : []
+      }))
+    };
+    zip.file('metadata.json', JSON.stringify(metadata, null, 2));
+
+    // create zip blob
+    try {
+      const content = await zip.generateAsync({type: 'blob', compression: 'DEFLATE', compressionOptions:{level:6}});
+      const url = URL.createObjectURL(content);
+      const a = document.createElement('a');
+      a.href = url;
+      const safeName = packName.replace(/[^\w\s-]/g,'').replace(/\s+/g,'_') || 'sticker_pack';
+      a.download = `${safeName}.zip`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error(err);
+      showError('Failed to generate ZIP.');
+    } finally {
+      generateBtn.disabled = false;
+      generateBtn.textContent = 'Generate ZIP (Download)';
+    }
+  }
+
+  generateBtn.addEventListener('click', generateZip);
+
+  // initial focus
+  dropzone.addEventListener('keydown', (ev) => {
+    if (ev.key === 'Enter' || ev.key === ' ') fileInput.click();
+  });
+
+  // small demo: pre-populate with a couple images (optional)
+  // You can remove this block if you want a totally empty start.
+  // fetch demo images and add to stickers
+  (async function preloadDemo(){
+    // no-op: leaving empty so the pack starts empty. Uncomment to fetch remote demo images.
+    // Example:
+    // const demoUrls = ['https://example.com/img1.png','https://example.com/img2.png','https://example.com/img3.png'];
+    // for (const u of demoUrls) {
+    //   const res = await fetch(u);
+    //   const blob = await res.blob();
+    //   const file = new File([blob], 'demo.png', {type:blob.type});
+    //   addFiles([file]);
+    // }
+  })();
+
+})();
+</script>
+</body>
+  </html>
