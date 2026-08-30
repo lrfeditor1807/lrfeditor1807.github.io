@@ -1,6 +1,2 @@
 Angelmalo
 geminis
-pool
-Pancho
-luis
-Leonardo
