@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Toon Blast Team Chat - ¡TE GUSTA POCO!</title>
+  <style>
+    :root{
+      --bg:#f2f6fb;
+      --card:#ffffff;
+      --accent:#ff6b6b;
+      --muted:#6b7280;
+      --shadow: 0 8px 24px rgba(16,24,40,0.08);
+      font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:linear-gradient(180deg,#eaf3ff 0%,var(--bg) 100%);
+      color:#0f1724;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:28px;
+    }
+    .app{
+      width:min(1100px,98%);
+      background:var(--card);
+      border-radius:14px;
+      box-shadow:var(--shadow);
+      display:grid;
+      grid-template-columns:320px 1fr;
+      overflow:hidden;
+      min-height:640px;
+    }
+
+    /* Sidebar */
+    .sidebar{
+      background:linear-gradient(180deg,#fff 0%,#fbfcff 100%);
+      padding:18px;
+      border-right:1px solid #eef3fb;
+      display:flex;
+      flex-direction:column;
+    }
+    .team-header{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      margin-bottom:12px;
+    }
+    .team-avatar{
+      width:64px;height:64px;border-radius:12px;
+      background:linear-gradient(135deg,#ffd36b,#ff8aa1);
+      display:flex;align-items:center;justify-content:center;
+      font-weight:800;color:#fff;font-size:20px;box-shadow:0 6px 14px rgba(255,110,110,0.12);
+    }
+    .team-info h1{margin:0;font-size:18px}
+    .team-info p{margin:4px 0 0;color:var(--muted);font-size:13px}
+
+    .level{
+      margin-top:10px;
+      display:flex;gap:8px;align-items:center;
+      font-weight:700;color:#0f1724;font-size:13px;
+    }
+    .level .badge{
+      background:#f3f4f6;color:#111827;padding:6px 10px;border-radius:999px;font-weight:800;font-size:13px;
+      border:1px solid #e6edf8;
+    }
+
+    .actions{
+      display:flex;gap:8px;margin:14px 0 18px;
+    }
+    .btn{
+      flex:1;padding:10px;border-radius:10px;border:0;background:#eef6ff;color:#0f4ac4;font-weight:800;cursor:pointer;
+      font-size:14px;
+    }
+    .btn.primary{background:var(--accent);color:#fff}
+    .btn:active{transform:translateY(1px)}
+
+    .friends{
+      margin-top:4px;
+      flex:0 0 auto;
+    }
+    .friends h3{margin:6px 0 10px;font-size:13px;color:var(--muted)}
+    .friend-list{display:flex;flex-direction:column;gap:8px}
+    .friend{
+      display:flex;gap:10px;align-items:center;padding:8px;border-radius:10px;cursor:default;
+      transition:background .12s;
+    }
+    .friend:hover{background:#f6fbff}
+    .avatar{
+      width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+      font-weight:700;color:#fff;font-size:14px;
+    }
+    .avatar.alt1{background:linear-gradient(90deg,#6ee7b7,#34d399)}
+    .avatar.alt2{background:linear-gradient(90deg,#60a5fa,#3b82f6)}
+    .avatar.alt3{background:linear-gradient(90deg,#fca5a5,#fb7185)}
+    .friend .meta{display:flex;flex-direction:column}
+    .friend .meta .name{font-weight:800}
+    .friend .meta .status{font-size:12px;color:var(--muted)}
+
+    .sidebar-footer{margin-top:auto;padding-top:12px;border-top:1px dashed #eef4fb;color:var(--muted);font-size:13px}
+
+    /* Chat Area */
+    .chat{
+      display:flex;flex-direction:column;height:100%;
+      position:relative;
+    }
+    .chat-top{
+      padding:16px 22px;border-bottom:1px solid #eef3fb;display:flex;align-items:center;justify-content:space-between;
+    }
+    .chat-title{font-size:16px;font-weight:900;display:flex;align-items:center;gap:12px}
+    .controls{display:flex;gap:8px;align-items:center}
+    .control-btn{background:#fff;border:1px solid #eef3fb;padding:8px 10px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--muted)}
+    .control-btn.on{background:#eff9ff;border-color:#cfeefe;color:#0b5aa7}
+    .control-btn svg{width:18px;height:18px}
+    .status{font-size:13px;color:var(--muted)}
+
+    .messages{
+      padding:22px;background:linear-gradient(180deg,#f6fbff 0%,#ffffff 100%);flex:1;overflow:auto;
+      display:flex;flex-direction:column;gap:12px;
+    }
+    .message{max-width:72%;padding:10px 12px;border-radius:12px;background:#fff;box-shadow:0 3px 8px rgba(16,24,40,0.04)}
+    .message.me{margin-left:auto;background:linear-gradient(90deg,#ffdde0,#ffd6b5);color:#1a1a1a}
+    .message .who{font-weight:800;font-size:13px;margin-bottom:6px}
+    .muted{font-size:12px;color:var(--muted);margin-top:6px}
+
+    .input-area{
+      border-top:1px solid #eef3fb;padding:12px 18px;display:flex;gap:10px;align-items:center;background:#fff;
+    }
+    .input{
+      flex:1;display:flex;gap:10px;align-items:center;background:#f6f9ff;padding:8px;border-radius:10px;border:1px solid transparent;
+    }
+    .input input{
+      border:0;outline:none;background:transparent;font-size:15px;padding:8px 6px;width:100%;
+    }
+    .tool-btn{background:transparent;border:0;padding:6px;border-radius:8px;cursor:pointer;font-size:18px}
+    .send-btn{background:var(--accent);border:0;color:#fff;padding:9px 12px;border-radius:10px;font-weight:800;cursor:pointer}
+
+    /* Stickers panel */
+    .stickers{
+      position:absolute;right:22px;bottom:84px;background:#fff;border-radius:12px;padding:10px;border:1px solid #eef3fb;
+      box-shadow:0 12px 36px rgba(16,24,40,0.10);display:grid;grid-template-columns:repeat(6,40px);gap:10px;
+      z-index:40;
+    }
+    .sticker{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer}
+    .sticker:hover{transform:translateY(-6px);transition:transform .12s}
+
+    @media (max-width:880px){
+      .app{grid-template-columns:1fr;min-height:740px}
+      .sidebar{order:2;border-right:0;border-top:1px solid #eef3fb}
+    }
+  </style>
+</head>
+<body>
+  <div class="app" role="application" aria-label="Toon Blast Team Chat">
+    <!-- Sidebar -->
+    <aside class="sidebar" aria-label="Team sidebar">
+      <div class="team-header">
+        <div class="team-avatar" aria-hidden="true">¡T</div>
+        <div class="team-info">
+          <h1>¡TE GUSTA POCO!</h1>
+          <p>Equipo • Toon Blast</p>
+          <div class="level" title="Nivel del equipo">
+            <span class="badge">Nivel 0</span>
+            <small class="status" style="margin-left:6px">8 miembros</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions" role="region" aria-label="Acciones del equipo">
+        <button class="btn" id="askLivesBtn" title="Pedir vidas">Pedir vidas</button>
+        <button class="btn primary" id="earnCoinsBtn" title="Ganar monedas">Ganar monedas</button>
+      </div>
+
+      <div class="friends" aria-label="Miembros del equipo">
+        <h3>Miembros</h3>
+        <div class="friend-list" role="list">
+          <div class="friend" role="listitem"><div class="avatar alt1">A</div><div class="meta"><div class="name">Alazo</div><div class="status">En línea</div></div></div>
+          <div class="friend" role="listitem"><div class="avatar alt2">E</div><div class="meta"><div class="name">erika</div><div class="status">Jugando</div></div></div>
+          <div class="friend" role="listitem"><div class="avatar alt3">L</div><div class="meta"><div class="name">luis</div><div class="status">Ausente</div></div></div>
+          <div class="friend" role="listitem"><div class="avatar" style="background:linear-gradient(90deg,#f0abfc,#c084fc)">C</div><div class="meta"><div class="name">Calambre</div><div class="status">En línea</div></div></div>
+          <div class="friend" role="listitem"><div class="avatar" style="background:linear-gradient(90deg,#fcd34d,#fb923c)">AM</div><div class="meta"><div class="name">Angelmalo</div><div class="status">Offline</div></div></div>
+          <div class="friend" role="listitem"><div class="avatar" style="background:linear-gradient(90deg,#60a5fa,#a78bfa)">P</div><div class="meta"><div class="name">Pancho</div><div class="status">En línea</div></div></div>
+          <div class="friend" role="listitem"><div class="avatar" style="background:linear-gradient(90deg,#34d399,#34e7e4)">G</div><div class="meta"><div class="name">geminis</div><div class="status">Jugando</div></div></div>
+          <div class="friend" role="listitem"><div class="avatar" style="background:linear-gradient(90deg,#fb7185,#ff8aab)">P</div><div class="meta"><div class="name">pool</div><div class="status">En línea</div></div></div>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        Consejo: Pide vidas cuando las necesites o completa retos para ganar monedas para el equipo.
+      </div>
+    </aside>
+
+    <!-- Chat area -->
+    <main class="chat" aria-live="polite">
+      <div class="chat-top">
+        <div>
+          <div class="chat-title">¡TE GUSTA POCO! <span style="font-size:13px;color:var(--muted);margin-left:8px;font-weight:700">• Nivel 0</span></div>
+          <div class="status">Texto · Cámara · Micrófono · Stickers</div>
+        </div>
+
+        <div class="controls" aria-hidden="false" role="toolbar" aria-label="Controles de chat">
+          <button class="control-btn" id="textModeBtn" title="Modo texto">Text</button>
+          <button class="control-btn" id="cameraToggle" title="Cámara"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M22 7l-5 4v2"/></svg> Cámara</button>
+          <button class="control-btn" id="micToggle" title="Micrófono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 1v11"/><path d="M19 11a7 7 0 0 1-14 0"/></svg> Micrófono</button>
+          <button class="control-btn" id="stickersToggle" title="Stickers">Stickers</button>
+        </div>
+      </div>
+
+      <div class="messages" id="messages" aria-label="Mensajes del chat">
+        <!-- Mensajes de ejemplo -->
+        <div class="message"><div class="who">Alazo</div>¡Hola equipo! ¿Alguien tiene vidas para compartir?<div class="muted">09:42</div></div>
+        <div class="message me"><div class="who">Tú</div>Aquí, pido 3 vidas, por favor.<div class="muted">09:44</div></div>
+        <div class="message"><div class="who">erika</div>He completado un reto, puedo mandar vidas en 2 min.<div class="muted">09:45</div></div>
+      </div>
+
+      <div class="input-area" aria-label="Área de entrada">
+        <div class="input" role="group" aria-label="Controles de mensaje">
+          <button class="tool-btn" id="cameraBtn" title="Adjuntar cámara">📷</button>
+          <button class="tool-btn" id="micBtn" title="Grabar voz">🎤</button>
+          <input id="messageInput" placeholder="Escribe un mensaje (Enter para enviar)" aria-label="Mensaje de texto" />
+          <button class="tool-btn" id="openStickers" title="Abrir stickers">😊</button>
+        </div>
+        <button class="send-btn" id="sendBtn" title="Enviar">ENVIAR</button>
+      </div>
+
+      <!-- Stickers panel -->
+      <div id="stickersPanel" style="display:none" class="stickers" aria-hidden="true" role="dialog" aria-label="Panel de stickers">
+        <div class="sticker">🎉</div>
+        <div class="sticker">🔥</div>
+        <div class="sticker">💥</div>
+        <div class="sticker">❤️</div>
+        <div class="sticker">🤣</div>
+        <div class="sticker">🍀</div>
+        <div class="sticker">⭐</div>
+        <div class="sticker">🏆</div>
+        <div class="sticker">🎯</div>
+        <div class="sticker">🤝</div>
+        <div class="sticker">👏</div>
+        <div class="sticker">💎</div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Element references
+    const messagesEl = document.getElementById('messages');
+    const input = document.getElementById('messageInput');
+    const sendBtn = document.getElementById('sendBtn');
+    const stickersPanel = document.getElementById('stickersPanel');
+    const openStickers = document.getElementById('openStickers');
+    const askLivesBtn = document.getElementById('askLivesBtn');
+    const earnCoinsBtn = document.getElementById('earnCoinsBtn');
+    const cameraToggle = document.getElementById('cameraToggle');
+    const micToggle = document.getElementById('micToggle');
+    const cameraBtn = document.getElementById('cameraBtn');
+    const micBtn = document.getElementById('micBtn');
+    const stickersToggle = document.getElementById('stickersToggle');
+    const textModeBtn = document.getElementById('textModeBtn');
+
+    let cameraOn = false;
+    let micOn = false;
+    let coins = 0;
+
+    function appendMessage(who, text, isMe=false){
+      const msg = document.createElement('div');
+      msg.className = 'message' + (isMe ? ' me' : '');
+      const whoEl = document.createElement('div');
+      whoEl.className = 'who';
+      whoEl.textContent = who;
+      const textEl = document.createElement('div');
+      textEl.innerHTML = text.replace(/\n/g,'<br>');
+      const time = document.createElement('div');
+      time.className = 'muted';
+      time.textContent = new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+      msg.appendChild(whoEl);
+      msg.appendChild(textEl);
+      msg.appendChild(time);
+      messagesEl.appendChild(msg);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+
+    // Send text message
+    sendBtn.addEventListener('click', () => {
+      const text = input.value.trim();
+      if(!text) return;
+      appendMessage('Tú', text, true);
+      input.value = '';
+      // small simulated reply
+      setTimeout(()=> appendMessage('Alazo', '¡Gracias!'), 900);
+    });
+    input.addEventListener('keydown', (e)=>{
+      if(e.key === 'Enter' && !e.shiftKey){
+        e.preventDefault();
+        sendBtn.click();
+      }
+    });
+
+    // Stickers open/insert
+    openStickers.addEventListener('click', (e) => {
+      const showing = stickersPanel.style.display !== 'none';
+      stickersPanel.style.display = showing ? 'none' : 'grid';
+      stickersPanel.setAttribute('aria-hidden', showing ? 'true' : 'false');
+    });
+    stickersPanel.addEventListener('click', (e) => {
+      if(e.target.classList.contains('sticker')){
+        appendMessage('Tú', e.target.textContent, true);
+        stickersPanel.style.display = 'none';
+        stickersPanel.setAttribute('aria-hidden', 'true');
+      }
+    });
+    stickersToggle?.addEventListener('click', () => openStickers.click());
+
+    // Camera / Mic toggles (top bar)
+    cameraToggle.addEventListener('click', ()=>{
+      cameraOn = !cameraOn;
+      cameraToggle.classList.toggle('on', cameraOn);
+      appendMessage('Sistema', cameraOn ? 'Cámara activada.' : 'Cámara desactivada.');
+    });
+    micToggle.addEventListener('click', ()=>{
+      micOn = !micOn;
+      micToggle.classList.toggle('on', micOn);
+      appendMessage('Sistema', micOn ? 'Micrófono activado.' : 'Micrófono desactivado.');
+    });
+
+    // Small actions in input area (visual only)
+    cameraBtn.addEventListener('click', ()=> {
+      appendMessage('Tú', '📷 (imagen adjunta)', true);
+    });
+    micBtn.addEventListener('click', ()=> {
+      appendMessage('Tú', '🎤 (mensaje de voz)', true);
+    });
+
+    // Ask lives
+    askLivesBtn.addEventListener('click', ()=>{
+      const lifeCount = prompt('¿Cuántas vidas quieres pedir?', '3');
+      if(lifeCount && Number(lifeCount) > 0){
+        appendMessage('Tú', `Pidiendo ${lifeCount} vidas al equipo...`, true);
+        setTimeout(()=> appendMessage('erika', `Envío ${lifeCount} vidas. ¡Suerte!`), 1200);
+      }
+    });
+
+    // Earn coins (simple simulation)
+    earnCoinsBtn.addEventListener('click', ()=>{
+      appendMessage('Sistema', 'Iniciando una tarea rápida para ganar monedas...');
+      setTimeout(()=>{
+        const gained = Math.floor(Math.random()*50)+5;
+        coins += gained;
+        appendMessage('Sistema', `¡Tarea completada! Ganaste ${gained} monedas. Total: ${coins} monedas.`);
+      }, 1200);
+    });
+
+    // Text mode visual toggle
+    textModeBtn.addEventListener('click', () => {
+      textModeBtn.classList.toggle('on');
+      appendMessage('Sistema', textModeBtn.classList.contains('on') ? 'Modo Texto activado.' : 'Modo Texto desactivado.');
+    });
+
+    // Close stickers when clicking outside
+    document.addEventListener('click', (e) => {
+      if(!stickersPanel.contains(e.target) && !openStickers.contains(e.target) && !stickersToggle.contains(e.target)){
+        stickersPanel.style.display = 'none';
+        stickersPanel.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    // focus input
+    input.focus();
+  </script>
+</body>
+</html>
