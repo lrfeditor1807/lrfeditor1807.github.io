@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Demo Mail · Email Calendar Contacts</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main id="app">
+    <section id="login-screen" class="screen">
+      <h1>Demo Mail — Login</h1>
+      <form id="login-form" autocomplete="off">
+        <label>
+          Email
+          <input id="email" type="email" required placeholder="you@example.com">
+        </label>
+        <label>
+          Password
+          <input id="password" type="password" required minlength="8" maxlength="12" placeholder="8–12 characters">
+        </label>
+        <div class="row">
+          <button id="login-btn" type="submit">Login (demo)</button>
+          <button id="offline-btn" type="button">Use Offline</button>
+        </div>
+      </form>
+
+      <div class="oauth">
+        <p>Or sign in via OAuth (demo placeholders):</p>
+        <button class="oauth-btn" id="gmail">Login with Gmail</button>
+        <button class="oauth-btn" id="outlook">Login with Outlook</button>
+        <button class="oauth-btn" id="icloud">Login with iCloud</button>
+      </div>
+
+      <p class="note">This demo does not perform real provider authentication. In production, use OAuth and never collect provider passwords.</p>
+      <p id="network-status"></p>
+    </section>
+
+    <section id="main-screen" class="screen hidden">
+      <header>
+        <h2 id="welcome">Welcome</h2>
+        <div class="top-actions">
+          <span id="online-dot"></span><span id="online-text"></span>
+          <button id="logout">Logout</button>
+        </div>
+      </header>
+
+      <nav class="tabs">
+        <button data-tab="email" class="tab active">Email</button>
+        <button data-tab="calendar" class="tab">Calendar</button>
+        <button data-tab="contacts" class="tab">Contacts</button>
+      </nav>
+
+      <section id="tab-email" class="tab-panel">
+        <div class="compose">
+          <input id="compose-to" placeholder="To email">
+          <input id="compose-subject" placeholder="Subject">
+          <textarea id="compose-body" placeholder="Message"></textarea>
+          <button id="send-email">Send</button>
+        </div>
+        <div id="inbox">
+          <h3>Inbox</h3>
+          <ul id="email-list"></ul>
+        </div>
+      </section>
+
+      <section id="tab-calendar" class="tab-panel hidden">
+        <div class="event-form">
+          <input id="event-title" placeholder="Event title">
+          <input id="event-date" type="date">
+          <button id="add-event">Add Event</button>
+        </div>
+        <ul id="event-list"></ul>
+      </section>
+
+      <section id="tab-contacts" class="tab-panel hidden">
+        <div class="contact-form">
+          <input id="contact-name" placeholder="Name">
+          <input id="contact-email" placeholder="Email">
+          <button id="add-contact">Add Contact</button>
+        </div>
+        <ul id="contact-list"></ul>
+      </section>
+
+      <footer class="downloads">
+        <p>App downloads (placeholders):</p>
+        <a id="apk-link" href="#" download>Download Android APK</a> |
+        <a id="ipa-link" href="#" download>Download iOS IPA</a>
+      </footer>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
