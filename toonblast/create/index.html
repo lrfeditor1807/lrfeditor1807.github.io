@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Toon Blast Create — Sample and Auditions</title>
+  <style>
+    :root{ --bg:#121216; --card:#1d1f24; --accent:#ff7a59; --muted:#9aa0a6; color-scheme: dark; }
+    body{ font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; background:linear-gradient(180deg,#0f0f12,#141417); color:#e6eef3; }
+    .container{ max-width:1100px; margin:28px auto; padding:20px; }
+    header{ display:flex; gap:20px; align-items:center; margin-bottom:18px; }
+    header h1{ margin:0; font-size:20px; letter-spacing:0.2px; }
+    .grid{ display:grid; grid-template-columns: 320px 1fr; gap:18px; }
+    .card{ background:var(--card); border-radius:10px; padding:14px; box-shadow:0 6px 18px rgba(0,0,0,0.6); }
+    .small{ font-size:13px; color:var(--muted); }
+    ul{ padding:0; margin:0; list-style:none; display:flex; gap:8px; flex-wrap:wrap; }
+    li.cat{ background:#26282d; padding:8px 12px; border-radius:999px; cursor:pointer; transition:all .12s; user-select:none; }
+    li.cat:hover{ transform:translateY(-4px); }
+    .objects{ display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
+    .obj{ background:linear-gradient(180deg,#232427,#1d1f24); width:120px; height:120px; border-radius:8px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; cursor:pointer; transition:transform .12s; }
+    .obj:hover{ transform:translateY(-6px) scale(1.02); }
+    .obj .emoji{ font-size:36px; }
+    .obj .name{ font-size:14px; color:var(--muted); }
+    .stats{ display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-top:8px; }
+    .stat{ background:#111214; padding:10px 12px; border-radius:8px; min-width:120px; text-align:center; }
+    .kicker{ font-size:12px; color:var(--muted); }
+    .value{ font-weight:700; font-size:18px; margin-top:6px; color:#fff; }
+    .btn{ background:var(--accent); color:#111; padding:8px 12px; border-radius:8px; border:none; cursor:pointer; font-weight:700; }
+    .shop{ display:flex; gap:12px; margin-top:10px; }
+    .shop .item{ background:#15161a; padding:10px; border-radius:8px; width:160px; text-align:center; }
+    input[type="number"]{ width:82px; padding:6px 8px; border-radius:6px; border:1px solid #2a2d31; background:#0f1113; color:#e6eef3; }
+    footer{ margin-top:18px; font-size:13px; color:var(--muted); }
+    .log{ margin-top:10px; max-height:140px; overflow:auto; background:#0c0c0f; padding:10px; border-radius:8px; font-family:monospace; font-size:13px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Toon Blast Create — Sample</h1>
+      <div class="small">Repository: lrfeditor1807/Toon-Blast-Auditions (sample UI)</div>
+    </header>
+
+    <div class="grid">
+      <div>
+        <div class="card">
+          <div class="kicker">Categories</div>
+          <ul id="categories" aria-label="categories">
+            <!-- dynamically populated -->
+          </ul>
+
+          <div style="margin-top:12px;">
+            <div class="kicker">Sample Object Pack</div>
+            <div class="objects" id="packObjects">
+              <!-- pack objects go here -->
+            </div>
+            <div class="small" style="margin-top:8px;">Pack name: <strong id="packName"></strong></div>
+          </div>
+
+          <div style="margin-top:12px;">
+            <div class="kicker">Sample Object: <strong id="sampleObjectName"></strong></div>
+            <div class="objects" style="margin-top:8px;">
+              <div class="obj" id="sampleObjectCard" title="Click to use object">
+                <div class="emoji" id="sampleEmoji">🚀</div>
+                <div class="name" id="sampleObjectDesc">Rocket — Activatable</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:12px;">
+            <div class="kicker">Sample Move</div>
+            <div class="stats">
+              <div class="stat">
+                <div class="kicker">Moves</div>
+                <div class="value" id="movesValue">1000</div>
+                <div style="margin-top:8px;">
+                  <button class="btn" id="useMove">Use 1 Move</button>
+<a href="https://lrfeditor1807.github.io/videos/toonblast/auditions">Toon Blast Auditions</a>
+                </div>
+              </div>
+              <div class="stat">
+                <div class="kicker">Lives</div>
+                <div class="value" id="livesValue">5</div>
+                <div style="margin-top:8px;">
+                  <button class="btn" id="addLife">+1 Life</button>
+                </div>
+              </div>
+              <div class="stat">
+                <div class="kicker">Coins</div>
+                <div class="value" id="coinsValue">0</div>
+                <div style="margin-top:8px;">
+                  <button class="btn" id="earnCoins">Earn 10</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="card" style="margin-top:12px;">
+          <div class="kicker">Teddy Firefox Shop & Pass</div>
+          <div class="shop" id="shopList">
+            <!-- shop items -->
+          </div>
+
+          <div style="margin-top:12px;">
+            <div class="kicker">Coin Calculator</div>
+            <div style="margin-top:6px;">
+              <label class="small">Moves to convert: <input id="movesInput" type="number" min="0" value="100"></label>
+              <button class="btn" id="calcBtn">Calculate Coins</button>
+            </div>
+            <div class="small" style="margin-top:8px;">Result: <strong id="calcResult">0</strong> coins</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div>
+        <div class="card">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <div class="kicker">Objects Library</div>
+              <div class="small">Click an object to view details or 'use' it.</div>
+            </div>
+            <div>
+              <button class="btn" id="resetBtn">Reset Sample</button>
+            </div>
+          </div>
+
+          <div class="objects" id="libObjects" style="margin-top:12px;">
+            <!-- library -->
+          </div>
+
+          <div style="margin-top:12px;">
+            <div class="kicker">Toon Cards</div>
+            <div style="display:flex; gap:10px; margin-top:8px;">
+              <div class="stat"><div class="kicker">Card A</div><div class="value">x1</div></div>
+              <div class="stat"><div class="kicker">Card B</div><div class="value">x0</div></div>
+              <div class="stat"><div class="kicker">Card C</div><div class="value">x2</div></div>
+            </div>
+          </div>
+
+          <div style="margin-top:12px;">
+            <div class="kicker">Activity Log</div>
+            <div class="log" id="log"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      This is a demo implementation for a "Toon Blast Create" UI using HTML + JavaScript with the sample objects and categories you requested.
+    </footer>
+  </div>
+
+  <script>
+    // Data model
+    const sampleMoveValue = 1000; // sample move
+    const categories = ["moves","lives","objects","toon cards","calculator coins","teddy firefox shop","pass"];
+
+    const objects = [
+      { id: 'balloon_pink', name: 'Balloon Pink', emoji: '🎈', type: 'object', power: 'Clears a small area' },
+      { id: 'watermelon', name: 'Watermelon', emoji: '🍉', type: 'object', power: 'Large single block' },
+      { id: 'bomb', name: 'bomb', namePretty: 'Bomb', emoji: '💣', type: 'object', power: 'Explosive' },
+      { id: 'rocket', name: 'Rocket', emoji: '🚀', type: 'object', power: 'Clears a row or column' }
+    ];
+
+    const packs = [
+      {
+        id: 'sample_pack_1',
+        name: 'Sample Object Pack',
+        objects: ['balloon_pink', 'watermelon', 'bomb', 'rocket']
+      }
+    ];
+
+    const shopItems = [
+      { id:'teddy', name:'Teddy 🧸', price:120, desc:'Cute teddy — boosts lives +1' },
+      { id:'firefox', name:'Firefox 🦊', price:250, desc:'Lucky fox — chance to double coins' },
+      { id:'pass', name:'Play Pass', price:999, desc:'Monthly pass — +100 moves' }
+    ];
+
+    // Runtime state
+    const state = {
+      moves: sampleMoveValue,
+      lives: 5,
+      coins: 0,
+      selectedPack: packs[0].id,
+      sampleObject: 'rocket',
+      log: []
+    };
+
+    // Helpers
+    function byId(id){ return document.getElementById(id); }
+    function log(msg){
+      state.log.unshift(`[${new Date().toLocaleTimeString()}] ${msg}`);
+      const l = byId('log');
+      l.innerText = state.log.slice(0,200).join('\n');
+    }
+
+    // Render categories
+    function renderCategories(){
+      const ul = byId('categories');
+      ul.innerHTML = '';
+      categories.forEach(cat => {
+        const li = document.createElement('li');
+        li.className = 'cat';
+        li.textContent = cat;
+        li.onclick = () => {
+          log(`Category clicked: ${cat}`);
+          // Simple highlight behavior
+          Array.from(ul.children).forEach(c=>c.style.background='');
+          li.style.background = '#2a2d31';
+        };
+        ul.appendChild(li);
+      });
+    }
+
+    function renderPack(){
+      const pack = packs.find(p=>p.id === state.selectedPack);
+      byId('packName').textContent = pack.name;
+      const container = byId('packObjects');
+      container.innerHTML = '';
+      pack.objects.forEach(objId=>{
+        const o = objects.find(x=>x.id===objId || x.name.toLowerCase().includes(objId));
+        if(!o) return;
+        const d = document.createElement('div');
+        d.className='obj';
+        d.title = `${o.name} — ${o.power || ''}`;
+        d.innerHTML = `<div class="emoji">${o.emoji}</div><div class="name">${o.name}</div>`;
+        d.onclick = ()=> {
+          state.sampleObject = o.id;
+          renderSampleObject();
+          log(`Selected ${o.name} from pack`);
+        };
+        container.appendChild(d);
+      });
+    }
+
+    function renderLibrary(){
+      const lib = byId('libObjects');
+      lib.innerHTML = '';
+      objects.forEach(o=>{
+        const d = document.createElement('div');
+        d.className='obj';
+        d.title = `${o.name} — ${o.power || ''}`;
+        d.innerHTML = `<div class="emoji">${o.emoji}</div><div class="name">${o.name}</div>`;
+        d.onclick = ()=> {
+          state.sampleObject = o.id;
+          renderSampleObject();
+          log(`Selected ${o.name} from library`);
+        };
+        lib.appendChild(d);
+      });
+    }
+
+    function renderSampleObject(){
+      const s = objects.find(o=>o.id === state.sampleObject) || objects[0];
+      byId('sampleObjectName').textContent = s.name;
+      byId('sampleEmoji').textContent = s.emoji;
+      byId('sampleObjectDesc').textContent = `${s.name} — ${s.power || ''}`;
+    }
+
+    function renderStats(){
+      byId('movesValue').textContent = state.moves;
+      byId('livesValue').textContent = state.lives;
+      byId('coinsValue').textContent = state.coins;
+    }
+
+    function renderShop(){
+      const s = byId('shopList');
+      s.innerHTML = '';
+      shopItems.forEach(it=>{
+        const el = document.createElement('div');
+        el.className = 'item';
+        el.innerHTML = `<div style="font-size:22px">${it.name}</div><div class="small" style="margin-top:6px;">${it.desc}</div><div style="margin-top:8px;"><strong>${it.price} coins</strong></div>`;
+        const btn = document.createElement('button');
+        btn.className='btn';
+        btn.textContent='Buy';
+        btn.style.marginTop='8px';
+        btn.onclick = ()=> {
+          purchaseItem(it);
+        };
+        el.appendChild(btn);
+        s.appendChild(el);
+      });
+    }
+
+    // Actions
+    function useMove(){
+      if(state.moves <= 0){ log('No moves left to use.'); return; }
+      state.moves -= 1;
+      state.coins += 1; // simple reward for using a move
+      renderStats();
+      log(`Used a move. Moves left: ${state.moves}. Earned 1 coin.`);
+    }
+
+    function addLife(){
+      state.lives += 1;
+      renderStats();
+      log('Added 1 life.');
+    }
+
+    function earnCoins(){
+      state.coins += 10;
+      renderStats();
+      log('Earned 10 coins.');
+    }
+
+    function calculateCoinsFromMoves(moves){
+      // example conversion: every 10 moves -> 1 coin
+      return Math.floor(moves / 10);
+    }
+
+    function purchaseItem(item){
+      if(state.coins < item.price){
+        log(`Cannot buy ${item.name}: not enough coins (${state.coins}/${item.price}).`);
+        alert(`Not enough coins to buy ${item.name}.`);
+        return;
+      }
+      state.coins -= item.price;
+      // apply effect
+      if(item.id === 'teddy'){
+        state.lives += 1;
+        log(`Purchased Teddy: +1 life.`);
+      } else if(item.id === 'firefox'){
+        // chance double coins
+        const roll = Math.random();
+        const bonus = roll < 0.4 ? state.coins : 0;
+        state.coins += bonus;
+        log(`Purchased Firefox: roll ${roll.toFixed(2)} => bonus ${bonus} coins.`);
+      } else if(item.id === 'pass'){
+        state.moves += 100;
+        log(`Purchased Pass: +100 moves.`);
+      }
+      renderStats();
+    }
+
+    function useSampleObject(){
+      const o = objects.find(x=>x.id === state.sampleObject);
+      if(!o) return;
+      // Example: using Rocket consumes 2 moves and clears a row (simulated)
+      if(o.id === 'rocket'){
+        if(state.moves < 2){ log('Not enough moves to use Rocket (needs 2).'); alert('Need at least 2 moves for Rocket.'); return; }
+        state.moves -= 2;
+        state.coins += 5;
+        log('Used Rocket: cleared a line. -2 moves, +5 coins.');
+        animateSampleObject();
+      } else if(o.id === 'bomb'){
+        if(state.moves < 3){ log('Not enough moves to use Bomb (needs 3).'); alert('Need at least 3 moves for Bomb.'); return; }
+        state.moves -= 3;
+        state.coins += 8;
+        log('Used Bomb: area explosion. -3 moves, +8 coins.');
+        animateSampleObject();
+      } else {
+        state.moves -= 1;
+        state.coins += 2;
+        log(`Used ${o.name}: -1 move, +2 coins.`);
+        animateSampleObject();
+      }
+      renderStats();
+    }
+
+    function animateSampleObject(){
+      const el = byId('sampleObjectCard');
+      el.animate([{ transform:'translateY(0) scale(1)'},{ transform:'translateY(-14px) scale(1.06)'},{ transform:'translateY(0) scale(1)'}], { duration:520, easing:'cubic-bezier(.2,.8,.3,1)' });
+    }
+
+    // Wire up
+    document.addEventListener('DOMContentLoaded', ()=>{
+      renderCategories();
+      renderPack();
+      renderLibrary();
+      renderSampleObject();
+      renderStats();
+      renderShop();
+
+      byId('useMove').addEventListener('click', useMove);
+      byId('addLife').addEventListener('click', addLife);
+      byId('earnCoins').addEventListener('click', earnCoins);
+      byId('calcBtn').addEventListener('click', ()=>{
+        const v = Number(byId('movesInput').value) || 0;
+        const res = calculateCoinsFromMoves(v);
+        byId('calcResult').textContent = res;
+        log(`Calculated coins from ${v} moves => ${res} coins.`);
+      });
+      byId('sampleObjectCard').addEventListener('click', useSampleObject);
+
+      byId('resetBtn').addEventListener('click', ()=>{
+        state.moves = sampleMoveValue;
+        state.lives = 5;
+        state.coins = 0;
+        state.sampleObject = 'rocket';
+        renderSampleObject();
+        renderStats();
+        log('State reset to sample defaults.');
+      });
+
+      log('Demo initialized. Sample move: ' + sampleMoveValue);
+    });
+  </script>
+</body>
+  </html>
