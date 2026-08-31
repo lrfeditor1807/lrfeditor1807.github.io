@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡TE GUSTA POCO! - Chat de Equipo Toon Blast</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            display: flex;
+            height: 90vh;
+            overflow: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .team-header {
+            padding: 20px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+        }
+
+        .team-name {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .team-stats {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        .team-stats span {
+            display: block;
+            margin: 3px 0;
+        }
+
+        .friends-section {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+        }
+
+        .friends-title {
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            opacity: 0.8;
+            margin-bottom: 10px;
+        }
+
+        .friend-item {
+            padding: 10px;
+            margin-bottom: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .friend-item:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateX(5px);
+        }
+
+        .friend-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .friend-name {
+            font-size: 13px;
+            flex: 1;
+        }
+
+        /* Main Chat Area */
+        .chat-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .chat-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .chat-info {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        .chat-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .action-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .action-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Messages Container */
+        .messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            display: flex;
+            gap: 10px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .message.own {
+            justify-content: flex-end;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .message-content {
+            max-width: 60%;
+        }
+
+        .message.own .message-content {
+            max-width: 60%;
+        }
+
+        .message-bubble {
+            background: white;
+            padding: 12px 15px;
+            border-radius: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            word-wrap: break-word;
+        }
+
+        .message.own .message-bubble {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .message-sender {
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #667eea;
+        }
+
+        .message.own .message-sender {
+            color: #667eea;
+        }
+
+        .message-time {
+            font-size: 11px;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        .message.own .message-time {
+            text-align: right;
+        }
+
+        .message-media {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 5px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* Input Area */
+        .input-area {
+            background: white;
+            padding: 15px;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+        }
+
+        .input-field {
+            flex: 1;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            padding: 10px 15px;
+            font-size: 14px;
+            font-family: inherit;
+            resize: none;
+            max-height: 100px;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .input-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .icon-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .send-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                height: auto;
+                min-height: 100vh;
+            }
+
+            .sidebar {
+                width: 100%;
+                max-height: 150px;
+                flex-direction: row;
+                overflow-x: auto;
+            }
+
+            .friends-section {
+                display: flex;
+                gap: 10px;
+            }
+
+            .friend-item {
+                flex-shrink: 0;
+                width: 120px;
+            }
+
+            .message-content {
+                max-width: 80%;
+            }
+
+            .message.own .message-content {
+                max-width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="team-header">
+                <div class="team-name">¡TE GUSTA POCO!</div>
+                <div class="team-stats">
+                    <span>🏆 Nivel: 0</span>
+                    <span>❤️ Vidas: 5</span>
+                    <span>💰 Monedas: 1,250</span>
+                </div>
+            </div>
+
+            <div class="friends-section">
+                <div class="friends-title">Amigos del Equipo</div>
+                
+                <div class="friend-item">
+                    <div class="friend-avatar">A</div>
+                    <div class="friend-name">Alazo</div>
+                </div>
+
+                <div class="friend-item">
+                    <div class="friend-avatar">E</div>
+                    <div class="friend-name">erika</div>
+                </div>
+
+                <div class="friend-item">
+                    <div class="friend-avatar">L</div>
+                    <div class="friend-name">luis</div>
+                </div>
+
+                <div class="friend-item">
+                    <div class="friend-avatar">C</div>
+                    <div class="friend-name">Calambre</div>
+                </div>
+
+                <div class="friend-item">
+                    <div class="friend-avatar">A</div>
+                    <div class="friend-name">Angelmalo</div>
+                </div>
+
+                <div class="friend-item">
+                    <div class="friend-avatar">P</div>
+                    <div class="friend-name">Pancho</div>
+                </div>
+
+                <div class="friend-item">
+                    <div class="friend-avatar">G</div>
+                    <div class="friend-name">geminis</div>
+                </div>
+
+                <div class="friend-item">
+                    <div class="friend-avatar">P</div>
+                    <div class="friend-name">pool</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat Area -->
+        <div class="chat-area">
+            <!-- Chat Header -->
+            <div class="chat-header">
+                <div>
+                    <div class="chat-title">¡TE GUSTA POCO!</div>
+                    <div class="chat-info">8 miembros • Nivel 0</div>
+                </div>
+                <div class="chat-actions">
+                    <button class="action-btn">🎁 Pedir Vidas</button>
+                    <button class="action-btn">💰 Ganar Monedas</button>
+                </div>
+            </div>
+
+            <!-- Messages -->
+            <div class="messages">
+                <div class="message">
+                    <div class="message-avatar">L</div>
+                    <div class="message-content">
+                        <div class="message-sender">luis</div>
+                        <div class="message-bubble">¡Hola a todos! ¡Qué emoción!</div>
+                        <div class="message-time">10:30 AM</div>
+                    </div>
+                </div>
+
+                <div class="message">
+                    <div class="message-avatar">E</div>
+                    <div class="message-content">
+                        <div class="message-sender">erika</div>
+                        <div class="message-bubble">¿Alguien necesita vidas? 😊</div>
+                        <div class="message-time">10:32 AM</div>
+                    </div>
+                </div>
+
+                <div class="message">
+                    <div class="message-avatar">P</div>
+                    <div class="message-content">
+                        <div class="message-sender">Pancho</div>
+                        <div class="message-media">📸 Foto</div>
+                        <div class="message-bubble">¡Miren mi puntuación!</div>
+                        <div class="message-time">10:35 AM</div>
+                    </div>
+                </div>
+
+                <div class="message own">
+                    <div class="message-content">
+                        <div class="message-sender" style="text-align: right;">Tú</div>
+                        <div class="message-bubble">¡Genial equipo! ¡A ganar monedas!</div>
+                        <div class="message-time">10:37 AM</div>
+                    </div>
+                    <div class="message-avatar">T</div>
+                </div>
+
+                <div class="message">
+                    <div class="message-avatar">C</div>
+                    <div class="message-content">
+                        <div class="message-sender">Calambre</div>
+                        <div class="message-media">🎥 Video</div>
+                        <div class="message-bubble">¡Vean esto!</div>
+                        <div class="message-time">10:40 AM</div>
+                    </div>
+                </div>
+
+                <div class="message">
+                    <div class="message-avatar">G</div>
+                    <div class="message-content">
+                        <div class="message-sender">geminis</div>
+                        <div class="message-bubble">🎉 ¡Casi pasamos el nivel! 🎉</div>
+                        <div class="message-time">10:42 AM</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="input-area">
+                <textarea class="input-field" placeholder="Escribe tu mensaje..." rows="1"></textarea>
+                <div class="input-buttons">
+                    <button class="icon-btn" title="Cámara">📷</button>
+                    <button class="icon-btn" title="Micrófono">🎤</button>
+                    <button class="icon-btn" title="Pegatinas">🎨</button>
+                    <button class="icon-btn send-btn" title="Enviar">➤</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Auto-resize textarea
+        const textarea = document.querySelector('.input-field');
+        textarea.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = Math.min(this.scrollHeight, 100) + 'px';
+        });
+
+        // Send message on Enter
+        textarea.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        // Send button functionality
+        const sendBtn = document.querySelector('.send-btn');
+        sendBtn.addEventListener('click', sendMessage);
+
+        function sendMessage() {
+            const message = textarea.value.trim();
+            if (message) {
+                // Create new message element
+                const messagesContainer = document.querySelector('.messages');
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message own';
+                messageDiv.innerHTML = `
+                    <div class="message-content">
+                        <div class="message-sender" style="text-align: right;">Tú</div>
+                        <div class="message-bubble">${message}</div>
+                        <div class="message-time">${new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })}</div>
+                    </div>
+                    <div class="message-avatar">T</div>
+                `;
+                messagesContainer.appendChild(messageDiv);
+                
+                // Clear textarea
+                textarea.value = '';
+                textarea.style.height = 'auto';
+                
+                // Scroll to bottom
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }
+        }
+
+        // Camera button
+        document.querySelector('.input-buttons').children[0].addEventListener('click', function() {
+            alert('📷 Función de cámara - Seleccionar foto de la galería');
+        });
+
+        // Microphone button
+        document.querySelector('.input-buttons').children[1].addEventListener('click', function() {
+            alert('🎤 Función de micrófono - Grabar nota de voz');
+        });
+
+        // Stickers button
+        document.querySelector('.input-buttons').children[2].addEventListener('click', function() {
+            alert('🎨 Función de pegatinas - Seleccionar pegatina');
+        });
+
+        // Friend click
+        const friendItems = document.querySelectorAll('.friend-item');
+        friendItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const name = this.querySelector('.friend-name').textContent;
+                textarea.value = `@${name} `;
+                textarea.focus();
+            });
+        });
+    </script>
+</body>
+          </html>
