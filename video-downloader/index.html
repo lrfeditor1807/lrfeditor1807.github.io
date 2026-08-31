@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Media Hub — Preview & Open (Legal)</title>
+  <style>
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial; margin: 1.5rem; color:#222; }
+    h1 { margin:0 0 1rem 0; }
+    .input-row { display:flex; gap:.5rem; margin-bottom:1rem; }
+    input[type="url"] { flex:1; padding:.6rem; border:1px solid #ccc; border-radius:6px; }
+    button { padding:.6rem 1rem; border-radius:6px; border: none; background:#0366d6; color:#fff; cursor:pointer; }
+    .note { color:#666; font-size:.9rem; margin-top:.5rem; }
+    .preview { margin-top:1rem; }
+    iframe { width:100%; height:360px; border:0; border-radius:8px; }
+    .link-card { padding:1rem; border:1px solid #eee; border-radius:8px; background:#fafafa; display:flex; align-items:center; gap:1rem; }
+    .link-card a.button { background:#28a745; color:#fff; padding:.5rem .8rem; border-radius:6px; text-decoration:none; }
+    pre { background:#f6f8fa; padding:1rem; border-radius:6px; overflow:auto; }
+  </style>
+</head>
+<body>
+  <h1>Media Hub — Preview & Open (Legal)</h1>
+  <p>Paste a public media URL to preview or open it in the provider's official player. This tool does NOT download content.</p>
+
+  <div class="input-row">
+    <input id="mediaUrl" type="url" placeholder="Paste a YouTube / Spotify / Facebook / Instagram / TikTok / streaming URL..." />
+    <button id="openBtn">Preview / Open</button>
+  </div>
+  <div class="note">Works for public/embed-enabled content. For paid streaming platforms (Disney+, Prime, HBO Max, Pluto TV) the tool will show a link to open in the provider.</div>
+
+  <div id="result" class="preview"></div>
+
+  <script>
+    const openBtn = document.getElementById('openBtn');
+    const urlInput = document.getElementById('mediaUrl');
+    const result = document.getElementById('result');
+
+    function encode(u){ return encodeURIComponent(u); }
+
+    function detectPlatform(url){
+      try {
+        const hostname = (new URL(url)).hostname.toLowerCase();
+        return {
+          youtube: /youtube.com|youtu.be/.test(hostname),
+          spotify: /spotify.com/.test(hostname),
+          facebook: /facebook.com|fb.watch/.test(hostname),
+          instagram: /instagram.com/.test(hostname),
+          tiktok: /tiktok.com/.test(hostname),
+          disney: /disneyplus.com|disney\+/.test(hostname),
+          prime: /primevideo.com|amazon.com/.test(hostname) && /video/.test(url),
+          hbomax: /hbomax.com/.test(hostname),
+          pluto: /pluto.tv/.test(hostname)
+        };
+      } catch(e) {
+        return {};
+      }
+    }
+
+    function getYouTubeEmbed(url){
+      // Extract video id from multiple formats
+      let id = null;
+      try {
+        const u = new URL(url);
+        if (u.hostname.includes('youtu.be')) {
+          id = u.pathname.slice(1);
+        } else {
+          id = u.searchParams.get('v') || null;
+          if (!id) {
+            const paths = u.pathname.split('/');
+            id = paths.includes('embed') ? paths[paths.indexOf('embed')+1] : paths.pop();
+          }
+        }
+      } catch(e) {}
+      return id ? `https://www.youtube.com/embed/${encodeURIComponent(id)}` : null;
+    }
+
+    function getSpotifyEmbed(url){
+      // Spotify embed URLs: https://open.spotify.com/embed/{type}/{id}
+      try {
+        const u = new URL(url);
+        const pathParts = u.pathname.split('/').filter(Boolean);
+        // Expect: /track/{id} or /album/{id} or /playlist/{id}
+        if (pathParts.length >= 2) {
+          const type = pathParts[0];
+          const id = pathParts[1].split('?')[0];
+          return `https://open.spotify.com/embed/${type}/${encodeURIComponent(id)}`;
+        }
+      } catch(e){}
+      return null;
+    }
+
+    function getFacebookEmbed(url){
+      // Facebook video plugin: https://www.facebook.com/plugins/video.php?href={url}
+      return `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(url)}&show_text=0`;
+    }
+
+    function getInstagramEmbed(url){
+      // Instagram embed URL (for public posts): https://www.instagram.com/p/{shortcode}/embed
+      try {
+        const u = new URL(url);
+        const parts = u.pathname.split('/').filter(Boolean);
+        if (parts.length >= 2 && (parts[0] === 'p' || parts[0] === 'tv' || parts[0] === 'reel')) {
+          return `https://www.instagram.com/${parts[0]}/${parts[1]}/embed`;
+        }
+      } catch(e){}
+      return null;
+    }
+
+    function getTikTokEmbed(url){
+      // TikTok iframe embed: https://www.tiktok.com/embed/v2/{videoId}
+      try {
+        const u = new URL(url);
+        const parts = u.pathname.split('/').filter(Boolean);
+        // typical: /@user/video/{id}
+        const vidIdx = parts.indexOf('video');
+        if (vidIdx !== -1 && parts[vidIdx+1]) {
+          return `https://www.tiktok.com/embed/v2/${encodeURIComponent(parts[vidIdx+1])}`;
+        }
+      } catch(e){}
+      return null;
+    }
+
+    openBtn.addEventListener('click', () => {
+      const url = urlInput.value.trim();
+      result.innerHTML = '';
+      if (!url) { result.textContent = 'Please paste a URL.'; return; }
+
+      const detected = detectPlatform(url);
+
+      // YouTube
+      if (detected.youtube) {
+        const emb = getYouTubeEmbed(url);
+        if (emb) {
+          result.innerHTML = `<iframe src="${emb}" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>`;
+          return;
+        }
+      }
+
+      // Spotify
+      if (detected.spotify) {
+        const emb = getSpotifyEmbed(url);
+        if (emb) {
+          result.innerHTML = `<iframe src="${emb}" width="100%" height="380" frameborder="0" allow="encrypted-media"></iframe>`;
+          return;
+        }
+      }
+
+      // Facebook
+      if (detected.facebook) {
+        const emb = getFacebookEmbed(url);
+        result.innerHTML = `<iframe src="${emb}" width="100%" height="450" scrolling="no" frameborder="0" allowfullscreen></iframe>`;
+        return;
+      }
+
+      // Instagram
+      if (detected.instagram) {
+        const emb = getInstagramEmbed(url);
+        if (emb) {
+          // Instagram requires the embed script on the page for full functionality.
+          result.innerHTML = `<iframe src="${emb}" width="100%" height="600" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+            <div class="note">Instagram embeds may require the Instagram embed script and work only for public posts.</div>`;
+          return;
+        }
+      }
+
+      // TikTok
+      if (detected.tiktok) {
+        const emb = getTikTokEmbed(url);
+        if (emb) {
+          result.innerHTML = `<iframe src="${emb}" width="100%" height="600" frameborder="0" allowfullscreen></iframe>`;
+          return;
+        }
+      }
+
+      // Paid streaming platforms or unknown — show a safe link
+      if (detected.disney || detected.prime || detected.hbomax || detected.pluto) {
+        result.innerHTML = `<div class="link-card">
+          <div style="flex:1">This looks like a streaming platform URL. Open it on the provider to watch (playback is controlled by the provider).</div>
+          <div><a class="button" href="${encodeURIComponent ? url : '#'}" onclick="window.open('${url}','_blank')">Open on Provider</a></div>
+        </div>`;
+        return;
+      }
+
+      // fallback
+      result.innerHTML = `<div class="link-card">
+        <div style="flex:1">Platform not recognized or embedding not supported here. You can open the link directly:</div>
+        <div><a class="button" href="#" onclick="window.open('${url}','_blank')">Open Link</a></div>
+      </div>`;
+    });
+
+    // Allow pressing Enter in the URL field
+    urlInput.addEventListener('keyup', (e) => { if (e.key === 'Enter') openBtn.click(); });
+  </script>
+</body>
+</html>
