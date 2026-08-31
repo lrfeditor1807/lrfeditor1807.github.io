@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Toon Blast Metadata Builder</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; max-width:900px; margin:24px auto; padding:0 16px; color:#111; }
+    h1 { margin-bottom: 4px; }
+    .grid { display:grid; grid-template-columns: 1fr 340px; gap:20px; align-items:start; }
+    label { display:block; margin:8px 0 4px; font-weight:600; }
+    input[type="text"], input[type="number"], .small-input { width:100%; padding:8px; border-radius:6px; border:1px solid #ccc; box-sizing:border-box; }
+    .list { background:#fafafa; border:1px solid #eee; padding:8px; border-radius:6px; }
+    .item-row { display:flex; gap:8px; margin-bottom:8px; }
+    button { padding:8px 10px; border-radius:6px; border:1px solid #bbb; background:#fff; cursor:pointer; }
+    .btn-primary { background:#2b8aef; color:white; border-color:#2678d6; }
+    .controls { display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; }
+    pre { background:#0f1720; color:#dfefff; padding:12px; border-radius:6px; overflow:auto; height:320px; }
+    .muted { color:#666; font-size:0.9rem; }
+    .small { font-size:0.9rem; }
+  </style>
+</head>
+<body>
+  <h1>Toon Blast — Metadata Builder</h1>
+  <p class="muted">Enter profile/team/friends/toon cards and export JSON metadata you can copy or download.</p>
+
+  <div class="grid">
+    <div>
+      <label for="profileName">Profile name</label>
+      <input id="profileName" type="text" placeholder="e.g. RedRocket" class="small-input" />
+
+      <label for="profileId">Profile ID</label>
+      <input id="profileId" type="text" placeholder="numeric or UUID" class="small-input" />
+
+      <label for="teamName">Team name</label>
+      <input id="teamName" type="text" placeholder="e.g. BlastMasters" class="small-input" />
+
+      <label for="teamId">Team ID</label>
+      <input id="teamId" type="text" placeholder="numeric or UUID" class="small-input" />
+
+      <label>Friends IDs</label>
+      <div id="friendsList" class="list"></div>
+      <div style="display:flex; gap:8px; margin-top:8px;">
+        <input id="friendInput" type="text" placeholder="friend id" class="small-input" />
+        <button id="addFriendBtn">Add</button>
+      </div>
+
+      <label style="margin-top:12px;">Toon cards</label>
+      <div id="cardsList" class="list"></div>
+      <div style="display:flex; gap:8px; margin-top:8px;">
+        <input id="cardInput" type="text" placeholder="toon card name" class="small-input" />
+        <button id="addCardBtn">Add</button>
+      </div>
+
+      <div class="controls">
+        <button id="generateBtn" class="btn-primary">Generate Metadata</button>
+        <button id="sampleBtn">Populate Sample</button>
+        <button id="clearBtn">Clear</button>
+      </div>
+    </div>
+
+    <div>
+      <label>Metadata preview (JSON)</label>
+      <pre id="output">{ "profile": {} }</pre>
+
+      <div style="display:flex; gap:8px; margin-top:12px;">
+        <button id="copyBtn">Copy JSON</button>
+        <button id="downloadBtn">Download .json</button>
+        <button id="copyCompactBtn">Copy Compact JSON</button>
+      </div>
+
+      <p class="muted small" style="margin-top:8px;">
+        Preview shows the generated metadata object. Use "Download" to save a .json file or "Copy" to paste elsewhere.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // State
+    const state = {
+      friends: [],
+      cards: []
+    };
+
+    // Element refs
+    const profileNameEl = document.getElementById('profileName');
+    const profileIdEl = document.getElementById('profileId');
+    const teamNameEl = document.getElementById('teamName');
+    const teamIdEl = document.getElementById('teamId');
+
+    const friendsListEl = document.getElementById('friendsList');
+    const friendInputEl = document.getElementById('friendInput');
+    const addFriendBtn = document.getElementById('addFriendBtn');
+
+    const cardsListEl = document.getElementById('cardsList');
+    const cardInputEl = document.getElementById('cardInput');
+    const addCardBtn = document.getElementById('addCardBtn');
+
+    const generateBtn = document.getElementById('generateBtn');
+    const sampleBtn = document.getElementById('sampleBtn');
+    const clearBtn = document.getElementById('clearBtn');
+
+    const outputEl = document.getElementById('output');
+    const copyBtn = document.getElementById('copyBtn');
+    const copyCompactBtn = document.getElementById('copyCompactBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+
+    // Helpers
+    function renderList(container, items, type) {
+      container.innerHTML = '';
+      if (items.length === 0) {
+        container.innerHTML = '<div class="muted small">No items yet</div>';
+        return;
+      }
+      items.forEach((it, idx) => {
+        const row = document.createElement('div');
+        row.className = 'item-row';
+        const span = document.createElement('div');
+        span.style.flex = '1';
+        span.textContent = it;
+        row.appendChild(span);
+
+        const remove = document.createElement('button');
+        remove.textContent = 'Remove';
+        remove.onclick = () => {
+          if (type === 'friend') state.friends.splice(idx,1);
+          else state.cards.splice(idx,1);
+          renderAll();
+        };
+        row.appendChild(remove);
+        container.appendChild(row);
+      });
+    }
+
+    function buildMetadata() {
+      // Basic structure — adjust to match your game's required schema
+      const profileName = profileNameEl.value.trim();
+      const profileId = profileIdEl.value.trim();
+      const teamName = teamNameEl.value.trim();
+      const teamId = teamIdEl.value.trim();
+
+      const metadata = {
+        profile: {
+          name: profileName || null,
+          id: profileId || null,
+        },
+        team: {
+          id: teamId || null,
+          name: teamName || null,
+        },
+        friends: state.friends.slice(),   // array of ids
+        toonCards: state.cards.map(name => ({ name }))
+      };
+
+      // Remove nulls for cleanliness
+      function clean(obj){
+        if (Array.isArray(obj)) return obj.map(clean);
+        if (obj && typeof obj === 'object') {
+          const out = {};
+          Object.entries(obj).forEach(([k,v]) => {
+            const c = clean(v);
+            if (c !== null && !(Array.isArray(c) && c.length === 0)) out[k] = c;
+          });
+          return Object.keys(out).length ? out : null;
+        }
+        return (obj === '' || obj === null) ? null : obj;
+      }
+      return clean(metadata) || {};
+    }
+
+    function updatePreview(pretty = true) {
+      const metadata = buildMetadata();
+      const text = pretty ? JSON.stringify(metadata, null, 2) : JSON.stringify(metadata);
+      outputEl.textContent = text;
+      return text;
+    }
+
+    function renderAll() {
+      renderList(friendsListEl, state.friends, 'friend');
+      renderList(cardsListEl, state.cards, 'card');
+      updatePreview();
+    }
+
+    // Event handlers
+    addFriendBtn.addEventListener('click', () => {
+      const v = friendInputEl.value.trim();
+      if (!v) return;
+      if (state.friends.includes(v)) {
+        alert('Friend ID already added.');
+        friendInputEl.value = '';
+        return;
+      }
+      state.friends.push(v);
+      friendInputEl.value = '';
+      renderAll();
+    });
+
+    friendInputEl.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') addFriendBtn.click();
+    });
+
+    addCardBtn.addEventListener('click', () => {
+      const v = cardInputEl.value.trim();
+      if (!v) return;
+      state.cards.push(v);
+      cardInputEl.value = '';
+      renderAll();
+    });
+
+    cardInputEl.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') addCardBtn.click();
+    });
+
+    generateBtn.addEventListener('click', () => {
+      updatePreview(true);
+      alert('Metadata generated in the preview. Use Copy or Download to export.');
+    });
+
+    sampleBtn.addEventListener('click', () => {
+      profileNameEl.value = 'RedRocket';
+      profileIdEl.value = '123456789';
+      teamNameEl.value = 'BlastMasters';
+      teamIdEl.value = '987654321';
+      state.friends = ['111111', '222222', '333333'];
+      state.cards = ['Fireball', 'Double Blast', 'Ice Shield'];
+      renderAll();
+    });
+
+    clearBtn.addEventListener('click', () => {
+      if (!confirm('Clear all fields and lists?')) return;
+      profileNameEl.value = '';
+      profileIdEl.value = '';
+      teamNameEl.value = '';
+      teamIdEl.value = '';
+      state.friends = [];
+      state.cards = [];
+      renderAll();
+    });
+
+    copyBtn.addEventListener('click', async () => {
+      const text = updatePreview(true);
+      try {
+        await navigator.clipboard.writeText(text);
+        alert('Pretty JSON copied to clipboard.');
+      } catch (err) {
+        alert('Copy failed: ' + err);
+      }
+    });
+
+    copyCompactBtn.addEventListener('click', async () => {
+      const text = updatePreview(false);
+      try {
+        await navigator.clipboard.writeText(text);
+        alert('Compact JSON copied to clipboard.');
+      } catch (err) {
+        alert('Copy failed: ' + err);
+      }
+    });
+
+    downloadBtn.addEventListener('click', () => {
+      const text = updatePreview(true);
+      const blob = new Blob([text], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      const pid = profileNameEl.value.trim() || 'profile';
+      a.href = url;
+      a.download = `${pid}-toonblast-metadata.json`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    });
+
+    // Keep preview live when inputs change
+    [profileNameEl, profileIdEl, teamNameEl, teamIdEl].forEach(el => {
+      el.addEventListener('input', () => updatePreview());
+    });
+
+    // Initial render
+    renderAll();
+
+  </script>
+</body>
+</html>
