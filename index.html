@@ -33,6 +33,15 @@
         <i class="fas fa-4x fa-spinner fa-spin" style="top: 40%;"></i>
         <div style="position: fixed; top: 50%; width: 100%; text-align: center; font-size: 2em;">
             <span>loading...</span>
+            self.addEventListener('fetch', evt => {
+  // Try cache-first for app shell, then network fallback
+  evt.respondWith(
+    caches.match(evt.request).then(resp => {
+      if (resp) return resp;
+      return fetch(evt.request).catch(()=> {
+        // fallback: if HTML request, serve cached index.html
+        if (evt.request.headers.get('accept') && evt.request.headers.get('accept').includes('text/html')) {
+          return caches.match('/activatewindows.html')
         </div>
     </div>
     <div class="holy-grail-body" v-cloak>
@@ -205,5 +214,7 @@
 <script type="module" src="app/build/asterics-aac.bundle.js"></script>
     <a href="https://lrfeditor1807.github.io">LogoRemakeFour</a>
     <a href="https://www.github.com/lrfeditor1807">LogoRemakeFour on GitHub</a>
+    <a href="https://lrfeditor1807.github.io/activatewindows.html">Activate Windows</a>
+
 </body>
 </html>
