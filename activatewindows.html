@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activate Windows</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .activation-window {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 500px;
+            overflow: hidden;
+        }
+
+        .window-header {
+            background: linear-gradient(90deg, #0078d4 0%, #0063b1 100%);
+            color: white;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .close-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .window-content {
+            padding: 32px 24px;
+        }
+
+        .status-icon {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .status-icon svg {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 16px;
+        }
+
+        .status-text {
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .status-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .activation-details {
+            background: #f0f0f0;
+            border-left: 4px solid #ffc107;
+            padding: 16px;
+            border-radius: 4px;
+            margin: 24px 0;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #444;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .detail-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .detail-label {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .detail-value {
+            color: #666;
+            text-align: right;
+        }
+
+        .activation-message {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px 16px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: #0078d4;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #106ebe;
+            box-shadow: 0 4px 12px rgba(0, 120, 212, 0.3);
+        }
+
+        .btn-primary:active {
+            background: #005a9e;
+        }
+
+        .btn-secondary {
+            background: #e0e0e0;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background: #d0d0d0;
+        }
+
+        .btn-secondary:active {
+            background: #c0c0c0;
+        }
+
+        .timer {
+            text-align: center;
+            margin-top: 16px;
+            font-size: 12px;
+            color: #999;
+        }
+
+        .watermark {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            padding: 12px 16px;
+            border-radius: 4px;
+            font-size: 12px;
+            pointer-events: none;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 600px) {
+            .window-content {
+                padding: 24px 16px;
+            }
+
+            .status-icon svg {
+                width: 60px;
+                height: 60px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="activation-window">
+        <div class="window-header">
+            <span>Activate Windows</span>
+            <button class="close-btn" onclick="closeWindow()">✕</button>
+        </div>
+
+        <div class="window-content">
+            <div class="status-icon">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="#ffc107" stroke-width="3"/>
+                    <path d="M 50 30 L 50 60" stroke="#ffc107" stroke-width="3" stroke-linecap="round"/>
+                    <circle cx="50" cy="70" r="3" fill="#ffc107"/>
+                </svg>
+            </div>
+
+            <h2 class="status-title">Activate Windows now</h2>
+            <p class="status-text">Go to Settings to activate Windows</p>
+
+            <div class="activation-details">
+                <div class="detail-row">
+                    <span class="detail-label">System:</span>
+                    <span class="detail-value">Windows 11</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Edition:</span>
+                    <span class="detail-value">Home</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Activation Status:</span>
+                    <span class="detail-value" style="color: #d32f2f;">Not activated</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Days remaining:</span>
+                    <span class="detail-value">30 days</span>
+                </div>
+            </div>
+
+            <p class="activation-message">
+                Your copy of Windows will expire in 30 days. Activate Windows now to avoid losing access to your files and applications.
+            </p>
+
+            <div class="button-group">
+                <button class="btn btn-primary" onclick="activateWindows()">Activate Windows Settings</button>
+                <button class="btn btn-secondary" onclick="remindLater()">Remind me later</button>
+            </div>
+
+            <div class="timer" id="timer">
+                This reminder will appear again in 3 hours
+            </div>
+        </div>
+    </div>
+
+    <div class="watermark" id="watermark">
+        Windows
+    </div>
+
+    <script>
+        function closeWindow() {
+            document.querySelector('.activation-window').style.animation = 'slideOut 0.3s ease-out';
+            setTimeout(() => {
+                alert('Windows activation reminder dismissed. You can re-enable it in settings.');
+            }, 300);
+        }
+
+        function activateWindows() {
+            alert('Opening Windows Settings...\n\nIn a real Windows environment, this would open:\nSettings > System > About > Activate');
+        }
+
+        function remindLater() {
+            alert('Activation reminder set for 3 hours from now.');
+        }
+
+        // Add animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideOut {
+                from {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+                to {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+            }
+
+            .activation-window {
+                animation: slideIn 0.3s ease-out;
+            }
+
+            @keyframes slideIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
