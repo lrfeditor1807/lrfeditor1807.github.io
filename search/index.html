@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>LogoRemakeFour Search</title>
+  <style>
+    :root{--accent:#0b66c3;--muted:#666;--bg:#f7f9fc}
+    body{font-family:Inter,Segoe UI,system-ui,Roboto,Arial;margin:0;background:var(--bg);color:#111}
+    .wrap{max-width:920px;margin:48px auto;padding:28px;background:#fff;border-radius:12px;box-shadow:0 6px 22px rgba(17,24,39,0.08)}
+    header{display:flex;align-items:center;gap:16px}
+    .logo{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#2fa6ff);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:18px}
+    h1{margin:0;font-size:20px}
+    p.lead{margin:6px 0 18px;color:var(--muted);font-size:14px}
+    .search-bar{display:flex;gap:8px;margin-top:12px}
+    .search-bar input[type="search"]{flex:1;padding:12px 14px;font-size:16px;border:1px solid #e6eef8;border-radius:8px;outline:none}
+    .search-bar button{padding:10px 14px;border-radius:8px;border:0;background:var(--accent);color:#fff;font-weight:600;cursor:pointer}
+    .tabs{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+    .tab{padding:8px 12px;border-radius:8px;border:1px solid #e6eef8;background:#fff;color:var(--muted);cursor:pointer;font-size:14px}
+    .tab.active{background:linear-gradient(90deg,var(--accent),#2fa6ff);color:#fff;border-color:transparent}
+    .actions{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+    .url-box{margin-top:12px;padding:12px;border-radius:8px;background:#f3f7fb;border:1px dashed #d8e9ff;color:#034;word-break:break-all;font-size:13px}
+    .note{margin-top:10px;color:var(--muted);font-size:13px}
+    .quick-links{display:flex;gap:8px;flex-wrap:wrap}
+    .btn-ghost{padding:8px 12px;border-radius:8px;border:1px solid #dceaf8;background:#fff;color:var(--accent);cursor:pointer}
+    footer{margin-top:18px;color:var(--muted);font-size:13px}
+    @media (max-width:520px){.wrap{margin:18px;padding:18px}}
+  </style>
+</head>
+<body>
+  <main class="wrap" role="main">
+    <header>
+      <div class="logo" aria-hidden>LR4</div>
+      <div>
+        <h1>LogoRemakeFour Search</h1>
+        <p class="lead">Search the Web, Images, Videos, News or TV. Use the buttons to open internal LogoRemakeFour results or quick external searches.</p>
+      </div>
+    </header>
+
+    <form id="searchForm" class="search-bar" action="" onsubmit="return handleSubmit(event)">
+      <input id="q" name="q" type="search" placeholder="Search LogoRemakeFour — e.g. modern logo redesign" required aria-label="Search query" />
+      <button type="submit">Search</button>
+      <input id="openExternal" type="checkbox" title="Open external (Bing) instead of internal" style="margin-left:8px" />
+      <label for="openExternal" style="align-self:center;color:var(--muted);font-size:13px;margin-left:-8px">Open external (Bing)</label>
+    </form>
+
+    <nav class="tabs" role="tablist" aria-label="Search categories">
+      <button class="tab active" role="tab" data-type="web" onclick="setType('web', this)">Web</button>
+      <button class="tab" role="tab" data-type="images" onclick="setType('images', this)">Images</button>
+      <button class="tab" role="tab" data-type="videos" onclick="setType('videos', this)">Videos</button>
+      <button class="tab" role="tab" data-type="news" onclick="setType('news', this)">News</button>
+      <button class="tab" role="tab" data-type="tv" onclick="setType('tv', this)">TV</button>
+    </nav>
+
+    <div class="actions">
+      <button class="btn-ghost" id="openInternal" onclick="openInternal()">Open LogoRemakeFour Search</button>
+      <div class="quick-links" id="quickLinks" aria-hidden>
+        <!-- JS will fill quick links for Bing results -->
+      </div>
+    </div>
+
+    <div class="url-box" id="searchUrl" aria-live="polite">
+      <!-- Built search URL will appear here -->
+    </div>
+
+    <p class="note">LogoRemakeFour search URL format: <code>/search?q={query}&amp;type={web|images|videos|news|tv}</code></p>
+    <footer>Tip: Use the checkbox to open external Bing results (web/images/videos/news) instead of the internal route.</footer>
+  </main>
+
+  <script>
+    // Configuration: internal search base and optional external provider templates
+    const INTERNAL_BASE = '/search';
+    const EXTERNAL = {
+      bing: {
+        web: (q)=>`https://www.bing.com/search?q=${encodeURIComponent(q)}`,
+        images: (q)=>`https://www.bing.com/images/search?q=${encodeURIComponent(q)}`,
+        videos: (q)=>`https://www.bing.com/videos/search?q=${encodeURIComponent(q)}`,
+        news: (q)=>`https://www.bing.com/news/search?q=${encodeURIComponent(q)}`,
+        tv: (q)=>`https://www.bing.com/search?q=${encodeURIComponent(q + ' TV')}`
+      }
+    };
+
+    // state
+    let currentType = 'web';
+    const qInput = document.getElementById('q');
+    const searchUrlBox = document.getElementById('searchUrl');
+    const quickLinks = document.getElementById('quickLinks');
+
+    // initialize example URL
+    updateUI();
+
+    // handle tab switching
+    function setType(type, btn){
+      currentType = type;
+      // toggle active class
+      document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+      btn.classList.add('active');
+      updateUI();
+    }
+
+    // build internal LogoRemakeFour search URL
+    function buildInternalUrl(query, type){
+      return `${INTERNAL_BASE}?q=${encodeURIComponent(query)}&type=${encodeURIComponent(type)}`;
+    }
+
+    // build external links (Bing)
+    function buildExternalUrls(query){
+      const urls = {};
+      urls.web = EXTERNAL.bing.web(query);
+      urls.images = EXTERNAL.bing.images(query);
+      urls.videos = EXTERNAL.bing.videos(query);
+      urls.news = EXTERNAL.bing.news(query);
+      urls.tv = EXTERNAL.bing.tv(query);
+      return urls;
+    }
+
+    // update displayed URL and quick links
+    function updateUI(){
+      const q = qInput.value.trim() || 'logo redesign';
+      const internal = buildInternalUrl(q, currentType);
+      searchUrlBox.innerHTML = `<strong>LogoRemakeFour URL:</strong> <span style="color:#003b6f">${internal}</span>`;
+
+      // quick links for external provider
+      const ext = buildExternalUrls(q);
+      quickLinks.innerHTML = `
+        <button class="btn-ghost" onclick="window.open('${ext[currentType]}','_blank')">Open ${capitalize(currentType)} on Bing</button>
+        <button class="btn-ghost" onclick="openAllExternal()">Open All (bing)</button>
+      `;
+    }
+
+    // action to open internal search (or external if checkbox is checked)
+    function openInternal(){
+      const q = qInput.value.trim();
+      if(!q) { qInput.focus(); return; }
+      const url = buildInternalUrl(q, currentType);
+      // default: navigate internal
+      location.href = url;
+    }
+
+    // form submit handler: decides internal vs external
+    function handleSubmit(e){
+      e.preventDefault();
+      const q = qInput.value.trim();
+      if(!q) return false;
+      const openExternal = document.getElementById('openExternal').checked;
+      if(openExternal){
+        const ext = buildExternalUrls(q)[currentType];
+        window.open(ext, '_blank');
+      } else {
+        // go to internal search URL (LogoRemakeFour)
+        const internal = buildInternalUrl(q, currentType);
+        location.href = internal;
+      }
+      return false;
+    }
+
+    // open external link for current type
+    function openExternalForType(type){
+      const q = qInput.value.trim() || 'logo redesign';
+      window.open(buildExternalUrls(q)[type], '_blank');
+    }
+
+    // open all external searches in separate tabs (web/images/videos/news/tv)
+    function openAllExternal(){
+      const q = qInput.value.trim();
+      if(!q) return;
+      const ext = buildExternalUrls(q);
+      // open select ones (web, images, videos, news, tv)
+      window.open(ext.web, '_blank');
+      window.open(ext.images, '_blank');
+      window.open(ext.videos, '_blank');
+      window.open(ext.news, '_blank');
+      window.open(ext.tv, '_blank');
+    }
+
+    // small helpers
+    function capitalize(s){ return s.charAt(0).toUpperCase()+s.slice(1) }
+
+    // wire input change to update UI live
+    qInput.addEventListener('input', updateUI);
+    // update UI when checkboxes or tabs changed (handled in code)
+    document.getElementById('openInternal').addEventListener('click', updateUI);
+    // initial
+    updateUI();
+
+    // Accessibility: allow keyboard nav among tabs
+    const tabs = Array.from(document.querySelectorAll('.tab'));
+    tabs.forEach((t, i)=>{
+      t.addEventListener('keydown', (ev)=>{
+        if(ev.key === 'ArrowRight') tabs[(i+1)%tabs.length].focus();
+        if(ev.key === 'ArrowLeft') tabs[(i-1+tabs.length)%tabs.length].focus();
+        if(ev.key === 'Enter' || ev.key === ' ') { t.click(); ev.preventDefault(); }
+      });
+    });
+  </script>
+</body>
+</html>
