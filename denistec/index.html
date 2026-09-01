@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>@DenisTec — Tech tutorials / Videos tutoriales</title>
+  <style>
+    :root{
+      --bg:#071226; --card:#0b1220; --muted:#9aa8bf; --accent:#ff3b30;
+      font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;
+    }
+    html,body{height:100%; margin:0; background:linear-gradient(180deg,#071026 0%, #071226 60%); color:#e6eef6;}
+    .container{max-width:1000px; margin:28px auto; padding:18px;}
+    header{display:flex; gap:16px; align-items:center;}
+    .avatar{width:84px; height:84px; border-radius:12px; background:linear-gradient(135deg,#1f2937,#111827); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:22px; color:white;}
+    .channel-info{flex:1;}
+    h1{margin:0; font-size:22px;}
+    .subs{color:var(--muted); font-size:13px;}
+    .controls{display:flex; gap:8px; align-items:center;}
+    .btn{background:var(--accent); border:none; color:white; padding:8px 12px; border-radius:8px; cursor:pointer; font-weight:600;}
+    .smallbtn{background:rgba(255,255,255,0.03); border:0; color:var(--muted); padding:6px 8px; border-radius:8px;}
+    .desc{margin-top:10px; color:var(--muted); font-size:14px;}
+    .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px; margin-top:20px;}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:10px; border-radius:12px; box-shadow:0 6px 18px rgba(2,6,23,0.6);}
+    .thumb{width:100%; height:170px; object-fit:cover; border-radius:8px; background:#0a0f14;}
+    .title{font-size:15px; margin:10px 0 6px;}
+    .meta{color:var(--muted); font-size:13px;}
+    .play-btn{background:#06b6d4; border:none; color:#022; padding:8px 10px; border-radius:8px; cursor:pointer; font-weight:700; margin-top:8px;}
+    footer{margin-top:28px; color:var(--muted); font-size:13px; text-align:center;}
+    .modal{position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,0.65); z-index:60;}
+    .modal-inner{width:min(960px,96%); background:#071226; padding:14px; border-radius:10px;}
+    .modal-close{background:transparent; border:0; color:var(--muted); float:right; cursor:pointer; font-size:18px;}
+    @media (max-width:520px){ .thumb{height:140px;} header{flex-direction:column; align-items:flex-start;} .grid{grid-template-columns:1fr;} }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="avatar" aria-hidden="true">DT</div>
+      <div class="channel-info">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div>
+            <h1>@DenisTec</h1>
+            <div class="subs" data-en style="display:none;">Tech tutorial videos • New tutorials weekly</div>
+            <div class="subs" data-es>Videos tutoriales de tecnología • Nuevos tutoriales cada semana</div>
+          </div>
+          <div class="controls" style="margin-left:auto;">
+            <button class="btn">Subscribe / Suscribirse</button>
+            <button class="smallbtn" title="Toggle language" onclick="toggleLanguage()">ES / EN</button>
+            <label style="margin-left:6px;" class="smallbtn"><input id="offlineToggle" type="checkbox" onchange="setOfflineMode(this.checked)"> Offline</label>
+          </div>
+        </div>
+        <p class="desc">
+          <span data-en style="display:none;">DenisTec — step-by-step tech tutorials. Subscribe for new videos.</span>
+          <span data-es>DenisTec — tutoriales paso a paso de tecnología. Suscríbete para nuevos videos.</span>
+        </p>
+      </div>
+    </header>
+
+    <!-- Online videos -->
+    <section id="onlineSection">
+      <h2><span data-en style="display:none;">Latest videos</span><span data-es>Últimos videos</span></h2>
+      <div class="grid" id="videosGrid">
+        <!-- Video A: Setup Roku or Fire TV Stick -->
+        <article class="card"
+                 data-title-en="How to Set Up Roku or Fire TV Stick"
+                 data-title-es="Cómo configurar Roku o Fire TV Stick"
+                 data-desc-en="Step-by-step setup and first-run configuration for Roku or Amazon Fire TV Stick."
+                 data-desc-es="Configuración paso a paso para Roku o Amazon Fire TV Stick."
+                 data-youtube-id="REPLACE_YT_ID_SETUP"
+                 data-offline-src="videos/denistec_roku_fire_setup.mp4"
+                 >
+          <img class="thumb" src="thumbnails/denistec_roku_fire_setup.jpg" alt="Cómo configurar Roku o Fire TV Stick">
+          <div class="title" data-en style="display:none;">How to Set Up Roku or Fire TV Stick</div>
+          <div class="title" data-es>Cómo configurar Roku o Fire TV Stick</div>
+          <div class="meta" data-en style="display:none;">12:30 • Setup</div>
+          <div class="meta" data-es>12:30 • Configuración</div>
+          <button class="play-btn" onclick="openPlayer(this.closest('.card'))">Play / Reproducir</button>
+        </article>
+
+        <!-- Video B: Cast / Screen mirror Roku or Fire TV Stick to phone -->
+        <article class="card"
+                 data-title-en="How to Screen Mirror Roku or Fire TV Stick to Android or iPhone"
+                 data-title-es="Cómo duplicar pantalla Roku o Fire TV Stick a Android o iPhone"
+                 data-desc-en="Mirror Android or iPhone screen to Roku and Fire TV Stick — step-by-step."
+                 data-desc-es="Duplicar la pantalla de Android o iPhone a Roku y Fire TV Stick — paso a paso."
+                 data-youtube-id="REPLACE_YT_ID_CAST"
+                 data-offline-src="videos/denistec_roku_fire_cast.mp4"
+                 >
+          <img class="thumb" src="thumbnails/denistec_roku_fire_cast.jpg" alt="Cómo duplicar pantalla Roku o Fire TV Stick a Android o iPhone">
+          <div class="title" data-en style="display:none;">How to Screen Mirror Roku or Fire TV Stick to Android or iPhone</div>
+          <div class="title" data-es>Cómo duplicar pantalla Roku o Fire TV Stick a Android o iPhone</div>
+          <div class="meta" data-en style="display:none;">9:45 • Casting</div>
+          <div class="meta" data-es>9:45 • Duplicar pantalla</div>
+          <button class="play-btn" onclick="openPlayer(this.closest('.card'))">Play / Reproducir</button>
+        </article>
+      </div>
+    </section>
+
+    <!-- Offline section (shown when Offline checkbox is checked) -->
+    <section id="offlineSection" style="display:none; margin-top:18px;">
+      <h2><span data-en style="display:none;">Offline videos</span><span data-es>Videos sin conexión</span></h2>
+      <div class="desc" style="margin-top:6px;">
+        <span data-en style="display:none;">Put MP4 files in /videos and thumbnails in /thumbnails. Click Play to watch locally.</span>
+        <span data-es>Coloca archivos MP4 en /videos y miniaturas en /thumbnails. Haz clic en Reproducir para ver localmente.</span>
+      </div>
+      <div class="grid" id="offlineGrid" style="margin-top:12px;"></div>
+    </section>
+
+    <footer>
+      <div data-en style="display:none;">Made with ❤️ by DenisTec — denis@example.com</div>
+      <div data-es>Hecho con ❤️ por DenisTec — denis@example.com</div>
+    </footer>
+  </div>
+
+  <!-- Modal player -->
+  <div class="modal" id="playerModal" role="dialog" aria-hidden="true">
+    <div class="modal-inner">
+      <button class="modal-close" onclick="closePlayer()">✕</button>
+      <div id="playerArea" style="margin-top:8px;"></div>
+      <div id="modalMeta" style="margin-top:10px; color:var(--muted);"></div>
+    </div>
+  </div>
+
+  <script>
+    // State
+    let lang = 'es';
+    let offlineMode = false;
+
+    function toggleLanguage(){
+      lang = (lang === 'es') ? 'en' : 'es';
+      document.querySelectorAll('[data-en]').forEach(el => el.style.display = (lang === 'en') ? '' : 'none');
+      document.querySelectorAll('[data-es]').forEach(el => el.style.display = (lang === 'es') ? '' : 'none');
+    }
+
+    function setOfflineMode(on){
+      offlineMode = !!on;
+      document.getElementById('onlineSection').style.display = offlineMode ? 'none' : '';
+      document.getElementById('offlineSection').style.display = offlineMode ? '' : 'none';
+      if(offlineMode) generateOfflineGrid();
+    }
+
+    function openPlayer(card){
+      const yt = card.getAttribute('data-youtube-id');
+      const offlineSrc = card.getAttribute('data-offline-src');
+      const title = (lang === 'es') ? (card.getAttribute('data-title-es')||'') : (card.getAttribute('data-title-en')||'');
+
+      const area = document.getElementById('playerArea');
+      area.innerHTML = '';
+
+      if(offlineMode){
+        const video = document.createElement('video');
+        video.controls = true;
+        video.autoplay = true;
+        video.style.width = '100%';
+        video.src = offlineSrc;
+        video.onerror = function(){
+          area.innerHTML = '<div style="color:#f87171;">No se puede cargar el archivo local. Comprueba: ' + offlineSrc + '</div>';
+        };
+        area.appendChild(video);
+
+        const dl = document.createElement('a');
+        dl.href = offlineSrc; dl.download = '';
+        dl.textContent = (lang === 'es') ? 'Descargar video' : 'Download video';
+        dl.style.display = 'inline-block'; dl.style.marginTop='8px'; dl.style.color='#7dd3fc';
+        area.appendChild(dl);
+      } else {
+        if(!yt || yt.startsWith('REPLACE_YT_ID')){
+          area.innerHTML = '<div style="color:#facc15;">No online embed available — replace the placeholder data-youtube-id with a real YouTube ID.</div>';
+        } else {
+          const iframe = document.createElement('iframe');
+          iframe.width = '100%'; iframe.height = '480';
+          iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+          iframe.allowFullscreen = true;
+          iframe.src = 'https://www.youtube.com/embed/' + yt + '?rel=0';
+          iframe.style.border = '0';
+          area.appendChild(iframe);
+        }
+      }
+
+      document.getElementById('modalMeta').textContent = title;
+      document.getElementById('playerModal').style.display = 'flex';
+      document.getElementById('playerModal').setAttribute('aria-hidden','false');
+    }
+
+    function closePlayer(){
+      document.getElementById('playerArea').innerHTML = '';
+      document.getElementById('playerModal').style.display = 'none';
+      document.getElementById('playerModal').setAttribute('aria-hidden','true');
+    }
+
+    function generateOfflineGrid(){
+      const cards = Array.from(document.querySelectorAll('.card'));
+      const container = document.getElementById('offlineGrid');
+      container.innerHTML = '';
+      cards.forEach(card => {
+        const clone = card.cloneNode(true);
+        const btn = clone.querySelector('.play-btn');
+        btn.onclick = () => openPlayer(clone);
+        // add download link
+        const src = clone.getAttribute('data-offline-src');
+        const dl = document.createElement('a');
+        dl.href = src; dl.download = ''; dl.textContent = (lang === 'es') ? 'Descargar' : 'Download';
+        dl.style.display='inline-block'; dl.style.marginLeft='8px'; dl.style.color='#7dd3fc';
+        clone.appendChild(dl);
+        container.appendChild(clone);
+      });
+    }
+
+    // initialize visibility
+    document.querySelectorAll('[data-en]').forEach(el => el.style.display = 'none'); // default ES
+    document.querySelectorAll('[data-es]').forEach(el => el.style.display = '');
+  </script>
+</body>
+  </html>
