@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" class="notranslate" translate="no">
+<head>
+    <title>LogoRemakeFour</title>
+    <meta id="viewPortMeta" name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="UWnxfeRniUm-l7GAbNdqfZQmCCaAU3HB6jGOuEHZ26k" />
+
+    <link rel="icon" href="favicon-lrfeditor1807-on-github.ico" type="image/png">
+    <link rel="manifest" href="app/manifest.webmanifest">
+
+    <link rel="stylesheet" href="app/css/fontawesome/css/all.css">
+    <link rel="stylesheet" href="app/css/custom.css">
+    <link rel="stylesheet" href="app/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="app/css/skeleton.css">
+    <link rel="stylesheet" href="app/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="app/css/grid-styles.css">
+    <style>
+    /* Color definitions for Red and Blue */
+
+:root {
+  --color-red: #FF0000;
+  --color-blue: #0000FF;
+}
+
+.red {
+  color: #FF0000;
+}
+
+.blue {
+  color: #0000FF;
+}
+
+.bg-red {
+  background-color: #FF0000;
+}
+
+.bg-blue {
+  background-color: #0000FF;
+}
+        
+    </style>
+</head>
+<body onload="window.loaded = true;">
+<div style="display: none" aria-hidden="false">
+    {{ $t('accessKey1NavigationAccessKey2Main') }}
+</div>
+<div id="app" class="holy-grail">
+    <h1 class="sr-only">LogoRemakeFour</h1>
+    <div id="touchElement" class="grid-container" style="z-index: 2; display: none; -webkit-touch-callout: none; -webkit-user-select: none;">
+    </div>
+    <audio style="display: none" id="audioPlayer" src="" preload="spotify"></audio>
+    <video style="display: none" id="videoPlayer" src="" preload="youtube"></video>
+    <notification-bar ref="notificationBar"></notification-bar>
+    <progress-bar-modal v-show="showModal === modalTypes.MODAL_PROGRESSBAR" ref="progressBar" @close="showModal = null"></progress-bar-modal>
+    <search-modal v-if="showModal === modalTypes.MODAL_SEARCH" @close="showModal = null;" :route-to-edit="Router.getCurrentView() === Router.VIEWS.GridEditView" :options="modalOptions"></search-modal>
+    <message-box v-show="showModal === modalTypes.MODAL_MESSAGEBOX" ref="messageBox" @close="showModal = null"></message-box>
+    <div class="grid-container grid-mask" v-if="false">
+        <i class="fas fa-4x fa-spinner fa-spin" style="top: 40%;"></i>
+        <div style="position: fixed; top: 50%; width: 100%; text-align: center; font-size: 2em;">
+          </div>
+        </div>
+            }
+        });
+    }
+
+    function logAndRedirect(missingFeature) {
+        console.warn("Browser doesn't support " + missingFeature + ".");
+        window.location.replace("unsupported.html");
+    }
+
+    function testEval(evalString, msg) {
+        try {
+            eval(evalString);
+        } catch (e) {
+            console.log(e);
+            logAndRedirect(msg);
+        }
+    }
+    </script>
+
+<!-- libraries, not provided by npm -->
+<script src="app/lib/jquery.min.js"></script>
+<script src="app/lib/jquery-ui.min.js"></script>
+<script type="text/javascript" src='app/lib/jquery.contextMenu.min.js'></script>
+<script type="text/javascript" src='app/lib/object-model.min.js'></script>
+<script type="text/javascript" src='app/lib/pouchdb-8.0.1.min.js'></script>
+<script type="text/javascript" src='app/lib/loglevel.min.js'></script>
+<script type="text/javascript" src='app/lib/sjcl.min.js'></script>
+    The Phone with LogoRemakeFour (touch, click)
+    The Computer with LogoRemakeFour (keyboard, mouse)
+    <img src="https://lrfeditor1807.github.io/lrfeditor/img/russiacanin.jpg" alt="" width="400">
+    <img src="https://lrfeditor1807.github.io/lrfeditor/img/gacha.jpg" alt="" width="400">
+    <a href="https://lrfeditor1807.github.io/IPTV-Player-Channels">IPTV</a>
+    <a href="https://outlook.live.com">Outlook</a>
+    <a href="https://www.microsoft.com/es-cl">Microsoft Chile</a>
+
+
+
+<script>
+    var rvApiKey="zGuJFLIV";
+    var rvApiEndpoint = "https://texttospeech.responsivevoice.org/v1/text:synthesize";
+</script>
+<!--script src="https://code.responsivevoice.org/responsivevoice.js"></script-->
+<script type="text/javascript" src='app/lib/responsive-voice.js'></script>
+
+<script type="module" src="app/build/asterics-aac.bundle.js"></script>
+    <a href="https://lrfeditor1807.github.io">LogoRemakeFour</a>
+    <a href="https://www.github.com/lrfeditor1807">LogoRemakeFour on GitHub</a>
+    <a href="https://lrfeditor1807.github.io/activatewindows.html">Activate Windows</a>
+    <a href="https://lrfeditor1807.github.io/email">Email</a>
+    <a href="https://lrfeditor1807.github.io/search">Search</a>
+    <a href="https://lrfeditor1807.github.io/toonblast">Toon Blast</a>
+
+</body>
+</html>
