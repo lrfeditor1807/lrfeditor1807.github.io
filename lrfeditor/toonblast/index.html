@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Toon Blast — Carnival Collection (Mini)</title>
+<style>
+  :root{
+    --cell-size:48px;
+    --cols:9;
+    --gap:6px;
+  }
+  body {font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial; margin:12px; background:linear-gradient(180deg,#fde68a,#ffd2f0); color:#222;}
+  header {display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+  h1{margin:0;font-size:20px}
+  .hud{display:flex;gap:10px;align-items:center;margin-left:auto}
+  .stat{background:rgba(255,255,255,0.85);padding:8px;border-radius:8px;min-width:94px;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,.12)}
+  .board-wrap{display:flex;gap:16px;align-items:flex-start}
+  .board{background:rgba(255,255,255,0.9);padding:12px;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,.12)}
+  .grid{display:grid;grid-template-columns:repeat(var(--cols),var(--cell-size));grid-auto-rows:var(--cell-size);gap:var(--gap);}
+  .cell{width:var(--cell-size);height:var(--cell-size);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;user-select:none;box-shadow:inset 0 -3px 0 rgba(0,0,0,.08);}
+  .cell.r{background:#f97373}
+  .cell.b{background:#60a5fa}
+  .cell.g{background:#34d399}
+  .cell.o{background:#fb923c}
+  .cell.y{background:#facc15}
+  .cell.p{background:#c084fc}
+  .cell.special{border:3px solid rgba(255,255,255,.35);font-weight:700}
+  .side{width:300px;}
+  .goals{background:rgba(255,255,255,0.9);padding:10px;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+  .goals h3{margin:6px 0 10px 0}
+  .goal-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed rgba(0,0,0,.05)}
+  .btn{background:#111827;color:#fff;padding:8px 10px;border-radius:8px;border:none;cursor:pointer}
+  .controls{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+  .inventory-list{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+  .inv-item{display:flex;justify-content:space-between;background:rgba(0,0,0,.04);padding:6px;border-radius:6px}
+  .modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.45);z-index:30}
+  .panel{background:#fff;padding:18px;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,.3);max-width:800px;width:92%}
+  .hidden{display:none}
+  .small{font-size:13px;color:#444}
+  footer{margin-top:12px; font-size:13px;color:#333}
+  .shop-list{display:flex;flex-direction:column;gap:8px}
+  .shop-item{display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,.03);padding:8px;border-radius:8px}
+  .events{margin-top:10px;display:flex;flex-direction:column;gap:6px}
+  .event{padding:8px;background:linear-gradient(90deg,#fff,#fff7);border-radius:8px;border:1px solid rgba(0,0,0,.04)}
+  .badge{background:#111827;color:#fff;padding:4px 6px;border-radius:6px;font-size:12px}
+  .row{display:flex;gap:8px;align-items:center}
+  .big{font-size:18px;font-weight:700}
+  .help{font-size:13px;color:#333;margin-top:8px}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Toon Blast — Carnival Collection</h1>
+  <div class="hud">
+    <div class="stat">Moves<br><span id="moves" class="big">50</span></div>
+    <div class="stat">Lives<br><span id="lives" class="big">5</span></div>
+    <div class="stat">Coins<br><span id="coins" class="big">0</span></div>
+    <div class="stat">Level<br><span id="level" class="big">1</span></div>
+    <button class="btn" id="open-shop">Shop</button>
+    <button class="btn" id="open-collection">Carnival</button>
+  </div>
+</header>
+
+<main>
+  <div class="board-wrap">
+    <div class="board">
+      <div class="row" style="justify-content:space-between;align-items:center;margin-bottom:8px">
+        <div><strong>Board</strong> <span class="small">— Click connected groups (≥2) to clear</span></div>
+        <div class="small">Inventory: <span id="inv-summary">Hammer:0 Boxing:0 Anvil:0 Dice:0</span></div>
+      </div>
+
+      <div id="grid" class="grid" style="--cols:9"></div>
+
+      <div style="margin-top:10px;display:flex;gap:10px;align-items:center">
+        <button class="btn" id="shuffle">Shuffle</button>
+        <button class="btn" id="use-hammer">Use Hammer</button>
+        <button class="btn" id="use-glove">Use Boxing Glove</button>
+        <button class="btn" id="use-anvil">Use Anvil</button>
+        <button class="btn" id="use-dice">Use Dice</button>
+        <div class="small" id="message" style="margin-left:10px"></div>
+      </div>
+
+    </div>
+
+    <aside class="side">
+      <div class="goals">
+        <h3>Goals</h3>
+        <div id="goals-list"></div>
+
+        <div style="margin-top:8px">
+          <div class="small">Special goals appear when you create them by big matches or buy them in shop.</div>
+        </div>
+
+        <div class="controls">
+          <button class="btn" id="new-level">New Level</button>
+          <button class="btn" id="reset">Reset Game</button>
+        </div>
+
+        <div style="margin-top:10px">
+          <h4>Inventory</h4>
+          <div class="inventory-list" id="inventory"></div>
+        </div>
+      </div>
+
+      <div style="margin-top:10px;background:rgba(255,255,255,0.9);padding:10px;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,.06)">
+        <h3>Events & Unlocks</h3>
+        <div class="events" id="events-list"></div>
+      </div>
+
+    </aside>
+  </div>
+</main>
+
+<footer>
+  Controls: Click groups to clear. Use inventory buttons to apply an item to a clicked cell. Shop: buy powerups, moves, lives, passes. Carnival Collection and events track unlocks.
+</footer>
+
+<!-- Modals -->
+<div id="modal-shop" class="modal hidden">
+  <div class="panel">
+    <h2>Shop</h2>
+    <div class="shop-list">
+      <div class="shop-item"><div><strong>Bomb</strong> (add to inventory)</div><div><button class="btn shop-buy" data-item="bomb" data-cost="100">Buy 100</button></div></div>
+      <div class="shop-item"><div><strong>Rocket</strong> (add to inventory)</div><div><button class="btn shop-buy" data-item="rocket" data-cost="100">Buy 100</button></div></div>
+      <div class="shop-item"><div><strong>Disco Ball</strong> (add to inventory)</div><div><button class="btn shop-buy" data-item="disco" data-cost="100">Buy 100</button></div></div>
+
+      <div class="shop-item"><div><strong>+5 Moves</strong></div><div><button class="btn shop-buy" data-item="moves5" data-cost="100">Buy 100</button></div></div>
+      <div class="shop-item"><div><strong>Refill Lives (to 5)</strong></div><div><button class="btn shop-buy" data-item="refillLives" data-cost="100">Buy 100</button></div></div>
+
+      <div class="shop-item"><div><strong>10 Lives</strong></div><div><button class="btn shop-buy" data-item="lives10" data-cost="100">Buy 100</button></div></div>
+      <div class="shop-item"><div><strong>Unlimited Lives (temporary)</strong></div><div><button class="btn shop-buy" data-item="unlimitedLives" data-cost="100">Buy 100</button></div></div>
+
+      <div class="shop-item"><div><strong>Diamond Pass — 100 Moves</strong></div><div><button class="btn shop-buy" data-item="diamond" data-cost="100">Buy 100</button></div></div>
+      <div class="shop-item"><div><strong>Golden Pass — 1000 Moves</strong></div><div><button class="btn shop-buy" data-item="golden" data-cost="1000">Buy 1000</button></div></div>
+    </div>
+
+    <div style="margin-top:12px;display:flex;justify-content:flex-end;gap:8px;">
+      <button class="btn" id="close-shop">Close</button>
+    </div>
+  </div>
+</div>
+
+<div id="modal-collection" class="modal hidden">
+  <div class="panel">
+    <h2>Carnival Collection — Toon Cards</h2>
+    <div style="display:flex;gap:12px;align-items:center">
+      <div style="background:linear-gradient(120deg,#fff,#fff8);padding:12px;border-radius:10px;flex:1">
+        <h3>Magician Cooper</h3>
+        <div class="small">A mysterious magician — adds magic to your plays. Unlock event: Renovations</div>
+      </div>
+      <div style="background:linear-gradient(120deg,#fff,#fff8);padding:12px;border-radius:10px;flex:1">
+        <h3>Jester Wally</h3>
+        <div class="small">Mischief & fun — unlocks Toon Race</div>
+      </div>
+    </div>
+    <div style="margin-top:12px;display:flex;justify-content:flex-end;gap:8px"><button class="btn" id="close-collection">Close</button></div>
+  </div>
+</div>
+
+<div id="modal-result" class="modal hidden">
+  <div class="panel">
+    <h2 id="result-title"></h2>
+    <div id="result-body" class="small" style="margin-top:8px"></div>
+    <div style="margin-top:12px;display:flex;justify-content:flex-end;gap:8px">
+      <button class="btn" id="play-again">Play Again</button>
+      <button class="btn" id="close-result">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/*
+  Mini Toon Blast-like game:
+  - 9x9 grid of colored blocks (r,b,g,o,y,p)
+  - Click a cell removes connected group of same color if size >= 2
+  - Large removals (>4) may create special effects (rocket, bomb, disco)
+  - Track goals for colored tiles and special items
+  - Moves (start 50), Lives (start 5), Coins
+  - Shop to buy special items and moves/lives/passes
+  - Inventory: Hammer, Boxing Glove, Anvil, Dice (can be used)
+  - Events + Carnival Collection UI & unlock flags
+*/
+
+// --- Game state ---
+const cols = 9, rows = 9;
+const colors = ['r','b','g','o','y','p'];
+let grid = [];
+let level = 1;
+let moves = 50;
+let lives = 5;
+let coins = 0;
+let unlimitedLivesUntil = 0; // timestamp if unlimited purchased
+let inventory = {hammer:0,boxing:0,anvil:0,dice:0, bomb:0, rocket:0, disco:0};
+let goals = {}; // counts required and collected
+let events = {
+  spaceMiner:{name:'Space Miner', unlocked:false},
+  toonRace:{name:'Toon Race', unlocked:false},
+  renovations:{name:'Renovations', unlocked:false},
+  starTournament:{name:'Star Tournament', unlocked:false}
+};
+let messageTimer=null;
+
+// --- DOM refs ---
+const gridEl = document.getElementById('grid');
+const movesEl = document.getElementById('moves');
+const livesEl = document.getElementById('lives');
+const coinsEl = document.getElementById('coins');
+const levelEl = document.getElementById('level');
+const invSummary = document.getElementById('inv-summary');
+const goalsList = document.getElementById('goals-list');
+const inventoryList = document.getElementById('inventory');
+const eventsList = document.getElementById('events-list');
+const messageEl = document.getElementById('message');
+const modalShop = document.getElementById('modal-shop');
+const modalCollection = document.getElementById('modal-collection');
+const modalResult = document.getElementById('modal-result');
+const resultTitle = document.getElementById('result-title');
+const resultBody = document.getElementById('result-body');
+
+// --- Utilities ---
+function randFrom(arr){return arr[Math.floor(Math.random()*arr.length)];}
+function now(){return Date.now();}
+function showMessage(text, timeout=2000){
+  clearTimeout(messageTimer);
+  messageEl.textContent = text;
+  if(timeout>0) messageTimer = setTimeout(()=>messageEl.textContent='', timeout);
+}
+
+// --- Initialize / Reset ---
+function newGrid(){
+  grid = [];
+  for(let r=0;r<rows;r++){
+    const row=[];
+    for(let c=0;c<cols;c++){
+      row.push({color:randFrom(colors), special:null});
+    }
+    grid.push(row);
+  }
+}
+
+function resetGame(){
+  level=1; moves=50; lives=5; coins=0; unlimitedLivesUntil=0;
+  inventory={hammer:0,boxing:0,anvil:0,dice:0, bomb:0, rocket:0, disco:0};
+  resetGoals();
+  newGrid(); renderAll();
+  unlockEvent('spaceMiner', false);
+}
+
+function resetGoals(){
+  // default targets for a level
+  goals = {
+    r: {need:10,got:0},
+    b: {need:10,got:0},
+    g: {need:10,got:0},
+    o: {need:10,got:0},
+    y: {need:10,got:0},
+    p: {need:10,got:0},
+    balloon: {need:5,got:0},
+    camera: {need:3,got:0},
+    discoRocket: {need:2,got:0}, // 🔮🚀
+    bombHammer: {need:2,got:0}, // 💣🔨
+    boxing: {need:1,got:0}, // 🥊
+    toolbox: {need:1,got:0}, // 🧰
+    dice: {need:1,got:0} // 🎲
+  };
+}
+
+// --- Rendering ---
+function renderGrid(){
+  gridEl.innerHTML='';
+  for(let r=0;r<rows;r++){
+    for(let c=0;c<cols;c++){
+      const cell = grid[r][c];
+      const div = document.createElement('div');
+      div.className = 'cell ' + cell.color + (cell.special ? ' special' : '');
+      div.dataset.r=r; div.dataset.c=c;
+      div.title = `${r},${c}`;
+      // show small icon for special
+      if(cell.special==='bomb') div.textContent='💣';
+      else if(cell.special==='rocket') div.textContent='🚀';
+      else if(cell.special==='disco') div.textContent='🔮';
+      else div.textContent = '';
+      // For accessibility, show a small colored dot if nothing
+      if(!cell.special) {
+        const dot = document.createElement('div');
+        dot.style.width='10px'; dot.style.height='10px'; dot.style.borderRadius='50%';
+        dot.style.boxShadow='inset 0 -2px 0 rgba(0,0,0,.08)';
+        dot.style.background='rgba(255,255,255,.22)';
+        div.appendChild(dot);
+      }
+      div.addEventListener('click', onCellClick);
+      gridEl.appendChild(div);
+    }
+  }
+}
+
+function renderGoals(){
+  goalsList.innerHTML='';
+  for(const key of Object.keys(goals)){
+    const g = goals[key];
+    const row = document.createElement('div');
+    row.className='goal-row';
+    let label=key;
+    if(key==='r') label='🟥 Red'; if(key==='b') label='🟦 Blue';
+    if(key==='g') label='🟩 Green'; if(key==='o') label='🟧 Orange';
+    if(key==='y') label='🟨 Yellow'; if(key==='p') label='🟪 Purple';
+    if(key==='balloon') label='🎈 Balloon'; if(key==='camera') label='📷 Camera';
+    if(key==='discoRocket') label='🔮/🚀 Disco/Rocket'; if(key==='bombHammer') label='💣/🔨 Bomb/Hammer';
+    if(key==='boxing') label='🥊 Boxing Glove'; if(key==='toolbox') label='🧰 Toolbox';
+    if(key==='dice') label='🎲 Dice';
+    row.innerHTML = `<div>${label}</div><div>${g.got}/${g.need}</div>`;
+    goalsList.appendChild(row);
+  }
+}
+
+function renderInventory(){
+  inventoryList.innerHTML='';
+  const pairs = [['hammer','Hammer'],['boxing','Boxing Glove'],['anvil','Anvil'],['dice','Dice'],
+                 ['bomb','Bomb'],['rocket','Rocket'],['disco','Disco Ball']];
+  for(const [k,lab] of pairs){
+    const d = document.createElement('div');
+    d.className='inv-item';
+    d.innerHTML = `<div>${lab}</div><div>${inventory[k]||0} <button class="btn small-btn" data-use="${k}">Use</button></div>`;
+    inventoryList.appendChild(d);
+  }
+  // attach use handlers
+  inventoryList.querySelectorAll('[data-use]').forEach(btn=>{
+    btn.querySelector('button')?.addEventListener('click', ()=>{
+      const item = btn.querySelector('[data-use]').dataset.use;
+      promptUseInventory(item);
+    });
+  });
+
+  invSummary.textContent = `Hammer:${inventory.hammer||0} Boxing:${inventory.boxing||0} Anvil:${inventory.anvil||0} Dice:${inventory.dice||0}`;
+}
+
+function renderStats(){
+  movesEl.textContent = moves;
+  livesEl.textContent = (unlimitedLivesUntil>now() ? '∞' : lives);
+  coinsEl.textContent = coins;
+  levelEl.textContent = level;
+}
+
+function renderEvents(){
+  eventsList.innerHTML='';
+  for(const k in events){
+    const e = events[k];
+    const div = document.createElement('div');
+    div.className='event';
+    div.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center"><div><strong>${e.name}</strong></div><div>${e.unlocked?'<span class="badge">Unlocked</span>':'<span class="small">Locked</span>'}</div></div>
+      <div class="small" style="margin-top:6px">${eventDesc(k)}</div>`;
+    eventsList.appendChild(div);
+  }
+}
+
+function eventDesc(key){
+  if(key==='spaceMiner') return 'Event: Space Miner — dig for star fragments.';
+  if(key==='toonRace') return 'Event: Toon Race — a speed-based challenge.';
+  if(key==='renovations') return 'Event: Renovations — unlocks Carnival Collection cards.';
+  if(key==='starTournament') return 'Star Tournament — unlocks a new game mode when ready.';
+  return '';
+}
+
+function renderAll(){
+  renderGrid();
+  renderGoals();
+  renderInventory();
+  renderStats();
+  renderEvents();
+}
+
+// --- Game mechanics ---
+function neighbors(r,c){
+  return [[r-1,c],[r+1,c],[r,c-1],[r,c+1]].filter(([rr,cc])=>rr>=0&&rr<rows&&cc>=0&&cc<cols);
+}
+
+function floodFill(r,c){
+  const color = grid[r][c].color;
+  const seen = new Set();
+  const stack = [[r,c]];
+  while(stack.length){
+    const [rr,cc] = stack.pop();
+    const key = rr+','+cc;
+    if(seen.has(key)) continue;
+    if(grid[rr][cc].color!==color) continue;
+    seen.add(key);
+    neighbors(rr,cc).forEach(n=>stack.push(n));
+  }
+  return Array.from(seen).map(s=>s.split(',').map(Number));
+}
+
+function removeCells(cells){
+  // cells is array of [r,c]
+  // mark as removed and collapse
+  cells.forEach(([r,c])=>{
+    grid[r][c]=null;
+  });
+  // collapse columns (gravity)
+  for(let c=0;c<cols;c++){
+    const col = [];
+    for(let r=rows-1;r>=0;r--){
+      if(grid[r][c]) col.push(grid[r][c]);
+    }
+    // refill from top
+    for(let r=rows-1, i=0;r>=0;r--,i++){
+      grid[r][c] = col[i] || {color:randFrom(colors), special:null};
+    }
+  }
+}
+
+function collectForGoals(cells, specialCreated=null){
+  // reward goals for colored tiles removed
+  for(const [r,c] of cells){
+    const color = grid[r][c] ? grid[r][c].color : null;
+    // Note: we call this before we set empties; so safe to inspect (we will capture colors)
+  }
+  // Because our removeCells sets to null, instead we pass original colors array optionally
+}
+
+function applyCleared(cells, origColors){
+  // origColors is matching array of colors same length as cells
+  // Count for goals and coins/score
+  let count = cells.length;
+  // update color goals
+  for(const col of origColors){
+    if(goals[col]) goals[col].got++;
+  }
+  // special creation: if count >=5 create a special at a random cell among those
+  let createdSpecial = null;
+  if(count>=7){ // big group -> disco
+    const idx = Math.floor(Math.random()*cells.length);
+    const [r,c] = cells[idx];
+    grid[r][c] = {color:randFrom(colors), special:'disco'}; // drop a disco on that spot
+    createdSpecial = 'disco';
+    goals.discoRocket.got++; // count as progress for disco/rocket
+    showMessage('Disco Ball created! 🔮');
+  } else if(count>=5){
+    // rocket
+    const idx = Math.floor(Math.random()*cells.length);
+    const [r,c] = cells[idx];
+    grid[r][c] = {color:randFrom(colors), special:'rocket'};
+    createdSpecial = 'rocket';
+    goals.discoRocket.got++;
+    showMessage('Rocket created! 🚀');
+  } else if(count>=4){
+    const idx = Math.floor(Math.random()*cells.length);
+    const [r,c] = cells[idx];
+    grid[r][c] = {color:randFrom(colors), special:'bomb'};
+    createdSpecial = 'bomb';
+    goals.bombHammer.got++;
+    showMessage('Bomb created! 💣');
+  }
+
+  // coins reward
+  let gain = Math.min(50, Math.floor(count*2 + (createdSpecial?20:0)));
+  coins += gain;
+
+  // decrement moves
+  moves = Math.max(0, moves-1);
+  renderAll();
+  checkLevelComplete();
+}
+
+function onCellClick(ev){
+  const r = Number(ev.currentTarget.dataset.r);
+  const c = Number(ev.currentTarget.dataset.c);
+  const cell = grid[r][c];
+  if(!cell) return;
+  // If there's a special on this cell, trigger it
+  if(cell.special){
+    activateSpecialAt(r,c,cell.special);
+    moves = Math.max(0, moves-1);
+    renderAll();
+    checkLevelComplete();
+    return;
+  }
+
+  const group = floodFill(r,c);
+  if(group.length<2){
+    showMessage('Need at least 2 to remove');
+    return;
+  }
+  // capture original colors
+  const origColors = group.map(([rr,cc])=>grid[rr][cc].color);
+  removeCells(group);
+  applyCleared(group, origColors);
+  // random chance to award a special goal (balloon/camera/boxing/tool/dice) on big clears
+  if(group.length>=6){
+    goals.balloon.got = Math.min(goals.balloon.need, goals.balloon.got + 1);
+    showMessage('You found a Balloon! 🎈');
+  }
+  if(group.length>=8){
+    goals.camera.got = Math.min(goals.camera.need, goals.camera.got + 1);
+    showMessage('You found a Camera! 📷');
+  }
+}
+
+function activateSpecialAt(r,c,type){
+  if(type==='bomb'){
+    // clear 3x3 area around
+    const cells=[];
+    for(let rr=r-1;rr<=r+1;rr++){
+      for(let cc=c-1;cc<=c+1;cc++){
+        if(rr>=0&&rr<rows&&cc>=0&&cc<cols) cells.push([rr,cc]);
+      }
+    }
+    const orig = cells.map(([rr,cc])=>grid[rr][cc]?.color||null).filter(Boolean);
+    removeCells(cells);
+    goals.bombHammer.got = Math.min(goals.bombHammer.need, goals.bombHammer.got+1);
+    coins += 20;
+    showMessage('Bomb exploded!');
+  } else if(type==='rocket'){
+    // clear whole row
+    const cells=[];
+    for(let cc=0;cc<cols;cc++) cells.push([r,cc]);
+    const orig = cells.map(([rr,cc])=>grid[rr][cc]?.color||null).filter(Boolean);
+    removeCells(cells);
+    goals.discoRocket.got = Math.min(goals.discoRocket.need, goals.discoRocket.got+1);
+    coins += 30;
+    showMessage('Rocket fired!');
+  } else if(type==='disco'){
+    // clear all of one random color across board
+    const color = randFrom(colors);
+    const cells=[];
+    for(let rr=0;rr<rows;rr++) for(let cc=0;cc<cols;cc++) if(grid[rr][cc].color===color) cells.push([rr,cc]);
+    removeCells(cells);
+    goals.discoRocket.got = Math.min(goals.discoRocket.need, goals.discoRocket.got+1);
+    coins += 50;
+    showMessage('Disco Ball exploded! All ' + color + ' removed');
+  }
+  // clear the special marker at clicked spot
+  // ensure moves and coins updated above
+}
+
+function shuffleBoard(){
+  // simple shuffle: reassign colors randomly
+  const all = [];
+  for(let r=0;r<rows;r++) for(let c=0;c<cols;c++) all.push(grid[r][c].color);
+  for(let r=0;r<rows;r++) for(let c=0;c<cols;c++) grid[r][c].color = all.splice(Math.floor(Math.random()*all.length),1)[0];
+  moves = Math.max(0, moves-1);
+  renderAll();
+}
+
+// --- Inventory use flows ---
+let pendingUseItem = null;
+function promptUseInventory(key){
+  if((inventory[key]||0)<=0){
+    showMessage('No ' + key + ' in inventory');
+    return;
+  }
+  pendingUseItem = key;
+  showMessage('Click a cell to use ' + key);
+  // The next click will apply the effect. Intercept grid clicks by setting a temporary global handler.
+  gridEl.querySelectorAll('.cell').forEach(div=>{
+    div.onclickBackup = div.onclick;
+    div.removeEventListener('click', onCellClick);
+    div.addEventListener('click', onInventoryTarget);
+  });
+}
+
+function onInventoryTarget(ev){
+  const r = Number(ev.currentTarget.dataset.r);
+  const c = Number(ev.currentTarget.dataset.c);
+  const key = pendingUseItem;
+  if(!key) return;
+  if(key==='hammer'){
+    // remove single cell instantly
+    removeCells([[r,c]]);
+    inventory.hammer--; coins+=5;
+    goals.bombHammer.got = Math.min(goals.bombHammer.need, goals.bombHammer.got+1);
+    showMessage('Hammer used!');
+  } else if(key==='boxing'){
+    // remove entire row
+    const cells=[];
+    for(let cc=0;cc<cols;cc++) cells.push([r,cc]);
+    removeCells(cells);
+    inventory.boxing--; coins+=8;
+    goals.boxing.got = Math.min(goals.boxing.need, goals.boxing.got+1);
+    showMessage('Boxing Glove used!');
+  } else if(key==='anvil'){
+    // remove entire column
+    const cells=[];
+    for(let rr=0;rr<rows;rr++) cells.push([rr,c]);
+    removeCells(cells);
+    inventory.anvil--; coins+=8;
+    showMessage('Anvil used!');
+  } else if(key==='dice'){
+    // random effect: spawn a special or remove random group
+    const outcome = Math.random();
+    if(outcome<0.33){
+      inventory.dice--;
+      inventory.bomb = (inventory.bomb||0)+1;
+      showMessage('Dice gave a Bomb!');
+    } else if(outcome<0.66){
+      inventory.dice--;
+      inventory.rocket = (inventory.rocket||0)+1;
+      showMessage('Dice gave a Rocket!');
+    } else {
+      // remove random small group
+      const rr = Math.floor(Math.random()*rows), cc = Math.floor(Math.random()*cols);
+      const group = floodFill(rr,cc);
+      removeCells(group.slice(0,Math.max(1,Math.min(group.length,4))));
+      showMessage('Dice unleashed chaos!');
+    }
+  } else if(key==='bomb' || key==='rocket' || key==='disco'){
+    inventory[key] = inventory[key]-1;
+    inventory[key] = Math.max(0, inventory[key]);
+    // add a special at target cell
+    grid[r][c].special = key;
+    showMessage(key.charAt(0).toUpperCase()+key.slice(1) + ' placed!');
+  }
+
+  // cleanup pending
+  pendingUseItem = null;
+  // restore grid click handlers
+  gridEl.querySelectorAll('.cell').forEach(div=>{
+    div.removeEventListener('click', onInventoryTarget);
+    div.addEventListener('click', onCellClick);
+  });
+
+  // using inventory does not cost moves by default
+  renderAll();
+  checkLevelComplete();
+}
+
+// --- Shop / purchases ---
+document.getElementById('open-shop').addEventListener('click', ()=>modalShop.classList.remove('hidden'));
+document.getElementById('close-shop').addEventListener('click', ()=>modalShop.classList.add('hidden'));
+document.getElementById('open-collection').addEventListener('click', ()=>modalCollection.classList.remove('hidden'));
+document.getElementById('close-collection').addEventListener('click', ()=>modalCollection.classList.add('hidden'));
+
+document.querySelectorAll('.shop-buy').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const item = btn.dataset.item;
+    const cost = Number(btn.dataset.cost);
+    if(coins < cost){
+      alert('Not enough coins');
+      return;
+    }
+    coins -= cost;
+    if(item==='bomb') inventory.bomb = (inventory.bomb||0)+1;
+    if(item==='rocket') inventory.rocket = (inventory.rocket||0)+1;
+    if(item==='disco') inventory.disco = (inventory.disco||0)+1;
+    if(item==='moves5') moves += 5;
+    if(item==='refillLives') {
+      lives = 5;
+      unlimitedLivesUntil = 0;
+    }
+    if(item==='lives10') lives += 10;
+    if(item==='unlimitedLives') unlimitedLivesUntil = now() + 1000*60*60*24; // 24 hours unlimited
+    if(item==='diamond') moves += 100;
+    if(item==='golden') moves += 1000;
+    renderAll();
+    showMessage('Purchased ' + item);
+  });
+});
+
+// --- Level / end conditions ---
+function checkLevelComplete(){
+  // If all goals reached
+  let allDone = true;
+  for(const k in goals) if(goals[k].got < goals[k].need) { allDone = false; break; }
+  if(allDone){
+    levelComplete();
+    return;
+  }
+  // Out of moves
+  if(moves<=0){
+    // Offer an out-of-moves flow: you can buy 5 moves for 100 coins (handled in shop)
+    // After 5 out-of-moves attempts (simulate the user's "out of moves on 5 moves -> 100 coins and 100 moves Unlock to Carnival Collection")
+    // We'll implement a simple flow: if coins >=100 auto offer to buy; else lose a life.
+    if(coins>=100){
+      // auto-offer but just leave to player via shop; for now, if player doesn't buy, we convert to life loss:
+      lives = Math.max(0, lives-1);
+      moves = 0;
+      showMessage('Out of moves — you lost a life unless you buy moves (Shop).');
+      renderAll();
+      if(lives<=0) gameOver('Out of moves and no lives left');
+    } else {
+      lives = Math.max(0, lives-1);
+      moves = 0;
+      renderAll();
+      if(lives<=0) gameOver('Out of moves and no lives left');
+    }
+  }
+  // Out of lives
+  if(lives<=0 && unlimitedLivesUntil<=now()){
+    gameOver('No lives left');
+  }
+}
+
+function levelComplete(){
+  coins += 200; // reward
+  // unlock some events/collection based on level
+  if(level===1) unlockEvent('renovations', true);
+  if(level===2) unlockEvent('toonRace', true);
+  // Show modal
+  resultTitle.textContent = 'Level Completed!';
+  resultBody.innerHTML = `Congratulations — level ${level} complete. You earned 200 coins. Carnival Collection progress updated.`;
+  modalResult.classList.remove('hidden');
+}
+
+function gameOver(reason){
+  resultTitle.textContent = 'Game Over';
+  resultBody.innerHTML = `Reason: ${reason}. You have ${coins} coins. You can buy lives or moves in the shop to continue.`;
+  modalResult.classList.remove('hidden');
+}
+
+// unlock event
+function unlockEvent(key, nowUnlocked=true){
+  if(events[key]){
+    events[key].unlocked = !!nowUnlocked;
+    // unlocking renovations also "adds" Carnival Collection entries (we just mark)
+    if(key==='renovations') {
+      // small effect: grant a card and some coins
+      coins += 100;
+      showMessage('Renovations complete — Carnival Collection unlocked!');
+    }
+    if(key==='starTournament') {
+      // star tournament unlocks new game mode — for demo just give extra moves
+      moves += 100;
+      showMessage('Star Tournament unlocked — you got 100 moves!');
+    }
+  }
+  renderEvents();
+}
+
+// --- UI Buttons ---
+document.getElementById('shuffle').addEventListener('click', ()=>{shuffleBoard();});
+document.getElementById('new-level').addEventListener('click', ()=>{
+  level++;
+  moves = 50 + Math.floor(level*2.5);
+  resetGoals();
+  newGrid();
+  renderAll();
+  showMessage('New level started');
+});
+document.getElementById('reset').addEventListener('click', ()=>resetGame());
+document.getElementById('play-again').addEventListener('click', ()=>{
+  modalResult.classList.add('hidden');
+  resetGame();
+});
+document.getElementById('close-result').addEventListener('click', ()=>modalResult.classList.add('hidden'));
+
+// Use buttons for inventory quick-use
+document.getElementById('use-hammer').addEventListener('click', ()=>promptUseInventory('hammer'));
+document.getElementById('use-glove').addEventListener('click', ()=>promptUseInventory('boxing'));
+document.getElementById('use-anvil').addEventListener('click', ()=>promptUseInventory('anvil'));
+document.getElementById('use-dice').addEventListener('click', ()=>promptUseInventory('dice'));
+
+// --- Init ---
+resetGoals();
+newGrid();
+renderAll();
+
+// For demo: seed some inventory & coins
+inventory.hammer = 1; inventory.boxing = 1; inventory.anvil = 1; inventory.dice = 1;
+coins = 150;
+renderAll();
+
+</script>
+
+</body>
+</html>
