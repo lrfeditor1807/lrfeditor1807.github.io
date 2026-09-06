@@ -1,0 +1,40 @@
+/* Red Color Definition */
+
+/* Using named color */
+.red-named {
+  color: red;
+  background-color: red;
+}
+
+/* Using hex color */
+.red-hex {
+  color: #FF0000;
+  background-color: #FF0000;
+}
+
+/* Using RGB color */
+.red-rgb {
+  color: rgb(255, 0, 0);
+  background-color: rgb(255, 0, 0);
+}
+
+/* Using HSL color */
+.red-hsl {
+  color: hsl(0, 100%, 50%);
+  background-color: hsl(0, 100%, 50%);
+}
+
+/* Example: Red button */
+.red-button {
+  background-color: #FF0000;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.red-button:hover {
+  background-color: #CC0000;
+}
