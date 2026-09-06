@@ -1,7 +1,7 @@
 name: ➕ Add LogoRemakeFour
 description: Request to add a new logoremakefour link into the LogoRemakeFour
 title: 'Add: '
-labels: ['streams:add']
+labels: ['lrfeditor']
 
 body:
   - type: input
