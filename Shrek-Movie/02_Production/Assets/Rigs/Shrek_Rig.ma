@@ -1,0 +1,1 @@
+Placeholder Shrek rig (binary placeholder).

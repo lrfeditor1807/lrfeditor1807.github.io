@@ -1,0 +1,1 @@
+Placeholder light setup (binary placeholder).
