@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chrome AdBlock — LogoRemakeFour</title>
+  <style>
+    :root{
+      --bg: #f5f7fa;
+      --octagon-primary: #e23a3a;
+      --octagon-stroke: rgba(0,0,0,0.12);
+      --shadow: rgba(0,0,0,0.18);
+    }
+
+    html,body{
+      height:100%;
+      margin:0;
+      background:linear-gradient(180deg,var(--bg),#ffffff);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      padding:28px;
+    }
+
+    .container{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:12px;
+    }
+
+    .logo {
+      width: clamp(160px, 28vmin, 360px);
+      display:block;
+      filter: drop-shadow(0 10px 24px var(--shadow));
+      transition: transform 180ms cubic-bezier(.2,.9,.2,1);
+      cursor:default;
+    }
+    .logo:hover { transform: translateY(-6px) scale(1.02); }
+
+    .caption{
+      color:#495057;
+      font-size:13px;
+      text-align:center;
+      opacity:0.95;
+    }
+
+    /* Make SVG render crisply on small screens */
+    svg { width:100%; height:auto; display:block; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Chrome-themed AdBlock logo -->
+    <svg class="logo" viewBox="0 0 200 200" role="img"
+         aria-label="LogoRemakeFour — Chrome-themed AdBlock symbol (stylized)">
+      <defs>
+        <linearGradient id="octGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#ff7070"/>
+          <stop offset="1" stop-color="#d32f2f"/>
+        </linearGradient>
+
+        <radialGradient id="blueCenter" cx="50%" cy="50%" r="60%">
+          <stop offset="0" stop-color="#6fb1ff"/>
+          <stop offset="1" stop-color="#1e6eff"/>
+        </radialGradient>
+
+        <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+          <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity="0.18"/>
+        </filter>
+      </defs>
+
+      <!-- Red octagon background (AdBlock-style) -->
+      <g filter="url(#soft)">
+        <polygon points="60,8 140,8 192,60 192,140 140,192 60,192 8,140 8,60"
+                 fill="url(#octGrad)" stroke="var(--octagon-stroke)" stroke-width="2" stroke-linejoin="round"/>
+      </g>
+
+      <!-- subtle inner ring for depth -->
+      <polygon points="68,18 132,18 182,68 182,132 132,182 68,182 18,132 18,68"
+               fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="6" stroke-linejoin="round"/>
+
+      <!-- Chrome-like swirl: three colored sectors (stylized, not exact logo) -->
+      <!-- Center at (100,90) to leave room for the hand overlay lower -->
+      <g transform="translate(0,0)">
+        <!-- red sector (top) -->
+        <path d="M100 90 L100 32 A58 58 0 0 1 150.2 119 Z" fill="#e94b3c"/>
+
+        <!-- yellow sector (right) -->
+        <path d="M100 90 L150.2 119 A58 58 0 0 1 49.8 119 Z" fill="#ffd24a"/>
+
+        <!-- green sector (left/bottom) -->
+        <path d="M100 90 L49.8 119 A58 58 0 0 1 100 32 Z" fill="#3ab04a"/>
+
+        <!-- blue center -->
+        <circle cx="100" cy="90" r="24" fill="url(#blueCenter)" stroke="#ffffff" stroke-width="2"/>
+        <circle cx="100" cy="90" r="8" fill="#ffffff"/>
+      </g>
+
+      <!-- White stylized hand overlay to indicate blocking -->
+      <g transform="translate(100,126) scale(0.92)" fill="#ffffff" stroke="none" aria-hidden="true">
+        <!-- palm -->
+        <rect x="-36" y="-26" width="72" height="36" rx="12"/>
+        <!-- fingers -->
+        <rect x="-28" y="-62" width="12" height="40" rx="6"/>
+        <rect x="-6" y="-70" width="12" height="48" rx="6"/>
+        <rect x="16" y="-62" width="12" height="40" rx="6"/>
+        <!-- little pinky finger shorter -->
+        <rect x="36" y="-46" width="10" height="26" rx="5"/>
+        <!-- thumb (rotated) -->
+        <rect x="-52" y="-6" width="24" height="14" rx="8" transform="rotate(-30 -40 1)"/>
+        <!-- soft inner shadow stroke -->
+        <path d="M-28 -36 L-28 -12" stroke="rgba(0,0,0,0.06)" stroke-width="1.6" stroke-linecap="round" transform="translate(100,126) scale(0.92)"/>
+      </g>
+
+      <!-- thin highlight outline -->
+      <polygon points="82,22 118,22 172,76 172,124 118,178 82,178 28,124 28,76"
+               fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="4" stroke-linejoin="round"/>
+
+    </svg>
+
+    <div class="caption">LogoRemakeFour — Chrome AdBlock motif (stylized)</div>
+  </div>
+</body>
+</html>
