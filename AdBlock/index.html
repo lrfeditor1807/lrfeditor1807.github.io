@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>LogoRemakeFour — Game AdBlock (8 Ball Pool, Disney MK)</title>
+<style>
+  :root{
+    --bg:#f4f6f8;
+    --octagon:#e23a3a;
+    --octagon-dark:#c62f2f;
+    --hand:#fff;
+    --card:#ffffff;
+    --muted:#6b7280;
+  }
+  html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),#fff);font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;display:flex;align-items:center;justify-content:center;padding:28px;}
+  .page{
+    display:flex;flex-direction:column;align-items:center;gap:18px;
+  }
+
+  /* Main stacked logo */
+  .badge{
+    width:clamp(220px,28vmin,420px);
+    position:relative;
+    display:flex;align-items:center;justify-content:center;
+  }
+  svg.logo{width:100%;height:auto;display:block;filter:drop-shadow(0 10px 24px rgba(0,0,0,0.14));transition:transform .18s ease;}
+  .badge:hover svg.logo{transform:translateY(-6px) scale(1.02);}
+
+  /* caption and browsers row */
+  .caption{color:var(--muted);font-size:13px}
+  .browsers{display:flex;gap:16px;align-items:center;justify-content:center;padding-top:6px}
+  .browser{width:46px;height:46px;border-radius:10px;background:var(--card);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 14px rgba(0,0,0,0.06);transition:transform .16s ease}
+  .browser:hover{transform:translateY(-4px)}
+  .label-row{display:flex;gap:12px;font-size:12px;color:var(--muted);margin-top:6px;justify-content:center;width:100%}
+  .label{min-width:74px;text-align:center}
+
+  /* small helper to visually separate inner icons */
+  .inner-note{position:absolute;bottom:-34px;left:50%;transform:translateX(-50%);font-size:12px;color:var(--muted)}
+</style>
+</head>
+<body>
+  <div class="page" role="main">
+    <div class="badge" aria-hidden="false">
+      <!-- Logo: red octagon (AdBlock-style) containing two game icons (8 ball + stylized castle) and a subtle hand overlay -->
+      <svg class="logo" viewBox="0 0 240 240" role="img" aria-label="LogoRemakeFour — Ad block overlay for 8 Ball Pool and Disney Magic Kingdoms">
+        <defs>
+          <linearGradient id="octA" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#ff6b6b"/>
+            <stop offset="1" stop-color="#d32f2f"/>
+          </linearGradient>
+          <filter id="softShadow" x="-40%" y="-40%" width="180%" height="180%">
+            <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000" flood-opacity="0.18"/>
+          </filter>
+        </defs>
+
+        <!-- Octagon background -->
+        <g filter="url(#softShadow)">
+          <polygon points="76,12 164,12 228,76 228,164 164,228 76,228 12,164 12,76"
+                   fill="url(#octA)" stroke="rgba(0,0,0,0.12)" stroke-width="2" stroke-linejoin="round"/>
+        </g>
+
+        <!-- Inner circle area to place game icons -->
+        <circle cx="120" cy="100" r="62" fill="rgba(255,255,255,0.06)"/>
+
+        <!-- Left: 8 Ball Pool icon (stylized) -->
+        <g transform="translate(56,60)">
+          <!-- Pool ball outer -->
+          <circle cx="0" cy="0" r="28" fill="#0b0b0b" transform="translate(0,0)"/>
+          <!-- white stripe -->
+          <rect x="-18" y="-8" width="36" height="16" rx="8" fill="#fff"/>
+          <!-- number circle -->
+          <circle cx="0" cy="0" r="8" fill="#000" stroke="#fff" stroke-width="2"/>
+          <text x="0" y="2.6" font-family="Arial, Helvetica, sans-serif" font-size="9" fill="#fff" text-anchor="middle" font-weight="700">8</text>
+          <!-- cue hint (subtle) -->
+          <rect x="30" y="22" width="36" height="6" rx="3" fill="#d9b38c" transform="rotate(-26 48 25)"/>
+        </g>
+
+        <!-- Right: Stylized Disney Magic Kingdoms castle (generic castle silhouette) -->
+        <g transform="translate(184,62) scale(0.88)">
+          <g transform="translate(-40,0)">
+            <!-- castle base -->
+            <rect x="0" y="28" width="42" height="22" rx="3" fill="#fff" opacity="0.98"/>
+            <!-- towers -->
+            <rect x="4" y="4" width="8" height="28" rx="2" fill="#fff"/>
+            <rect x="30" y="0" width="8" height="32" rx="2" fill="#fff"/>
+            <!-- roofs -->
+            <path d="M8 6 L12 -6 L16 6 Z" fill="#fff" transform="translate(4,4)"/>
+            <path d="M32 0 L36 -8 L40 0 Z" fill="#fff" transform="translate(0,0)"/>
+            <!-- flag -->
+            <path d="M12 -10 L24 -10 L20 -6 L12 -6 Z" fill="#fff"/>
+            <!-- little arched door -->
+            <rect x="16" y="36" width="10" height="14" rx="5" fill="#e8e8e8"/>
+          </g>
+        </g>
+
+        <!-- White stylized hand overlay, centered and semi-opaque to indicate "block" -->
+        <g transform="translate(120,130) scale(0.92)" fill="#ffffff" opacity="0.98" stroke="none">
+          <!-- palm -->
+          <rect x="-34" y="-34" width="68" height="36" rx="12"/>
+          <!-- fingers -->
+          <rect x="-30" y="-66" width="12" height="36" rx="6"/>
+          <rect x="-8" y="-74" width="12" height="44" rx="6"/>
+          <rect x="14" y="-66" width="12" height="36" rx="6"/>
+          <!-- thumb -->
+          <rect x="-46" y="-14" width="22" height="14" rx="8" transform="rotate(-28 -35 -7)"/>
+        </g>
+
+        <!-- thin inner outline for contrast -->
+        <polygon points="82,20 158,20 214,76 214,158 158,214 82,214 26,158 26,76"
+                 fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="6" stroke-linejoin="round"/>
+
+      </svg>
+      <div class="inner-note" aria-hidden="true">8 Ball Pool (left) · Disney Magic Kingdoms (right)</div>
+    </div>
+
+    <div class="caption">LogoRemakeFour — Ad block overlay motif for two browser games</div>
+
+    <!-- Browser icons row -->
+    <div class="browsers" role="list" aria-label="Supported browsers">
+      <!-- Chrome-like -->
+      <div class="browser" role="listitem" title="Chrome">
+        <svg width="34" height="34" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id="cA" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#ffb249"/>
+              <stop offset="1" stop-color="#ff6b3a"/>
+            </linearGradient>
+          </defs>
+          <circle cx="32" cy="32" r="30" fill="#cfe9ff"/>
+          <g transform="translate(2,2) scale(0.9)">
+            <path d="M26 10 A22 22 0 0 1 54 32 L34 32 Z" fill="#e53935"/>
+            <path d="M54 32 A22 22 0 0 1 28 52 L18 32 Z" fill="#f4c542"/>
+            <path d="M28 52 A22 22 0 0 1 10 22 L28 32 Z" fill="#3bb54a"/>
+            <circle cx="32" cy="32" r="10" fill="#0b69ff" stroke="#fff" stroke-width="2"/>
+            <circle cx="32" cy="32" r="4" fill="#fff"/>
+          </g>
+        </svg>
+      </div>
+
+      <!-- Firefox-like -->
+      <div class="browser" role="listitem" title="Firefox">
+        <svg width="34" height="34" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id="fA" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#ff8a00"/>
+              <stop offset="1" stop-color="#d32f2f"/>
+            </linearGradient>
+          </defs>
+          <circle cx="32" cy="32" r="30" fill="#fff5ee"/>
+          <!-- stylized flame/fox curl -->
+          <path d="M44 16c-6 2-10 7-12 11-2 4-4 10 0 16 4 6 10 7 10 7s-8-1-14-7c-8-8-4-18 0-22 4-4 12-8 16-5z"
+                fill="url(#fA)" opacity="0.95" transform="translate(-2,0)"/>
+          <path d="M38 42c-2-1-6-3-6-9 0-8 6-12 10-14-3 2-9 6-8 12 1 7 7 13 4 11z" fill="#ffda7a" opacity="0.96" transform="translate(0,0)"/>
+        </svg>
+      </div>
+
+      <!-- Safari-like -->
+      <div class="browser" role="listitem" title="Safari">
+        <div class="browser" style="width:46px;height:46px;border-radius:10px;">
+          <svg width="34" height="34" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+            <defs>
+              <linearGradient id="sG" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#6fb2ff"/>
+                <stop offset="1" stop-color="#2b7bff"/>
+              </linearGradient>
+            </defs>
+            <circle cx="32" cy="32" r="30" fill="url(#sG)"/>
+            <circle cx="32" cy="32" r="20" fill="#fff" opacity="0.06"/>
+            <!-- compass needle -->
+            <g transform="rotate(-25 32 32)">
+              <polygon points="32,14 36,34 32,32 28,34" fill="#fff"/>
+              <polygon points="32,50 28,30 32,32 36,30" fill="#ff5252"/>
+            </g>
+            <circle cx="32" cy="32" r="3" fill="#fff"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="label-row" aria-hidden="true">
+      <div class="label">Chrome</div>
+      <div class="label">Firefox</div>
+      <div class="label">Safari</div>
+    </div>
+
+  </div>
+</body>
+  </html>
