@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shakira • YouTube Channel (Mockup)</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0f1720;
+      --card:#0b1220;
+      --muted:#94a3b8;
+      --accent:#ff2d6d; /* a vibrant accent like stage lighting */
+      --glass: rgba(255,255,255,0.03);
+      --max-width:1100px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: "Roboto", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,#071028 0%, #061022 60%), var(--bg);
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding-bottom:60px;
+    }
+
+    .container{max-width:var(--max-width); margin:24px auto; padding:0 16px;}
+
+    /* Channel header */
+    .channel-header{
+      background: linear-gradient(90deg, rgba(255,45,109,0.12), rgba(0,0,0,0.0)),
+                  url('https://via.placeholder.com/1400x300?text=Shakira+Banner') center/cover no-repeat;
+      border-radius:12px;
+      overflow:hidden;
+      box-shadow: 0 6px 24px rgba(2,6,23,0.6);
+    }
+    .channel-top{
+      display:flex;
+      gap:20px;
+      align-items:end;
+      padding:20px;
+      backdrop-filter: blur(4px);
+      background: linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.08));
+    }
+    .avatar{
+      width:96px;
+      height:96px;
+      border-radius:50%;
+      border:4px solid rgba(255,255,255,0.12);
+      background: url('https://via.placeholder.com/256?text=Shakira') center/cover no-repeat;
+      flex-shrink:0;
+    }
+    .channel-info{
+      flex:1;
+      min-width:0;
+    }
+    .channel-title{
+      margin:0;
+      font-family: "Poppins", sans-serif;
+      font-size:20px;
+      font-weight:700;
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .subscribers{color:var(--muted); font-size:13px; margin-top:6px;}
+    .subscribe-btn{
+      background: linear-gradient(90deg,var(--accent), #ff6a97);
+      color:white;
+      border:none;
+      padding:10px 16px;
+      font-weight:700;
+      border-radius:8px;
+      cursor:pointer;
+      box-shadow: 0 6px 18px rgba(255,45,109,0.18);
+    }
+
+    /* Tabs and actions */
+    .channel-tabs{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      padding:12px 20px;
+      border-top:1px solid rgba(255,255,255,0.03);
+      background: linear-gradient(0deg, rgba(0,0,0,0.03), transparent);
+      flex-wrap:wrap;
+    }
+    .tab{color:var(--muted); padding:8px 12px; border-radius:8px; font-weight:600;}
+    .tab.active{color:white; background:var(--glass);}
+
+    /* Layout */
+    .main{
+      display:grid;
+      grid-template-columns: 1fr 320px;
+      gap:24px;
+      margin-top:20px;
+    }
+    /* Video grid */
+    .videos{
+      display:grid;
+      grid-template-columns: repeat(auto-fill,minmax(240px,1fr));
+      gap:16px;
+    }
+    .video-card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
+      border-radius:12px;
+      padding:10px;
+      transition: transform .18s ease, box-shadow .18s ease;
+      box-shadow: 0 4px 14px rgba(2,6,23,0.4);
+      cursor: default;
+    }
+    .video-card:hover{ transform: translateY(-6px); box-shadow:0 12px 36px rgba(2,6,23,0.6) }
+    .thumb{
+      width:100%;
+      height:0;
+      padding-bottom:56%;
+      border-radius:8px;
+      background-size:cover;
+      background-position:center;
+      position:relative;
+      overflow:hidden;
+    }
+    .duration{
+      position:absolute;
+      right:8px;
+      bottom:8px;
+      background:rgba(0,0,0,0.7);
+      padding:4px 6px;
+      border-radius:4px;
+      font-size:12px;
+      color:#fff;
+    }
+    .video-meta{ display:flex; gap:10px; margin-top:10px; align-items:flex-start;}
+    .title{font-weight:600; color:#fff; font-size:14px; line-height:1.25}
+    .meta{color:var(--muted); font-size:13px; margin-top:6px}
+
+    /* Right column */
+    .sidebar{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
+      border-radius:12px;
+      padding:14px;
+      height:fit-content;
+      box-shadow: 0 6px 18px rgba(2,6,23,0.45);
+    }
+    .playlist{display:flex; gap:10px; align-items:center; margin-bottom:12px}
+    .pl-thumb{width:72px; height:64px; border-radius:6px; background-size:cover; background-position:center}
+    .pl-title{font-weight:600}
+    .about{color:var(--muted); font-size:14px; line-height:1.4; margin-top:10px}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .main{ grid-template-columns: 1fr; }
+      .sidebar{ order:2 }
+    }
+
+    /* small utilities */
+    .muted{ color:var(--muted) }
+    a { color:inherit; text-decoration:none }
+    .center{ text-align:center }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <header class="channel-header" role="banner" aria-label="Shakira channel header">
+      <div class="channel-top">
+        <div class="avatar" aria-hidden="true"></div>
+
+        <div class="channel-info">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+            <div style="min-width:0">
+              <h1 class="channel-title">Shakira <span style="font-size:12px;color:var(--muted);font-weight:500">• Official Channel</span></h1>
+              <div class="subscribers">79.3M subscribers • 1,482 videos</div>
+            </div>
+
+            <div style="display:flex;gap:10px;align-items:center">
+              <button class="subscribe-btn" aria-label="Subscribe">SUBSCRIBE</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <nav class="channel-tabs" role="navigation" aria-label="Channel navigation">
+        <div class="tab active">HOME</div>
+        <div class="tab">VIDEOS</div>
+        <div class="tab">PLAYLISTS</div>
+        <div class="tab">COMMUNITY</div>
+        <div class="tab">ABOUT</div>
+      </nav>
+    </header>
+
+    <main class="main" role="main">
+      <!-- Left: content -->
+      <section>
+        <h2 style="margin:0 0 12px 4px; font-family:Poppins, sans-serif;">Featured uploads</h2>
+
+        <div class="videos" aria-live="polite">
+          <!-- Example video card 1 -->
+          <article class="video-card" role="article" aria-label="Video: Hips Don't Lie (Live)">
+            <div class="thumb" style="background-image:url('https://via.placeholder.com/640x360?text=Hips+Don%27t+Lie');">
+              <div class="duration">4:05</div>
+            </div>
+            <div class="video-meta">
+              <div style="flex:1;min-width:0">
+                <div class="title">Hips Don't Lie (Live) — Shakira</div>
+                <div class="meta muted">1.2B views • 12 years ago</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Video card 2 -->
+          <article class="video-card" role="article" aria-label="Video: Waka Waka (This Time for Africa)">
+            <div class="thumb" style="background-image:url('https://via.placeholder.com/640x360?text=Waka+Waka');">
+              <div class="duration">3:22</div>
+            </div>
+            <div class="video-meta">
+              <div style="flex:1;min-width:0">
+                <div class="title">Waka Waka (This Time for Africa) — Shakira</div>
+                <div class="meta muted">870M views • 10 years ago</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Video card 3 -->
+          <article class="video-card" role="article" aria-label="Video: Whenever, Wherever">
+            <div class="thumb" style="background-image:url('https://via.placeholder.com/640x360?text=Whenever,+Wherever');">
+              <div class="duration">3:17</div>
+            </div>
+            <div class="video-meta">
+              <div style="flex:1;min-width:0">
+                <div class="title">Whenever, Wherever — Shakira</div>
+                <div class="meta muted">520M views • 15 years ago</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Video card 4 -->
+          <article class="video-card" role="article" aria-label="Video: Girl Like Me">
+            <div class="thumb" style="background-image:url('https://via.placeholder.com/640x360?text=Girl+Like+Me');">
+              <div class="duration">3:50</div>
+            </div>
+            <div class="video-meta">
+              <div style="flex:1;min-width:0">
+                <div class="title">Girl Like Me — Shakira & Black Eyed Peas</div>
+                <div class="meta muted">310M views • 3 years ago</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Video card 5 -->
+          <article class="video-card" role="article" aria-label="Video: La Tortura">
+            <div class="thumb" style="background-image:url('https://via.placeholder.com/640x360?text=La+Tortura');">
+              <div class="duration">4:45</div>
+            </div>
+            <div class="video-meta">
+              <div style="flex:1;min-width:0">
+                <div class="title">La Tortura (feat. Alejandro Sanz) — Shakira</div>
+                <div class="meta muted">640M views • 14 years ago</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Video card 6 -->
+          <article class="video-card" role="article" aria-label="Video: New Single (Mock)">
+            <div class="thumb" style="background-image:url('https://via.placeholder.com/640x360?text=New+Single');">
+              <div class="duration">3:41</div>
+            </div>
+            <div class="video-meta">
+              <div style="flex:1;min-width:0">
+                <div class="title">New Single — Shakira (Official Video)</div>
+                <div class="meta muted">2.1M views • 2 weeks ago</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- More cards can be duplicated... -->
+        </div>
+      </section>
+
+      <!-- Right: sidebar -->
+      <aside class="sidebar" aria-label="Channel sidebar">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <div style="font-weight:700">Playlists</div>
+          <div class="muted" style="font-size:13px">6</div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div class="playlist" role="listitem">
+            <div class="pl-thumb" style="background-image:url('https://via.placeholder.com/160x90?text=Greatest+Hits')"></div>
+            <div>
+              <div class="pl-title">Greatest Hits</div>
+              <div class="muted" style="font-size:13px">24 videos</div>
+            </div>
+          </div>
+
+          <div class="playlist">
+            <div class="pl-thumb" style="background-image:url('https://via.placeholder.com/160x90?text=Live+Performances')"></div>
+            <div>
+              <div class="pl-title">Live Performances</div>
+              <div class="muted" style="font-size:13px">12 videos</div>
+            </div>
+          </div>
+
+          <div class="playlist">
+            <div class="pl-thumb" style="background-image:url('https://via.placeholder.com/160x90?text=Collaborations')"></div>
+            <div>
+              <div class="pl-title">Collaborations</div>
+              <div class="muted" style="font-size:13px">8 videos</div>
+            </div>
+          </div>
+        </div>
+
+        <hr style="border:none;border-top:1px solid rgba(255,255,255,0.04);margin:14px 0">
+
+        <div>
+          <div style="font-weight:700">About</div>
+          <div class="about">
+            Official YouTube channel of Shakira. Subscribe for music videos, live performances, behind-the-scenes, and more. For bookings & press inquiries contact the official management.
+          </div>
+        </div>
+      </aside>
+    </main>
+  </div>
+</body>
+</html>  
+  </html>
