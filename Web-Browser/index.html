@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Demo Web Browser</title>
+  <style>
+    :root {
+      --toolbar-bg: #1f2937;
+      --toolbar-fg: #fff;
+      --accent: #06b6d4;
+      --muted: #94a3b8;
+    }
+    body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:#f3f4f6; color:#0f172a; }
+    header { background:var(--toolbar-bg); color:var(--toolbar-fg); padding:10px 12px; display:flex; align-items:center; gap:10px; }
+    .brand { font-weight:700; font-size:16px; }
+    .toolbar { display:flex; gap:8px; align-items:center; width:100%; }
+    .controls { display:flex; gap:6px; align-items:center; }
+    input[type="text"] { padding:8px 10px; border-radius:6px; border:1px solid #cbd5e1; min-width:320px; }
+    select, button { padding:8px 10px; border-radius:6px; border:1px solid #cbd5e1; background:white; cursor:pointer; }
+    button.primary { background:var(--accent); color:white; border:none; }
+    .bookmarks { display:flex; gap:6px; align-items:center; }
+    .bookmarks a { color:var(--toolbar-fg); text-decoration:none; padding:6px 8px; background:transparent; border-radius:6px; font-size:13px; }
+    .main { display:flex; gap:12px; padding:12px; height:calc(100vh - 110px); box-sizing:border-box; }
+    .left { width:300px; display:flex; flex-direction:column; gap:12px; }
+    .panel { background:white; border-radius:8px; padding:10px; box-shadow:0 1px 0 rgba(2,6,23,0.04); overflow:auto; }
+    .content { flex:1; display:flex; flex-direction:column; gap:8px; }
+    iframe.viewer { width:100%; height:100%; border-radius:8px; border:1px solid #e2e8f0; flex:1; }
+    .mini { font-size:13px; color:var(--muted); }
+    .bookmarks-list { display:flex; flex-direction:column; gap:6px; }
+    .bookmark { display:flex; justify-content:space-between; align-items:center; gap:6px; padding:6px; border-radius:6px; background:#f8fafc; }
+    .bookmark a { color:#0369a1; text-decoration:none; }
+    .history-list { max-height:160px; overflow:auto; display:flex; flex-direction:column; gap:6px; }
+    .controls .toggle { display:flex; align-items:center; gap:6px; color:var(--muted); }
+    footer { padding:8px 12px; font-size:13px; color:var(--muted); background:#fff; border-top:1px solid #e6eef6; }
+    .media-row { display:flex; gap:8px; align-items:center; }
+    .download-links a { display:inline-block; margin-right:8px; padding:6px 8px; background:#e6f4f9; border-radius:6px; color:#0b7285; text-decoration:none; }
+    .status { padding:8px; border-radius:6px; background:#fff3cd; color:#664d03; font-size:13px; }
+    .hidden { display:none; }
+    .overlay404 { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:linear-gradient(180deg, rgba(2,6,23,0.4), rgba(2,6,23,0.2)); color:white; font-size:20px; border-radius:8px; }
+    .small { font-size:12px; color:var(--muted); }
+    .print-target { border:1px dashed #cbd5e1; padding:8px; border-radius:6px; background:#ffffff; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">Demo Web Browser</div>
+    <div class="toolbar" style="flex:1">
+      <div class="controls">
+        <button id="backBtn" title="Back">&lt;</button>
+        <button id="forwardBtn" title="Forward">&gt;</button>
+        <input id="address" type="text" placeholder="Enter URL or search terms (e.g. example.com or cats)" />
+        <select id="engine">
+          <option value="google">Google</option>
+          <option value="bing">Bing</option>
+          <option value="duck">DuckDuckGo</option>
+          <option value="yahoo">Yahoo</option>
+          <option value="yandex">Yandex</option>
+          <option value="wikipedia">Wikipedia</option>
+        </select>
+        <button id="goBtn" class="primary">Go</button>
+        <div class="toggle" title="Incognito mode (client-side only)">
+          <label for="incognito" style="color:var(--toolbar-fg)">Incognito</label>
+          <input type="checkbox" id="incognito" />
+        </div>
+      </div>
+
+      <div style="margin-left:auto; display:flex; align-items:center; gap:10px;">
+        <div class="bookmarks">
+          <a href="#" data-url="https://www.google.com" class="bookmark-link">Google</a>
+          <a href="#" data-url="https://www.microsoft.com" class="bookmark-link">Microsoft</a>
+          <a href="#" data-url="https://www.yahoo.com" class="bookmark-link">Yahoo</a>
+          <a href="#" data-url="https://www.wikipedia.org" class="bookmark-link">Wikipedia</a>
+          <a href="#" data-url="https://github.com" class="bookmark-link">GitHub</a>
+          <a href="#" data-url="https://www.apkmirror.com" class="bookmark-link">APKMirror</a>
+          <a href="#" data-url="https://www.youtube.com" class="bookmark-link">YouTube</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="main">
+    <div class="left">
+      <div class="panel">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div><strong>Bookmarks</strong> <span class="small"> (example)</span></div>
+          <div>
+            <button id="addBookmark">Add Current</button>
+            <button id="clearBookmarks">Clear</button>
+          </div>
+        </div>
+        <div class="bookmarks-list" id="bookmarksList"></div>
+      </div>
+
+      <div class="panel">
+        <strong>History</strong>
+        <div class="history-list" id="historyList"></div>
+        <div style="margin-top:8px">
+          <button id="simulate404">Simulate 404</button>
+          <button id="clearHistory">Clear</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <strong>Downloads</strong>
+        <div class="download-links">
+          <a href="https://www.google.com/chrome/" target="_blank" rel="noopener">Chrome (Windows/Mac/Android)</a>
+          <a href="https://www.mozilla.org/firefox/new/" target="_blank" rel="noopener">Firefox</a>
+          <a href="https://www.apple.com/safari/" target="_blank" rel="noopener">Safari (Mac/iOS)</a>
+          <a href="https://www.opera.com/download" target="_blank" rel="noopener">Opera</a>
+        </div>
+        <div class="mini" style="margin-top:8px">
+          Note: This demo is a web page. To make a native browser app for Android/iOS/Windows/Mac you would wrap a webview or build a native shell.
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="panel" style="position:relative; display:flex; flex-direction:column; gap:8px; flex:1;">
+        <div style="display:flex; gap:8px; align-items:center;">
+          <div id="status" class="status hidden"></div>
+          <div class="mini" style="margin-left:auto">Viewer (demo) — runs inside your web browser</div>
+        </div>
+
+        <iframe id="viewer" class="viewer" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
+
+        <div style="display:flex; gap:8px; align-items:center;">
+          <button id="printBtn">Print Image / Document</button>
+          <button id="openImageSearch">Image Search (Google)</button>
+          <button id="openInNew">Open in New Tab</button>
+          <div style="margin-left:auto; display:flex; gap:8px;">
+            <button id="showMedia">Show Media Players</button>
+            <button id="show404Page">Show Built-in 404 page</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" id="mediaPanel" style="display:none;">
+        <strong>Media</strong>
+        <div class="media-row" style="margin-top:8px;">
+          <video controls width="360" id="sampleVideo" style="border-radius:8px;">
+            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+
+          <audio controls id="sampleAudio" style="width:300px;">
+            <source src="https://interactive-examples.mdn.mozilla.net/media/examples/t-rex-roar.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+
+        <div style="margin-top:12px;">
+          <div class="print-target" id="printTarget">
+            <h3>Printable Document</h3>
+            <p>This is a demo document. Click "Print Image / Document" to print this box (or the currently visible image if an image is shown above).</p>
+            <img id="demoImage" src="https://via.placeholder.com/300x160.png?text=Demo+Image" alt="Demo" style="max-width:100%; border-radius:6px; display:block; margin-top:8px;">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    Demo Web Browser — runs in your browser (Chrome, Firefox, Safari, Edge). Note: cannot bypass OS/VPN passkeys; cannot access private PINs or passkeys.
+  </footer>
+
+  <script>
+    // Basic demo "browser" logic
+    const viewer = document.getElementById('viewer');
+    const address = document.getElementById('address');
+    const goBtn = document.getElementById('goBtn');
+    const engine = document.getElementById('engine');
+    const backBtn = document.getElementById('backBtn');
+    const forwardBtn = document.getElementById('forwardBtn');
+    const historyListEl = document.getElementById('historyList');
+    const bookmarksListEl = document.getElementById('bookmarksList');
+    const incognitoCheckbox = document.getElementById('incognito');
+    const addBookmarkBtn = document.getElementById('addBookmark');
+    const clearBookmarksBtn = document.getElementById('clearBookmarks');
+    const clearHistoryBtn = document.getElementById('clearHistory');
+    const simulate404Btn = document.getElementById('simulate404');
+    const statusEl = document.getElementById('status');
+    const openImageSearchBtn = document.getElementById('openImageSearch');
+    const printBtn = document.getElementById('printBtn');
+    const showMediaBtn = document.getElementById('showMedia');
+    const mediaPanel = document.getElementById('mediaPanel');
+    const openInNewBtn = document.getElementById('openInNew');
+    const show404PageBtn = document.getElementById('show404Page');
+
+    // Example bookmarks already shown in header links; we also persist a separate bookmark list here
+    const defaultBookmarks = [
+      { title: 'Google', url: 'https://www.google.com' },
+      { title: 'Microsoft', url: 'https://www.microsoft.com' },
+      { title: 'Yahoo', url: 'https://www.yahoo.com' },
+      { title: 'Wikipedia', url: 'https://www.wikipedia.org' },
+      { title: 'GitHub', url: 'https://github.com' },
+      { title: 'APKMirror', url: 'https://www.apkmirror.com' },
+      { title: 'YouTube', url: 'https://www.youtube.com' }
+    ];
+
+    let historyStack = [];
+    let historyIndex = -1;
+    let bookmarks = [];
+    let simulate404 = false;
+
+    const STORAGE_KEY = 'demo_browser_data_v1';
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+          const obj = JSON.parse(raw);
+          bookmarks = obj.bookmarks || defaultBookmarks.slice();
+          historyStack = obj.history || [];
+          historyIndex = historyStack.length - 1;
+        } else {
+          bookmarks = defaultBookmarks.slice();
+          historyStack = [];
+          historyIndex = -1;
+        }
+      } catch(e) {
+        bookmarks = defaultBookmarks.slice();
+        historyStack = [];
+        historyIndex = -1;
+      }
+      renderBookmarks();
+      renderHistory();
+      updateNavButtons();
+    }
+
+    function saveState() {
+      if (incognitoCheckbox.checked) return; // do not persist while incognito
+      const obj = { bookmarks, history: historyStack };
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(obj)); } catch(e) {}
+    }
+
+    function renderBookmarks() {
+      bookmarksListEl.innerHTML = '';
+      bookmarks.forEach((b, idx) => {
+        const el = document.createElement('div');
+        el.className = 'bookmark';
+        el.innerHTML = `<a href="#" data-url="${escapeHtml(b.url)}">${escapeHtml(b.title)}</a>
+                        <div>
+                          <button data-idx="${idx}" class="open">Open</button>
+                          <button data-idx="${idx}" class="remove">Remove</button>
+                        </div>`;
+        bookmarksListEl.appendChild(el);
+      });
+    }
+
+    function renderHistory() {
+      historyListEl.innerHTML = '';
+      for (let i = historyStack.length - 1; i >= 0; i--) {
+        const h = historyStack[i];
+        const el = document.createElement('div');
+        el.className = 'small';
+        el.innerHTML = `<div style="display:flex; justify-content:space-between; align-items:center;">
+                          <div style="max-width:190px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${escapeHtml(h.title || h.url)}</div>
+                          <div style="display:flex; gap:6px;">
+                            <button data-idx="${i}" class="openHist">Open</button>
+                          </div>
+                        </div>`;
+        historyListEl.appendChild(el);
+      }
+    }
+
+    function escapeHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+    function updateNavButtons(){
+      backBtn.disabled = historyIndex <= 0;
+      forwardBtn.disabled = historyIndex >= historyStack.length - 1 || historyIndex === -1;
+    }
+
+    function isProbablyUrl(text){
+      // Basic heuristic
+      return text.includes('.') && !text.includes(' ') && !text.includes('%20');
+    }
+
+    function buildSearchUrl(engineKey, query){
+      const q = encodeURIComponent(query);
+      switch(engineKey){
+        case 'google': return 'https://www.google.com/search?q=' + q;
+        case 'bing': return 'https://www.bing.com/search?q=' + q;
+        case 'duck': return 'https://duckduckgo.com/?q=' + q;
+        case 'yahoo': return 'https://search.yahoo.com/search?p=' + q;
+        case 'yandex': return 'https://yandex.com/search/?text=' + q;
+        case 'wikipedia': return 'https://en.wikipedia.org/w/index.php?search=' + q;
+        default: return 'https://www.google.com/search?q=' + q;
+      }
+    }
+
+    function normalizeUrl(text){
+      if (/^https?:\/\//i.test(text)) return text;
+      if (isProbablyUrl(text)) return 'http://' + text;
+      return null;
+    }
+
+    function loadUrl(url, title){
+      // If simulate404 flag is active, show the internal 404 instead of loading external URL
+      if (simulate404) {
+        viewer.srcdoc = `<div style="font-family:system-ui, -apple-system, 'Segoe UI', Roboto; display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:40px;">
+          <h1 style="color:#ef4444">404 Not Found</h1>
+          <p class="small">The page you requested was not found: ${escapeHtml(url)}</p>
+          <a href="#" onclick="window.parent.postMessage({action:'clearSim404'}, '*');return false;">Clear simulation</a>
+        </div>`;
+        setStatus('Displayed simulated 404 for: ' + url);
+        // Push to history as a "visit"
+        pushHistory({ url, title: title || '404 Not Found' });
+        return;
+      }
+
+      // For a real URL, set iframe src. Note cross-origin pages cannot be inspected for status.
+      try {
+        viewer.src = url;
+        setStatus('Loading ' + url);
+        pushHistory({ url, title: title || url });
+      } catch (e) {
+        // As a fallback, show srcdoc with an error
+        viewer.srcdoc = `<div style="padding:20px;"><h2>Error loading URL</h2><pre>${escapeHtml(String(e))}</pre></div>`;
+        setStatus('Error loading URL');
+      }
+    }
+
+    function pushHistory(item){
+      // Trim forward entries if user navigated after going back
+      if (historyIndex < historyStack.length - 1){
+        historyStack = historyStack.slice(0, historyIndex + 1);
+      }
+      historyStack.push(item);
+      historyIndex = historyStack.length - 1;
+      renderHistory();
+      updateNavButtons();
+      saveState();
+    }
+
+    function setStatus(text, hideAfter=3000){
+      statusEl.textContent = text;
+      statusEl.classList.remove('hidden');
+      if (hideAfter) {
+        clearTimeout(statusEl._t);
+        statusEl._t = setTimeout(()=>statusEl.classList.add('hidden'), hideAfter);
+      }
+    }
+
+    // Event handlers
+    goBtn.addEventListener('click', ()=>{
+      const val = address.value.trim();
+      if (!val) return;
+      const normalized = normalizeUrl(val);
+      if (normalized) {
+        loadUrl(normalized);
+      } else {
+        const su = buildSearchUrl(engine.value, val);
+        loadUrl(su);
+      }
+    });
+
+    address.addEventListener('keydown', (e)=>{
+      if (e.key === 'Enter') goBtn.click();
+    });
+
+    backBtn.addEventListener('click', ()=>{
+      if (historyIndex > 0){
+        historyIndex--;
+        const entry = historyStack[historyIndex];
+        // When navigating history, we load the URL but avoid re-pushing history
+        simulate404 = false;
+        viewer.src = entry.url;
+        setStatus('Navigated to ' + entry.url);
+        updateNavButtons();
+      }
+    });
+
+    forwardBtn.addEventListener('click', ()=>{
+      if (historyIndex < historyStack.length - 1){
+        historyIndex++;
+        const entry = historyStack[historyIndex];
+        simulate404 = false;
+        viewer.src = entry.url;
+        setStatus('Navigated to ' + entry.url);
+        updateNavButtons();
+      }
+    });
+
+    // Bookmarks
+    function addBookmark(title, url){
+      bookmarks.push({ title, url });
+      renderBookmarks();
+      saveState();
+    }
+
+    addBookmarkBtn.addEventListener('click', ()=>{
+      const url = viewer.src || address.value.trim();
+      if (!url) return alert('No URL to bookmark.');
+      const title = prompt('Bookmark title:', url) || url;
+      addBookmark(title, url);
+    });
+
+    clearBookmarksBtn.addEventListener('click', ()=>{
+      if (confirm('Clear all demo bookmarks?')) {
+        bookmarks = [];
+        renderBookmarks();
+        saveState();
+      }
+    });
+
+    bookmarksListEl.addEventListener('click', (e)=>{
+      if (e.target.matches('.open')) {
+        const idx = Number(e.target.dataset.idx);
+        const b = bookmarks[idx];
+        loadUrl(b.url, b.title);
+      } else if (e.target.matches('.remove')) {
+        const idx = Number(e.target.dataset.idx);
+        bookmarks.splice(idx,1);
+        renderBookmarks();
+        saveState();
+      } else if (e.target.tagName === 'A' && e.target.dataset.url) {
+        e.preventDefault();
+        loadUrl(e.target.dataset.url, e.target.textContent);
+      }
+    });
+
+    // Simple header bookmark links
+    document.querySelectorAll('.bookmark-link').forEach(a=>{
+      a.addEventListener('click', (ev)=>{
+        ev.preventDefault();
+        const u = a.dataset.url;
+        loadUrl(u, a.textContent);
+      });
+    });
+
+    // History open
+    historyListEl.addEventListener('click', (e)=>{
+      if (e.target.matches('.openHist')){
+        const idx = Number(e.target.dataset.idx);
+        const h = historyStack[idx];
+        loadUrl(h.url, h.title);
+      }
+    });
+
+    clearHistoryBtn.addEventListener('click', ()=>{
+      if (confirm('Clear history?')) {
+        historyStack = [];
+        historyIndex = -1;
+        renderHistory();
+        saveState();
+      }
+    });
+
+    // Simulate 404
+    simulate404Btn.addEventListener('click', ()=>{
+      simulate404 = !simulate404;
+      simulate404Btn.textContent = simulate404 ? 'Simulating 404 (ON)' : 'Simulate 404';
+      setStatus(simulate404 ? '404 simulation enabled' : '404 simulation disabled');
+    });
+
+    // Listen for message from iframe to clear simulation
+    window.addEventListener('message', (ev)=>{
+      if (ev.data && ev.data.action === 'clearSim404') {
+        simulate404 = false;
+        simulate404Btn.textContent = 'Simulate 404';
+        setStatus('404 simulation cleared');
+      }
+    });
+
+    // Image search opens a new tab to Google Images for the current address text or selection
+    openImageSearch
