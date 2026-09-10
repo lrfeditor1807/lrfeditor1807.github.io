@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Firefox AdBlock — LogoRemakeFour</title>
+  <style>
+    :root{
+      --bg: #f6f7f9;
+      --octagon-top: #ff6464;
+      --octagon-bottom: #d43232;
+      --shadow: rgba(0,0,0,0.18);
+      --muted: #4b5563;
+    }
+
+    html,body{
+      height:100%;
+      margin:0;
+      background:linear-gradient(180deg,var(--bg),#ffffff);
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:28px;
+    }
+
+    .wrap{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:12px;
+    }
+
+    .logo{
+      width:clamp(160px, 30vmin, 420px);
+      display:block;
+      filter: drop-shadow(0 12px 26px var(--shadow));
+      transition: transform 180ms cubic-bezier(.2,.9,.2,1);
+      will-change: transform;
+      cursor:default;
+    }
+    .logo:hover{ transform: translateY(-6px) scale(1.02); }
+
+    .caption{
+      color:var(--muted);
+      font-size:13px;
+      text-align:center;
+    }
+
+    /* Ensure crisp SVG rendering on small screens */
+    svg{ width:100%; height:auto; display:block; }
+  </style>
+</head>
+<body>
+  <div class="wrap" role="main">
+    <!-- Firefox-flavored AdBlock logo -->
+    <svg class="logo" viewBox="0 0 240 240" role="img"
+         aria-label="LogoRemakeFour — Firefox-themed Ad Block emblem (stylized)">
+      <defs>
+        <linearGradient id="octG" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="var(--octagon-top)"/>
+          <stop offset="1" stop-color="var(--octagon-bottom)"/>
+        </linearGradient>
+
+        <linearGradient id="foxA" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#ffb76b"/>
+          <stop offset="0.45" stop-color="#ff7a2e"/>
+          <stop offset="1" stop-color="#e63b24"/>
+        </linearGradient>
+
+        <radialGradient id="globe" cx="50%" cy="50%" r="60%">
+          <stop offset="0" stop-color="#a5d8ff"/>
+          <stop offset="1" stop-color="#2b8cff"/>
+        </radialGradient>
+
+        <filter id="drop" x="-40%" y="-40%" width="180%" height="180%">
+          <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity="0.16"/>
+        </filter>
+      </defs>
+
+      <!-- Octagon background (AdBlock silhouette) -->
+      <g filter="url(#drop)">
+        <polygon points="70,12 170,12 228,70 228,170 170,228 70,228 12,170 12,70"
+                 fill="url(#octG)" stroke="rgba(0,0,0,0.12)" stroke-width="2" stroke-linejoin="round"/>
+      </g>
+
+      <!-- Inner subtle ring -->
+      <polygon points="82,22 158,22 218,82 218,158 158,218 82,218 22,158 22,82"
+               fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="6" stroke-linejoin="round"/>
+
+      <!-- Firefox-like flame / fox curl wrapping a blue globe -->
+      <g transform="translate(0,0)" aria-hidden="true">
+        <!-- blue globe positioned slightly up-left to make room for the curl -->
+        <circle cx="112" cy="96" r="34" fill="url(#globe)" stroke="#fff" stroke-opacity="0.12" stroke-width="1.8"/>
+
+        <!-- stylized fox curl (large sweep) -->
+        <path d="M172 118
+                 C160 86, 136 68, 112 68
+                 C90 68, 70 82, 62 102
+                 C84 92, 96 104, 112 104
+                 C132 104, 156 120, 172 118 Z"
+              fill="url(#foxA)" opacity="0.98"/>
+
+        <!-- fox tail highlight -->
+        <path d="M66 102
+                 C78 94, 94 92, 112 92
+                 C131 92, 150 104, 170 116"
+              fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+        <!-- small ear/face hint near globe -->
+        <path d="M138 84
+                 C132 86, 124 90, 116 92
+                 C128 86, 136 80, 138 84 Z"
+              fill="#fff" opacity="0.06"/>
+      </g>
+
+      <!-- White stylized hand overlay to indicate blocking (center-bottom) -->
+      <g transform="translate(120,150) scale(0.9)" fill="#ffffff" stroke="none" aria-hidden="true">
+        <!-- palm -->
+        <rect x="-36" y="-28" width="72" height="36" rx="12"/>
+        <!-- fingers -->
+        <rect x="-28" y="-64" width="12" height="40" rx="6"/>
+        <rect x="-6" y="-72" width="12" height="48" rx="6"/>
+        <rect x="16" y="-64" width="12" height="40" rx="6"/>
+        <!-- thumb -->
+        <rect x="-52" y="-10" width="24" height="14" rx="8" transform="rotate(-30 -40 -3)"/>
+        <!-- short pinky -->
+        <rect x="36" y="-46" width="10" height="26" rx="5"/>
+      </g>
+
+      <!-- subtle inner highlight outline -->
+      <polygon points="92,30 148,30 198,80 198,160 148,210 92,210 42,160 42,80"
+               fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="4" stroke-linejoin="round"/>
+    </svg>
+
+    <div class="caption">LogoRemakeFour — Firefox Ad Block motif (stylized)</div>
+  </div>
+</body>
+</html>
