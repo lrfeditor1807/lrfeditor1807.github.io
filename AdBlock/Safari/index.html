@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Safari AdBlock — LogoRemakeFour</title>
+  <style>
+    :root{
+      --page-bg: #f6f8fb;
+      --octagon-top: #ff6b6b;
+      --octagon-bottom: #d33b3b;
+      --shadow: rgba(0,0,0,0.18);
+      --muted: #374151;
+    }
+
+    html,body{
+      height:100%;
+      margin:0;
+      background: linear-gradient(180deg, var(--page-bg), #ffffff);
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:28px;
+      color:var(--muted);
+    }
+
+    .stage{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:12px;
+    }
+
+    .logo {
+      width: clamp(160px, 30vmin, 420px);
+      display:block;
+      filter: drop-shadow(0 12px 28px var(--shadow));
+      transition: transform 180ms cubic-bezier(.2,.9,.2,1);
+      cursor: default;
+      will-change: transform;
+    }
+    .logo:hover { transform: translateY(-6px) scale(1.02); }
+
+    .caption{
+      font-size:13px;
+      opacity:0.95;
+      text-align:center;
+    }
+
+    /* ensure crisp SVG on small screens */
+    svg { width:100%; height:auto; display:block; }
+  </style>
+</head>
+<body>
+  <div class="stage" role="main">
+    <svg class="logo" viewBox="0 0 240 240" role="img"
+         aria-label="LogoRemakeFour — Safari-themed Ad Block emblem (stylized)">
+      <defs>
+        <linearGradient id="octGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="var(--octagon-top)"/>
+          <stop offset="1" stop-color="var(--octagon-bottom)"/>
+        </linearGradient>
+
+        <radialGradient id="sea" cx="50%" cy="45%" r="60%">
+          <stop offset="0" stop-color="#cfeeff"/>
+          <stop offset="1" stop-color="#2b88ff"/>
+        </radialGradient>
+
+        <filter id="softShadow" x="-40%" y="-40%" width="180%" height="180%">
+          <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity="0.16"/>
+        </filter>
+
+        <filter id="innerGlow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="6" result="blur"/>
+          <feBlend in="SourceGraphic" in2="blur" mode="screen"/>
+        </filter>
+      </defs>
+
+      <!-- Octagon background (AdBlock silhouette) -->
+      <g filter="url(#softShadow)">
+        <polygon points="64,12 176,12 228,64 228,176 176,228 64,228 12,176 12,64"
+                 fill="url(#octGrad)" stroke="rgba(0,0,0,0.12)" stroke-width="2" stroke-linejoin="round"/>
+      </g>
+
+      <!-- subtle inner highlight ring -->
+      <polygon points="76,24 164,24 216,76 216,164 164,216 76,216 24,164 24,76"
+               fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="6" stroke-linejoin="round"/>
+
+      <!-- Safari-like compass centered slightly above center to make room for hand -->
+      <g transform="translate(0,0)" aria-hidden="true">
+        <!-- compass outer ring -->
+        <circle cx="120" cy="92" r="46" fill="url(#sea)" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+        <circle cx="120" cy="92" r="36" fill="rgba(255,255,255,0.06)"/>
+
+        <!-- compass ticks -->
+        <g stroke="rgba(255,255,255,0.6)" stroke-linecap="round" stroke-width="1.8" transform="translate(120,92)">
+          <!-- 8 major ticks -->
+          <line x1="0" y1="-44" x2="0" y2="-36"/>
+          <line x1="31.1" y1="-31.1" x2="25.1" y2="-25.1"/>
+          <line x1="44" y1="0" x2="36" y2="0"/>
+          <line x1="31.1" y1="31.1" x2="25.1" y2="25.1"/>
+          <line x1="0" y1="44" x2="0" y2="36"/>
+          <line x1="-31.1" y1="31.1" x2="-25.1" y2="25.1"/>
+          <line x1="-44" y1="0" x2="-36" y2="0"/>
+          <line x1="-31.1" y1="-31.1" x2="-25.1" y2="-25.1"/>
+        </g>
+
+        <!-- compass needle: red (north) and white (south) -->
+        <g transform="translate(120,92) rotate(-28)">
+          <polygon points="0,-30 8,6 0,2 -8,6" fill="#ff5252" stroke="#fff" stroke-width="0.6" stroke-linejoin="round"/>
+          <polygon points="0,30 6,-6 0,-2 -6,-6" fill="#ffffff" opacity="0.95"/>
+          <circle cx="0" cy="0" r="3" fill="#ffffff" />
+        </g>
+
+        <!-- thin decorative compass rim -->
+        <circle cx="120" cy="92" r="46" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+      </g>
+
+      <!-- White stylized hand overlay to indicate blocking (center-bottom) -->
+      <g transform="translate(120,150) scale(0.92)" fill="#ffffff" stroke="none" aria-hidden="true">
+        <!-- palm -->
+        <rect x="-36" y="-28" width="72" height="36" rx="12"/>
+        <!-- fingers -->
+        <rect x="-28" y="-64" width="12" height="40" rx="6"/>
+        <rect x="-6" y="-72" width="12" height="48" rx="6"/>
+        <rect x="16" y="-64" width="12" height="40" rx="6"/>
+        <!-- thumb -->
+        <rect x="-52" y="-10" width="24" height="14" rx="8" transform="rotate(-30 -40 -3)"/>
+        <!-- subtle inner stroke for depth -->
+        <path d="M-28 -36 L-28 -12" stroke="rgba(0,0,0,0.06)" stroke-width="1.6" stroke-linecap="round" transform="translate(120,150) scale(0.92)"/>
+      </g>
+
+      <!-- inner thin highlight outline to lift icon -->
+      <polygon points="92,30 148,30 198,80 198,160 148,210 92,210 42,160 42,80"
+               fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="4" stroke-linejoin="round"/>
+    </svg>
+
+    <div class="caption">LogoRemakeFour — Safari Ad Block motif (stylized)</div>
+  </div>
+</body>
+</html>
