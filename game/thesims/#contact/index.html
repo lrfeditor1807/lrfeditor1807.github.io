@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Sims FreePlay - Contact Us</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 3px solid #ffd700;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 2em;
+            color: #ffd700;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            margin-bottom: 5px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #ffd700;
+            text-decoration: none;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #ffed4e;
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            color: white;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #ddd;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .contact-form-section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact-form-section h2 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #ffd700;
+            padding-bottom: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="phone"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-family: 'Arial', sans-serif;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="phone"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 8px rgba(102, 126, 234, 0.4);
+            background: #f9f9ff;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .email-options {
+            margin: 25px 0;
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 8px;
+            border-left: 4px solid #ffd700;
+        }
+
+        .email-options h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .email-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .email-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .gmail-btn {
+            background: linear-gradient(135deg, #EA4335, #FBBC04);
+        }
+
+        .gmail-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(234, 67, 53, 0.4);
+        }
+
+        .outlook-btn {
+            background: linear-gradient(135deg, #0078D4, #50E6FF);
+        }
+
+        .outlook-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 120, 212, 0.4);
+        }
+
+        .icloud-btn {
+            background: linear-gradient(135deg, #555BFF, #A2D5FF);
+        }
+
+        .icloud-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(85, 91, 255, 0.4);
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 1.05em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .info-section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .info-section h2 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #ffd700;
+            padding-bottom: 15px;
+        }
+
+        .info-card {
+            background: #f9f9f9;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+            transform: translateX(5px);
+        }
+
+        .info-card h3 {
+            color: #764ba2;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .info-card p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .info-card a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .info-card a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        .icon {
+            font-size: 1.5em;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .faq-section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            margin-top: 30px;
+        }
+
+        .faq-section h2 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #ffd700;
+            padding-bottom: 15px;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            color: #764ba2;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: #667eea;
+        }
+
+        .faq-answer {
+            color: #555;
+            line-height: 1.6;
+            padding-left: 20px;
+            border-left: 3px solid #ffd700;
+        }
+
+        .response-time {
+            background: #d1ecf1;
+            border: 2px solid #bee5eb;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            color: #0c5460;
+        }
+
+        .response-time strong {
+            color: #0c5460;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: #999;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            border-top: 2px solid #ffd700;
+            font-size: 0.85em;
+        }
+
+        footer a {
+            color: #ffd700;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .success-message {
+            display: none;
+            background: #d4edda;
+            border: 2px solid #c3e6cb;
+            color: #155724;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .content-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .contact-form-section h2,
+            .info-section h2,
+            .faq-section h2 {
+                font-size: 1.4em;
+            }
+
+            .email-buttons {
+                flex-direction: column;
+            }
+
+            .email-button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">🎮 THE SIMS - CONTACT US</div>
+            <a href="index.html" class="back-link">← Back to Home</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>Get in Touch with The Sims Team</h1>
+        <p class="subtitle">Have questions or feedback? We'd love to hear from you!</p>
+
+        <div class="content-wrapper">
+            <!-- Contact Form Section -->
+            <div class="contact-form-section">
+                <h2><span class="icon">📝</span>Send us a Message</h2>
+                
+                <div class="success-message" id="successMessage">
+                    ✓ Thank you for contacting us! We'll respond to your message shortly.
+                </div>
+
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="forum-name">Forum Name *</label>
+                        <input type="text" id="forum-name" name="forum-name" placeholder="Enter your in-game or forum name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" placeholder="Please describe your question, issue, or feedback in detail..." required></textarea>
+                    </div>
+
+                    <div class="email-options">
+                        <h3><span class="icon">📧</span>Send via Email</h3>
+                        <p style="color: #666; margin-bottom: 12px; font-size: 0.9em;">Choose your preferred email provider:</p>
+                        <div class="email-buttons">
+                            <button type="button" class="email-button gmail-btn" id="gmailBtn">
+                                📧 Send via Gmail
+                            </button>
+                            <button type="button" class="email-button outlook-btn" id="outlookBtn">
+                                📧 Send via Outlook
+                            </button>
+                            <button type="button" class="email-button icloud-btn" id="icloudBtn">
+                                📧 Send via iCloud
+                            </button>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Submit Message Directly</button>
+                </form>
+
+                <div class="response-time">
+                    <strong>⏱️ Response Time:</strong> We aim to respond to all inquiries within 2-3 business days. During peak times, it may take up to 5 business days.
+                </div>
+            </div>
+
+            <!-- Contact Information Section -->
+            <div class="info-section">
+                <h2><span class="icon">ℹ️</span>Contact Information</h2>
+
+                <div class="info-card">
+                    <h3><span class="icon">📧</span>Email Support</h3>
+                    <p><strong>Primary:</strong> support@ea.com</p>
+                    <p><strong>Account Issues:</strong> accounts@ea.com</p>
+                    <p><strong>Billing:</strong> billing@ea.com</p>
+                    <p><strong>Privacy:</strong> privacy@ea.com</p>
+                    <p><strong>Report Abuse:</strong> abuse@ea.com</p>
+                </div>
+
+                <div class="info-card">
+                    <h3><span class="icon">☎️</span>Phone Support</h3>
+                    <p><strong>Main Line:</strong> +1 (650) 628-0150</p>
+                    <p><strong>Technical Support:</strong> +1 (650) 628-0102</p>
+                    <p><strong>Billing Support:</strong> +1 (650) 628-0103</p>
+                    <p><strong>Hours:</strong> Monday - Friday, 9 AM - 5 PM PST</p>
+                </div>
+
+                <div class="info-card">
+                    <h3><span class="icon">🏢</span>Mailing Address</h3>
+                    <p>Electronic Arts Inc.</p>
+                    <p>Customer Support Department</p>
+                    <p>209 Redwood Shores Parkway</p>
+                    <p>Redwood City, CA 94065</p>
+                    <p>United States</p>
+                </div>
+
+                <div class="info-card">
+                    <h3><span class="icon">🌐</span>Online Resources</h3>
+                    <p><a href="https://www.ea.com/support" target="_blank">EA Help & Support Portal</a></p>
+                    <p><a href="https://www.thesims.com" target="_blank">The Sims Official Website</a></p>
+                    <p><a href="https://forums.thesims.com" target="_blank">The Sims Forums</a></p>
+                    <p><a href="https://twitter.com/TheSims" target="_blank">Twitter @TheSims</a></p>
+                </div>
+
+                <div class="info-card">
+                    <h3><span class="icon">🎮</span>In-Game Support</h3>
+                    <p>Open the Game menu and tap "Help & Support" for quick access to FAQs and live chat with our support team.</p>
+                    <p><strong>Live Chat Available:</strong> Daily 10 AM - 10 PM PST</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2><span class="icon">❓</span>Frequently Asked Questions</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">Q: How long does it take to receive a response?</div>
+                <div class="faq-answer">A: We typically respond to all support inquiries within 2-3 business days. During peak periods, responses may take up to 5 business days. Priority support for account issues is available through our in-game chat.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q: My account has been suspended. What can I do?</div>
+                <div class="faq-answer">A: If your account was suspended for violating our Terms of Service, please contact accounts@ea.com with details. Include your account name, email, and a detailed explanation. Account suspensions are typically permanent, but we review appeals on a case-by-case basis.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q: I was charged twice for the same purchase. How do I get a refund?</div>
+                <div class="faq-answer">A: Contact billing@ea.com immediately with your receipt, account name, and order details. Duplicate charges can usually be refunded within 5-7 business days. Refund requests must be made within 48 hours of the charge.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q: Can I transfer my account to another device?</div>
+                <div class="faq-answer">A: Yes! Link your account to your EA account or social media account (Facebook, Google, Apple ID). This allows you to play on any device after logging in. For migration assistance, contact support@ea.com.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q: How do I report a player for cheating or inappropriate behavior?</div>
+                <div class="faq-answer">A: Use the in-game report feature by tapping the player's profile and selecting "Report". Alternatively, email abuse@ea.com with the player's name, screenshots, and details of the violation. All reports are reviewed and investigated.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q: My game keeps crashing. What should I do?</div>
+                <div class="faq-answer">A: Try these steps: (1) Restart your device, (2) Update the game to the latest version, (3) Clear the app cache, (4) Reinstall the game. If issues persist, contact support@ea.com with your device info and error messages.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q: I lost my account. Can I recover it?</div>
+                <div class="faq-answer">A: Yes! Contact accounts@ea.com with your original email, phone number, and payment information. Provide as many details as possible about your account (player name, level, purchases). Recovery typically takes 5-10 business days.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q: Is there a way to contact The Sims developers directly?</div>
+                <div class="faq-answer">A: The Sims development team receives feedback through support@ea.com and the official forums at forums.thesims.com. While we cannot guarantee direct contact with developers, your suggestions and bug reports are reviewed by the entire team.</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Electronic Arts Inc. All Rights Reserved.</p>
+        <p>
+            <a href="index.html">← Back to Home</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="terms-and-conditions.html">Terms & Conditions</a>
+            <a href="#">Support Center</a>
+        </p>
+    </footer>
+
+    <script>
+        const contactForm = document.getElementById('contactForm');
+        const forumNameInput = document.getElementById('forum-name');
+        const emailInput = document.getElementById('email');
+        const phoneInput = document.getElementById('phone');
+        const messageInput = document.getElementById('message');
+        const successMessage = document.getElementById('successMessage');
+
+        // Gmail Button
+        document.getElementById('gmailBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            if (validateForm()) 
+                const subject = encodeURIComponent(`The Sims Support - LogoRemakeFour’)
