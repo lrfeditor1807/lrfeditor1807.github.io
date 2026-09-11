@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Sims FreePlay - Terms and Conditions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 3px solid #ffd700;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 2em;
+            color: #ffd700;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            margin-bottom: 5px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #ffd700;
+            text-decoration: none;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #ffed4e;
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .policy-meta {
+            text-align: center;
+            color: #999;
+            margin-bottom: 30px;
+            font-size: 0.9em;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 20px;
+        }
+
+        h2 {
+            color: #764ba2;
+            font-size: 1.8em;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            border-left: 4px solid #ffd700;
+            padding-left: 15px;
+        }
+
+        h3 {
+            color: #667eea;
+            font-size: 1.3em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #444;
+        }
+
+        ul, ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        li {
+            margin-bottom: 10px;
+            color: #444;
+        }
+
+        strong {
+            color: #333;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 15px;
+            border-left: 4px solid #ffc107;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .warning {
+            background: #f8d7da;
+            padding: 15px;
+            border-left: 4px solid #f5c6cb;
+            margin: 20px 0;
+            border-radius: 4px;
+            color: #721c24;
+        }
+
+        .info {
+            background: #d1ecf1;
+            padding: 15px;
+            border-left: 4px solid #bee5eb;
+            margin: 20px 0;
+            border-radius: 4px;
+            color: #0c5460;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .toc {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .toc h3 {
+            color: #667eea;
+            margin-top: 0;
+        }
+
+        .toc ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .toc li {
+            margin-bottom: 8px;
+        }
+
+        .toc a {
+            color: #667eea;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .toc a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: #999;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            border-top: 2px solid #ffd700;
+            font-size: 0.85em;
+        }
+
+        footer a {
+            color: #ffd700;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .icon {
+            font-size: 1.2em;
+            margin-right: 8px;
+        }
+
+        .definition {
+            background: #f0f0f0;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-left: 3px solid #667eea;
+            border-radius: 4px;
+        }
+
+        .definition strong {
+            color: #667eea;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: #f9f9f9;
+        }
+
+        th {
+            background: #667eea;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background: #f0f0f0;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            h2 {
+                font-size: 1.4em;
+            }
+
+            .container {
+                margin-top: 15px;
+                padding: 20px;
+            }
+
+            header {
+                padding: 15px;
+            }
+
+            .logo {
+                font-size: 1.5em;
+            }
+        }
+
+        .last-updated {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">🎮 THE SIMS - TERMS AND CONDITIONS</div>
+            <a href="index.html" class="back-link">← Back to Home</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>Terms and Conditions</h1>
+        <div class="policy-meta">
+            <p>Electronic Arts Inc. | The Sims FreePlay (com.ea.gp.simsmobile)</p>
+            <p>Last Updated: September 2024</p>
+        </div>
+
+        <div class="toc">
+            <h3><span class="icon">📑</span>Table of Contents</h3>
+            <ul>
+                <li><a href="#acceptance">1. Acceptance of Terms</a></li>
+                <li><a href="#definitions">2. Definitions</a></li>
+                <li><a href="#license">3. License & Usage</a></li>
+                <li><a href="#account">4. Account & Registration</a></li>
+                <li><a href="#vgc">5. Virtual Game Currency</a></li>
+                <li><a href="#content">6. User-Generated Content</a></li>
+                <li><a href="#conduct">7. Prohibited Conduct</a></li>
+                <li><a href="#ip">8. Intellectual Property</a></li>
+                <li><a href="#liability">9. Limitation of Liability</a></li>
+                <li><a href="#warranties">10. Disclaimers & Warranties</a></li>
+                <li><a href="#termination">11. Termination</a></li>
+                <li><a href="#dispute">12. Dispute Resolution</a></li>
+                <li><a href="#contact">13. Contact Information</a></li>
+            </ul>
+        </div>
+
+        <div class="section" id="acceptance">
+            <h2>1. Acceptance of Terms</h2>
+            <p>By downloading, installing, and playing <strong>The Sims FreePlay</strong> ("Game"), you agree to be bound by these Terms and Conditions ("Terms"), our Privacy Policy, and any other policies referenced herein. These Terms constitute a legally binding agreement between you and <strong>Electronic Arts Inc.</strong> ("EA," "we," "us," "our," or "Company").</p>
+            <p>If you are under 18 years old, you must have your parent or legal guardian review and accept these Terms on your behalf. By downloading the Game, you represent that you are either (a) at least 18 years old, or (b) have obtained parental consent.</p>
+            <p><strong>If you do not accept these Terms in their entirety, you may not access or use the Game.</strong></p>
+        </div>
+
+        <div class="section" id="definitions">
+            <h2>2. Definitions</h2>
+            <p>For clarity, the following terms have the meanings specified below:</p>
+            
+            <div class="definition">
+                <strong>"Account":</strong> Your personal player account created to access and play the Game, including all associated data, progress, and settings.
+            </div>
+
+            <div class="definition">
+                <strong>"Virtual Currency":</strong> In-game currency that may be purchased with real money (SimoleonsTM, Life Points™, etc.) or earned through gameplay.
+            </div>
+
+            <div class="definition">
+                <strong>"Content":</strong> All materials in the Game, including game mechanics, graphics, audio, text, storylines, and player-created content.
+            </div>
+
+            <div class="definition">
+                <strong>"Service":</strong> The Game and all associated online features, updates, patches, and support services provided by EA.
+            </div>
+
+            <div class="definition">
+                <strong>"EULA":</strong> End-User License Agreement governing use of the Game and all EA services.
+            </div>
+
+            <div class="definition">
+                <strong>"User":</strong> Any individual who accesses or plays the Game.
+            </div>
+        </div>
+
+        <div class="section" id="license">
+            <h2>3. License & Usage Rights</h2>
+            
+            <h3>3.1 Limited License</h3>
+            <p>EA grants you a limited, non-exclusive, non-transferable, revocable license to download, install, and play the Game solely for your personal, non-commercial entertainment purposes, subject to your compliance with these Terms.</p>
+            
+            <h3>3.2 Restrictions</h3>
+            <p>You may not:</p>
+            <ul>
+                <li>Copy, modify, reverse-engineer, or create derivative works based on the Game;</li>
+                <li>Rent, lease, loan, sell, trade, or transfer the Game or your Account;</li>
+                <li>Remove or alter any proprietary notices, logos, or copyright information;</li>
+                <li>Use the Game in any manner that violates applicable laws or these Terms;</li>
+                <li>Decompile, disassemble, or otherwise attempt to derive the source code of the Game;</li>
+                <li>Use the Game to develop competing products or services;</li>
+                <li>Access the Game through any unauthorized third-party clients or tools;</li>
+                <li>Bypass, disable, or interfere with any security features or protections.</li>
+            </ul>
+
+            <h3>3.3 Ownership</h3>
+            <p>You acknowledge that EA retains all right, title, and interest in the Game, including all intellectual property rights. You own your Account but do not own the Game, Virtual Currency, or any in-game items. These are licensed to you for entertainment purposes only.</p>
+
+            <div class="info">
+                <strong>ℹ️ Note:</strong> Your Account and all associated in-game progress are the property of EA. EA reserves the right to modify, suspend, or delete your Account under the circumstances specified in these Terms.
+            </div>
+        </div>
+
+        <div class="section" id="account">
+            <h2>4. Account & Registration</h2>
+            
+            <h3>4.1 Account Creation</h3>
+            <p>To play the Game, you must create an EA Account by providing:</p>
+            <ul>
+                <li>A valid email address;</li>
+                <li>A secure password;</li>
+                <li>Your date of birth;</li>
+                <li>Other information as requested by EA.</li>
+            </ul>
+
+            <h3>4.2 Account Responsibility</h3>
+            <p>You are solely responsible for maintaining the confidentiality of your Account credentials and for all activities conducted through your Account. You agree to:</p>
+            <ul>
+                <li>Provide accurate and complete information;</li>
+                <li>Keep your password secure;</li>
+                <li>Notify EA immediately of any unauthorized access or breach;</li>
+                <li>Accept responsibility for all actions taken through your Account.</li>
+            </ul>
+
+            <h3>4.3 Account Termination</h3>
+            <p>EA may suspend or terminate your Account at any time for:</p>
+            <ul>
+                <li>Violation of these Terms;</li>
+                <li>Fraudulent activity or chargebacks;</li>
+                <li>Use of cheats, hacks, or unauthorized software;</li>
+                <li>Harassment or abusive conduct toward other players;</li>
+                <li>Inactivity for 24 months;</li>
+                <li>Any other reason at EA's sole discretion.</li>
+            </ul>
+
+            <div class="warning">
+                <strong>⚠️ Warning:</strong> Upon Account termination, you lose access to all in-game progress, Virtual Currency, and items. EA is not obligated to refund purchases or provide compensation.
+            </div>
+        </div>
+
+        <div class="section" id="vgc">
+            <h2>5. Virtual Game Currency & In-App Purchases</h2>
+            
+            <h3>5.1 Virtual Currency</h3>
+            <p>The Sims FreePlay offers Virtual Currency ("Simoleons™" and "Life Points™") that can be purchased with real money or earned through gameplay.</p>
+            <ul>
+                <li><strong>Simoleons™:</strong> In-game currency earned through gameplay. Cannot be purchased or refunded.</li>
+                <li><strong>Life Points™:</strong> Premium currency purchased with real money. Subject to refund policies.</li>
+            </ul>
+
+            <h3>5.2 Purchases & Payments</h3>
+            <p>When you purchase Virtual Currency:</p>
+            <ul>
+                <li>Payment is processed through your device's official app store (Apple App Store, Google Play Store, etc.);</li>
+                <li>You acknowledge the charge to your payment method;</li>
+                <li>EA is not responsible for billing errors related to your payment provider;</li>
+                <li>Prices are subject to change with notice;</li>
+                <li>All purchases are final unless required by law.</li>
+            </ul>
+
+            <h3>5.3 Refund Policy</h3>
+            <p>Refund requests must be submitted to EA within 48 hours of purchase. Refunds are available for:</p>
+            <ul>
+                <li>Duplicate charges;</li>
+                <li>Unauthorized purchases (due to Account compromise);</li>
+                <li>Currency not credited to your Account;</li>
+                <li>Technical issues preventing use of purchased currency.</li>
+            </ul>
+            <p>Refund requests made more than 48 hours after purchase or for general dissatisfaction may be denied.</p>
+
+            <h3>5.4 No Real-World Value</h3>
+            <p>Virtual Currency has no real-world monetary value and cannot be exchanged for real money, refunded after use in the Game, or transferred between Accounts. Virtual Currency is not a financial product or investment.</p>
+
+            <h3>5.5 Spending Limits</h3>
+            <p>For players under 18, we recommend setting spending limits through your device's parental controls to prevent unauthorized purchases.</p>
+        </div>
+
+        <div class="section" id="content">
+            <h2>6. User-Generated Content</h2>
+            
+            <h3>6.1 Your Content</h3>
+            <p>If the Game allows you to create, upload, or share content (including player names, profiles, messages, or custom designs), you retain ownership of that content but grant EA a worldwide, royalty-free license to use, modify, and display your content for Game operations and promotion.</p>
+
+            <h3>6.2 Content Standards</h3>
+            <p>User-generated content must not include:</p>
+            <ul>
+                <li>Hate speech, slurs, or discriminatory language;</li>
+                <li>Sexually explicit, obscene, or offensive material;</li>
+                <li>Personal information of third parties;</li>
+                <li>Intellectual property violations;</li>
+                <li>Spam, harassment, or threats;</li>
+                <li>Links to external websites or promotional content;</li>
+                <li>Any content violating applicable laws.</li>
+            </ul>
+
+            <h3>6.3 Moderation & Removal</h3>
+            <p>EA reserves the right to review, monitor, moderate, and remove any user-generated content that violates these Terms or community guidelines. Content removal does not entitle you to refunds.</p>
+
+            <h3>6.4 No Compensation for Content</h3>
+            <p>EA does not pay for user-generated content, suggestions, or ideas. By sharing content, you waive any right to compensation or credit.</p>
+        </div>
+
+        <div class="section" id="conduct">
+            <h2>7. Prohibited Conduct</h2>
+            <p>You agree not to engage in any of the following activities:</p>
+            
+            <h3>7.1 Cheating & Hacking</h3>
+            <ul>
+                <li>Use cheats, hacks, bots, or third-party software to modify game files;</li>
+                <li>Exploit bugs or glitches for unfair advantage;</li>
+                <li>Use auto-clickers or automated tools;</li>
+                <li>Modify game data or server responses;</li>
+                <li>Access unauthorized private servers.</li>
+            </ul>
+
+            <h3>7.2 Account Abuse</h3>
+            <ul>
+                <li>Share or sell your Account;</li>
+                <li>Purchase in-game currency through unauthorized channels;</li>
+                <li>Attempt to recover deleted Accounts;</li>
+                <li>Use multiple Accounts to bypass restrictions;</li>
+                <li>Commit payment fraud or chargebacks.</li>
+            </ul>
+
+            <h3>7.3 Harassment & Toxicity</h3>
+            <ul>
+                <li>Harass, threaten, or abuse other players;</li>
+                <li>Engage in hate speech or discrimination;</li>
+                <li>Spam, scam, or deceive other players;</li>
+                <li>Engage in sexual harassment or inappropriate conduct;</li>
+                <li>Doxx or share personal information of others.</li>
+            </ul>
+
+            <h3>7.4 Violation Consequences</h3>
+            <p>Violation of prohibited conduct will result in:</p>
+            <ul>
+                <li><strong>First Offense:</strong> Warning or temporary suspension (7-30 days);</li>
+                <li><strong>Second Offense:</strong> Extended suspension (30-90 days);</li>
+                <li><strong>Third Offense:</strong> Permanent Account ban;</li>
+                <li><strong>Severe Violations:</strong> Immediate permanent ban without warning.</li>
+            </ul>
+
+            <div class="warning">
+                <strong>⚠️ Important:</strong> Banned Accounts do not receive refunds. All Virtual Currency, items, and progress are forfeited.
+            </div>
+        </div>
+
+        <div class="section" id="ip">
+            <h2>8. Intellectual Property Rights</h2>
+            
+            <h3>8.1 EA's Intellectual Property</h3>
+            <p>The Game, including all graphics, audio, code, mechanics, stories, and characters, is the exclusive property of Electronic Arts Inc. or its licensors. All rights are reserved. The Sims™, SimoleonsTM, Life Points™, and LogoRemakeFour™.
