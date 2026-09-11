@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>WhatsApp Normal — Español (Demo)</title>
+  <style>
+    /* Estilos básicos (inspirado en WhatsApp) */
+    :root{
+      --green:#25D366;
+      --bg:#ece5dd;
+      --chat-bg:#ffffff;
+      --muted:#7a7a7a;
+      --accent:#075E54;
+      --glass: rgba(255,255,255,0.85);
+      font-family: "Helvetica Neue", Arial, sans-serif;
+    }
+    html,body{height:100%;margin:0;background:var(--bg);color:#111}
+    .app{display:flex;height:100vh;gap:12px;padding:12px;box-sizing:border-box}
+    .sidebar{
+      width:320px;background:linear-gradient(180deg,#f7f7f7,var(--glass));border-radius:12px;padding:12px;box-shadow:0 4px 14px rgba(0,0,0,0.08);display:flex;flex-direction:column;
+    }
+    .brand{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+    .brand .logo{width:46px;height:46px;border-radius:10px;background:var(--green);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+    .search{display:flex;gap:8px;align-items:center;margin-bottom:12px}
+    .search input{flex:1;padding:10px;border-radius:8px;border:1px solid #ddd;background:#fff}
+    .contacts{overflow:auto;flex:1}
+    .contact{display:flex;gap:12px;padding:8px;border-radius:8px;align-items:center;cursor:pointer}
+    .contact:hover{background:#f0f0f0}
+    .avatar{width:48px;height:48px;border-radius:50%;background:#ddd;display:flex;align-items:center;justify-content:center}
+    .meta{flex:1}
+    .meta .name{font-weight:600}
+    .meta .last{color:var(--muted);font-size:13px}
+    .main{flex:1;display:flex;flex-direction:column;max-height:100%;min-width:360px}
+    .chat-header{display:flex;align-items:center;gap:12px;padding:12px;background:var(--chat-bg);border-radius:12px;box-shadow:0 2px 6px rgba(0,0,0,0.04)}
+    .chat-body{flex:1;padding:16px;overflow:auto;background:
+      linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.01));
+      border-radius:12px;margin-top:12px}
+    .bubble{display:inline-block;padding:10px 12px;border-radius:12px;margin:6px 0;max-width:66%}
+    .bubble.me{background:var(--green);color:#fff;margin-left:auto;border-bottom-right-radius:2px}
+    .bubble.you{background:#fff;color:#111;border:1px solid #eee}
+    .message-img{max-width:260px;border-radius:8px;display:block;margin-top:6px}
+    .message-video{max-width:320px;border-radius:8px;margin-top:6px}
+    .composer{display:flex;gap:8px;padding:12px;margin-top:12px;background:var(--chat-bg);border-radius:12px;align-items:center}
+    .composer input[type="text"]{flex:1;padding:10px;border-radius:20px;border:1px solid #e0e0e0}
+    .btn{background:var(--accent);color:#fff;padding:8px 12px;border-radius:8px;border:none;cursor:pointer}
+    .icon-btn{background:transparent;border:0;padding:8px;cursor:pointer;font-size:18px}
+    .muted{color:var(--muted);font-size:13px}
+    .footer-note{font-size:12px;color:var(--muted);margin-top:8px}
+    /* modales y utilidades */
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);z-index:40}
+    .modal .card{background:#fff;border-radius:12px;padding:16px;width:720px;max-width:96%;max-height:90%;overflow:auto;box-shadow:0 10px 30px rgba(0,0,0,0.3)}
+    .row{display:flex;gap:12px}
+    .stickers-grid{display:flex;gap:8px;flex-wrap:wrap}
+    .sticker-item{width:80px;height:80px;border-radius:12px;background:#fff;display:flex;align-items:center;justify-content:center;border:1px solid #eee;cursor:pointer}
+    /* mini-juegos */
+    .games{display:flex;gap:8px;flex-wrap:wrap}
+    .game-card{flex:1;min-width:200px;background:#fff;padding:12px;border-radius:8px;border:1px solid #eee;text-align:center}
+    .small{font-size:12px;color:var(--muted)}
+    /* responsive */
+    @media(max-width:900px){
+      .sidebar{display:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="app" id="app">
+    <div class="sidebar" aria-hidden="false">
+      <div class="brand">
+        <div class="logo">W</div>
+        <div>
+          <div style="font-weight:700">WhatsApp Normal</div>
+          <div class="small">Demostración en Español</div>
+        </div>
+      </div>
+      <div class="search">
+        <input id="searchContacts" placeholder="Buscar contactos..." />
+        <button class="icon-btn" title="Nueva conversación" onclick="startNew()">＋</button>
+      </div>
+      <div class="contacts" id="contactsList"></div>
+      <div class="footer-note">Demo local — funciones como "enviar a WhatsApp" requieren apps externas.</div>
+    </div>
+
+    <div class="main">
+      <div class="chat-header">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div class="avatar" id="chatAvatar">U</div>
+          <div>
+            <div id="chatName" style="font-weight:700">Contacto Demo</div>
+            <div id="chatStatus" class="small">última vez ahora</div>
+          </div>
+        </div>
+        <div style="margin-left:auto;display:flex;gap:8px;align-items:center">
+          <button class="icon-btn" title="Llamada de video" onclick="openVideoCall()">📹</button>
+          <button class="icon-btn" title="Juegos" onclick="openGames()">🎮</button>
+          <button class="icon-btn" title="Crear Sticker" onclick="openStickerMaker()">🖼️</button>
+          <button class="icon-btn" title="Memoji/Animal" onclick="openMemoji()">🐵</button>
+        </div>
+      </div>
+
+      <div class="chat-body" id="chatBody">
+        <!-- mensajes se renderizan aquí -->
+      </div>
+
+      <div class="composer">
+        <input type="text" id="messageInput" placeholder="Escribe un mensaje" />
+        <input type="file" id="fileInput" style="display:none" />
+        <button class="icon-btn" title="Adjuntar" onclick="document.getElementById('fileInput').click()">📎</button>
+        <button class="icon-btn" title="GIF/Sticker" onclick="openStickerPicker()">😊</button>
+        <button class="btn" onclick="sendMessage()">Enviar</button>
+        <button class="btn" style="background:var(--green)" onclick="openPollCreator()">Crear encuesta</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticker picker modal -->
+  <div class="modal" id="stickerModal" role="dialog" aria-hidden="true">
+    <div class="card">
+      <h3>Seleccionar sticker / GIF</h3>
+      <div class="stickers-grid" id="stickersGrid">
+        <!-- stickers de ejemplo -->
+      </div>
+      <hr/>
+      <div style="display:flex;gap:8px;align-items:center">
+        <input type="file" id="gifUpload" accept="image/gif,video/*,image/*" />
+        <button class="btn" onclick="closeStickerPicker()">Cerrar</button>
+      </div>
+      <p class="small">Sube GIFs o imágenes para enviarlos como stickers; para crear stickers conformes a WhatsApp se requieren conversión a webp y empaquetado.</p>
+    </div>
+  </div>
+
+  <!-- Sticker maker modal -->
+  <div class="modal" id="stickerMaker" role="dialog" aria-hidden="true">
+    <div class="card">
+      <h3>Creador de Stickers (PNG)</h3>
+      <div class="row">
+        <div style="flex:1">
+          <input type="file" id="stickerSource" accept="image/*,video/*" />
+          <div style="margin-top:8px"><canvas id="stickerCanvas" style="border:1px solid #eee;width:320px;height:320px;background:#f8f8f8"></canvas></div>
+          <div style="margin-top:8px;display:flex;gap:8px">
+            <button class="btn" onclick="generateSticker()">Generar PNG</button>
+            <button class="btn" onclick="downloadSticker()">Descargar</button>
+            <button class="btn" onclick="closeStickerMaker()">Cerrar</button>
+          </div>
+        </div>
+        <div style="width:260px">
+          <h4>Opciones</h4>
+          <label>Forma: 
+            <select id="stickerShape">
+              <option value="round">Redondo</option>
+              <option value="square">Cuadrado</option>
+            </select>
+          </label>
+          <p class="small">Sube una imagen, ajusta y genera un sticker. Para animados habría que usar herramientas adicionales (webp animado/ffmpeg).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Memoji modal -->
+  <div class="modal" id="memojiModal" role="dialog" aria-hidden="true">
+    <div class="card">
+      <h3>Memoji / Animal — Captura desde cámara</h3>
+      <div class="row">
+        <div style="flex:1">
+          <video id="memojiVideo" autoplay playsinline style="width:100%;border-radius:8px;background:#000"></video>
+          <canvas id="memojiCanvas" width="640" height="480" style="display:none"></canvas>
+          <div style="margin-top:8px;display:flex;gap:8px">
+            <button class="btn" onclick="captureMemoji()">Capturar</button>
+            <button class="btn" onclick="closeMemoji()">Cerrar</button>
+          </div>
+        </div>
+        <div style="width:260px">
+          <h4>Filtros / Animal</h4>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <button onclick="selectOverlay('none')">Ninguno</button>
+            <button onclick="selectOverlay('ears')">Orejas</button>
+            <button onclick="selectOverlay('dog')">Perro</button>
+            <button onclick="selectOverlay('cat')">Gato</button>
+          </div>
+          <p class="small">Captura una foto con overlay; se genera un PNG que podrás enviar como sticker o imagen.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Video call modal -->
+  <div class="modal" id="videoCallModal" role="dialog" aria-hidden="true">
+    <div class="card">
+      <h3>Videollamada (demo)</h3>
+      <div class="row">
+        <div style="flex:1">
+          <video id="localVideo" autoplay muted playsinline style="width:100%;border-radius:8px;background:#000"></video>
+          <div style="margin-top:8px;display:flex;gap:8px">
+            <button class="btn" onclick="endCall()">Colgar</button>
+          </div>
+        </div>
+        <div style="width:300px">
+          <h4>Información</h4>
+          <p class="small">Tu navegador pedirá permiso para la cámara. Esta demo muestra tu vídeo local. Para llamadas reales necesitas WebRTC y otro peer.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Poll creator modal -->
+  <div class="modal" id="pollModal" role="dialog" aria-hidden="true">
+    <div class="card">
+      <h3>Crear encuesta</h3>
+      <div>
+        <input id="pollQuestion" placeholder="Pregunta" style="width:100%;padding:8px;margin-bottom:8px" />
+        <div id="pollOptions">
+          <input class="pollOpt" placeholder="Opción 1" style="width:100%;padding:8px;margin-bottom:6px" />
+          <input class="pollOpt" placeholder="Opción 2" style="width:100%;padding:8px;margin-bottom:6px" />
+        </div>
+        <button class="btn" onclick="addPollOption()">Añadir opción</button>
+        <div style="margin-top:8px;display:flex;gap:8px">
+          <button class="btn" onclick="createPoll()">Crear</button>
+          <button class="btn" onclick="closePoll()">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Games modal -->
+  <div class="modal" id="gamesModal" role="dialog" aria-hidden="true">
+    <div class="card">
+      <h3>Juegos — Billar, Ajedrez, Ludo (demo)</h3>
+      <div class="row">
+        <div style="flex:1">
+          <div class="games">
+            <div class="game-card">
+              <h4>Billar (demo)</h4>
+              <canvas id="poolCanvas" width="480" height="240" style="border:1px solid #ddd;background:#0b5;"></canvas>
+              <div style="margin-top:6px"><button class="btn" onclick="initPool()">Reiniciar billar</button></div>
+            </div>
+            <div class="game-card">
+              <h4>Ajedrez (movimiento libre)</h4>
+              <div id="chessBoard" style="margin:6px auto;width:320px"></div>
+              <div class="small">Arrastra piezas (sin reglas). Ideal para abrir un tablero y jugar visualmente.</div>
+            </div>
+            <div class="game-card">
+              <h4>Ludo (simplificado)</h4>
+              <div id="ludoArea" style="height:180px;display:flex;align-items:center;justify-content:center"> 
+                <div style="text-align:center">
+                  <div id="ludoPos" style="font-size:28px">Ficha: 0</div>
+                  <button class="btn" onclick="rollLudo()">Tirar dado</button>
+                </div>
+              </div>
+              <div class="small">Movimiento simple con dado.</div>
+            </div>
+          </div>
+        </div>
+        <div style="width:260px">
+          <h4>Controles</h4>
+          <p class="small">Estos juegos son prototipos. Para publicar a producción habría que integrar motores y sincronización multiplayer.</p>
+          <button class="btn" onclick="closeGames()">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* Demo data y utilidades */
+    const contacts = [
+      {id:1,name:"Amalia",last:"Hola, ¿vienes hoy?"},
+      {id:2,name:"Carlos",last:"Te mando el archivo"},
+      {id:3,name:"Equipo",last:"Reunión 10:00"},
+    ];
+    let currentContact = contacts[0];
+    const messages = {
+      1: [
+        {from:'you',type:'text',text:'Hola Amalia 👋'},
+        {from:'me',type:'text',text:'Voy saliendo, llego en 15.'},
+      ],
+      2: [],
+      3: [],
+    };
+
+    // Init UI
+    function renderContacts(){
+      const cont = document.getElementById('contactsList');
+      cont.innerHTML = '';
+      contacts.forEach(c=>{
+        const el = document.createElement('div');
+        el.className='contact';
+        el.innerHTML = `<div class="avatar">${c.name[0]}</div>
+          <div class="meta"><div class="name">${c.name}</div><div class="last">${c.last}</div></div>`;
+        el.onclick = ()=>{ openChat(c) };
+        cont.appendChild(el);
+      });
+    }
+    function openChat(c){
+      currentContact = c;
+      document.getElementById('chatName').innerText = c.name;
+      document.getElementById('chatAvatar').innerText = c.name[0];
+      renderMessages();
+    }
+    function startNew(){
+      const name = prompt("Nombre del contacto nuevo (demo)");
+      if(!name) return;
+      const c = {id:contacts.length+1,name,last:'',};
+      contacts.push(c);
+      messages[c.id]=[];
+      renderContacts();
+      openChat(c);
+    }
+
+    function renderMessages(){
+      const body = document.getElementById('chatBody');
+      body.innerHTML = '';
+      const list = messages[currentContact.id] || [];
+      list.forEach(m=>{
+        const b = document.createElement('div');
+        b.className='bubble '+(m.from==='me'?'me':'you');
+        if(m.type==='text'){
+          b.innerText = m.text;
+        } else if(m.type==='image'){
+          b.innerHTML = `<div>${m.text||''}</div><img class="message-img" src="${m.src}" />`;
+        } else if(m.type==='video'){
+          b.innerHTML = `<div>${m.text||''}</div><video class="message-video" controls src="${m.src}"></video>`;
+        } else if(m.type==='file'){
+          b.innerHTML = `<div>${m.text||''}</div><a href="${m.src}" download>Descargar archivo</a>`;
+        } else if(m.type==='sticker'){
+          b.innerHTML = `<img class="message-img" src="${m.src}" style="width:120px;height:120px;object-fit:cover;border-radius:12px" />`;
+        } else if(m.type==='poll'){
+          b.innerHTML = `<strong>${m.question}</strong><div id="poll-${m.id}">${renderPollHTML(m)}</div>`;
+        }
+        body.appendChild(b);
+      });
+      body.scrollTop = body.scrollHeight;
+    }
+
+    function sendMessage(){
+      const input = document.getElementById('messageInput');
+      const text = input.value.trim();
+      if(!text) return;
+      const msg = {from:'me',type:'text',text};
+      messages[currentContact.id].push(msg);
+      input.value='';
+      renderMessages();
+      // Simula respuesta
+      setTimeout(()=>{ messages[currentContact.id].push({from:'you',type:'text',text:'Recibido: '+text}); renderMessages(); },800);
+    }
+
+    // File attachments
+    document.getElementById('fileInput').addEventListener('change', e=>{
+      const f = e.target.files[0];
+      if(!f) return;
+      const reader = new FileReader();
+      const ext = f.type.split('/')[0];
+      reader.onload = ()=> {
+        if(ext==='image'){
+          messages[currentContact.id].push({from:'me',type:'image',src:reader.result,text:f.name});
+        } else if(ext==='video'){
+          messages[currentContact.id].push({from:'me',type:'video',src:reader.result,text:f.name});
+        } else {
+          messages[currentContact.id].push({from:'me',type:'file',src:reader.result,text:f.name});
+        }
+        renderMessages();
+      };
+      reader.readAsDataURL(f);
+      e.target.value='';
+    });
+
+    // Sticker picker
+    function openStickerPicker(){
+      const modal = document.getElementById('stickerModal');
+      modal.style.display='flex';
+      modal.querySelector('#gifUpload').onchange = (ev)=>{
+        const f=ev.target.files[0]; if(!f) return;
+        const r=new FileReader();
+        r.onload=()=>{ messages[currentContact.id].push({from:'me',type:'sticker',src:r.result}); renderMessages(); closeStickerPicker(); }
+        r.readAsDataURL(f);
+      };
+    }
+    function closeStickerPicker(){ document.getElementById('stickerModal').style.display='none'; }
+    // load sample stickers
+    const sampleStickers = [
+      '❤️','😂','😎','👍','🎉','🔥'
+    ];
+    function loadSampleStickers(){
+      const g = document.getElementById('stickersGrid');
+      sampleStickers.forEach(s=>{
+        const d = document.createElement('div');
+        d.className='sticker-item'; d.innerHTML=`<div style="font-size:28px">${s}</div>`;
+        d.onclick = ()=>{ messages[currentContact.id].push({from:'me',type:'sticker',src:textToDataURL(s)}); renderMessages(); closeStickerPicker(); };
+        g.appendChild(d);
+      });
+    }
+    // convert emoji to dataURL (simple SVG)
+    function textToDataURL(txt){
+      const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='512' height='512'><text x='50%' y='50%' font-size='200' dominant-baseline='middle' text-anchor='middle'>${txt}</text></svg>`;
+      return 'data:image/svg+xml;base64,'+btoa(svg);
+    }
+
+    // Sticker maker (canvas)
+    let stickerImage = null;
+    document.getElementById('stickerSource').addEventListener('change', e=>{
+      const f = e.target.files[0]; if(!f) return;
+      const r = new FileReader();
+      r.onload = ()=> {
+        const img = new Image();
+        img.onload = ()=> { stickerImage = img; drawSticker(); };
+        img.src = r.result;
+      };
+      r.readAsDataURL(f);
+    });
+    function drawSticker(){
+      const cvs = document.getElementById('stickerCanvas');
+      const ctx = cvs.getContext('2d');
+      const size = 512;
+      cvs.width = size; cvs.height = size;
+      ctx.clearRect(0,0,size,size);
+      ctx.fillStyle = '#fff'; ctx.fillRect(0,0,size,size);
+      if(!stickerImage) return;
+      // ajusta manteniendo aspecto
+      const w = stickerImage.width, h = stickerImage.height;
+      const scale = Math.max(size/w, size/h);
+      const nw = w*scale, nh = h*scale;
+      ctx.drawImage(stickerImage, (size-nw)/2, (size-nh)/2, nw, nh);
+      // forma
+      if(document.getElementById('stickerShape').value === 'round'){
+        ctx.globalCompositeOperation = 'destination-in';
+        ctx.beginPath(); ctx.arc(size/2,size/2,size/2,0,Math.PI*2); ctx.fill();
+        ctx.globalCompositeOperation = 'source-over';
+      }
+    }
+    function generateSticker(){ drawSticker(); alert('Sticker generado en el canvas. Pulsa descargar para guardar.'); }
+    function downloadSticker(){
+      const cvs = document.getElementById('stickerCanvas');
+      const data = cvs.toDataURL('image/png');
+      const a = document.createElement('a'); a.href=data; a.download='sticker.png'; a.click();
+      messages[currentContact.id].push({from:'me',type:'sticker',src:data});
+      renderMessages(); closeStickerMaker();
+    }
+    function openStickerMaker(){ document.getElementById('stickerMaker').style.display='flex'; }
+    function closeStickerMaker(){ document.getElementById('stickerMaker').style.display='none'; }
+
+    // Memoji (webcam + overlay)
+    let memoStream=null, currentOverlay='none';
+    function openMemoji(){
+      document.getElementById('memojiModal').style.display='flex';
+      const v = document.getElementById('memojiVideo');
+      navigator.mediaDevices.getUserMedia({video:true,audio:false}).then(s=>{
+        memoStream = s; v.srcObject = s;
+      }).catch(err=>{ alert('No se pudo acceder a la cámara: '+err.message) });
+    }
+    function selectOverlay(which){
+      currentOverlay = which;
+    }
+    function captureMemoji(){
+      const v = document.getElementById('memojiVideo');
+      const cvs = document.getElementById('memojiCanvas');
+      cvs.width = v.videoWidth || 640; cvs.height = v.videoHeight || 480;
+      const ctx = cvs.getContext('2d');
+      ctx.drawImage(v,0,0,cvs.width,cvs.height);
+      // dibuja overlay sencillo
+      ctx.fillStyle='rgba(255,255,255,0)';
+      if(currentOverlay==='ears' || currentOverlay==='dog' || currentOverlay==='cat'){
+        ctx.fillStyle='rgba(0,0,0,0.0)';
+        // ejemplo: dibuja orejas
+        ctx.fillRect(0,0,0,0);
+        ctx.save();
+        ctx.fillStyle = 'rgba(255,192,203,0.7)';
+        ctx.beginPath();
+        ctx.ellipse(cvs.width*0.28,cvs.height*0.18,90,60, -0.4,0,Math.PI*2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.ellipse(cvs.width*0.72,cvs.height*0.18,90,60, 0.4,0,Math.PI*2);
+        ctx.fill();
+        ctx.restore();
+      }
+      const data = cvs.toDataURL('image/png');
+      messages[currentContact.id].push({from:'me',type:'image',src:data,text:'Memoji'});
+      renderMessages();
+      closeMemoji();
+    }
+    function closeMemoji(){
+      document.getElementById('memojiModal').style.display='none';
+      if(memoStream){ memoStream.getTracks().forEach(t=>t.stop()); memoStream=null; }
+    }
+
+    // Video call (getUserMedia local demo)
+    let callStream = null;
+    function openVideoCall(){
+      document.getElementById('videoCallModal').style.display='flex';
+      const v = document.getElementById('localVideo');
+      navigator.mediaDevices.getUserMedia({video:true,audio:true}).then(s=>{
+        callStream = s; v.srcObject = s;
+      }).catch(e=>{ alert('Error cámara: '+e.message) });
+    }
+    function endCall(){
+      document.getElementById('videoCallModal').style.display='none';
+      if(callStream){ callStream.getTracks().forEach(t=>t.stop()); callStream=null; }
+    }
+
+    // Polls
+    let pollCount = 0;
+    function openPollCreator(){ document.getElementById('pollModal').style.display='flex'; }
+    function addPollOption(){
+      const container = document.getElementById('pollOptions');
+      const inp = document.createElement('input');
+      inp.className='pollOpt'; inp.placeholder='Nueva opción'; inp.style.width='100%'; inp.style.padding='8px'; inp.style.marginBottom='6px';
+      container.appendChild(inp);
+    }
+    function createPoll(){
+      const q = document.getElementById('pollQuestion').value.trim();
+      if(!q) { alert('Introduce una pregunta'); return; }
+      const opts = Array.from(document.querySelectorAll('.pollOpt')).map(i=>i.value.trim()).filter(Boolean);
+      if(opts.length<2){ alert('Al menos 2 opciones'); return; }
+      const poll = {from:'me',type:'poll',id:++pollCount,question:q,options:opts,votes: opts.map(()=>0)};
+      messages[currentContact.id].push(poll);
+      renderMessages(); closePoll();
+    }
+    function renderPollHTML(poll){
+      const id = poll.id;
+      let html = '<div>';
+      poll.options.forEach((o,idx)=>{
+        html += `<div style="display:flex;gap:8px;align-items:center;margin:6px 0">
+          <button onclick="votePoll(${id},${idx})">Votar</button>
+          <div style="flex:1">${o}</div>
+          <div class="small">${poll.votes[idx]} votos</div>
+        </div>`;
+      });
+      html += '</div>';
+      return html;
+    }
+    function votePoll(pid,oi){
+      // encontrar poll
+      const arr = messages[currentContact.id];
+      const p = arr.find(m=>m.type==='poll' && m.id===pid);
+      if(!p) return;
+      p.votes[oi] += 1;
+      renderMessages();
+    }
+    function closePoll(){ document.getElementById('pollModal').style.display='none'; }
+
+    // Mini-juegos: Ludo simple
+    let ludoPos = 0;
+    function openGames(){ document.getElementById('gamesModal').style.display='flex'; }
+    function closeGames(){ document.getElementById('gamesModal').style.display='none'; }
+    function rollLudo(){
+      const r = Math.floor(Math.random()*6)+1;
+      ludoPos += r;
+      document.getElementById('ludoPos').innerText = `Ficha: ${ludoPos} (Tirada: ${r})`;
+    }
+
+    // Chess simple: render board with draggable pieces (no rules)
+    function createChessBoard(){
+      const cb = document.getElementById('chessBoard');
+      cb.innerHTML='';
+      const board = document.createElement('div');
+      board.style.display='grid';
+      board.style.gridTemplateColumns='repeat(8,40px)';
+      board.style.gridTemplateRows='repeat(8,40px)';
+      board.style.gap='0';
+      const pieces = ['r','n','b','q','k','b','n','r'];
+      for(let y=0;y<8;y++){
+        for(let x=0;x<8;x++){
+          const i = document.createElement('div');
+          const dark = (x+y)%2===1;
+          i.style.width='40px'; i.style.height='40px';
+          i.style.background = dark ? '#769656' : '#eeeed2';
+          i.style.display='flex'; i.style.alignItems='center'; i.style.justifyContent='center';
+          i.draggable=true;
+          if(y===0) i.innerHTML = pieces[x];
+          if(y===1) i.innerHTML = 'p';
+          if(y===6) i.innerHTML = 'P';
+          if(y===7) i.innerHTML = pieces[x].toUpperCase();
+          i.addEventListener('dragstart',(ev)=>{ ev.dataTransfer.setData('text/plain', ev.target.innerText); ev.target.innerText=''; });
+          i.addEventListener('dragover',(ev)=> ev.preventDefault());
+          i.addEventListener('drop',(ev)=>{ ev.preventDefault(); const t = ev.dataTransfer.getData('text/plain'); ev.target.innerText = t; });
+          board.appendChild(i);
+        }
+      }
+      cb.appendChild(board);
+    }
+
+    // Pool (billar) simple: bolas y rebote
+    let poolBalls = [];
+    function initPool(){
+      const cvs = document.getElementById('poolCanvas');
+      const ctx = cvs.getContext('2d');
+      poolBalls = [];
+      for(let i=0;i<6;i++){
+        poolBalls.push({
+          x: 60 + i*60,
+          y: 120 + (i%2?20:-20),
+          vx: (Math.random()*2-1)*2,
+          vy: (Math.random()*2-1)*2,
+          r: 10,
+          color: '#'+(Math.random().toString(16).slice(2,8))
+        });
+      }
+      function step(){
+        ctx.clearRect(0,0,cvs.width,cvs.height);
+        // walls
+        poolBalls.forEach(b=>{
+          b.x += b.vx; b.y += b.vy;
+          if(b.x-b.r<0 || b.x+b.r>cvs.width) b.vx*=-1;
+          if(b.y-b.r<0 || b.y+b.r>cvs.height) b.vy*=-1;
+        });
+        // simple collision (not accurate)
+        for(let i=0;i<poolBalls.length;i++){
+          for(let j=i+1;j<poolBalls.length;j++){
+            const a=poolBalls[i], b=poolBalls[j];
+            const dx=a.x-b.x, dy=a.y-b.y, d=Math.hypot(dx,dy);
+            if(d < a.r+b.r){
+              // swap velocities
+              const tvx=a.vx, tvy=a.vy;
+              a.vx=b.vx; a.vy=b.vy;
+              b.vx=tvx; b.vy=tvy;
+            }
+          }
+        }
+        poolBalls.forEach(b=>{
+          ctx.beginPath(); ctx.fillStyle=b.color; ctx.arc(b.x,b.y,b.r,0,Math.PI*2); ctx.fill();
+        });
+        requestAnimationFrame(step);
+      }
+      step();
+    }
+
+    // Inicialización
+    renderContacts();
+    openChat(currentContact);
+    loadSampleStickers();
+    createChessBoard();
+    initPool();
+
+    // extras: close modales al click fuera
+    document.querySelectorAll('.modal').forEach(m=>{
+      m.addEventListener('click',(e)=>{ if(e.target===m) m.style.display='none'; });
+    });
+  </script>
+</body>
+</html>
