@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <meta charset="UTF-8" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <head>
     <title>LogoRemakeFour</title>
     <meta id="viewPortMeta" name="viewport" content="width=device-width, initial-scale=1">
@@ -87,7 +88,25 @@
 <a href="https://lrfeditor1807.github.io">
 <img src="https://lrfeditor1807.github.io/logo.png" alt="LogoRemakeFourWTL Logo" width="400">
 
-	
+<div class="tile-wrapper" data-tile-id="iphone-duo" data-analytics-section-engagement="name:hero-iphone-duo">
+					<a class="tile-link" href="/de/iphone-duo/" data-analytics-region="learn more" aria-hidden="true" tabindex="-1"></a>
+					<div class="tile-content">
+						<div class="tile-copy-wrapper">
+							<h2 class="tile-headline typography-tile-headline">iPhone Duo</h2>
+							<p class="tile-subhead typography-tile-subhead">Hallo, hallo.</p>
+							<p class="tile-callout typography-tile-callout">
+								Vorbestellen ab 16.10. um 14 Uhr<br /> Erhältlich ab 23.10.
+							</p>
+						</div>
+						<div class="tile-ctas">
+							<a class="button" href="/de/iphone-duo/" data-analytics-region="learn more" data-analytics-title="learn more - iphone duo" aria-label="Weitere Infos, iPhone Duo">Weitere Infos</a> <a class="button button-secondary" href="/de/shop/goto/buy_iphone/iphone_duo" data-analytics-region="buy" data-analytics-title="view pricing - iphone duo" aria-label="Preise ansehen, iPhone Duo">Preise ansehen</a>
+						</div>
+					</div>
+					<div class="tile-image-wrapper">
+						<picture class="static" data-anim-lazy-image="">
+							<source data-empty="" srcset="data:image/gif;base64,R0lGODlhAQABAHAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" media="(min-width:0px)" >
+							<img src="/de/homepage/images/iphone-duo/hero_iphone_duo_announce__fh4u8yzndpe2_large.jpg" alt="iPhone Duo, im Querformat in zwei Händen gehalten, aufgeklappt, das Display zeigt den Homescreen" >
+						</picture>	
 <script src='https://www.google.com/recaptcha/api.js'></script>
                         <div class="mb-3 text-center">
                         
@@ -123,7 +142,49 @@
     }
 
     
-
+Casa Papá de Abuela Eliana
+<!-- ===== Contador ===== -->
+  <div class="contador">
+    <h3>Faltan:</h3>
+    <div class="fila">
+      <div>
+        <div class="unidad" id="dias">00</div>
+        <div class="label">días</div>
+      </div>
+      <div>
+        <div class="unidad" id="horas">00</div>
+        <div class="label">horas</div>
+      </div>
+    </div>
+    <div class="fila">
+      <div>
+        <div class="unidad" id="minutos">00</div>
+        <div class="label">min.</div>
+      </div>
+      <div>
+        <div class="unidad" id="segundos">00</div>
+        <div class="label">seg.</div>
+      </div>
+    </div>
+  </div>
+<!-- ===== Script interno ===== -->
+<script>
+/* ===== Contador ===== */
+const evento = new Date("2026-09-19T09:00:00").getTime();
+function actualizarContador() {
+  const ahora = Date.now();
+  const diff = Math.max(0, evento - ahora);
+  const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const segundos = Math.floor((diff % (1000 * 60)) / 1000);
+  document.getElementById("dias").textContent = String(dias).padStart(2, '0');
+  document.getElementById("horas").textContent = String(horas).padStart(2, '0');
+  document.getElementById("minutos").textContent = String(minutos).padStart(2, '0');
+  document.getElementById("segundos").textContent = String(segundos).padStart(2, '0');
+}
+actualizarContador();
+setInterval(actualizarContador, 1000);								
 
 <small class="">10 September, 2026</small>
                     <a class="is-block" href="https://lrfeditor1807.github.io/youtube/video/dQw4w9WgXcQ">
