@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chile TV 🍭 — Danmaku HLS Player</title>
+
+  <!-- DPlayer CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/dplayer/dist/DPlayer.min.css" />
+
+  <style>
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:#111; color:#eee; display:flex; flex-direction:column; align-items:center; padding:20px; }
+    .player-wrap { width: 100%; max-width: 900px; }
+    .controls { margin:12px 0; display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+    .controls select, .controls input[type="text"], .controls input[type="color"], .controls button { padding:8px; border-radius:6px; border:1px solid #444; background:#222; color:#eee; }
+    .note { font-size:0.9rem; color:#bbb; margin-top:8px; }
+    #dplayer { border-radius:8px; overflow:hidden; background:#000; }
+  </style>
+</head>
+<body>
+
+  <h1>Chile TV 🍭 — Danmaku HLS Player</h1>
+
+  <div class="player-wrap">
+    <div class="controls">
+      <label for="channel">Canal:</label>
+      <select id="channel" style="min-width:220px">
+        <option value="http://cdn1tlinkgo.tlink.cl/tvnhd/mono.m3u8">TVN (Chile)</option>
+        <option value="http://cdn1tlinkgo.tlink.cl/megahd/mono.m3u8">Mega</option>
+        <option value="http://45.162.193.35/ZONALATINA/index.m3u8">Zona Latina</option>
+        <option value="http://cdn1tlinkgo.tlink.cl/etc/mono.m3u8">ETC Anime</option>
+        <option value="http://45.162.193.35/DOCU/index.m3u8">DOCU</option>
+        <option value="https://cdn1tlinkgo.tlink.cl/ntvhd/mono.m3u8">NTV (Kids/Teen/Adults)</option>
+      </select>
+
+      <button id="loadBtn">Cargar</button>
+
+      <label style="margin-left:8px">Danmaku:</label>
+      <input id="danmakuText" type="text" placeholder="Escribe un comentario..." style="min-width:260px" />
+      <input id="danmakuColor" type="color" value="#ffffff" title="Color" />
+      <select id="danmakuType">
+        <option value="0">Desplazamiento (derecha)</option>
+        <option value="1">Fijo arriba</option>
+        <option value="2">Fijo abajo</option>
+      </select>
+      <button id="sendDanmaku">Enviar</button>
+    </div>
+
+    <div id="dplayer"></div>
+
+    <div class="note">
+      Sugerencia: si el video no carga, revisa CORS o intenta servir esta página por HTTPS / un servidor local.
+    </div>
+  </div>
+
+  <!-- Dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script src="https://unpkg.com/dplayer/dist/DPlayer.min.js"></script>
+
+  <script>
+    // Keep a reference to the DPlayer instance
+    let dp = null;
+
+    // Create the player with a given m3u8 URL
+    function createPlayer(url) {
+      // Destroy existing player if present
+      if (dp && typeof dp.destroy === 'function') {
+        try { dp.destroy(); } catch (e) { console.warn('Error destroying player', e); }
+        dp = null;
+        document.getElementById('dplayer').innerHTML = '';
+      }
+
+      dp = new DPlayer({
+        container: document.getElementById('dplayer'),
+        live: true,
+        autoplay: false,
+        loop: false,
+        volume: 0.6,
+        danmaku: {
+          id: 'chile-tv-demo', // client-only id (no server persistence)
+          list: [
+            // optional example comments shown on start
+            { text: '¡Bienvenidos a Chile TV! 🍭', color: '#ffeb3b', type: 1, time: 0 },
+            { text: '¿Quién está viendo TVN?', color: '#00e676', type: 0, time: 1 }
+          ]
+        },
+        video: {
+          url: url,
+          type: 'customHls',
+          customType: {
+            customHls: function (video, player) {
+              // Use hls.js when supported, otherwise rely on native HLS (Safari)
+              if (Hls.isSupported()) {
+                const hls = new Hls({
+                  // debug: true
+                });
+                hls.loadSource(video.src);
+                hls.attachMedia(video);
+                hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                  // parsed and ready
+                });
+                hls.on(Hls.Events.ERROR, function(event, data) {
+                  // optional: handle errors
+                  console.warn('hls.js error', data);
+                });
+              } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                // Native HLS (Safari, iOS)
+                // video.src already set by DPlayer
+              } else {
+                alert('Tu navegador no soporta HLS nativamente y hls.js no está disponible.');
+              }
+            }
+          }
+        }
+      });
+
+      // Optional: when user clicks in the video, focus for keyboard danmaku/etc.
+      dp.on('loadedmetadata', function() {
+        // You can do more when metadata loads
+      });
+    }
+
+    // Initial player on first channel
+    const channelSelect = document.getElementById('channel');
+    createPlayer(channelSelect.value);
+
+    // Load button
+    document.getElementById('loadBtn').addEventListener('click', function() {
+      const url = channelSelect.value.trim();
+      if (!url) return alert('Selecciona un canal válido.');
+      createPlayer(url);
+    });
+
+    // Send danmaku
+    document.getElementById('sendDanmaku').addEventListener('click', function() {
+      const txt = document.getElementById('danmakuText').value.trim();
+      const color = document.getElementById('danmakuColor').value || '#ffffff';
+      const type = parseInt(document.getElementById('danmakuType').value, 10) || 0;
+      if (!txt) return;
+      if (!dp) return alert('El reproductor no está inicializado todavía.');
+
+      // ensure we have a currentTime value (for live streams may be ~0)
+      const time = (dp.video && dp.video.currentTime) ? Math.floor(dp.video.currentTime) : 0;
+
+      // draw the danmaku locally (no server persistence)
+      dp.danmaku.draw({
+        text: txt,
+        color: color,
+        type: type,
+        time: time
+      });
+
+      // clear input (optional)
+      document.getElementById('danmakuText').value = '';
+    });
+
+    // Optional: allow Enter key in the danmaku text field to send
+    document.getElementById('danmakuText').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        document.getElementById('sendDanmaku').click();
+      }
+    });
+
+    // Auto-sample comments every 20s (fun demo); you can remove this
+    const sampleMsgs = [
+      '¡Hola desde Chile! 🇨🇱',
+      '¿Alguien viendo Mega?',
+      'Buena programación 👌',
+      '¡Me encanta el danmaku!',
+      '¿Qué sale ahora?'
+    ];
+    setInterval(() => {
+      if (!dp) return;
+      const idx = Math.floor(Math.random() * sampleMsgs.length);
+      dp.danmaku.draw({
+        text: sampleMsgs[idx],
+        color: '#'+Math.floor(Math.random()*16777215).toString(16),
+        type: 0,
+        time: (dp.video && dp.video.currentTime) ? Math.floor(dp.video.currentTime) : 0
+      });
+    }, 20000);
+  </script>
+
+</body>
+</html>
