@@ -137,55 +137,6 @@
         <div style="position: fixed; top: 50%; width: 100%; text-align: center; font-size: 2em;">
           </div>
         </div>
-            }
-        });
-    }
-
-    
-Casa Papá de Abuela Eliana
-<!-- ===== Contador ===== -->
-  <div class="contador">
-    <h3>Faltan:</h3>
-    <div class="fila">
-      <div>
-        <div class="unidad" id="dias">00</div>
-        <div class="label">días</div>
-      </div>
-      <div>
-        <div class="unidad" id="horas">00</div>
-        <div class="label">horas</div>
-      </div>
-    </div>
-    <div class="fila">
-      <div>
-        <div class="unidad" id="minutos">00</div>
-        <div class="label">min.</div>
-      </div>
-      <div>
-        <div class="unidad" id="segundos">00</div>
-        <div class="label">seg.</div>
-      </div>
-    </div>
-  </div>
-<!-- ===== Script interno ===== -->
-<script>
-/* ===== Contador ===== */
-const evento = new Date("2026-09-19T09:00:00").getTime();
-function actualizarContador() {
-  const ahora = Date.now();
-  const diff = Math.max(0, evento - ahora);
-  const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-  const segundos = Math.floor((diff % (1000 * 60)) / 1000);
-  document.getElementById("dias").textContent = String(dias).padStart(2, '0');
-  document.getElementById("horas").textContent = String(horas).padStart(2, '0');
-  document.getElementById("minutos").textContent = String(minutos).padStart(2, '0');
-  document.getElementById("segundos").textContent = String(segundos).padStart(2, '0');
-}
-actualizarContador();
-setInterval(actualizarContador, 1000);								
-
 <small class="">10 September, 2026</small>
                     <a class="is-block" href="https://lrfeditor1807.github.io/youtube/video/dQw4w9WgXcQ">
                       <h4>Never Gonna Give You Up</h4>
