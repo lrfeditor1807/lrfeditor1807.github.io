@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Supermercado Chile | Tienda Online</title>
+
+  <style>
+    :root {
+      --rojo: #d71920;
+      --azul: #123c88;
+      --amarillo: #ffd600;
+      --verde: #168542;
+      --gris: #f4f6f8;
+      --texto: #202124;
+      --borde: #e1e5ea;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--texto);
+      background: var(--gris);
+    }
+
+    header {
+      color: white;
+      background: linear-gradient(135deg, var(--rojo), var(--azul));
+      padding: 24px 5%;
+    }
+
+    .barra-superior {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.7rem;
+      font-weight: bold;
+    }
+
+    .logo span {
+      color: var(--amarillo);
+    }
+
+    .slogan {
+      margin: 5px 0 0;
+      opacity: .9;
+    }
+
+    .carrito-resumen {
+      background: white;
+      color: var(--azul);
+      border: 0;
+      border-radius: 22px;
+      padding: 12px 18px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .contenedor {
+      width: min(1200px, 92%);
+      margin: 24px auto;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .banner,
+    .promocion {
+      border-radius: 18px;
+      padding: 28px;
+      color: white;
+      min-height: 190px;
+    }
+
+    .banner {
+      background: linear-gradient(130deg, #e51b23, #ff7b00);
+    }
+
+    .promocion {
+      background: linear-gradient(130deg, #168542, #075c34);
+    }
+
+    .banner h1,
+    .promocion h2 {
+      margin-top: 0;
+    }
+
+    .controles {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    input,
+    select,
+    textarea {
+      border: 1px solid var(--borde);
+      border-radius: 9px;
+      padding: 12px;
+      font: inherit;
+      background: white;
+    }
+
+    #buscador {
+      flex: 1;
+      min-width: 240px;
+    }
+
+    .categorias {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .categorias button {
+      border: 1px solid var(--azul);
+      background: white;
+      color: var(--azul);
+      border-radius: 20px;
+      padding: 9px 15px;
+      cursor: pointer;
+    }
+
+    .categorias button.activa,
+    .categorias button:hover {
+      background: var(--azul);
+      color: white;
+    }
+
+    .productos {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .producto {
+      background: white;
+      border: 1px solid var(--borde);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 3px 10px rgba(0,0,0,.04);
+    }
+
+    .producto-imagen {
+      min-height: 145px;
+      display: grid;
+      place-items: center;
+      padding: 15px;
+      background: #eef2f7;
+      font-size: 4rem;
+    }
+
+    .producto-contenido {
+      padding: 15px;
+      flex: 1;
+    }
+
+    .marca {
+      color: var(--rojo);
+      font-size: .8rem;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .producto h3 {
+      margin: 7px 0;
+      font-size: 1rem;
+    }
+
+    .codigo {
+      color: #6e7781;
+      font-size: .8rem;
+      min-height: 18px;
+    }
+
+    .precio {
+      color: var(--azul);
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin: 12px 0;
+    }
+
+    .producto button,
+    .boton-principal {
+      width: 100%;
+      border: 0;
+      border-radius: 8px;
+      padding: 11px;
+      color: white;
+      background: var(--rojo);
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .producto button:hover,
+    .boton-principal:hover {
+      background: #ad1117;
+    }
+
+    .seccion {
+      background: white;
+      border-radius: 14px;
+      padding: 22px;
+      margin-top: 24px;
+      border: 1px solid var(--borde);
+    }
+
+    .seccion h2 {
+      margin-top: 0;
+      color: var(--azul);
+    }
+
+    .opciones {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 12px;
+    }
+
+    .opcion {
+      border: 1px solid var(--borde);
+      border-radius: 10px;
+      padding: 14px;
+    }
+
+    .opcion label {
+      display: block;
+      cursor: pointer;
+    }
+
+    footer {
+      color: white;
+      background: #172238;
+      padding: 28px 5%;
+      margin-top: 40px;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.55);
+      z-index: 10;
+      padding: 20px;
+    }
+
+    .modal.visible {
+      display: grid;
+      place-items: center;
+    }
+
+    .modal-contenido {
+      background: white;
+      width: min(620px, 100%);
+      max-height: 90vh;
+      overflow: auto;
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .modal-cabecera {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cerrar {
+      border: 0;
+      background: transparent;
+      font-size: 1.6rem;
+      cursor: pointer;
+    }
+
+    .item-carrito {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1px solid var(--borde);
+      padding: 12px 0;
+    }
+
+    .cantidad {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cantidad button {
+      border: 1px solid var(--borde);
+      background: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .total {
+      text-align: right;
+      font-size: 1.35rem;
+      font-weight: bold;
+      color: var(--azul);
+      margin: 18px 0;
+    }
+
+    .campo {
+      margin: 12px 0;
+    }
+
+    .campo label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .campo input,
+    .campo select,
+    .campo textarea {
+      width: 100%;
+    }
+
+    .aviso {
+      border-left: 4px solid var(--amarillo);
+      background: #fff8d8;
+      padding: 12px;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 750px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="barra-superior">
+      <div>
+        <div class="logo">Supermercado <span>Chile</span></div>
+        <p class="slogan">Tu tienda online de productos para toda la familia</p>
+      </div>
+
+      <button class="carrito-resumen" onclick="abrirCarrito()">
+        🛒 Carrito: <span id="cantidad-carrito">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="contenedor">
+    <section class="hero">
+      <div class="banner">
+        <h1>Compra fácil, rápido y seguro</h1>
+        <p>Alimentos, tecnología, juguetes, libros y productos para mascotas.</p>
+        <strong>Retiro en Tienda: Su Despensa Santa Cruz</strong>
+      </div>
+
+      <div class="promocion">
+        <h2>Promociones</h2>
+        <p>Despacho a domicilio según tu ubicación.</p>
+        <p>Juegos especiales:</p>
+        <strong>Billar: $15.000</strong><br>
+        <strong>Ajedrez: $5.990</strong>
+      </div>
+    </section>
+
+    <div class="controles">
+      <input
+        id="buscador"
+        type="search"
+        placeholder="Buscar productos, marcas o códigos..."
+        oninput="mostrarProductos()"
+      >
+
+      <select id="orden" onchange="mostrarProductos()">
+        <option value="relevancia">Ordenar por relevancia</option>
+        <option value="menor">Precio menor</option>
+        <option value="mayor">Precio mayor</option>
+        <option value="nombre">Nombre A-Z</option>
+      </select>
+    </div>
+
+    <nav class="categorias" aria-label="Categorías">
+      <button class="activa" onclick="filtrarCategoria('Todos', this)">Todos</button>
+      <button onclick="filtrarCategoria('Alimentos', this)">Alimentos</button>
+      <button onclick="filtrarCategoria('Bebidas', this)">Bebidas</button>
+      <button onclick="filtrarCategoria('Tecnología', this)">Tecnología</button>
+      <button onclick="filtrarCategoria('Juguetes', this)">Juguetes</button>
+      <button onclick="filtrarCategoria('Libros', this)">Libros</button>
+      <button onclick="filtrarCategoria('Mascotas', this)">Mascotas</button>
+    </nav>
+
+    <section class="productos" id="productos"></section>
+
+    <section class="seccion">
+      <h2>Modalidad de entrega</h2>
+
+      <div class="opciones">
+        <div class="opcion">
+          <label>
+            <input type="radio" name="entrega" value="retiro" checked>
+            <strong>Retiro en tienda</strong><br>
+            Su Despensa Santa Cruz
+          </label>
+        </div>
+
+        <div class="opcion">
+          <label>
+            <input type="radio" name="entrega" value="domicilio">
+            <strong>Despacho a domicilio</strong><br>
+            Ingresa tu dirección al finalizar la compra.
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion">
+      <h2>Medios de pago disponibles</h2>
+
+      <div class="opciones">
+        <div class="opcion">💳 Mastercard</div>
+        <div class="opcion">💳 Visa / Visa Débito</div>
+        <div class="opcion">🟡 Mercado Pago</div>
+        <div class="opcion">💳 GoDaddy Dominio Débito</div>
+        <div class="opcion">💳 Stripe</div>
+        <div class="opcion">💳 Diners Club International</div>
+        <div class="opcion">🎟️ Cupones WOM</div>
+        <div class="opcion">🎟️ Cupones Movistar</div>
+        <div class="opcion">🎟️ Cupones Claro</div>
+        <div class="opcion">💳 Lider Bci sin cuotas</div>
+        <div class="opcion">💳 Mozilla Card</div>
+      </div>
+
+      <div class="aviso">
+        Esta demostración no procesa pagos reales. Para producción debes conectar
+        una pasarela autorizada y cumplir las normas chilenas de seguridad y
+        protección de datos.
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="modal-carrito">
+    <div class="modal-contenido">
+      <div class="modal-cabecera">
+        <h2>Tu carrito</h2>
+        <button class="cerrar" onclick="cerrarCarrito()">×</button>
+      </div>
+
+      <div id="lista-carrito"></div>
+      <div class="total">Total: $<span id="total-carrito">0</span></div>
+
+      <form onsubmit="finalizarCompra(event)">
+        <div class="campo">
+          <label for="nombre">Nombre completo</label>
+          <input id="nombre" required placeholder="Ej: María González">
+        </div>
+
+        <div class="campo">
+          <label for="correo">Correo electrónico</label>
+          <input id="correo" type="email" required placeholder="correo@ejemplo.cl">
+        </div>
+
+        <div class="campo">
+          <label for="direccion">Dirección de despacho</label>
+          <textarea id="direccion" rows="2" placeholder="Completar solo si seleccionas despacho"></textarea>
+        </div>
+
+        <div class="campo">
+          <label for="pago">Medio de pago</label>
+          <select id="pago" required>
+            <option value="">Selecciona una opción</option>
+            <option>Mastercard</option>
+            <option>Visa Débito</option>
+            <option>Mercado Pago</option>
+            <option>GoDaddy Dominio Débito</option>
+            <option>Stripe</option>
+            <option>Diners Club International</option>
+            <option>Cupones WOM</option>
+            <option>Cupones Movistar</option>
+            <option>Cupones Claro</option>
+            <option>Lider Bci sin cuotas</option>
+            <option>Mozilla Card</option>
+          </select>
+        </div>
+
+        <button class="boton-principal" type="submit">
+          Confirmar pedido de demostración
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <strong>Supermercado Chile</strong>
+    <p>Catálogo demostrativo. Las marcas y productos pertenecen a sus respectivos propietarios.</p>
+    <p>© 2026 Supermercado Chile</p>
+  </footer>
+
+  <script>
+    const productos = [
+      { id: 1, nombre: "Costa Rama", marca: "Costa", categoria: "Alimentos", precio: 1490, icono: "🍪" },
+      { id: 2, nombre: "Costa Donuts", marca: "Costa", categoria: "Alimentos", precio: 1790, icono: "🍩" },
+      { id: 3, nombre: "Mini Donuts", marca: "Costa", categoria: "Alimentos", precio: 1290, icono: "🍩" },
+      { id: 4, nombre: "Obsesión", marca: "Costa", categoria: "Alimentos", precio: 1590, icono: "🍫" },
+      { id: 5, nombre: "Gattel", marca: "Costa", categoria: "Alimentos", precio: 1390, icono: "🍫" },
+      { id: 6, nombre: "Choco Chips", marca: "Costa", categoria: "Alimentos", precio: 1690, icono: "🍪" },
+      { id: 7, nombre: "Mini Chips", marca: "Costa", categoria: "Alimentos", precio: 1290, icono: "🍪" },
+      { id: 8, nombre: "Porotos", marca: "Carozzi", categoria: "Alimentos", precio: 1890, icono: "🫘" },
+      { id: 9, nombre: "Arroz Miraflores", marca: "Miraflores", categoria: "Alimentos", codigo: "18394039", precio: 1990, icono: "🍚" },
+      { id: 10, nombre: "Coca Cola", marca: "Coca Cola", categoria: "Bebidas", precio: 2490, icono: "🥤" },
+      { id: 11, nombre: "Bebidas CCH", marca: "CCH", categoria: "Bebidas", precio: 1590, icono: "🥤" },
+      { id: 12, nombre: "Gato Master Cat sabor Atún", marca: "Master Cat", categoria: "Mascotas", precio: 3490, icono: "🐱" },
+      { id: 13, nombre: "Cat Chow Frutilla y Carne Asada con Papas Fritas", marca: "Cat Chow", categoria: "Mascotas", codigo: "1738493020", precio: 6990, icono: "🐱" },
+      { id: 14, nombre: "Dog Master Dog sabor carne", marca: "Master Dog", categoria: "Mascotas", precio: 6490, icono: "🐶" },
+      { id: 15, nombre: "Samsung Galaxy A34", marca: "Samsung", categoria: "Tecnología", precio: 189990, icono: "📱" },
+      { id: 16, nombre: "Samsung Galaxy S5", marca: "Samsung", categoria: "Tecnología", precio: 89990, icono: "📱" },
+      { id: 17, nombre: "Samsung Galaxy S3", marca: "Samsung", categoria: "Tecnología", precio: 69990, icono: "📱" },
+      { id: 18, nombre: "Samsung Galaxy S10", marca: "Samsung", categoria: "Tecnología", precio: 229990, icono: "📱" },
+      { id: 19, nombre: "Samsung Galaxy S26", marca: "Samsung", categoria: "Tecnología", precio: 899990, icono: "📱" },
+      { id: 20, nombre: "Samsung Galaxy A17", marca: "Samsung", categoria: "Tecnología", precio: 159990, icono: "📱" },
+      { id: 21, nombre: "Smart TV Samsung", marca: "Samsung", categoria: "Tecnología", codigo: "28291047", precio: 299990, icono: "📺" },
+      { id: 22, nombre: "Smart TV Samsung", marca: "Samsung", categoria: "Tecnología", codigo: "18294037", precio: 399990, icono: "📺" },
+      { id: 23, nombre: "TCL Smart TV Android TV", marca: "TCL", categoria: "Tecnología", codigo: "2839545", precio: 249990, icono: "📺" },
+      { id: 24, nombre: "TCL Smart TV Google TV", marca: "TCL", categoria: "Tecnología", codigo: "283819", precio: 329990, icono: "📺" },
+      { id: 25, nombre: "Roku Express", marca: "Roku", categoria: "Tecnología", precio: 39990, icono: "📡" },
+      { id: 26, nombre: "Roku Express 4K", marca: "Roku", categoria: "Tecnología", precio: 59990, icono: "📡" },
+      { id: 27, nombre: "Roku Express 4K Plus", marca: "Roku", categoria: "Tecnología", precio: 69990, icono: "📡" },
+      { id: 28, nombre: "Hot Wheels 5 Carreras", marca: "Hot Wheels", categoria: "Juguetes", precio: 14990, icono: "🏎️" },
+      { id: 29, nombre: "Simon", marca: "Hasbro", categoria: "Juguetes", precio: 24990, icono: "🎮" },
+      { id: 30, nombre: "Bop It!", marca: "Hasbro", categoria: "Juguetes", precio: 19990, icono: "🎮" },
+      { id: 31, nombre: "Pictionary", marca: "Mattel", categoria: "Juguetes", precio: 21990, icono: "🎨" },
+      { id: 32, nombre: "Libro ABC de Perrito", marca: "Fisher-Price", categoria: "Libros", precio: 9990, icono: "📘" },
+      { id: 33, nombre: "Librocuento Infantil en Inglés", marca: "Fisher-Price", categoria: "Libros", precio: 11990, icono: "📚" },
+      { id: 34, nombre: "HP Laptop Windows PC 1830-1530LED", marca: "HP", categoria: "Tecnología", precio: 549990, icono: "💻" },
+      { id: 35, nombre: "Juego de billar", marca: "Supermercado Chile", categoria: "Juguetes", precio: 15000, codigo: "GoDaddy Dominio Débito", icono: "🎱" },
+      { id: 36, nombre: "Juego de ajedrez", marca: "Supermercado Chile", categoria: "Juguetes", precio: 5990, codigo: "Mozilla Card", icono: "♟️" }
+    ];
+
+    let categoriaActual = "Todos";
+    let carrito = [];
+
+    const dinero = valor =>
+      new Intl.NumberFormat("es-CL").format(valor);
+
+    function mostrarProductos() {
+      const termino = document.getElementById("buscador").value.toLowerCase();
+      const orden = document.getElementById("orden").value;
+
+      let lista = productos.filter(producto => {
+        const coincideCategoria =
+          categoriaActual === "Todos" ||
+          producto.categoria === categoriaActual;
+
+        const texto = [
+          producto.nombre,
+          producto.marca,
+          producto.codigo || "",
+          producto.categoria
+        ].join(" ").toLowerCase();
+
+        return coincideCategoria && texto.includes(termino);
+      });
+
+      if (orden === "menor") lista.sort((a, b) => a.precio - b.precio);
+      if (orden === "mayor") lista.sort((a, b) => b.precio - a.precio);
+      if (orden === "nombre") lista.sort((a, b) => a.nombre.localeCompare(b.nombre));
+
+      const contenedor = document.getElementById("productos");
+
+      if (!lista.length) {
+        contenedor.innerHTML = "<p>No se encontraron productos.</p>";
+        return;
+      }
+
+      contenedor.innerHTML = lista.map(producto => `
+        <article class="producto">
+          <div class="producto-imagen">${producto.icono}</div>
+          <div class="producto-contenido">
+            <div class="marca">${producto.marca}</div>
+            <h3>${producto.nombre}</h3>
+            <div class="codigo">
+              ${producto.codigo ? "Código/medio: " + producto.codigo : "&nbsp;"}
+            </div>
+            <div class="precio">$${dinero(producto.precio)}</div>
+            <button onclick="agregarAlCarrito(${producto.id})">
+              Agregar al carrito
+            </button>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    function filtrarCategoria(categoria, boton) {
+      categoriaActual = categoria;
+      document.querySelectorAll(".categorias button")
+        .forEach(btn => btn.classList.remove("activa"));
+
+      boton.classList.add("activa");
+      mostrarProductos();
+    }
+
+    function agregarAlCarrito(id) {
+      const producto = productos.find(item => item.id === id);
+      const existente = carrito.find(item => item.id === id);
+
+      if (existente) {
+        existente.cantidad++;
+      } else {
+        carrito.push({ ...producto, cantidad: 1 });
+      }
+
+      actualizarCarrito();
+      abrirCarrito();
+    }
+
+    function cambiarCantidad(id, cambio) {
+      const item = carrito.find(producto => producto.id === id);
+      if (!item) return;
+
+      item.cantidad += cambio;
+
+      if (item.cantidad <= 0) {
+        carrito = carrito.filter(producto => producto.id !== id);
+      }
+
+      actualizarCarrito();
+    }
+
+    function actualizarCarrito() {
+      const cantidad = carrito.reduce((total, item) => total + item.cantidad, 0);
+      const total = carrito.reduce(
+        (suma, item) => suma + item.precio * item.cantidad,
+        0
+      );
+
+      document.getElementById("cantidad-carrito").textContent = cantidad;
+      document.getElementById("total-carrito").textContent = dinero(total);
+
+      const lista = document.getElementById("lista-carrito");
+
+      if (!carrito.length) {
+        lista.innerHTML = "<p>Tu carrito está vacío.</p>";
+        return;
+      }
+
+      lista.innerHTML = carrito.map(item => `
+        <div class="item-carrito">
+          <div>
+            <strong>${item.nombre}</strong><br>
+            <small>$${dinero(item.precio)} cada uno</small>
+          </div>
+          <div class="cantidad">
+            <button onclick="cambiarCantidad(${item.id}, -1)">−</button>
+            <span>${item.cantidad}</span>
+            <button onclick="cambiarCantidad(${item.id}, 1)">+</button>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function abrirCarrito() {
+      document.getElementById("modal-carrito").classList.add("visible");
+      actualizarCarrito();
+    }
+
+    function cerrarCarrito() {
+      document.getElementById("modal-carrito").classList.remove("visible");
+    }
+
+    function finalizarCompra(evento) {
+      evento.preventDefault();
+
+      if (!carrito.length) {
+        alert("Agrega al menos un producto al carrito.");
+        return;
+      }
+
+      const entrega = document.querySelector(
+        'input[name="entrega"]:checked'
+      ).value;
+
+      const destino = entrega === "retiro"
+        ? "Retiro en Tienda Su Despensa Santa Cruz"
+        : "Despacho a domicilio";
+
+      alert(
+        "Pedido de demostración creado correctamente.\\n\\n" +
+        "Modalidad: " + destino + "\\n" +
+        "Total: $" + document.getElementById("total-carrito").textContent +
+        "\\n\\nNo se realizó ningún cobro real."
+      );
+
+      carrito = [];
+      actualizarCarrito();
+      cerrarCarrito();
+      evento.target.reset();
+    }
+
+    document.getElementById("modal-carrito").addEventListener("click", evento => {
+      if (evento.target.id === "modal-carrito") {
+        cerrarCarrito();
+      }
+    });
+
+    mostrarProductos();
+    actualizarCarrito();
+  </script>
+</body>
+</html>
