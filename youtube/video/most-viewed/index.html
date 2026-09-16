@@ -46,34 +46,7 @@
       max-width: 760px;
       font-size: 1.05rem;
       line-height: 1.6;
-    }
-
-    .countdown-panel {
-      margin: 24px auto;
-      padding: 28px 20px;
-      max-width: 900px;
-      text-align: center;
-      background: #ffffff;
-      border-radius: 18px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-    }
-
-    .countdown-panel h2 {
-      margin-top: 0;
-      color: var(--red);
-    }
-
-    #countdown {
-      margin: 12px 0;
-      font-size: clamp(3rem, 10vw, 6rem);
-      font-weight: bold;
-      letter-spacing: 4px;
-    }
-
-    #countdown-message {
-      margin-bottom: 18px;
-      color: var(--muted);
-    }
+    
 
     button,
     input {
@@ -355,13 +328,13 @@
     const startButton = document.getElementById("start-button");
     const resetButton = document.getElementById("reset-button");
 
-    let remainingSeconds = 180;
+    let remainingSeconds = 3;
     let countdownTimer = null;
     let videosUnlocked = false;
 
     function formatTime(seconds) {
-      const minutes = Math.floor(seconds / 60);
-      const remainder = seconds % 60;
+      const minutes = Math.floor(seconds / 3);
+      const remainder = seconds % 3;
 
       return `${String(minutes).padStart(2, "0")}:${String(remainder).padStart(2, "0")}`;
     }
