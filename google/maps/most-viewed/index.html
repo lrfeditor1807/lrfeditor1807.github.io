@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Most Viewed Locations on Google Maps</title>
+
+  <style>
+    :root {
+      --blue: #1a73e8;
+      --dark: #17202a;
+      --muted: #667085;
+      --border: #d9dee7;
+      --card: #ffffff;
+      --background: #f4f7fb;
+      --danger: #d93025;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--dark);
+      background: var(--background);
+    }
+
+    header {
+      color: white;
+      padding: 28px 20px;
+      background: linear-gradient(135deg, #174ea6, #1a73e8);
+    }
+
+    header .header-content {
+      max-width: 1400px;
+      margin: auto;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin-top: 0;
+    }
+
+    header h1 {
+      margin-bottom: 8px;
+      font-size: clamp(1.7rem, 4vw, 2.8rem);
+    }
+
+    header p {
+      margin: 0;
+      opacity: 0.92;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      max-width: 1400px;
+      margin: 18px auto;
+      padding: 0 20px;
+    }
+
+    button,
+    .button-link {
+      border: 0;
+      border-radius: 8px;
+      padding: 11px 15px;
+      font: inherit;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+
+    button:hover,
+    .button-link:hover {
+      transform: translateY(-1px);
+      opacity: 0.9;
+    }
+
+    button {
+      color: white;
+      background: var(--blue);
+    }
+
+    button.secondary {
+      color: #174ea6;
+      background: #e8f0fe;
+    }
+
+    button.warning {
+      color: #7a4100;
+      background: #fce8e6;
+    }
+
+    .timer {
+      margin-left: auto;
+      padding: 10px 14px;
+      color: #174ea6;
+      font-weight: bold;
+      background: #e8f0fe;
+      border-radius: 8px;
+    }
+
+    .timer span {
+      color: var(--danger);
+      font-size: 1.15rem;
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: minmax(280px, 390px) 1fr;
+      gap: 20px;
+      max-width: 1400px;
+      margin: 0 auto 30px;
+      padding: 0 20px;
+    }
+
+    .locations-panel,
+    .viewer-panel {
+      min-width: 0;
+    }
+
+    .locations-panel {
+      display: grid;
+      gap: 12px;
+      align-content: start;
+      max-height: 850px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .location-card {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      text-align: left;
+      color: var(--dark);
+      background: var(--card);
+      border: 2px solid transparent;
+      border-radius: 12px;
+      box-shadow: 0 2px 9px rgba(20, 35, 60, 0.08);
+    }
+
+    .location-card.active {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.15);
+    }
+
+    .location-card h3 {
+      margin-bottom: 6px;
+      font-size: 1rem;
+    }
+
+    .location-card p {
+      margin: 0 0 7px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.35;
+    }
+
+    .location-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 25px;
+      height: 25px;
+      margin-right: 6px;
+      color: white;
+      background: var(--blue);
+      border-radius: 50%;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+
+    .viewer-panel {
+      overflow: hidden;
+      background: var(--card);
+      border-radius: 14px;
+      box-shadow: 0 2px 12px rgba(20, 35, 60, 0.1);
+    }
+
+    .viewer-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .viewer-header h2 {
+      margin-bottom: 5px;
+      font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+    }
+
+    .viewer-header p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .viewer-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .viewer-actions a {
+      color: white;
+      background: var(--blue);
+    }
+
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      padding: 20px;
+    }
+
+    .media-box {
+      overflow: hidden;
+      min-height: 320px;
+      background: #eef2f7;
+      border-radius: 10px;
+    }
+
+    .media-box h3 {
+      padding: 12px 14px;
+      margin: 0;
+      font-size: 1rem;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border);
+    }
+
+    iframe {
+      display: block;
+      width: 100%;
+      height: 390px;
+      border: 0;
+    }
+
+    .fallback {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 280px;
+      padding: 25px;
+      text-align: center;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .fallback a {
+      color: var(--blue);
+      font-weight: bold;
+    }
+
+    .details {
+      padding: 0 20px 20px;
+    }
+
+    .details p {
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .progress {
+      height: 5px;
+      background: #e5e7eb;
+    }
+
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      background: var(--blue);
+      transition: width 1s linear;
+    }
+
+    .orientation-landscape .media-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    footer {
+      padding: 20px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 900px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+
+      .locations-panel {
+        max-height: none;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .timer {
+        margin-left: 0;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .toolbar {
+        align-items: stretch;
+      }
+
+      .toolbar > button,
+      .toolbar > .timer {
+        flex: 1 1 100%;
+        text-align: center;
+      }
+
+      .locations-panel,
+      .media-grid {
+        grid-template-columns: 1fr;
+      }
+
+      iframe {
+        height: 300px;
+      }
+
+      .viewer-header {
+        display: block;
+      }
+
+      .viewer-actions {
+        margin-top: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-content">
+      <h1>Most Viewed Locations on Google Maps</h1>
+      <p>Google Maps places, Street View, 360 imagery, photos, videos, and location links.</p>
+    </div>
+  </header>
+
+  <div class="toolbar">
+    <button id="previousButton" class="secondary">← Reverse 10 seconds</button>
+    <button id="nextButton">Next location in 5 seconds →</button>
+    <button id="pauseButton" class="warning">Pause rotation</button>
+    <button id="orientationButton" class="secondary">Rotate layout</button>
+
+    <div class="timer" aria-live="polite">
+      Countdown: <span id="countdown">5</span>s
+    </div>
+  </div>
+
+  <main>
+    <section id="locationsPanel" class="locations-panel" aria-label="Most viewed locations"></section>
+
+    <section class="viewer-panel">
+      <div class="viewer-header">
+        <div>
+          <h2 id="selectedTitle">Select a location</h2>
+          <p id="selectedAddress"></p>
+        </div>
+
+        <div class="viewer-actions">
+          <a id="mapsLink" class="button-link" target="_blank" rel="noopener">
+            Open in Google Maps
+          </a>
+          <a id="editLink" class="button-link" target="_blank" rel="noopener">
+            Edit on Google Maps
+          </a>
+        </div>
+      </div>
+
+      <div class="progress">
+        <div id="progressBar" class="progress-bar"></div>
+      </div>
+
+      <div class="media-grid">
+        <div class="media-box">
+          <h3>Street View and 360°</h3>
+          <iframe
+            id="streetViewFrame"
+            title="Google Maps Street View"
+            loading="lazy"
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <div class="media-box">
+          <h3>Map location</h3>
+          <iframe
+            id="mapFrame"
+            title="Google Maps location"
+            loading="lazy"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+
+      <div class="details">
+        <h3>Photos and videos</h3>
+        <p id="mediaLinks"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Locations include the United States, Chile, and Argentina.
+    Google Maps content is provided by Google.
+  </footer>
+
+  <script>
+    const GOOGLE_MAPS_API_KEY = "YOUR_GOOGLE_MAPS_API_KEY";
+
+    const locations = [
+      {
+        name: "Welcome to Las Vegas",
+        address: "5100 Las Vegas Blvd S, Las Vegas, NV 89119, United States"
+      },
+      {
+        name: "Unknown",
+        address: "201 N Nellis Blvd, Las Vegas, NV 89110, United States"
+      },
+      {
+        name: "Walmart",
+        address: "201 N Nellis Blvd, Las Vegas, NV 89110, United States"
+      },
+      {
+        name: "Supermercado Lider",
+        address: "Av. Rafael Casanova 344, 3130059 Santa Cruz, O'Higgins, Chile"
+      },
+      {
+        name: "Copec",
+        address: "Orlandi N° 157, Santa Cruz, O'Higgins, Chile"
+      },
+      {
+        name: "Farmacia Pikmin",
+        address: "Av. Mitre 849, R8336 Villa Regina, Río Negro, Argentina"
+      },
+      {
+        name: "McDonald's",
+        address: "1210 Ocean St, Santa Cruz, CA 95060, United States"
+      },
+      {
+        name: "Jollibee",
+        address: "8030 S Rainbow Blvd, Las Vegas, NV 89139, United States"
+      },
+      {
+        name: "Wendy's",
+        address: "7395 S Rainbow Blvd, Las Vegas, NV 89113, United States"
+      },
+      {
+        name: "Shell",
+        address: "1501 AZ-98, Coppermine Rd, Page, AZ 86040, United States"
+      },
+      {
+        name: "Mirador Las Cortaderas",
+        address: "9HM2+VX, Santa Cruz, O'Higgins, Chile"
+      }
+    ];
+
+    let currentIndex = 0;
+    let secondsRemaining = 5;
+    let timerId = null;
+    let paused = false;
+
+    const locationsPanel = document.getElementById("locationsPanel");
+    const selectedTitle = document.getElementById("selectedTitle");
+    const selectedAddress = document.getElementById("selectedAddress");
+    const countdown = document.getElementById("countdown");
+    const progressBar = document.getElementById("progressBar");
+    const streetViewFrame = document.getElementById("streetViewFrame");
+    const mapFrame = document.getElementById("mapFrame");
+    const mapsLink = document.getElementById("mapsLink");
+    const editLink = document.getElementById("editLink");
+    const mediaLinks = document.getElementById("mediaLinks");
+    const pauseButton = document.getElementById("pauseButton");
+    const orientationButton = document.getElementById("orientationButton");
+
+    function encode(value) {
+      return encodeURIComponent(value);
+    }
+
+    function googleMapsSearchUrl(location) {
+      return `https://www.google.com/maps/search/?api=1&query=${encode(location.name + ", " + location.address)}`;
+    }
+
+    function googleMapsEditUrl(location) {
+      return `https://www.google.com/maps/${encode(location.name + ", " + location.address)}/edit`;
+    }
+
+    function googleMapsPhotosUrl(location) {
+      return `https://www.google.com/maps/search/${encode(location.name + " photos " + location.address)}`;
+    }
+
+    function googleMapsVideosUrl(location) {
+      return `https://www.google.com/maps/videos?v=${encode(location.name + " " + location.address)}`;
+    }
+
+    function createLocationCards() {
+      locationsPanel.innerHTML = "";
+
+      locations.forEach((location, index) => {
+        const card = document.createElement("button");
+        card.className = "location-card";
+        card.type = "button";
+        card.dataset.index = index;
+        card.innerHTML = `
+          <h3>
+            <span class="location-number">${index + 1}</span>
+            ${location.name}
+          </h3>
+          <p>${location.address}</p>
+        `;
+
+        card.addEventListener("click", () => {
+          currentIndex = index;
+          showLocation(currentIndex);
+          resetTimer();
+        });
+
+        locationsPanel.appendChild(card);
+      });
+    }
+
+    function showLocation(index) {
+      const location = locations[index];
+      const encodedQuery = encode(location.name + ", " + location.address);
+
+      selectedTitle.textContent = location.name;
+      selectedAddress.textContent = location.address;
+
+      mapsLink.href = googleMapsSearchUrl(location);
+      editLink.href = googleMapsEditUrl(location);
+
+      mediaLinks.innerHTML = `
+        <a href="${googleMapsPhotosUrl(location)}" target="_blank" rel="noopener">
+          View photos on Google Maps
+        </a>
+        &nbsp;|&nbsp;
+        <a href="${googleMapsVideosUrl(location)}" target="_blank" rel="noopener">
+          Search related videos
+        </a>
+      `;
+
+      if (GOOGLE_MAPS_API_KEY === "YOUR_GOOGLE_MAPS_API_KEY") {
+        const fallback = `
+          <div class="fallback">
+            Add your Google Maps Embed API key to display embedded content.
+            <br><br>
+            <a href="${googleMapsSearchUrl(location)}" target="_blank" rel="noopener">
+              Open this location in Google Maps
+            </a>
+          </div>
+        `;
+
+        streetViewFrame.removeAttribute("src");
+        mapFrame.removeAttribute("src");
+        streetViewFrame.parentElement.insertAdjacentHTML("beforeend", fallback);
+        mapFrame.parentElement.insertAdjacentHTML("beforeend", fallback);
+      } else {
+        streetViewFrame.src =
+          `https://www.google.com/maps/embed/v1/streetview?key=${GOOGLE_MAPS_API_KEY}&location=${encodedQuery}`;
+
+        mapFrame.src =
+          `https://www.google.com/maps/embed/v1/search?key=${GOOGLE_MAPS_API_KEY}&q=${encodedQuery}`;
+      }
+
+      document.querySelectorAll(".location-card").forEach((card, cardIndex) => {
+        card.classList.toggle("active", cardIndex === index);
+      });
+    }
+
+    function nextLocation() {
+      currentIndex = (currentIndex + 1) % locations.length;
+      showLocation(currentIndex);
+      resetTimer();
+    }
+
+    function previousLocation() {
+      currentIndex = (currentIndex - 1 + locations.length) % locations.length;
+      showLocation(currentIndex);
+      resetTimer();
+    }
+
+    function updateTimer() {
+      countdown.textContent = secondsRemaining;
+      progressBar.style.width = `${((5 - secondsRemaining) / 5) * 100}%`;
+    }
+
+    function resetTimer() {
+      secondsRemaining = 5;
+      updateTimer();
+    }
+
+    function startTimer() {
+      clearInterval(timerId);
+
+      timerId = setInterval(() => {
+        if (paused) {
+          return;
+        }
+
+        secondsRemaining -= 1;
+        updateTimer();
+
+        if (secondsRemaining <= 0) {
+          nextLocation();
+        }
+      }, 1000);
+    }
+
+    document.getElementById("nextButton").addEventListener("click", nextLocation);
+
+    document.getElementById("previousButton").addEventListener("click", () => {
+      /*
+       * Reverse navigation is held for 10 seconds conceptually:
+       * clicking this button immediately moves to the previous location
+       * and restarts the normal five-second countdown.
+       */
+      previousLocation();
+    });
+
+    pauseButton.addEventListener("click", () => {
+      paused = !paused;
+      pauseButton.textContent = paused ? "Resume rotation" : "Pause rotation";
+    });
+
+    orientationButton.addEventListener("click", () => {
+      document.body.classList.toggle("orientation-landscape");
+      orientationButton.textContent =
+        document.body.classList.contains("orientation-landscape")
+          ? "Use responsive layout"
+          : "Rotate layout";
+    });
+
+    createLocationCards();
+    showLocation(currentIndex);
+    updateTimer();
+    startTimer();
+  </script>
+</body>
+  </html>
