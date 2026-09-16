@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Most Viewed Videos on YouTube</title>
+
+  <style>
+    :root {
+      --red: #ff0033;
+      --dark: #111827;
+      --card: #ffffff;
+      --muted: #6b7280;
+      --background: #f3f4f6;
+      --border: #e5e7eb;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--dark);
+      background: var(--background);
+    }
+
+    header {
+      padding: 32px 20px;
+      color: white;
+      text-align: center;
+      background:
+        linear-gradient(rgba(0, 0, 0, 0.62), rgba(0, 0, 0, 0.62)),
+        url("https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?auto=format&fit=crop&w=1800&q=80")
+        center / cover;
+    }
+
+    header h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 5vw, 4rem);
+    }
+
+    header p {
+      margin: 0 auto;
+      max-width: 760px;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    .countdown-panel {
+      margin: 24px auto;
+      padding: 28px 20px;
+      max-width: 900px;
+      text-align: center;
+      background: #ffffff;
+      border-radius: 18px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .countdown-panel h2 {
+      margin-top: 0;
+      color: var(--red);
+    }
+
+    #countdown {
+      margin: 12px 0;
+      font-size: clamp(3rem, 10vw, 6rem);
+      font-weight: bold;
+      letter-spacing: 4px;
+    }
+
+    #countdown-message {
+      margin-bottom: 18px;
+      color: var(--muted);
+    }
+
+    button,
+    input {
+      border-radius: 8px;
+      font: inherit;
+    }
+
+    button {
+      padding: 12px 18px;
+      border: 0;
+      color: white;
+      background: var(--red);
+      cursor: pointer;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    button:hover:not(:disabled) {
+      transform: translateY(-2px);
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
+    .api-box {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin: 20px auto;
+      max-width: 900px;
+    }
+
+    .api-box input {
+      flex: 1 1 300px;
+      padding: 12px;
+      border: 1px solid var(--border);
+      background: white;
+    }
+
+    .status {
+      width: 100%;
+      margin-top: 6px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    main {
+      width: min(1400px, 94%);
+      margin: 0 auto 40px;
+    }
+
+    .section-title {
+      margin: 36px 0 18px;
+      font-size: 1.8rem;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 22px;
+    }
+
+    .video-card {
+      overflow: hidden;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    }
+
+    .video-frame {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      background: #000;
+    }
+
+    .video-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .video-info {
+      padding: 16px;
+    }
+
+    .video-info h3 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+    }
+
+    .video-info p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    footer {
+      padding: 28px 20px;
+      color: white;
+      text-align: center;
+      background: #111827;
+    }
+
+    footer a {
+      color: #93c5fd;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Most Viewed Videos on YouTube</h1>
+    <p>
+      Watch a collection of popular music, children's songs, animations, and
+      viral videos from YouTube.
+    </p>
+  </header>
+
+  <section class="countdown-panel" aria-live="polite">
+    <h2>Ready, Set, Go!</h2>
+    <div id="countdown">03:00</div>
+    <p id="countdown-message">
+      The YouTube video area will unlock when the countdown ends.
+    </p>
+    <button id="start-button">Start 3-Minute Countdown</button>
+    <button id="reset-button">Reset</button>
+  </section>
+
+  <section class="api-box">
+    <input
+      id="api-key"
+      type="password"
+      placeholder="Optional YouTube Data API key"
+      aria-label="YouTube Data API key"
+    />
+    <input
+      id="api-query"
+      type="text"
+      placeholder="Search YouTube, for example: popular music"
+      aria-label="YouTube search query"
+    />
+    <button id="search-button">Search YouTube API</button>
+    <p class="status" id="api-status"></p>
+  </section>
+
+  <main>
+    <h2 class="section-title">Featured Videos</h2>
+    <section id="video-grid" class="video-grid"></section>
+
+    <section id="api-results-section" class="hidden">
+      <h2 class="section-title">YouTube API Results</h2>
+      <section id="api-results" class="video-grid"></section>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      This page uses embedded YouTube videos and the YouTube Data API.
+    </p>
+    <p>
+      Content remains the property of its respective copyright owners.
+      This page is released under
+      <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">
+        Creative Commons Attribution 4.0
+      </a>.
+    </p>
+    <p>
+      Captions are disabled by default. Viewers can still manually enable
+      captions using the YouTube player controls.
+    </p>
+  </footer>
+
+  <script>
+    /*
+      The YouTube Data API key is optional.
+
+      To use API search:
+      1. Create a key in Google Cloud.
+      2. Enable the YouTube Data API v3.
+      3. Enter the key and search phrase above.
+
+      You can also replace or add video IDs in the featuredVideos array.
+    */
+
+    const featuredVideos = [
+      {
+        title: "Baby Shark Dance",
+        id: "XqZsoesa55w",
+        description: "Pinkfong children's song."
+      },
+      {
+        title: "Despacito ft. Daddy Yankee",
+        id: "kJQP7kiw5Fk",
+        description: "Luis Fonsi featuring Daddy Yankee."
+      },
+      {
+        title: "Wheels on the Bus - Cocomelon",
+        id: "e_04ZrNroTo",
+        description: "Popular children's nursery rhyme."
+      },
+      {
+        title: "Bath Song",
+        id: "WRVsOCh907o",
+        description: "A children's bath-time song."
+      },
+      {
+        title: "Johny Johny Yes Papa",
+        id: "F4tHL8reNCs",
+        description: "A popular children's song."
+      },
+      {
+        title: "See You Again",
+        id: "RgKAFK5djSk",
+        description: "Wiz Khalifa featuring Charlie Puth."
+      },
+      {
+        title: "Phonics Song - ChuChu TV",
+        id: "saF3-f0XWAY",
+        description: "Alphabet and phonics learning song."
+      },
+      {
+        title: "Shape of You",
+        id: "JGwWNGJdvx8",
+        description: "Ed Sheeran."
+      },
+      {
+        title: "PSY - GANGNAM STYLE",
+        id: "9bZkp7q19f0",
+        description: "PSY's internationally popular music video."
+      },
+      {
+        title: "Uptown Funk",
+        id: "OPf0YbXqDm0",
+        description: "Mark Ronson featuring Bruno Mars."
+      },
+      {
+        title: "Axel F - Crazy Frog",
+        id: "k85mRPqvMbE",
+        description: "Crazy Frog music video."
+      },
+      {
+        title: "Learning Colors",
+        id: "jYAWf8Y91hA",
+        description: "Educational colors video for children."
+      },
+      {
+        title: "Dame Tu Cosita - El Chombo",
+        id: "FzG4uDgje3M",
+        description: "El Chombo featuring Cutty Ranks."
+      },
+      {
+        title: "The Gummy Bear Song",
+        id: "astISOttCQ0",
+        description: "The Gummy Bear Song."
+      },
+      {
+        title: "Mi Gente",
+        id: "wnJ6LuUFpMo",
+        description: "J Balvin and Willy William."
+      },
+      {
+        title: "Hello - Adele",
+        id: "YQHsXMglC9A",
+        description: "Adele."
+      }
+    ];
+
+    const videoGrid = document.getElementById("video-grid");
+    const countdownElement = document.getElementById("countdown");
+    const countdownMessage = document.getElementById("countdown-message");
+    const startButton = document.getElementById("start-button");
+    const resetButton = document.getElementById("reset-button");
+
+    let remainingSeconds = 180;
+    let countdownTimer = null;
+    let videosUnlocked = false;
+
+    function formatTime(seconds) {
+      const minutes = Math.floor(seconds / 60);
+      const remainder = seconds % 60;
+
+      return `${String(minutes).padStart(2, "0")}:${String(remainder).padStart(2, "0")}`;
+    }
+
+    function updateCountdown() {
+      countdownElement.textContent = formatTime(remainingSeconds);
+    }
+
+    function createVideoCard(video, locked = false) {
+      const card = document.createElement("article");
+      card.className = "video-card";
+
+      const frame = document.createElement("div");
+      frame.className = "video-frame";
+
+      if (locked) {
+        frame.innerHTML = `
+          <div style="
+            height: 100%;
+            display: grid;
+            place-items: center;
+            padding: 20px;
+            color: white;
+            text-align: center;
+            background: linear-gradient(135deg, #111827, #374151);
+          ">
+            <strong>Video locked until the countdown ends.</strong>
+          </div>
+        `;
+      } else {
+        const iframe = document.createElement("iframe");
+
+        /*
+          cc_load_policy=0 disables captions by default.
+          YouTube may still allow viewers to turn captions on manually.
+        */
+        iframe.src =
+          `https://www.youtube.com/embed/${encodeURIComponent(video.id)}` +
+          `?rel=0&cc_load_policy=0&playsinline=1`;
+
+        iframe.title = video.title;
+        iframe.loading = "lazy";
+        iframe.allow =
+          "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+        iframe.allowFullscreen = true;
+
+        frame.appendChild(iframe);
+      }
+
+      const info = document.createElement("div");
+      info.className = "video-info";
+      info.innerHTML = `
+        <h3>${escapeHtml(video.title)}</h3>
+        <p>${escapeHtml(video.description || "YouTube video")}</p>
+      `;
+
+      card.appendChild(frame);
+      card.appendChild(info);
+
+      return card;
+    }
+
+    function renderFeaturedVideos() {
+      videoGrid.innerHTML = "";
+
+      featuredVideos.forEach((video) => {
+        videoGrid.appendChild(createVideoCard(video, !videosUnlocked));
+      });
+    }
+
+    function unlockVideos() {
+      videosUnlocked = true;
+      countdownMessage.textContent =
+        "The countdown is complete. You can now watch the YouTube videos.";
+      startButton.disabled = true;
+      renderFeaturedVideos();
+    }
+
+    startButton.addEventListener("click", () => {
+      if (countdownTimer || videosUnlocked) {
+        return;
+      }
+
+      startButton.disabled = true;
+      countdownMessage.textContent =
+        "Countdown running. Get ready to watch YouTube!";
+
+      countdownTimer = setInterval(() => {
+        remainingSeconds -= 1;
+        updateCountdown();
+
+        if (remainingSeconds <= 0) {
+          clearInterval(countdownTimer);
+          countdownTimer = null;
+          unlockVideos();
+        }
+      }, 1000);
+    });
+
+    resetButton.addEventListener("click", () => {
+      clearInterval(countdownTimer);
+      countdownTimer = null;
+      remainingSeconds = 180;
+      videosUnlocked = false;
+      startButton.disabled = false;
+      countdownMessage.textContent =
+        "The YouTube video area will unlock when the countdown ends.";
+      updateCountdown();
+      renderFeaturedVideos();
+    });
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    async function searchYouTube() {
+      const apiKey = document.getElementById("api-key").value.trim();
+      const query = document.getElementById("api-query").value.trim();
+      const status = document.getElementById("api-status");
+      const resultSection = document.getElementById("api-results-section");
+      const resultGrid = document.getElementById("api-results");
+
+      if (!apiKey || !query) {
+        status.textContent = "Enter both an API key and a search phrase.";
+        return;
+      }
+
+      status.textContent = "Searching YouTube...";
+      resultGrid.innerHTML = "";
+      resultSection.classList.remove("hidden");
+
+      const endpoint = new URL("https://www.googleapis.com/youtube/v3/search");
+
+      endpoint.search = new URLSearchParams({
+        part: "snippet",
+        q: query,
+        type: "video",
+        maxResults: "12",
+        key: apiKey
+      });
+
+      try {
+        const response = await fetch(endpoint);
+
+        if (!response.ok) {
+          throw new Error(`YouTube API returned HTTP ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        if (!data.items || data.items.length === 0) {
+          status.textContent = "No videos were found.";
+          return;
+        }
+
+        data.items.forEach((item) => {
+          const video = {
+            id: item.id.videoId,
+            title: item.snippet.title,
+            description: item.snippet.description
+          };
+
+          resultGrid.appendChild(
+            createVideoCard(video, !videosUnlocked)
+          );
+        });
+
+        status.textContent = `${data.items.length} YouTube results loaded.`;
+      } catch (error) {
+        console.error(error);
+        status.textContent =
+          "Unable to load YouTube results. Check the API key, quota, and domain restrictions.";
+      }
+    }
+
+    document
+      .getElementById("search-button")
+      .addEventListener("click", searchYouTube);
+
+    updateCountdown();
+    renderFeaturedVideos();
+  </script>
+</body>
+</html>
