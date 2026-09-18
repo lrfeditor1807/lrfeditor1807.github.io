@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <meta name="description" content="Remove Ads Free: experiencia web sin anuncios en español.">
+  <title>Remove Ads Free — Español</title>
+
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --surface: #ffffff;
+      --text: #172033;
+      --muted: #61708a;
+      --primary: #2457d6;
+      --primary-dark: #173d9d;
+      --success: #14804a;
+      --border: #dce3ef;
+      --shadow: 0 14px 40px rgba(25, 48, 91, .10);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top right, #dfeaff 0, transparent 35rem),
+        var(--bg);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 32px));
+      margin: auto;
+    }
+
+    header {
+      padding: 22px 0;
+      border-bottom: 1px solid rgba(220, 227, 239, .8);
+      background: rgba(255, 255, 255, .78);
+      backdrop-filter: blur(12px);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text);
+      font-size: 1.15rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      color: white;
+      background: var(--primary);
+      border-radius: 10px;
+      font-weight: 900;
+    }
+
+    .language {
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    main {
+      padding: 72px 0 48px;
+    }
+
+    .hero {
+      max-width: 780px;
+      margin: 0 auto 46px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 13px;
+      color: var(--success);
+      background: #e5f7ed;
+      border: 1px solid #bcebd0;
+      border-radius: 999px;
+      font-size: .9rem;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 22px 0 14px;
+      font-size: clamp(2.25rem, 7vw, 4.6rem);
+      line-height: 1.05;
+      letter-spacing: -.055em;
+    }
+
+    .hero p {
+      margin: 0 auto;
+      max-width: 650px;
+      color: var(--muted);
+      font-size: 1.12rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 20px;
+      color: white;
+      background: var(--primary);
+      border: 0;
+      border-radius: 10px;
+      font: inherit;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background .2s ease, transform .2s ease;
+    }
+
+    .button:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .button.secondary {
+      color: var(--primary);
+      background: #e7eeff;
+    }
+
+    .button.secondary:hover {
+      background: #d7e2ff;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      padding: 25px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .icon {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 15px;
+      color: var(--primary);
+      background: #e7eeff;
+      border-radius: 12px;
+      font-size: 1.25rem;
+    }
+
+    h2, h3 {
+      margin-top: 0;
+      line-height: 1.2;
+    }
+
+    h2 {
+      margin-bottom: 14px;
+      font-size: 1.5rem;
+    }
+
+    h3 {
+      margin-bottom: 8px;
+      font-size: 1.08rem;
+    }
+
+    .card p,
+    .card li {
+      color: var(--muted);
+      font-size: .96rem;
+    }
+
+    .card ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .status {
+      margin-top: 24px;
+      padding: 14px 16px;
+      color: var(--success);
+      background: #eaf8f0;
+      border: 1px solid #c7ecd6;
+      border-radius: 10px;
+      font-size: .94rem;
+    }
+
+    .browser-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .browser {
+      padding: 6px 10px;
+      color: #3e4d66;
+      background: #f0f3f8;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      font-size: .88rem;
+    }
+
+    .license {
+      margin-top: 18px;
+    }
+
+    .license a {
+      color: var(--primary);
+      font-weight: 650;
+    }
+
+    footer {
+      padding: 28px 0 38px;
+      color: var(--muted);
+      text-align: center;
+      font-size: .9rem;
+    }
+
+    footer a {
+      color: var(--primary);
+    }
+
+    @media (max-width: 800px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      main {
+        padding-top: 48px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="container" aria-label="Navegación principal">
+      <a class="brand" href="/" aria-label="Remove Ads Free, inicio">
+        <span class="brand-mark" aria-hidden="true">✓</span>
+        Remove Ads Free
+      </a>
+      <span class="language">Español</span>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero" aria-labelledby="titulo-principal">
+      <span class="badge">● Experiencia sin anuncios</span>
+
+      <h1 id="titulo-principal">Navega sin distracciones</h1>
+
+      <p>
+        Una interfaz limpia y gratuita para páginas propias que no necesitan
+        mostrar anuncios. Rápida, sencilla y respetuosa con la privacidad.
+      </p>
+
+      <div class="actions">
+        <button class="button" id="hideAds" type="button">
+          Activar modo sin anuncios
+        </button>
+
+        <a class="button secondary" href="#informacion">
+          Más información
+        </a>
+      </div>
+
+      <div class="status" id="status" role="status" aria-live="polite">
+        El modo sin anuncios está listo para activarse.
+      </div>
+    </section>
+
+    <section class="grid" id="informacion" aria-label="Información del servicio">
+      <article class="card">
+        <div class="icon" aria-hidden="true">🚫</div>
+        <h2>Sin anuncios</h2>
+        <p>
+          Esta plantilla elimina visualmente los espacios publicitarios
+          definidos por el propietario de la página mediante la clase
+          <code>.ad-container</code>.
+        </p>
+        <p>
+          No bloquea ni modifica anuncios de sitios web de terceros.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="icon" aria-hidden="true">⚡</div>
+        <h2>Ligera y rápida</h2>
+        <p>
+          No requiere bibliotecas externas, seguimiento ni scripts de
+          publicidad. Puede funcionar como una página estática.
+        </p>
+        <p>
+          Compatible con HTTPS y dispositivos móviles.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="icon" aria-hidden="true">🌐</div>
+        <h2>Navegadores compatibles</h2>
+        <p>Diseñada para los siguientes navegadores modernos:</p>
+
+        <div class="browser-list" aria-label="Lista de navegadores">
+          <span class="browser">Chrome</span>
+          <span class="browser">Firefox</span>
+          <span class="browser">Safari</span>
+          <span class="browser">Opera</span>
+          <span class="browser">Edge</span>
+          <span class="browser">BrowseHere TCL</span>
+          <span class="browser">Samsung Browser</span>
+        </div>
+      </article>
+    </section>
+
+    <section class="card license" aria-labelledby="licencia">
+      <h2 id="licencia">Licencias y atribuciones</h2>
+
+      <p>
+        El código original de esta plantilla se publica bajo
+        <strong>dominio público</strong>, sin restricciones de uso en la medida
+        permitida por la legislación aplicable.
+      </p>
+
+      <p>
+        Wikipedia y Wikimedia Commons no tienen una licencia única para todo
+        su contenido. Cada texto, imagen o archivo puede tener requisitos
+        diferentes.
+      </p>
+
+      <ul>
+        <li>
+          Consulta la licencia específica de cada contenido antes de
+          reutilizarlo.
+        </li>
+        <li>
+          Para contenido de Wikipedia, revisa la
+          <a href="https://es.wikipedia.org/wiki/Wikipedia:Derechos_de_autor"
+             target="_blank" rel="noopener noreferrer">
+            información sobre derechos de autor
+          </a>.
+        </li>
+        <li>
+          Para imágenes y archivos, revisa la licencia indicada en
+          <a href="https://commons.wikimedia.org/wiki/Main_Page"
+             target="_blank" rel="noopener noreferrer">
+            Wikimedia Commons
+          </a>.
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="container">
+    <p>
+      © <span id="year"></span> Remove Ads Free —
+      Código disponible bajo dominio público.
+    </p>
+    <p>
+      Esta página no está afiliada a Google, AdSense, Wikipedia ni Wikimedia
+      Commons.
+    </p>
+  </footer>
+
+  <script>
+    "use strict";
+
+    const adSelectors = [
+      ".ad-container",
+      ".adsense-container",
+      "[data-ad-slot]"
+    ];
+
+    const hideAdsButton = document.getElementById("hideAds");
+    const status = document.getElementById("status");
+    const year = document.getElementById("year");
+
+    year.textContent = new Date().getFullYear();
+
+    function setAdsVisibility(hidden) {
+      document.querySelectorAll(adSelectors.join(",")).forEach((element) => {
+        element.hidden = hidden;
+      });
+
+      localStorage.setItem("removeAdsFree", hidden ? "true" : "false");
+
+      status.textContent = hidden
+        ? "Modo sin anuncios activado para esta página."
+        : "Modo sin anuncios desactivado.";
+
+      hideAdsButton.textContent = hidden
+        ? "Mostrar espacios publicitarios"
+        : "Activar modo sin anuncios";
+    }
+
+    const savedPreference = localStorage.getItem("removeAdsFree") === "true";
+    setAdsVisibility(savedPreference);
+
+    hideAdsButton.addEventListener("click", () => {
+      const isHidden = localStorage.getItem("removeAdsFree") === "true";
+      setAdsVisibility(!isHidden);
+    });
+
+    /*
+      Ejemplo de espacio publicitario controlado por el propietario del sitio:
+
+      <div class="ad-container" data-ad-slot="example">
+        Espacio publicitario
+      </div>
+
+      Este script solo oculta elementos de la página que tú controlas.
+      No intercepta solicitudes de red ni altera sitios de terceros.
+    */
+  </script>
+</body>
+  </html>
