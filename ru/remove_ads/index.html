@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Страница без рекламы с поддержкой AdBlock и современных браузеров.">
+  <title>Без рекламы — Русский</title>
+
+  <style>
+    :root {
+      --background: #f4f7fb;
+      --surface: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --primary: #2563eb;
+      --success: #15803d;
+      --border: #dbe3ee;
+      --shadow: 0 12px 35px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+      color: var(--text);
+      background: var(--background);
+      line-height: 1.6;
+    }
+
+    header {
+      padding: 24px 20px;
+      color: #ffffff;
+      background: linear-gradient(135deg, #1d4ed8, #2563eb);
+    }
+
+    nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .language {
+      padding: 6px 10px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 999px;
+      font-size: 0.9rem;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 56px 20px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      margin: 0 0 16px;
+      font-size: clamp(2.2rem, 5vw, 4.5rem);
+      line-height: 1.05;
+    }
+
+    .hero p {
+      max-width: 680px;
+      margin: 0 0 24px;
+      color: var(--muted);
+      font-size: 1.15rem;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 12px 18px;
+      border-radius: 10px;
+      color: #ffffff;
+      background: var(--primary);
+      text-decoration: none;
+      font-weight: 700;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      opacity: 0.92;
+    }
+
+    .status-card,
+    .card {
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .status-card {
+      text-align: center;
+    }
+
+    .status-icon {
+      display: grid;
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 16px;
+      place-items: center;
+      border-radius: 50%;
+      color: #ffffff;
+      background: var(--success);
+      font-size: 2rem;
+    }
+
+    .status-card h2 {
+      margin: 0 0 8px;
+    }
+
+    .status-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .section {
+      margin-top: 56px;
+    }
+
+    .section h2 {
+      margin: 0 0 20px;
+      font-size: 2rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: var(--primary);
+    }
+
+    .card p,
+    .card li {
+      color: var(--muted);
+    }
+
+    .browser-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .browser-list li {
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: #f8fafc;
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+
+    .notice {
+      padding: 18px;
+      border-left: 4px solid var(--primary);
+      border-radius: 8px;
+      background: #eff6ff;
+      color: #1e3a8a;
+    }
+
+    footer {
+      margin-top: 48px;
+      padding: 28px 20px;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: var(--primary);
+    }
+
+    @media (max-width: 780px) {
+      .hero,
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      main {
+        padding-top: 36px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav aria-label="Основная навигация">
+      <div class="logo">Remove Ads Free</div>
+      <div class="language">Русский</div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="page-title">
+      <div>
+        <h1 id="page-title">Свободно от рекламы</h1>
+        <p>
+          Чистая и удобная веб-страница без рекламных блоков.
+          Поддерживается использование блокировщиков рекламы, включая AdBlock.
+        </p>
+
+        <a class="button" href="#about">
+          Узнать больше
+        </a>
+      </div>
+
+      <aside class="status-card" aria-label="Статус рекламы">
+        <div class="status-icon" aria-hidden="true">✓</div>
+        <h2>Реклама отключена</h2>
+        <p>
+          На этой странице нет рекламных блоков Google AdSense
+          и сторонних рекламных скриптов.
+        </p>
+      </aside>
+    </section>
+
+    <section class="section" id="about" aria-labelledby="about-title">
+      <h2 id="about-title">О странице</h2>
+
+      <div class="cards">
+        <article class="card">
+          <h3>Без Google AdSense</h3>
+          <p>
+            Страница не подключает рекламные блоки Google AdSense.
+            Благодаря этому содержимое загружается проще и быстрее.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Совместимость с AdBlock</h3>
+          <p>
+            Страница не препятствует работе AdBlock и других расширений,
+            блокирующих рекламу и отслеживание.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Приватность</h3>
+          <p>
+            В этом шаблоне отсутствуют рекламные трекеры, рекламные cookies
+            и внешние рекламные скрипты.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="browsers-title">
+      <h2 id="browsers-title">Поддерживаемые браузеры</h2>
+
+      <ul class="browser-list">
+        <li>Google Chrome</li>
+        <li>Mozilla Firefox</li>
+        <li>Safari</li>
+        <li>Opera</li>
+        <li>Microsoft Edge</li>
+        <li>BrowseHere TCL</li>
+        <li>Samsung Internet</li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="license-title">
+      <h2 id="license-title">Авторские права и лицензии</h2>
+
+      <div class="notice">
+        <strong>Информация о лицензировании:</strong>
+        данный шаблон может распространяться как произведение,
+        переданное в общественное достояние, либо по лицензии
+        Creative Commons с обязательным указанием авторства.
+      </div>
+
+      <div class="cards" style="margin-top: 20px;">
+        <article class="card">
+          <h3>Общественное достояние</h3>
+          <p>
+            Материалы, находящиеся в общественном достоянии, можно свободно
+            использовать, изменять и распространять с учетом применимого
+            законодательства.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Creative Commons</h3>
+          <p>
+            Материалы Creative Commons необходимо использовать в соответствии
+            с условиями конкретной лицензии, включая указание автора,
+            источника и ссылки на лицензию, если это требуется.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Источники Wikimedia</h3>
+          <p>
+            Материалы Wikipedia и Wikimedia Commons могут иметь разные
+            лицензии. Перед использованием всегда проверяйте страницу файла
+            или статьи и ее условия лицензирования.
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      © 2026 Remove Ads Free. Контент без рекламных объявлений.
+    </p>
+    <p>
+      Источники:
+      <a href="https://www.wikipedia.org/" target="_blank" rel="noopener">
+        Wikipedia
+      </a>
+      ·
+      <a href="https://commons.wikimedia.org/" target="_blank" rel="noopener">
+        Wikimedia Commons
+      </a>
+    </p>
+  </footer>
+</body>
+</html>
