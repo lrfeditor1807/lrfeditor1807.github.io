@@ -22,24 +22,30 @@
     <link rel="stylesheet" href="app/css/bootstrap-grid.css">
     <link rel="stylesheet" href="app/css/grid-styles.css">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-W3Z15Z4TYR"></script>
-<script>
+<div id="dplayer"></div>
+<script>	
+<script src="https://unpkg.com/dplayer/dist/DPlayer.min.js"></script>	
+  <script>
   const dp = new DPlayer({
     container: document.getElementById('dplayer'),
-    screenshot: true,
+    screenshot: false,
+    lang: 'en, es, pt, de, ru',
+	chromecast: 'false',
+    airplay: 'false',
+    logo: 'https://lrfeditor1807.github.io/logo.png',
+	volume: 0.7,
+    mutex: true,  
     video: {
         url: 'https://lrfeditor1807.github.io/km_Template 20260917_720p_60f_20260917_182813.mp4',
         pic: 'https://lrfeditor1707.github.io/kmc_20260917_182716.png',
         thumbnails: 'https://lrfeditor1807.github.io/kmc_20260917_182716.png',
-    },
-    subtitle: {
-        url: 'webvtt.vtt',
-    },
+	},
     danmaku: {
         id: 'demo',
         api: 'https://api.prprpr.me/dplayer/',
     },
-});const dp = new DPlayer({
-    container: document.getElementById('dplayer'),
+});
+	container: document.getElementById('dplayer'),
     autoplay: false,
     theme: '#FADFA3',
     loop: false,
@@ -58,13 +64,6 @@
         thumbnails: 'https://lrfeditor1807.github.io/kmc_20260917_182716.png',
         type: 'auto',
         quality: '720p60fps, 720p, 480p, 360p, 320p, 240p, 144p',
-    },
-    subtitle: {
-        url: 'dplayer.vtt',
-        type: 'webvtt',
-        fontSize: '25px',
-        bottom: '10%',
-        color: '#b7daff',
     },
     danmaku: {
         id: '9E2E3368B56CDBB4',
