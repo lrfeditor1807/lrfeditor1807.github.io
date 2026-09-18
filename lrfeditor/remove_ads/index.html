@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Remove Ads Free — a clean, privacy-friendly, ad-free web experience.">
+  <meta name="theme-color" content="#111827">
+  <title>Remove Ads Free</title>
+
+  <style>
+    :root {
+      --background: #f3f4f6;
+      --surface: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --border: #e5e7eb;
+      --success: #15803d;
+      --shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background: var(--background);
+      font-family:
+        Inter, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Roboto, Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    header {
+      background: #111827;
+      color: white;
+      padding: 1rem 0;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      color: white;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      font-size: 1.15rem;
+    }
+
+    nav {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #dbeafe;
+      font-size: 0.95rem;
+    }
+
+    .hero {
+      padding: 6rem 0 5rem;
+      background:
+        radial-gradient(circle at top right, #dbeafe 0, transparent 38%),
+        linear-gradient(135deg, #eff6ff, #f8fafc);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      background: #dcfce7;
+      color: var(--success);
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.2;
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 720px;
+      margin-bottom: 1rem;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      letter-spacing: -0.06em;
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 4vw, 2.7rem);
+    }
+
+    .hero p {
+      max-width: 650px;
+      color: #374151;
+      font-size: 1.15rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 2rem;
+    }
+
+    .button {
+      display: inline-block;
+      border: 0;
+      border-radius: 0.7rem;
+      padding: 0.8rem 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      text-decoration: none;
+    }
+
+    .button-primary {
+      color: white;
+      background: var(--primary);
+    }
+
+    .button-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .button-secondary {
+      color: var(--text);
+      background: white;
+      border: 1px solid var(--border);
+    }
+
+    .hero-card {
+      padding: 2rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 1.2rem;
+      box-shadow: var(--shadow);
+    }
+
+    .shield {
+      display: grid;
+      width: 5rem;
+      height: 5rem;
+      margin-bottom: 1.2rem;
+      place-items: center;
+      border-radius: 1.2rem;
+      background: #dbeafe;
+      font-size: 2.2rem;
+    }
+
+    section {
+      padding: 5rem 0;
+    }
+
+    .section-heading {
+      max-width: 700px;
+      margin-bottom: 2rem;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .card {
+      padding: 1.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      box-shadow: var(--shadow);
+    }
+
+    .card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      color: var(--muted);
+    }
+
+    .browser-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      padding: 0;
+      list-style: none;
+    }
+
+    .browser-list li {
+      padding: 0.65rem 0.9rem;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: white;
+      font-weight: 600;
+    }
+
+    .notice {
+      padding: 1rem 1.2rem;
+      border-left: 4px solid var(--primary);
+      border-radius: 0.5rem;
+      background: #eff6ff;
+      color: #1e3a8a;
+    }
+
+    .license-box {
+      padding: 1.5rem;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+    }
+
+    footer {
+      padding: 2rem 0;
+      background: #111827;
+      color: #d1d5db;
+      font-size: 0.92rem;
+    }
+
+    footer a {
+      color: #bfdbfe;
+    }
+
+    .copyright {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      border-top: 1px solid #374151;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+    }
+
+    @media (max-width: 800px) {
+      .hero-grid,
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 4rem 0;
+      }
+
+      nav {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top">Remove Ads Free</a>
+
+      <nav aria-label="Main navigation">
+        <a href="#features">Features</a>
+        <a href="#browsers">Browsers</a>
+        <a href="#license">License</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">100% ad-free experience</span>
+
+          <h1>Browse without distractions.</h1>
+
+          <p>
+            Remove Ads Free is a clean, lightweight webpage with no Google
+            AdSense, no advertising banners, and no tracking scripts.
+            It is designed to work well with AdBlock and other content blockers.
+          </p>
+
+          <div class="actions">
+            <a class="button button-primary" href="#features">
+              Explore features
+            </a>
+            <a class="button button-secondary" href="#license">
+              View copyright
+            </a>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Ad-free status">
+          <div class="shield" aria-hidden="true">🛡️</div>
+          <h2>Ads removed</h2>
+          <p>
+            This page does not include Google AdSense, third-party ads,
+            tracking pixels, pop-ups, or auto-playing advertisements.
+          </p>
+          <strong id="browserStatus">Browser support detected.</strong>
+        </aside>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="container">
+        <div class="section-heading">
+          <h2>A simpler web experience</h2>
+          <p>
+            Built with plain HTML, CSS, and JavaScript for fast loading,
+            accessibility, and easy hosting.
+          </p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🚫</div>
+            <h3>No advertisements</h3>
+            <p>
+              No AdSense code, banner advertising, sponsored widgets,
+              or intrusive pop-ups are included.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">⚡</div>
+            <h3>Lightweight</h3>
+            <p>
+              Uses local HTML, CSS, and JavaScript without external
+              frameworks or advertising networks.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🔒</div>
+            <h3>Privacy-friendly</h3>
+            <p>
+              This template does not collect personal information or
+              send analytics data to third parties.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="browsers">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Supported browsers</h2>
+          <p>
+            This page uses standard web technologies and is intended for
+            the following browsers:
+          </p>
+        </div>
+
+        <ul class="browser-list">
+          <li>Chrome</li>
+          <li>Firefox</li>
+          <li>Safari</li>
+          <li>Opera</li>
+          <li>Microsoft Edge</li>
+          <li>BrowseHere TCL</li>
+          <li>Samsung Browser</li>
+        </ul>
+
+        <p class="notice">
+          AdBlock compatibility: because this page does not load advertising
+          scripts or ad network resources, it should remain functional when
+          an ad blocker is enabled.
+        </p>
+      </div>
+    </section>
+
+    <section id="license">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Copyright and attribution</h2>
+          <p>
+            This template is intended to be reusable and easy to adapt.
+          </p>
+        </div>
+
+        <div class="license-box">
+          <h3>Public Domain and Creative Commons</h3>
+
+          <p>
+            The original HTML, CSS, and JavaScript in this template may be
+            dedicated to the public domain where legally permitted.
+          </p>
+
+          <p>
+            If you add text, images, icons, or other material from Wikipedia
+            or Wikimedia Commons, provide attribution according to the
+            specific license of that material.
+          </p>
+
+          <ul>
+            <li>
+              Wikipedia:
+              <a href="https://www.wikipedia.org/" target="_blank" rel="noopener">
+                Wikipedia.org
+              </a>
+            </li>
+            <li>
+              Wikimedia Commons:
+              <a href="https://commons.wikimedia.org/" target="_blank" rel="noopener">
+                Commons.wikimedia.org
+              </a>
+            </li>
+            <li>
+              Creative Commons licenses:
+              <a href="https://creativecommons.org/licenses/" target="_blank" rel="noopener">
+                CreativeCommons.org
+              </a>
+            </li>
+          </ul>
+
+          <p>
+            Example attribution format:
+            <br>
+            <strong>
+              “Title” by Author, Wikimedia Commons, licensed under
+              CC BY-SA 4.0, Source URL.
+            </strong>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <strong>Remove Ads Free</strong>
+      <p>
+        A simple, ad-free webpage with no Google AdSense or advertising
+        network integration.
+      </p>
+
+      <div class="copyright">
+        <span>© 2026 Remove Ads Free — Public Domain dedication where permitted.</span>
+        <span>
+          Content from Wikipedia or Wikimedia Commons requires proper attribution.
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /*
+      This browser check is informational only.
+      It does not block visitors or change the page behavior.
+    */
+    const userAgent = navigator.userAgent;
+    const browserStatus = document.getElementById("browserStatus");
+
+    let browserName = "your browser";
+
+    if (/Edg/i.test(userAgent)) {
+      browserName = "Microsoft Edge";
+    } else if (/OPR|Opera/i.test(userAgent)) {
+      browserName = "Opera";
+    } else if (/SamsungBrowser/i.test(userAgent)) {
+      browserName = "Samsung Browser";
+    } else if (/CriOS|Chrome/i.test(userAgent)) {
+      browserName = "Chrome";
+    } else if (/Firefox|FxiOS/i.test(userAgent)) {
+      browserName = "Firefox";
+    } else if (/Safari/i.test(userAgent) && !/Chrome|CriOS/i.test(userAgent)) {
+      browserName = "Safari";
+    } else if (/BrowseHere/i.test(userAgent)) {
+      browserName = "BrowseHere TCL";
+    }
+
+    browserStatus.textContent = `Ready for ${browserName}.`;
+  </script>
+</body>
+  </html>
