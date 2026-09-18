@@ -60,15 +60,8 @@ body:
 
 - type: checkboxes
     attributes:
-      label: Yes, made for kids
-      description: 'Please made for kids 0 to 12 years'
-      options:
-        - label: I have read [Made for kids](https://kids.youtube.com)
-          required: true
-
       label: No, made for kids
-      description: 'Please made for kids 12 to 150 years'
+      description: 'Please made for kids 0 to 12 years'
       options:
         - label: I have read [Made for kids, teen or adults](https://www.youtube.com)
           required: true
-          
