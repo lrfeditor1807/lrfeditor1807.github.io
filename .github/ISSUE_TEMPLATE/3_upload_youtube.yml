@@ -1,0 +1,74 @@
+name: '🎦 Upload to YouTube'
+description: Request for upload to YouTube on Phone and Computer: 'Upload to YouTube: '
+labels: ['youtube']
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please fill out the form as much as you can so we could efficiently process your request.
+
+  - type: input
+  - type: select file video/mp4
+    id: select_file
+    attributes:
+      label: Select file video MP4
+      description: MP4 Video File where the upload the phone Android or iOS and computer Windows or MacOS is located. A list of all supported by YouTube [No editor for help YouTube Video Editor](https://www.youtube.com/editor) 
+      placeholder: 'Open on YouTube Studio https://studio.youtube.com'
+    validations:
+      required: true
+
+  - type: input
+    name: Enter name 8/55050 characters
+    description: Enter description 8/10000 characters
+    attributes:
+      label: lrfeditor(optional)
+      description: Code of the subdivision in which the city is located. A list of all supported subdivisions and their codes can be found in [data/subdivisions.csv](https://github.com/iptv-org/database/blob/master/data/subdivisions.csv)
+      placeholder: 'CN-SD'
+
+  - type: input
+    id: video_name
+    attributes:
+      label: Name
+      description: Official name of the video
+      placeholder: 'Never Gonna Give You Up - Rick Astley'
+    validations:
+      required: true
+
+  - type: input
+    id: video_description
+    attributes:
+      label: Description
+      description: Official description of the video
+      placeholder: 'Rick Astley music video'
+    validations:
+      required: true
+
+  - type: input
+    id: wikid
+    attributes:
+      label: Wikidata ID
+      description: ID of this city in [Wikidata](https://www.wikidata.org/wiki/Wikidata:Main_Page)
+      placeholder: 'Q210493'
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Notes (optional)
+      description: 'Any additional information that will help us process your request more quickly'
+
+- type: checkboxes
+    attributes:
+      label: Yes, made for kids
+      description: 'Please made for kids 0 to 12 years'
+      options:
+        - label: I have read [Made for kids](https://kids.youtube.com)
+          required: true
+
+      label: No, made for kids
+      description: 'Please made for kids 12 to 150 years'
+      options:
+        - label: I have read [Made for kids, teen or adults](https://www.youtube.com)
+          required: true
+[Upload to YouTube](https://www.youtube.com/accounts/google)
