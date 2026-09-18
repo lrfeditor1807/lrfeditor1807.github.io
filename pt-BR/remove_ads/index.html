@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Remove Ads Free — Página sem anúncios</title>
+
+  <meta
+    name="description"
+    content="Página gratuita em português, sem anúncios, sem AdSense e sem rastreamento publicitário."
+  >
+
+  <style>
+    :root {
+      color-scheme: light dark;
+      --background: #f4f7fb;
+      --surface: #ffffff;
+      --text: #172033;
+      --muted: #5e6b7e;
+      --primary: #185adb;
+      --primary-dark: #0f3e9d;
+      --border: #dbe3ef;
+      --success: #137333;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --background: #101522;
+        --surface: #182131;
+        --text: #f1f5fb;
+        --muted: #b8c3d4;
+        --primary: #79a9ff;
+        --primary-dark: #a9c7ff;
+        --border: #324158;
+        --success: #7bd88f;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--background);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+
+    header {
+      padding: 64px 20px 48px;
+      text-align: center;
+      background: linear-gradient(135deg, #185adb, #6e8cff);
+      color: #ffffff;
+    }
+
+    header h1 {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 5vw, 3.6rem);
+    }
+
+    header p {
+      max-width: 720px;
+      margin: 0 auto;
+      font-size: 1.15rem;
+      opacity: 0.95;
+    }
+
+    main {
+      width: min(100% - 32px, 960px);
+      margin: 32px auto;
+    }
+
+    .card {
+      margin-bottom: 24px;
+      padding: 28px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgb(0 0 0 / 8%);
+    }
+
+    h2 {
+      margin-top: 0;
+      color: var(--primary);
+    }
+
+    ul {
+      padding-left: 22px;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgb(19 115 51 / 12%);
+      color: var(--success);
+      font-weight: bold;
+    }
+
+    .browser-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .browser-list li {
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      text-align: center;
+      background: rgb(128 128 128 / 6%);
+    }
+
+    .user-agent {
+      overflow-wrap: anywhere;
+      padding: 14px;
+      border-radius: 10px;
+      background: rgb(128 128 128 / 12%);
+      color: var(--muted);
+      font-family: monospace;
+      font-size: 0.9rem;
+    }
+
+    a {
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    a:hover {
+      color: var(--primary-dark);
+    }
+
+    footer {
+      padding: 28px 20px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    footer p {
+      max-width: 850px;
+      margin: 8px auto;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Remove Ads Free</h1>
+    <p>
+      Uma experiência simples, gratuita e em português,
+      sem anúncios, sem Google AdSense e sem rastreamento publicitário.
+    </p>
+  </header>
+
+  <main>
+    <section class="card" aria-labelledby="status-title">
+      <h2 id="status-title">Status da página</h2>
+
+      <p>
+        <span class="status">✓ Página sem anúncios</span>
+      </p>
+
+      <p>
+        Esta página não contém banners publicitários, pop-ups,
+        anúncios do Google AdSense ou scripts de publicidade.
+      </p>
+    </section>
+
+    <section class="card" aria-labelledby="features-title">
+      <h2 id="features-title">Recursos</h2>
+
+      <ul>
+        <li>Interface em português.</li>
+        <li>Sem anúncios e sem publicidade incorporada.</li>
+        <li>Sem Google AdSense.</li>
+        <li>Sem rastreamento publicitário.</li>
+        <li>Sem cookies de publicidade.</li>
+        <li>Compatível com navegadores modernos.</li>
+        <li>Design responsivo para computador, tablet e celular.</li>
+      </ul>
+    </section>
+
+    <section class="card" aria-labelledby="browsers-title">
+      <h2 id="browsers-title">Navegadores compatíveis</h2>
+
+      <ul class="browser-list">
+        <li>Google Chrome</li>
+        <li>Mozilla Firefox</li>
+        <li>Apple Safari</li>
+        <li>Opera</li>
+        <li>Microsoft Edge</li>
+        <li>BrowseHere TCL</li>
+        <li>Samsung Internet</li>
+      </ul>
+
+      <h3>Navegador detectado</h3>
+      <p id="browser-result">Detectando navegador...</p>
+
+      <h3>User-Agent</h3>
+      <p id="user-agent" class="user-agent"></p>
+    </section>
+
+    <section class="card" aria-labelledby="copyright-title">
+      <h2 id="copyright-title">Direitos autorais e licenças</h2>
+
+      <p>
+        Este projeto pode ser disponibilizado em
+        <strong>Domínio Público</strong> ou sob uma licença Creative Commons,
+        conforme indicado pelo autor ou distribuidor.
+      </p>
+
+      <p>
+        A Wikipédia e o Wikimedia Commons possuem conteúdos com diferentes
+        licenças. Sempre consulte a página de descrição de cada conteúdo para
+        verificar a licença, a atribuição e as condições de reutilização.
+      </p>
+
+      <ul>
+        <li>
+          <a href="https://pt.wikipedia.org/" target="_blank" rel="noopener">
+            Wikipédia em português
+          </a>
+        </li>
+        <li>
+          <a href="https://commons.wikimedia.org/" target="_blank" rel="noopener">
+            Wikimedia Commons
+          </a>
+        </li>
+        <li>
+          <a href="https://creativecommons.org/licenses/" target="_blank" rel="noopener">
+            Licenças Creative Commons
+          </a>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      © 2026 Remove Ads Free. Conteúdo sem publicidade.
+    </p>
+
+    <p>
+      “Wikipédia” e “Wikimedia Commons” são marcas e projetos da Wikimedia
+      Foundation. Este site não é afiliado à Wikimedia Foundation.
+    </p>
+  </footer>
+
+  <script>
+    (() => {
+      const userAgent = navigator.userAgent;
+      const userAgentElement = document.getElementById("user-agent");
+      const browserResultElement = document.getElementById("browser-result");
+
+      userAgentElement.textContent = userAgent;
+
+      let browser = "Navegador não identificado";
+
+      if (/Edg\//i.test(userAgent)) {
+        browser = "Microsoft Edge";
+      } else if (/OPR\//i.test(userAgent) || /Opera/i.test(userAgent)) {
+        browser = "Opera";
+      } else if (/SamsungBrowser/i.test(userAgent)) {
+        browser = "Samsung Internet";
+      } else if (/CriOS/i.test(userAgent)) {
+        browser = "Google Chrome para iOS";
+      } else if (/FxiOS/i.test(userAgent)) {
+        browser = "Mozilla Firefox para iOS";
+      } else if (/Chrome|Chromium/i.test(userAgent)) {
+        browser = "Google Chrome ou navegador baseado em Chromium";
+      } else if (/Firefox/i.test(userAgent)) {
+        browser = "Mozilla Firefox";
+      } else if (/Safari/i.test(userAgent) && !/Chrome/i.test(userAgent)) {
+        browser = "Apple Safari";
+      } else if (/BrowseHere/i.test(userAgent)) {
+        browser = "BrowseHere TCL";
+      }
+
+      browserResultElement.textContent = browser;
+    })();
+  </script>
+</body>
+</html>
