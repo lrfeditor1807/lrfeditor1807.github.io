@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kostenlose, werbefreie HTML-Seite ohne AdSense-Werbung.">
+  <title>Remove Ads Free – Werbefrei</title>
+
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f4f7fb;
+      --surface: #ffffff;
+      --text: #18212f;
+      --muted: #5d6b7d;
+      --primary: #165dff;
+      --border: #dbe3ee;
+      --success: #117a45;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #101722;
+        --surface: #182230;
+        --text: #f4f7fb;
+        --muted: #b5c0cf;
+        --primary: #78a2ff;
+        --border: #344256;
+        --success: #73d49d;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    header {
+      padding: 4rem 1.5rem 3rem;
+      text-align: center;
+      background: linear-gradient(135deg, #165dff, #7939d8);
+      color: white;
+    }
+
+    header h1 {
+      margin: 0 0 0.75rem;
+      font-size: clamp(2rem, 6vw, 4rem);
+    }
+
+    header p {
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 1.15rem;
+      opacity: 0.95;
+    }
+
+    main {
+      width: min(100% - 2rem, 1000px);
+      margin: 2rem auto;
+    }
+
+    section {
+      margin-bottom: 1.5rem;
+      padding: 1.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgb(0 0 0 / 0.06);
+    }
+
+    h2 {
+      margin-top: 0;
+      color: var(--primary);
+    }
+
+    .status {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+      padding: 1rem;
+      border-radius: 12px;
+      color: var(--success);
+      background: color-mix(in srgb, var(--success) 12%, transparent);
+      font-weight: 700;
+    }
+
+    .check {
+      display: inline-grid;
+      width: 1.5rem;
+      height: 1.5rem;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--success);
+      color: white;
+    }
+
+    .browser-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.75rem;
+      padding: 0;
+      list-style: none;
+    }
+
+    .browser-list li {
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+
+    .browser-list li::before {
+      content: "✓";
+      margin-right: 0.5rem;
+      color: var(--success);
+      font-weight: 700;
+    }
+
+    code {
+      padding: 0.15rem 0.35rem;
+      border-radius: 4px;
+      background: var(--bg);
+    }
+
+    a {
+      color: var(--primary);
+    }
+
+    footer {
+      padding: 2rem 1rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Remove Ads Free</h1>
+    <p>Eine kostenlose und werbefreie Webseite ohne Google-AdSense-Anzeigen.</p>
+  </header>
+
+  <main>
+    <section aria-labelledby="status-title">
+      <h2 id="status-title">Werbestatus</h2>
+
+      <div class="status" role="status">
+        <span class="check" aria-hidden="true">✓</span>
+        <span>Diese Seite enthält keine Werbung, kein AdSense und keine Tracking-Anzeigen.</span>
+      </div>
+
+      <p>
+        Diese HTML-Seite lädt keine Werbenetzwerke und verwendet keine
+        Google-AdSense-Skripte. Ein AdBlocker ist für diese Seite daher nicht
+        erforderlich.
+      </p>
+
+      <p class="small">
+        Hinweis: Eine Webseite kann Werbung auf anderen Webseiten nicht
+        automatisch entfernen. Dafür ist ein Browser-Add-on wie ein
+        vertrauenswürdiger Inhaltsblocker erforderlich.
+      </p>
+    </section>
+
+    <section aria-labelledby="browser-title">
+      <h2 id="browser-title">Unterstützte Browser</h2>
+
+      <p>
+        Die Seite ist für moderne Versionen der folgenden Browser optimiert:
+      </p>
+
+      <ul class="browser-list">
+        <li>Google Chrome</li>
+        <li>Mozilla Firefox</li>
+        <li>Apple Safari</li>
+        <li>Opera</li>
+        <li>Microsoft Edge</li>
+        <li>BrowseHere für TCL</li>
+        <li>Samsung Internet Browser</li>
+      </ul>
+
+      <p>
+        Erkannter Browser:
+        <strong id="browser-name">wird ermittelt …</strong>
+      </p>
+    </section>
+
+    <section aria-labelledby="license-title">
+      <h2 id="license-title">Urheberrecht und Lizenzen</h2>
+
+      <p>
+        Diese Vorlage kann als gemeinfrei beziehungsweise ohne
+        Urheberrechtsanspruch veröffentlicht werden. Bitte prüfe bei eigenen
+        Änderungen die geltenden Gesetze in deinem Land.
+      </p>
+
+      <p>
+        Inhalte aus der
+        <a href="https://de.wikipedia.org/" target="_blank" rel="noopener">
+          deutschsprachigen Wikipedia
+        </a>
+        und aus den
+        <a href="https://commons.wikimedia.org/" target="_blank" rel="noopener">
+          Wikimedia Commons
+        </a>
+        stehen je nach Datei und Artikel unter unterschiedlichen freien
+        Lizenzen, zum Beispiel Creative Commons.
+      </p>
+
+      <p>
+        Bei der Verwendung solcher Inhalte müssen die jeweilige Lizenz,
+        Namensnennung, Quellenangabe und gegebenenfalls der Lizenztext
+        beachtet werden. Nicht jedes Bild oder jeder Text ist automatisch
+        gemeinfrei.
+      </p>
+    </section>
+
+    <section aria-labelledby="privacy-title">
+      <h2 id="privacy-title">Datenschutzfreundlich</h2>
+
+      <ul>
+        <li>Keine AdSense-Anzeigen</li>
+        <li>Keine Werbe-Tracker</li>
+        <li>Keine externen Werbeskripte</li>
+        <li>Keine Cookies durch diese Vorlage</li>
+        <li>Keine personenbezogenen Daten werden gespeichert</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      © <span id="year"></span> Remove Ads Free –
+      werbefreie HTML-Vorlage
+    </p>
+    <p>
+      Erstellt als freie Vorlage. Inhalte von Wikipedia und Wikimedia Commons
+      unterliegen den jeweils angegebenen Lizenzen.
+    </p>
+  </footer>
+
+  <script>
+    (() => {
+      const userAgent = navigator.userAgent;
+      let browser = "Unbekannter Browser";
+
+      if (/BrowseHere/i.test(userAgent)) {
+        browser = "BrowseHere";
+      } else if (/SamsungBrowser/i.test(userAgent)) {
+        browser = "Samsung Internet Browser";
+      } else if (/Edg\//i.test(userAgent)) {
+        browser = "Microsoft Edge";
+      } else if (/OPR\/|Opera/i.test(userAgent)) {
+        browser = "Opera";
+      } else if (/Firefox\//i.test(userAgent)) {
+        browser = "Mozilla Firefox";
+      } else if (/Chrome\//i.test(userAgent) && !/Edg\//i.test(userAgent)) {
+        browser = "Google Chrome";
+      } else if (/Safari\//i.test(userAgent) && !/Chrome\//i.test(userAgent)) {
+        browser = "Apple Safari";
+      }
+
+      document.getElementById("browser-name").textContent = browser;
+      document.getElementById("year").textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>
