@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YouTube Video Downloader</title>
+
+  <style>
+    :root {
+      --primary: #ff0000;
+      --primary-dark: #cc0000;
+      --background: #f4f6f8;
+      --card: #ffffff;
+      --text: #202124;
+      --muted: #6b7280;
+      --border: #d9dee5;
+      --success: #16803c;
+      --error: #b42318;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: linear-gradient(135deg, #fff, var(--background));
+      min-height: 100vh;
+    }
+
+    .container {
+      width: min(960px, calc(100% - 32px));
+      margin: 40px auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .youtube-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 62px;
+      height: 44px;
+      color: #fff;
+      background: var(--primary);
+      border-radius: 12px;
+      font-size: 25px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(28px, 5vw, 42px);
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 26px;
+      box-shadow: 0 12px 35px rgba(20, 30, 40, 0.08);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    input,
+    select {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 13px 14px;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      background: #fff;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.12);
+    }
+
+    .input-help {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 6px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .source-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+    }
+
+    .source-tab {
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--text);
+      padding: 9px 13px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .source-tab.active {
+      color: #fff;
+      border-color: var(--primary);
+      background: var(--primary);
+    }
+
+    .options {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      border-top: 1px solid var(--border);
+      padding-top: 22px;
+      margin-top: 22px;
+    }
+
+    .button-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 10px;
+      padding: 13px 18px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s, opacity 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      opacity: 0.65;
+      transform: none;
+    }
+
+    .primary-button {
+      flex: 1;
+      color: #fff;
+      background: var(--primary);
+    }
+
+    .primary-button:hover {
+      background: var(--primary-dark);
+    }
+
+    .secondary-button {
+      color: var(--text);
+      background: #eef1f4;
+    }
+
+    .status {
+      display: none;
+      margin-top: 22px;
+      padding: 14px 16px;
+      border-radius: 10px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .status.show {
+      display: block;
+    }
+
+    .status.loading {
+      color: #754c00;
+      background: #fff5d6;
+    }
+
+    .status.success {
+      color: var(--success);
+      background: #e7f7ed;
+    }
+
+    .status.error {
+      color: var(--error);
+      background: #fdecea;
+    }
+
+    .result-link {
+      display: inline-block;
+      margin-top: 8px;
+      color: inherit;
+      font-weight: 700;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 650px) {
+      .container {
+        margin: 22px auto;
+      }
+
+      .card {
+        padding: 18px;
+      }
+
+      .grid,
+      .options {
+        grid-template-columns: 1fr;
+      }
+
+      .button-row {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <header class="header">
+      <div class="youtube-icon">▶</div>
+      <h1>YouTube Video Downloader</h1>
+      <p class="subtitle">
+        Download videos and audio in your preferred quality and format.
+      </p>
+    </header>
+
+    <section class="card">
+      <form id="downloadForm">
+        <div class="form-group">
+          <label>Download source</label>
+
+          <div class="source-tabs">
+            <button
+              type="button"
+              class="source-tab active"
+              data-source="video-url"
+            >
+              Video URL
+            </button>
+
+            <button
+              type="button"
+              class="source-tab"
+              data-source="video-id"
+            >
+              Video ID
+            </button>
+
+            <button
+              type="button"
+              class="source-tab"
+              data-source="playlist-url"
+            >
+              Playlist URL
+            </button>
+
+            <button
+              type="button"
+              class="source-tab"
+              data-source="search"
+            >
+              Search YouTube
+            </button>
+          </div>
+
+          <input type="hidden" id="sourceType" value="video-url" />
+
+          <input
+            id="sourceValue"
+            name="sourceValue"
+            type="text"
+            placeholder="https://www.youtube.com/watch?v=..."
+            required
+          />
+
+          <div id="sourceHelp" class="input-help">
+            Enter a YouTube video URL.
+          </div>
+        </div>
+
+        <div class="options">
+          <div class="form-group">
+            <label for="resolution">Resolution</label>
+
+            <select id="resolution" name="resolution">
+              <option value="2160">2160p</option>
+              <option value="1440">1440p</option>
+              <option value="1440-60">1440p 60fps</option>
+              <option value="1080-60">1080p 60fps</option>
+              <option value="1080" selected>1080p</option>
+              <option value="720">720p</option>
+              <option value="480">480p</option>
+              <option value="360">360p</option>
+              <option value="240">240p</option>
+              <option value="144">144p</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="format">File format</label>
+
+            <select id="format" name="format">
+              <option value="mp4" selected>MP4</option>
+              <option value="mp3">MP3</option>
+              <option value="ogg">OGG</option>
+              <option value="webm">WEBM</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="button-row">
+          <button type="submit" class="primary-button" id="downloadButton">
+            Download
+          </button>
+
+          <button type="reset" class="secondary-button" id="resetButton">
+            Reset
+          </button>
+        </div>
+      </form>
+
+      <div id="status" class="status"></div>
+    </section>
+
+    <footer class="footer">
+      Download only content that you have permission to download and use.
+      <br />
+      The server endpoint must perform the actual media processing.
+    </footer>
+  </main>
+
+  <script>
+    const form = document.getElementById("downloadForm");
+    const sourceType = document.getElementById("sourceType");
+    const sourceValue = document.getElementById("sourceValue");
+    const sourceHelp = document.getElementById("sourceHelp");
+    const format = document.getElementById("format");
+    const statusBox = document.getElementById("status");
+    const downloadButton = document.getElementById("downloadButton");
+    const sourceTabs = document.querySelectorAll(".source-tab");
+
+    const sourceConfig = {
+      "video-url": {
+        placeholder: "https://www.youtube.com/watch?v=...",
+        help: "Enter a YouTube video URL."
+      },
+      "video-id": {
+        placeholder: "Example: dQw4w9WgXcQ",
+        help: "Enter the 11-character YouTube video ID."
+      },
+      "playlist-url": {
+        placeholder: "https://www.youtube.com/playlist?list=...",
+        help: "Enter a YouTube playlist URL."
+      },
+      "search": {
+        placeholder: "Example: relaxing music 2025",
+        help: "Enter words to search for on YouTube."
+      }
+    };
+
+    function setStatus(message, type = "loading", link = null) {
+      statusBox.className = `status show ${type}`;
+      statusBox.innerHTML = message;
+
+      if (link) {
+        const anchor = document.createElement("a");
+        anchor.className = "result-link";
+        anchor.href = link;
+        anchor.target = "_blank";
+        anchor.rel = "noopener";
+        anchor.textContent = "Download file";
+        statusBox.appendChild(document.createElement("br"));
+        statusBox.appendChild(anchor);
+      }
+    }
+
+    function clearStatus() {
+      statusBox.className = "status";
+      statusBox.textContent = "";
+    }
+
+    function updateSource(source) {
+      sourceType.value = source;
+      sourceValue.placeholder = sourceConfig[source].placeholder;
+      sourceHelp.textContent = sourceConfig[source].help;
+
+      sourceTabs.forEach((tab) => {
+        tab.classList.toggle("active", tab.dataset.source === source);
+      });
+    }
+
+    sourceTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        updateSource(tab.dataset.source);
+        sourceValue.focus();
+      });
+    });
+
+    format.addEventListener("change", () => {
+      const audioFormat = ["mp3", "ogg"].includes(format.value);
+
+      if (audioFormat) {
+        sourceHelp.textContent += " Audio-only output will be generated.";
+      }
+    });
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      clearStatus();
+
+      const value = sourceValue.value.trim();
+
+      if (!value) {
+        setStatus("Please enter a video ID, URL, playlist URL, or search text.", "error");
+        return;
+      }
+
+      const payload = {
+        sourceType: sourceType.value,
+        source: value,
+        resolution: document.getElementById("resolution").value,
+        format: format.value
+      };
+
+      downloadButton.disabled = true;
+      downloadButton.textContent = "Processing...";
+      setStatus("Preparing your download. Please wait...", "loading");
+
+      try {
+        const response = await fetch("/api/download", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+          throw new Error(result.message || "The download request failed.");
+        }
+
+        if (result.downloadUrl) {
+          setStatus(
+            result.message || "Your file is ready.",
+            "success",
+            result.downloadUrl
+          );
+        } else {
+          setStatus(
+            result.message || "The download request was accepted.",
+            "success"
+          );
+        }
+      } catch (error) {
+        setStatus(
+          error.message ||
+            "Unable to connect to the download server. Please try again.",
+          "error"
+        );
+      } finally {
+        downloadButton.disabled = false;
+        downloadButton.textContent = "Download";
+      }
+    });
+
+    document.getElementById("resetButton").addEventListener("click", () => {
+      updateSource("video-url");
+      clearStatus();
+    });
+  </script>
+</body>
+                </html>
