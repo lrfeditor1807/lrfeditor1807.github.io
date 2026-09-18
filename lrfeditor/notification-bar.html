@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4b1d79">
+  <title>Mmmmm Eats Cooking — LogoRemakeFourWTL</title>
+  <link rel="stylesheet" href="notification-bar.css">
+</head>
+<body>
+  <main class="demo-shell">
+    <p class="eyebrow">LogoRemakeFourWTL · Notification Bar Image</p>
+    <h1>Notification preview</h1>
+    <p class="intro">A responsive notification bar for the Mmmmm Eats Cooking logo experience.</p>
+  </main>
+
+  <section class="notification" id="notification" aria-label="Mmmmm Eats Cooking notification">
+    <div class="notification__content">
+      <button class="notification__close" id="dismissButton" type="button" aria-label="Dismiss notification">×</button>
+      <img class="notification__image" id="notificationImage" src="img/Mmmmm%20Eats%20Cooking.png" alt="Mmmmm Eats Cooking logo">
+      <div class="notification__icon" aria-hidden="true">
+        <svg viewBox="0 0 64 64" role="img">
+          <defs>
+            <linearGradient id="firefoxOrange" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#ffb000" />
+              <stop offset=".52" stop-color="#ff5a00" />
+              <stop offset="1" stop-color="#c52268" />
+            </linearGradient>
+            <linearGradient id="firefoxBlue" x1="0" y1="1" x2="1" y2="0">
+              <stop offset="0" stop-color="#1d3f9e" />
+              <stop offset="1" stop-color="#55c7f2" />
+            </linearGradient>
+          </defs>
+          <circle cx="32" cy="32" r="30" fill="url(#firefoxBlue)" />
+          <path d="M51 22c-5-8-14-12-22-10 4 2 7 5 8 9-8-3-17 1-20 9-3 9 3 19 13 21 11 3 22-4 24-15 1-5 0-10-3-14Z" fill="#f8f5ff" opacity=".94" />
+          <path d="M26 13c-7 2-12 7-14 14 3-3 7-4 11-3-5 6-3 15 3 19 6 4 14 3 19-2-7 1-13-2-16-7-3-6 0-14 7-17-3-3-6-4-10-4Z" fill="url(#firefoxOrange)" />
+        </svg>
+      </div>
+      <div class="notification__copy">
+        <span class="notification__brand" id="notificationBrand">LogoRemakeFourWTL</span>
+        <h2 id="notificationTitle">Mmmmm Eats Cooking</h2>
+        <p id="notificationDescription">Your cook chef's are menu full 🍴🍴🍴🍴🍴It's time to make kitchen!</p>
+      </div>
+      <button class="notification__action" id="actionButton" type="button">Open kitchen</button>
+    </div>
+  </section>
+
+  <script src="notification-bar.js" defer></script>
+</body>
+</html>
