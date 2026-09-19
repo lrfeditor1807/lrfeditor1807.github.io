@@ -1,8 +1,8 @@
 name: ➕ Create Players or Friends and Teams on Toon Blast
 description: Create a Toon Blast player, friend, or team
- title: 'Create Toon Blast: '
-labels: ['toon-blast']
-
+title: "Create Toon Blast: "
+labels:
+  - toon-blast
 body:
   - type: markdown
     attributes:
@@ -24,21 +24,21 @@ body:
     attributes:
       label: Player name
       description: Write the player name.
-      placeholder: 'Player name'
+      placeholder: Player name
 
   - type: input
     id: player_id
     attributes:
       label: Player ID
       description: Write the player ID.
-      placeholder: 'Player ID'
+      placeholder: Player ID
 
   - type: input
     id: player_country
     attributes:
       label: Player country
       description: Write the player country.
-      placeholder: 'Country'
+      placeholder: Country
 
   - type: dropdown
     id: player_photo_and_frame
@@ -68,21 +68,22 @@ body:
     attributes:
       label: Team name
       description: Write the team name.
-      placeholder: 'Team name'
+      placeholder: Team name
 
   - type: input
     id: team_id
     attributes:
       label: Team ID
       description: Write the team ID.
-      placeholder: 'Team ID'
+      placeholder: Team ID
 
-  - type: input
+  - type: dropdown
     id: team_photo
     attributes:
       label: Team photo
-      description: Select or write the team photo. The default photo is solitaire.
-      placeholder: 'solitaire'
+      description: Select the team photo.
+      options:
+        - solitaire
 
   - type: dropdown
     id: team_country
@@ -100,7 +101,7 @@ body:
     attributes:
       label: Team fit
       description: Write the team fit.
-      placeholder: 'Fit'
+      placeholder: Fit
 
   - type: dropdown
     id: team_color
@@ -118,42 +119,42 @@ body:
     attributes:
       label: Team level
       options:
-        - '0'
-        - '50'
-        - '100'
-        - '150'
-        - '200'
-        - '250'
-        - '300'
-        - '350'
-        - '400'
-        - '450'
-        - '500'
-        - '550'
-        - '600'
-        - '650'
-        - '700'
-        - '750'
-        - '800'
-        - '850'
-        - '900'
-        - '950'
-        - '1000'
+        - "0"
+        - "50"
+        - "100"
+        - "150"
+        - "200"
+        - "250"
+        - "300"
+        - "350"
+        - "400"
+        - "450"
+        - "500"
+        - "550"
+        - "600"
+        - "650"
+        - "700"
+        - "750"
+        - "800"
+        - "850"
+        - "900"
+        - "950"
+        - "1000"
 
   - type: textarea
     id: team_description
     attributes:
       label: Team description
       description: Write the team description.
-      placeholder: 'Team description'
+      placeholder: Team description
 
   - type: input
     id: buy_coins
     attributes:
       label: Buy coins
       description: Enter the number of coins to buy.
-      placeholder: '0'
-      value: '0'
+      placeholder: "0"
+      value: "0"
 
   - type: checkboxes
     id: agreement
