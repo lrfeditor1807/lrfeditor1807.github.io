@@ -1,0 +1,1277 @@
+19-09-2026 | 15:25:18.502 | Info | Profiling:PerformanceProfiler: Starting at location LEVEL
+19-09-2026 | 15:25:18.502 | Info | EgoSystem:Destroying ego system.
+19-09-2026 | 15:25:18.502 | Info | EgoSystem:Destroying ego modules.
+19-09-2026 | 15:25:18.502 | Info | EgoSystem:New ego system created!
+19-09-2026 | 15:25:18.512 | Info | InventoryHelper:InventoryChanged started async inventory update process.
+19-09-2026 | 15:25:18.512 | Info | InventoryHelper:Forced balance is 97865 for LAST_LEVEL_TRY_COUNT
+19-09-2026 | 15:25:18.512 | Info | LevelBuilder:Random initialized with Seed: 1276490469
+19-09-2026 | 15:25:18.513 | Info | AdHelper:CheckAndFillAdQueue > MediationSDKState: INITIALIZED, RewardedAdController?: True
+19-09-2026 | 15:25:18.513 | Info | AdHelper:RewardedAdController starting to load rewarded ads.
+19-09-2026 | 15:25:18.513 | Info | AdHelper:DynamicBidFloorHelper is eligible.
+19-09-2026 | 15:25:18.513 | Info | AdHelper:RewardedAdController filling rewarded ad queue.
+19-09-2026 | 15:25:18.513 | Info | AdHelper:RewardedAdController ready ad, increasing loaded ad count. Count: 1 Group: GROUP_ARewardedAdController ready ad, increasing loaded ad count. Count: 2 Group: GROUP_BRewardedAdController ready ad, increasing loaded ad count. Count: 3 Group: GROUP_C
+19-09-2026 | 15:25:18.513 | Info | AdHelper:DynamicBidFloorHelper is eligible.
+19-09-2026 | 15:25:18.513 | Info | AdHelper:RewardedAdController checking if all ads are ready.
+19-09-2026 | 15:25:18.513 | Info | AdHelper:RewardedAdController checked: GROUP_A is ready.
+19-09-2026 | 15:25:18.513 | Info | AdHelper:RewardedAdController checked: GROUP_B is ready.
+19-09-2026 | 15:25:18.513 | Info | AdHelper:RewardedAdController checked: GROUP_C is ready.
+19-09-2026 | 15:25:18.513 | Info | AdHelper:RewardedAdController checked: Ready state is True
+19-09-2026 | 15:25:18.513 | Info | AdHelper:RewardedAdController checked: All ads are ready, resetting retry count.
+19-09-2026 | 15:25:18.513 | Info | LifeStatusHelper:Using from unlimited life. Exp:Online: 09/19/2026 15:35:41, Offline: 09/19/2026 15:35:43 with Diff: 1.133024 Dur:62519-09-2026 | 15:25:18.515 | Info | CubeRatioAdjust:WelcomeBackCubeRatioAdjustHelper cannot activate! IsEligible: false
+19-09-2026 | 15:25:18.515 | Info | CubeRatioAdjust:TargetedRewardCubeRatioAdjustHelper cannot activate! IsEligible: false
+19-09-2026 | 15:25:18.515 | Info | CubeRatioAdjust:LevelConfigCubeRatioAdjustHelper cannot activate! IsEligible: false
+19-09-2026 | 15:25:18.515 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:25:18.516 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:25:18.516 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:25:18.516 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:25:18.516 | Info | CubeRatioAdjust:DynamicDifficultySuperDiscoLostCubeRatioAdjustHelper cannot activate! IsEligible: false
+19-09-2026 | 15:25:18.516 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:25:18.516 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:25:18.516 | Info | CubeRatioAdjust:DynamicDifficultySuperDiscoInactiveCubeRatioAdjustHelper cannot activate! IsEligible: false
+19-09-2026 | 15:25:18.516 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:25:18.516 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:25:18.516 | Info | CubeRatioAdjust:DynamicDifficultySuperDiscoActiveCubeRatioAdjustHelper cannot activate! IsEligible: false
+19-09-2026 | 15:25:18.516 | Info | CubeRatioAdjust:SuperDiscoWinAssistCubeRatioAdjustHelper cannot activate! IsEligible: false
+19-09-2026 | 15:25:18.516 | Info | SuperDiscoSkill:SuperDiscoSkillHelper TryPrepare called.
+19-09-2026 | 15:25:18.516 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:25:18.516 | Info | CubeRatioAdjust:SuperDiscoLoseAssistCubeRatioAdjustHelper cannot activate! IsEligible: false
+19-09-2026 | 15:25:18.516 | Info | GameplayKillHelper:SetState called from LevelStarted
+19-09-2026 | 15:25:18.517 | Info | InventoryHelper:Sync is in progress.
+19-09-2026 | 15:25:18.517 | Info | InventoryHelper:Forced balance is 2572834 for UserType
+19-09-2026 | 15:25:18.517 | Info | Events:ShieldClashConsecutiveWin ConsecutiveWinCount:0
+19-09-2026 | 15:25:18.519 | Debug | AnalyticsV2:Event queued: FPS
+19-09-2026 | 15:25:18.521 | Info | UserProfile:Level started, stopping periodic sync
+19-09-2026 | 15:25:18.521 | Info | UserStatistics:Backing up current streak. Current: 0
+19-09-2026 | 15:25:18.521 | Info | UserProfile:Setting sync required flag
+19-09-2026 | 15:25:18.524 | Info | UserProfile:Updated 3 entities in DB
+19-09-2026 | 15:25:18.525 | Debug | AnalyticsV2:Inserted 1 rows to SQLite
+19-09-2026 | 15:25:18.525 | Info | UserStatistics:DB updated with 16 stats. Overwritten: False
+19-09-2026 | 15:25:18.525 | Info | UserStatistics:Level started stats backed up
+19-09-2026 | 15:25:18.526 | Debug | AnalyticsV2:Received batch with 1 items, sending requests...
+19-09-2026 | 15:25:18.527 | Info | DeepQuest:DeepQuest state is persist as {"EventId":8273,"Claimed":false,"ClaimedStageIds":[1],"ClaimedStepIds":[101,102,103,104,105,203,205],"ExtraData":{"SelectedTasks":[{"StageId":1,"StepId":101,"Type":2,"Goal":15},{"StageId":1,"StepId":102,"Type":11,"Goal":2},{"StageId":1,"StepId":103,"Type":4,"Goal":500},{"StageId":1,"StepId":104,"Type":6,"Goal":1},{"StageId":1,"StepId":105,"Type":3,"Goal":2},{"StageId":2,"StepId":201,"Type":2,"Goal":100},{"StageId":2,"StepId":202,"Type":11,"Goal":4},{"StageId":2,"StepId":203,"Type":4,"Goal":1000},{"StageId":2,"StepId":204,"Type":6,"Goal":2},{"StageId":2,"StepId":205,"Type":3,"Goal":10},{"StageId":3,"StepId":301,"Type":2,"Goal":200},{"StageId":3,"StepId":302,"Type":11,"Goal":8},{"StageId":3,"StepId":303,"Type":4,"Goal":1750},{"StageId":3,"StepId":304,"Type":6,"Goal":3},{"StageId":3,"StepId":305,"Type":3,"Goal":20},{"StageId":4,"StepId":401,"Type":2,"Goal":450},{"StageId":4,"StepId":402,"Type":11,"Goal":20},{"StageId":4,"StepId":403,"Type":4,"Goal":5500},{"StageId":4,"StepId":404,"Type":6,"Goal":4},{"StageId":4,"StepId":405,"Type":3,"Goal":35}],"TaskProgressions":[{"Type":2,"Progress":19,"LastShownProgress":19},{"Type":11,"Progress":3,"LastShownProgress":3},{"Type":4,"Progress":1448,"LastShownProgress":1448},{"Type":6,"Progress":1,"LastShownProgress":1},{"Type":3,"Progress":12,"LastShownProgress":12}],"ProgressBannerShownStepIds":[105,103,104,102,203,101,205],"ProgressBannerAddedStepIds":[105,103,104,102,203,101,205],"DialogShownForUnclaimedStageIds":[1],"InvalidFirstDeepQuest":false,"IsFirstDeepQuest":false,"ExtendedTimeEventDialogClosed":false,"StageNotificationShownDataList":[]},"StatusRequired":false,"UpdateRequired":true,"NeedsAdjustmentSync":false} for key DeepQuest215987837.
+19-09-2026 | 15:25:18.527 | Info | DeepQuest:Will not process cached event.
+19-09-2026 | 15:25:18.527 | Info | InventoryHelper:Sync frame count is same with last sync: 285305.
+19-09-2026 | 15:25:18.527 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:25:18.527 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:25:18.527 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:25:18.527 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:25:18.527 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:25:18.527 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:25:18.527 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:25:18.527 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:25:18.527 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:25:18.527 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:25:18.527 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:25:18.527 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:25:18.527 | Info | DeltaMoveExecutor:SegmentedDeltaMove not applied. Levels segmented delta move container is null or empty.
+19-09-2026 | 15:25:18.528 | Info | SuperDiscoSkill:SuperDiscoSkillHelper TryPrepare called.
+19-09-2026 | 15:25:18.528 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:25:18.530 | Info | LevelBuilder:Starting LevelName:0382_1382v03_V LevelNo:382 MoveCount:27 CL:False
+19-09-2026 | 15:25:18.538 | Info | Grid:Grid is ready w9xh9
+19-09-2026 | 15:25:18.551 | Info | LevelBuilder:Goal Added: Honey = 0/38
+19-09-2026 | 15:25:18.551 | Info | LevelBuilder:Goal Added: Soda = 0/16
+19-09-2026 | 15:25:18.552 | Info | Crown:CrownRush level is persist as 0 for key CrownRush215987837
+19-09-2026 | 15:25:18.553 | Info | LevelBuilder:Checking for crown logic: shouldShowTutorial:False prelevelCreationDataExists:False
+19-09-2026 | 15:25:18.553 | Info | LevelBuilder:Decided with goal banner animation.
+19-09-2026 | 15:25:18.554 | Info | DialogManager:Show Dialog: [GoalsBanner]
+19-09-2026 | 15:25:18.554 | Info | EventSender:Adding new event to queue > [ShowDialog]
+19-09-2026 | 15:25:18.556 | Info | EventSender:Adding new event to queue > [LevelStart]
+19-09-2026 | 15:25:18.620 | Debug | AnalyticsV2:Event queued: ShowDialog
+19-09-2026 | 15:25:18.625 | Debug | AnalyticsV2:Event queued: LevelStart
+19-09-2026 | 15:25:18.629 | Debug | AnalyticsV2:Inserted 1 rows to SQLite
+19-09-2026 | 15:25:18.637 | Debug | AnalyticsV2:Inserted 1 rows to SQLite
+19-09-2026 | 15:25:18.701 | Info | InventoryHelper:Checking hack status. DateTimeSet: True, TimeHack: False, FocusHack: False, TimeDiff: 1.149663
+19-09-2026 | 15:25:18.702 | Info | InventoryHelper:SyncInventory Unlimited Items: [UNLIMITED_HAMMER~0] [UNLIMITED_ANVIL~0] [UNLIMITED_BOXING_GLOVE~0] [UNLIMITED_ROCKET~0] [UNLIMITED_BOMB~0] [UNLIMITED_DISCO_BALL~0] [UNLIMITED_SUPER_BOMB~0] [DOUBLE_STAR~0] [DOUBLE_ALL~0]
+19-09-2026 | 15:25:18.702 | Info | Backend:Calling backend with request (RequestNo: 508 TraceId: 2e823c61-090c-48f0-9144-213fc0c4588a SyncId: 8991)  [SYNC_INVENTORY_MSG] [DEEP_QUEST_UPDATE_MSG]
+19-09-2026 | 15:25:18.714 | Debug | AnalyticsV2:[handler:uwr] done result=Success code=200 err=
+19-09-2026 | 15:25:18.715 | Debug | AnalyticsV2:[transport] POST https://api.peakgames.net/api/v2/event gzip=False bytes=868 -> 20019-09-2026 | 15:25:18.715 | Debug | AnalyticsV2:Batch sent successfully: 1 events
+19-09-2026 | 15:25:18.715 | Debug | AnalyticsV2:Sent 1 items: [9049], removing from store
+19-09-2026 | 15:25:18.715 | Debug | AnalyticsV2:Running SQL query: DELETE FROM events WHERE id IN (9049)
+19-09-2026 | 15:25:18.720 | Debug | AnalyticsV2:Deleted 1 rows
+19-09-2026 | 15:25:18.720 | Debug | AnalyticsV2:Received batch with 2 items, sending requests...
+19-09-2026 | 15:25:18.890 | Debug | AnalyticsV2:[handler:uwr] done result=Success code=200 err=
+19-09-2026 | 15:25:18.929 | Debug | AnalyticsV2:[transport] POST https://api.peakgames.net/api/v2/event gzip=True bytes=888 -> 200
+19-09-2026 | 15:25:18.929 | Debug | AnalyticsV2:Batch sent successfully: 2 events
+19-09-2026 | 15:25:18.929 | Debug | AnalyticsV2:Sent 2 items: [9050,9051], removing from store
+19-09-2026 | 15:25:18.929 | Debug | AnalyticsV2:Running SQL query: DELETE FROM events WHERE id IN (9050,9051)
+19-09-2026 | 15:25:18.930 | Info | Backend:Waiting for request with RequestNo: 508 TraceId: 2e823c61-090c-48f0-9144-213fc0c4588a ended.
+19-09-2026 | 15:25:18.930 | Info | Backend:Backend responded to request with RequestNo: 508 TraceId: 2e823c61-090c-48f0-9144-213fc0c4588a
+19-09-2026 | 15:25:18.930 | Info | Backend:Backend confirms request with RequestNo: 508 TraceId: 2e823c61-090c-48f0-9144-213fc0c4588a was received. SyncId:8992
+19-09-2026 | 15:25:18.937 | Info | Backend:Message count in response for request with RequestNo: 508 TraceId: 2e823c61-090c-48f0-9144-213fc0c4588a is:2
+19-09-2026 | 15:25:18.937 | Info | Command:Success: SYNC_INVENTORY_MSG, Id:0
+19-09-2026 | 15:25:18.937 | Info | SyncInventoryReply:Inventory Reply Success
+19-09-2026 | 15:25:18.941 | Debug | AnalyticsV2:Deleted 2 rows
+19-09-2026 | 15:25:18.941 | Info | InventoryHelper:InventoryChanged started async inventory update process.
+19-09-2026 | 15:25:18.941 | Info | InventoryHelper:Forced balance is 624 for UnlimitedLife
+19-09-2026 | 15:25:18.943 | Info | CaravanDateTime:Time from server is updated as:09/19/2026 15:25:17
+19-09-2026 | 15:25:18.943 | Info | CaravanDateTime:Previous stored time was Online: 09/19/2026 15:25:17, Offline: 09/19/2026 15:25:18 with Diff: 1
+19-09-2026 | 15:25:18.945 | Info | CaravanDateTime:Previous time is set:Online: 09/19/2026 15:25:17, Offline: 09/19/2026 15:25:18 with Diff: 1.11608
+19-09-2026 | 15:25:18.947 | Info | LifeStatusHelper:LifeHack earned life count is reset, and passed time saved as 1398.
+19-09-2026 | 15:25:18.947 | Info | InventoryHelper:Processing updated userType value:-1.
+19-09-2026 | 15:25:18.950 | Info | Command:Success: DEEP_QUEST_UPDATE_MSG, Id:1
+19-09-2026 | 15:25:18.950 | Info | Command:DeepQuestUpdateResponseMessage reply success!
+19-09-2026 | 15:25:18.953 | Info | DeepQuest:DeepQuest state is persist as {"EventId":8273,"Claimed":false,"ClaimedStageIds":[1],"ClaimedStepIds":[101,102,103,104,105,203,205],"ExtraData":{"SelectedTasks":[{"StageId":1,"StepId":101,"Type":2,"Goal":15},{"StageId":1,"StepId":102,"Type":11,"Goal":2},{"StageId":1,"StepId":103,"Type":4,"Goal":500},{"StageId":1,"StepId":104,"Type":6,"Goal":1},{"StageId":1,"StepId":105,"Type":3,"Goal":2},{"StageId":2,"StepId":201,"Type":2,"Goal":100},{"StageId":2,"StepId":202,"Type":11,"Goal":4},{"StageId":2,"StepId":203,"Type":4,"Goal":1000},{"StageId":2,"StepId":204,"Type":6,"Goal":2},{"StageId":2,"StepId":205,"Type":3,"Goal":10},{"StageId":3,"StepId":301,"Type":2,"Goal":200},{"StageId":3,"StepId":302,"Type":11,"Goal":8},{"StageId":3,"StepId":303,"Type":4,"Goal":1750},{"StageId":3,"StepId":304,"Type":6,"Goal":3},{"StageId":3,"StepId":305,"Type":3,"Goal":20},{"StageId":4,"StepId":401,"Type":2,"Goal":450},{"StageId":4,"StepId":402,"Type":11,"Goal":20},{"StageId":4,"StepId":403,"Type":4,"Goal":5500},{"StageId":4,"StepId":404,"Type":6,"Goal":4},{"StageId":4,"StepId":405,"Type":3,"Goal":35}],"TaskProgressions":[{"Type":2,"Progress":19,"LastShownProgress":19},{"Type":11,"Progress":3,"LastShownProgress":3},{"Type":4,"Progress":1448,"LastShownProgress":1448},{"Type":6,"Progress":1,"LastShownProgress":1},{"Type":3,"Progress":12,"LastShownProgress":12}],"ProgressBannerShownStepIds":[105,103,104,102,203,101,205],"ProgressBannerAddedStepIds":[105,103,104,102,203,101,205],"DialogShownForUnclaimedStageIds":[1],"InvalidFirstDeepQuest":false,"IsFirstDeepQuest":false,"ExtendedTimeEventDialogClosed":false,"StageNotificationShownDataList":[]},"StatusRequired":false,"UpdateRequired":false,"NeedsAdjustmentSync":false} for key DeepQuest215987837.
+19-09-2026 | 15:25:18.953 | Info | DeepQuest:Will not process cached event.
+19-09-2026 | 15:25:19.092 | Info | InventoryHelper:Sync will be ignored since not needed (False).
+19-09-2026 | 15:25:19.709 | Info | DialogManager:Close arrived for: [GoalsBanner(Clone)]
+19-09-2026 | 15:25:19.734 | Info | Crown:CrownRush level is persist as 0 for key CrownRush215987837
+19-09-2026 | 15:25:46.593 | Info | ScoreBarStar:Playing star 0
+19-09-2026 | 15:25:48.626 | Debug | AnalyticsV2:Event queued: PeakSDKPing
+19-09-2026 | 15:25:48.643 | Debug | AnalyticsV2:Inserted 1 rows to SQLite
+19-09-2026 | 15:25:48.643 | Debug | AnalyticsV2:Received batch with 1 items, sending requests...
+19-09-2026 | 15:25:48.883 | Debug | AnalyticsV2:[handler:uwr] done result=Success code=200 err=
+19-09-2026 | 15:25:48.883 | Debug | AnalyticsV2:[transport] POST https://api.peakgames.net/api/v2/event gzip=False bytes=226 -> 200
+19-09-2026 | 15:25:48.883 | Debug | AnalyticsV2:Batch sent successfully: 1 events
+19-09-2026 | 15:25:48.883 | Debug | AnalyticsV2:Sent 1 items: [9052], removing from store
+19-09-2026 | 15:25:48.883 | Debug | AnalyticsV2:Running SQL query: DELETE FROM events WHERE id IN (9052)
+19-09-2026 | 15:25:48.897 | Debug | AnalyticsV2:Deleted 1 rows
+19-09-2026 | 15:25:56.837 | Info | ShuffleManager:Level Lost - Reason: OUT_OF_MOVES
+19-09-2026 | 15:25:57.338 | Info | EgoSystem:Show ego requested by level.
+19-09-2026 | 15:25:57.338 | Info | Profiling:PerformanceProfiler: Stopping at location LEVEL
+19-09-2026 | 15:25:57.341 | Info | EventSender:Adding new event to queue > [FPS]
+19-09-2026 | 15:25:57.341 | Info | Profiling:PerformanceProfiler: Starting at location LEVEL_END
+19-09-2026 | 15:25:57.354 | Info | InventoryHelper:InventoryChanged started async inventory update process.
+19-09-2026 | 15:25:57.354 | Info | InventoryHelper:Forced balance is 97860 for LAST_LEVEL_LOSE_COUNT
+19-09-2026 | 15:25:57.355 | Info | AdHelper:GROUP_A impression value is : 0.00213036925960637 -GROUP_B impression value is : 0.00198356919374248 -GROUP_C impression value is : 0.001125527 -Couldn't find zero valued ad -
+19-09-2026 | 15:25:57.355 | Info | AdHelper:GROUP_A impression value is : 0.00213036925960637 -GROUP_B impression value is : 0.00198356919374248 -GROUP_C impression value is : 0.001125527 -Found GROUP_A as most valued ad. Value: 0.00213036925960637
+19-09-2026 | 15:25:57.355 | Info | AdHelper:Ad is not available, reason: REACHED LIMIT. Placement:EGO
+19-09-2026 | 15:25:57.355 | Info | AdHelper:Ad is not available, reason: AD IS NOT READY TO SHOW. Placement:EGO
+19-09-2026 | 15:25:57.355 | Info | Offer:Checking offer conditions for availability offer-1287(TOON_PASS) withAnd: False ruleCount:  conditionsMet: True19-09-2026 | 15:25:57.355 | Info | EgoSystem:returning required ego modules : EGO_BANNER, BUY_COINS, PLAY_ON, TAP_TO_SEE_THE_BOARD.
+19-09-2026 | 15:25:57.355 | Info | EgoSystem:Destroying ego modules.
+19-09-2026 | 15:25:57.359 | Info | EgoSystem:Module PLAY_ON initializing.
+19-09-2026 | 15:25:57.360 | Info | EgoSystem:Ego Module Banner initialize requested!
+19-09-2026 | 15:25:57.361 | Info | Offer:Checking offer conditions for availability offer-1287(TOON_PASS) withAnd: False ruleCount:  conditionsMet: True
+19-09-2026 | 15:25:57.361 | Info | Offer:Checking offer conditions for availability offer-1294(TEAM_PACK) withAnd: False ruleCount:  conditionsMet: True
+19-09-2026 | 15:25:57.361 | Info | Offer:Offer products prepared. Shop Offer Id: 1304
+19-09-2026 | 15:25:57.361 | Info | Offer:Checking offer conditions for availability offer-1304(SHOP_OFFER) withAnd: False ruleCount:  conditionsMet: True
+19-09-2026 | 15:25:57.368 | Info | Offer:Preparing offer ego entry. Shop Offer Id: 1304
+19-09-2026 | 15:25:57.368 | Info | Offer:Offer products prepared. Shop Offer Id: 1304
+19-09-2026 | 15:25:57.379 | Info | Offer:Preparing offer product content for productId:0
+19-09-2026 | 15:25:57.392 | Info | EgoSystem:Toon pass ego entry prepare called.
+19-09-2026 | 15:25:57.416 | Debug | AnalyticsV2:Event queued: FPS
+19-09-2026 | 15:25:57.428 | Debug | AnalyticsV2:Inserted 1 rows to SQLite
+19-09-2026 | 15:25:57.429 | Debug | AnalyticsV2:Received batch with 1 items, sending requests...
+19-09-2026 | 15:25:57.479 | Info | Offer:Preparing offer ego entry. Team Pack Offer Id: 1294
+19-09-2026 | 15:25:57.485 | Info | EgoSystem:Ego modules created. Active Ego Modules: PLAY_ON, EGO_BANNER, BUY_COINS, TAP_TO_SEE_THE_BOARD
+19-09-2026 | 15:25:57.486 | Info | EgoSystem:Preparing ego module base dialog.
+19-09-2026 | 15:25:57.486 | Info | EgoSystem:Preparing ego module play on.
+19-09-2026 | 15:25:57.489 | Info | EgoSystem:Preparing ego module banner.
+19-09-2026 | 15:25:57.489 | Info | Offer:Offer products prepared. Shop Offer Id: 1304
+19-09-2026 | 15:25:57.489 | Info | Offer:Checking offer conditions for availability offer-1304(SHOP_OFFER) withAnd: False ruleCount:  conditionsMet: True
+19-09-2026 | 15:25:57.490 | Info | Offer:Checking offer conditions for availability offer-1287(TOON_PASS) withAnd: False ruleCount:  conditionsMet: True
+19-09-2026 | 15:25:57.492 | Info | Offer:Checking offer conditions for availability offer-1294(TEAM_PACK) withAnd: False ruleCount:  conditionsMet: True
+19-09-2026 | 15:25:57.496 | Info | EgoSystem:Preparing ego module buy coins.
+19-09-2026 | 15:25:57.496 | Info | EgoSystem:Preparing ego module tap to see.
+19-09-2026 | 15:25:57.496 | Info | EgoSystem:Play ego animation requested. Module:  AnimationData: Type: DIALOG_IN, ReEvaluateContent: True, ReEvaluateLayout: True
+19-09-2026 | 15:25:57.496 | Info | EgoSystem:ReDraw requested!
+19-09-2026 | 15:25:57.496 | Info | Offer:Checking offer conditions for availability offer-1287(TOON_PASS) withAnd: False ruleCount:  conditionsMet: True
+19-09-2026 | 15:25:57.496 | Info | DialogManager:Show Dialog: [EgoModuleBase(Clone)]
+19-09-2026 | 15:25:57.499 | Info | EgoSystem:Content handler started. Content Count: 2
+19-09-2026 | 15:25:57.499 | Info | EgoSystem:Entered to content item. : EGO_BUNDLE
+19-09-2026 | 15:25:57.500 | Info | EgoSystem:All modules prepared!
+19-09-2026 | 15:25:57.500 | Info | EgoSystem:Executing all modules prepared logic for play on!
+19-09-2026 | 15:25:57.501 | Info | AdHelper:Available ad count is 3
+19-09-2026 | 15:25:57.501 | Info | EventSender:Adding new event to queue > [ShowEgoDialog]
+19-09-2026 | 15:25:57.517 | Debug | AnalyticsV2:Event queued: ShowEgoDialog
+19-09-2026 | 15:25:57.525 | Debug | AnalyticsV2:Inserted 1 rows to SQLite
+19-09-2026 | 15:25:57.540 | Info | InventoryHelper:Checking hack status. DateTimeSet: True, TimeHack: False, FocusHack: False, TimeDiff: 1.116764
+19-09-2026 | 15:25:57.541 | Info | InventoryHelper:SyncInventory Unlimited Items: [UNLIMITED_HAMMER~0] [UNLIMITED_ANVIL~0] [UNLIMITED_BOXING_GLOVE~0] [UNLIMITED_ROCKET~0] [UNLIMITED_BOMB~0] [UNLIMITED_DISCO_BALL~0] [UNLIMITED_SUPER_BOMB~0] [DOUBLE_STAR~0] [DOUBLE_ALL~0]
+19-09-2026 | 15:25:57.542 | Info | Backend:Calling backend with request (RequestNo: 509 TraceId: 855b3c53-9e68-4686-b3e6-99f5aedf0cbf SyncId: 8992)  [SYNC_INVENTORY_MSG]
+19-09-2026 | 15:25:57.637 | Debug | AnalyticsV2:[handler:uwr] done result=Success code=200 err=
+19-09-2026 | 15:25:57.639 | Debug | AnalyticsV2:[transport] POST https://api.peakgames.net/api/v2/event gzip=False bytes=865 -> 200
+19-09-2026 | 15:25:57.639 | Debug | AnalyticsV2:Batch sent successfully: 1 events
+19-09-2026 | 15:25:57.639 | Debug | AnalyticsV2:Sent 1 items: [9053], removing from store
+19-09-2026 | 15:25:57.639 | Debug | AnalyticsV2:Running SQL query: DELETE FROM events WHERE id IN (9053)
+19-09-2026 | 15:25:57.647 | Debug | AnalyticsV2:Deleted 1 rows
+19-09-2026 | 15:25:57.648 | Debug | AnalyticsV2:Received batch with 1 items, sending requests...
+19-09-2026 | 15:25:57.788 | Debug | AnalyticsV2:[handler:uwr] done result=Success code=200 err=
+19-09-2026 | 15:25:57.789 | Debug | AnalyticsV2:[transport] POST https://api.peakgames.net/api/v2/event gzip=False bytes=1473 -> 200
+19-09-2026 | 15:25:57.789 | Debug | AnalyticsV2:Batch sent successfully: 1 events
+19-09-2026 | 15:25:57.789 | Debug | AnalyticsV2:Sent 1 items: [9054], removing from store
+19-09-2026 | 15:25:57.789 | Debug | AnalyticsV2:Running SQL query: DELETE FROM events WHERE id IN (9054)
+19-09-2026 | 15:25:57.801 | Debug | AnalyticsV2:Deleted 1 rows
+19-09-2026 | 15:25:57.958 | Info | Backend:Waiting for request with RequestNo: 509 TraceId: 855b3c53-9e68-4686-b3e6-99f5aedf0cbf ended.
+19-09-2026 | 15:25:57.958 | Info | Backend:Backend responded to request with RequestNo: 509 TraceId: 855b3c53-9e68-4686-b3e6-99f5aedf0cbf
+19-09-2026 | 15:25:57.958 | Info | Backend:Backend confirms request with RequestNo: 509 TraceId: 855b3c53-9e68-4686-b3e6-99f5aedf0cbf was received. SyncId:8993
+19-09-2026 | 15:25:57.967 | Info | Backend:Message count in response for request with RequestNo: 509 TraceId: 855b3c53-9e68-4686-b3e6-99f5aedf0cbf is:1
+19-09-2026 | 15:25:57.967 | Info | Command:Success: SYNC_INVENTORY_MSG, Id:0
+19-09-2026 | 15:25:57.967 | Info | SyncInventoryReply:Inventory Reply Success
+19-09-2026 | 15:25:57.970 | Info | InventoryHelper:InventoryChanged started async inventory update process.
+19-09-2026 | 15:25:57.970 | Info | InventoryHelper:Forced balance is 584 for UnlimitedLife
+19-09-2026 | 15:25:57.971 | Info | CaravanDateTime:Time from server is updated as:09/19/2026 15:25:56
+19-09-2026 | 15:25:57.971 | Info | CaravanDateTime:Previous stored time was Online: 09/19/2026 15:25:18, Offline: 09/19/2026 15:25:19 with Diff: 1
+19-09-2026 | 15:25:57.973 | Info | CaravanDateTime:Previous time is set:Online: 09/19/2026 15:25:56, Offline: 09/19/2026 15:25:57 with Diff: 1.12699419-09-2026 | 15:25:57.974 | Info | LifeStatusHelper:LifeHack earned life count is reset, and passed time saved as 1437.
+19-09-2026 | 15:25:57.974 | Info | InventoryHelper:Processing updated userType value:-1.
+19-09-2026 | 15:25:58.164 | Info | InventoryHelper:Sync will be ignored since not needed (False).
+19-09-2026 | 15:25:58.366 | Info | EgoSystem:Update content layers requested.
+19-09-2026 | 15:25:58.367 | Info | EgoSystem:Exit requested from content item. : EGO_BUNDLE
+19-09-2026 | 15:25:58.566 | Info | EgoSystem:Exit from content item completed. : EGO_BUNDLE
+19-09-2026 | 15:25:58.566 | Info | EgoSystem:Active ego content item exit completed.
+19-09-2026 | 15:25:58.566 | Info | EgoSystem:Entered to content item. : WARNING_SPEECH
+19-09-2026 | 15:25:58.733 | Info | EgoSystem:EgoContentHandler can't handle close signal since there is already an active animation! : WARNING_SPEECH
+19-09-2026 | 15:25:58.733 | Info | EgoSystem:Acceleration requested from content item. : WARNING_SPEECH
+19-09-2026 | 15:25:58.849 | Info | EgoSystem:Plan in animation completed
+19-09-2026 | 15:25:58.935 | Info | EgoSystem:Last content item exit started.
+19-09-2026 | 15:25:58.935 | Info | EventSender:Adding new event to queue > [EgoAction]
+19-09-2026 | 15:25:58.935 | Info | EgoSystem:Control taken by Module: BASE
+19-09-2026 | 15:25:58.935 | Info | EgoSystem:Exit requested from content item. : WARNING_SPEECH
+19-09-2026 | 15:25:58.949 | Info | EgoSystem:Active ego content item exit completed.
+19-09-2026 | 15:25:58.949 | Info | EgoSystem:Last content item exit completed.
+19-09-2026 | 15:25:58.950 | Info | EgoSystem:Close ego requested by module. Sending out animation request! : ALREADY_IN : BASE Mode: SHOW_FAIL_SCREEN ContinueReasonType: NONE
+19-09-2026 | 15:25:58.950 | Info | EgoSystem:Play ego animation requested. Module: BASE AnimationData: Type: DIALOG_OUT, ReEvaluateContent: False, ReEvaluateLayout: False
+19-09-2026 | 15:25:58.950 | Info | DialogManager:Close arrived for: [EgoModuleBase(Clone)]
+19-09-2026 | 15:25:59.022 | Debug | AnalyticsV2:Event queued: EgoAction
+19-09-2026 | 15:25:59.043 | Debug | AnalyticsV2:Inserted 1 rows to SQLite
+19-09-2026 | 15:25:59.043 | Debug | AnalyticsV2:Received batch with 1 items, sending requests...
+19-09-2026 | 15:25:59.184 | Debug | AnalyticsV2:[handler:uwr] done result=Success code=200 err=
+19-09-2026 | 15:25:59.184 | Debug | AnalyticsV2:[transport] POST https://api.peakgames.net/api/v2/event gzip=False bytes=1227 -> 200
+19-09-2026 | 15:25:59.184 | Debug | AnalyticsV2:Batch sent successfully: 1 events
+19-09-2026 | 15:25:59.184 | Debug | AnalyticsV2:Sent 1 items: [9055], removing from store
+19-09-2026 | 15:25:59.185 | Debug | AnalyticsV2:Running SQL query: DELETE FROM events WHERE id IN (9055)
+19-09-2026 | 15:25:59.199 | Debug | AnalyticsV2:Deleted 1 rows
+19-09-2026 | 15:25:59.551 | Info | EgoSystem:Plan out animation completed
+19-09-2026 | 15:25:59.551 | Info | EgoSystem:Module requested to show fail screen, Dialogs.Ego.EgoData
+19-09-2026 | 15:25:59.555 | Info | DialogManager:Show Dialog: [LostDialog]
+19-09-2026 | 15:25:59.556 | Info | EventSender:Adding new event to queue > [ShowDialog]
+19-09-2026 | 15:25:59.563 | Info | GameplayKillHelper:ResetState called from LevelLost
+19-09-2026 | 15:25:59.575 | Info | InventoryHelper:InventoryChanged started async inventory update process.
+19-09-2026 | 15:25:59.575 | Info | InventoryHelper:Forced balance is 2507298 for UserType
+19-09-2026 | 15:25:59.576 | Info | UserProfile:Updating stats for reason: LEVEL_LOST
+19-09-2026 | 15:25:59.576 | Info | UserStatistics:Updating stats for reason: LEVEL_LOST
+19-09-2026 | 15:25:59.576 | Info | UserStatistics:Level lost - Current streak reset from: 0
+19-09-2026 | 15:25:59.576 | Info | UserProfile:Setting sync required flag
+19-09-2026 | 15:25:59.577 | Info | UserProfile:Updated 3 entities in DB
+19-09-2026 | 15:25:59.579 | Info | UserStatistics:DB updated with 16 stats. Overwritten: False
+19-09-2026 | 15:25:59.581 | Info | Backend:Calling backend with request (RequestNo: 510 TraceId: 0a107f34-2c65-42e1-b80c-69c008d64a3b SyncId: 8993)  [SHIELD_CLASH_LEVEL_LOST_MSG]
+19-09-2026 | 15:25:59.583 | Info | Replay:{"b":[],"e":[],"w":[94,144,44,37,44,25,47,125,20,18,32,45,69,20,28,80,54,22,18,20,20,20,23,20,23,10,54,22,20,37,82,20,17,23,20,23,92,90,177,25,110,18,23,52,23,20,35,32,33,22,27,20,44,72,74,100,30,219,94,38,339,130,145,79],"m":[5,6,5,6,2,5,5,5,3,6,2,6,3,4,5,4,6,4,6,4,5,5,5,4,2,5,6,6,5,7,2,6,2,5,7,5,6,7,6,7,5,7,6,5,6,5,6,4,6,4,5,5,2,4,5,4,6,4,2,5,2,4,6,4,6,6,6,6,6,6,5,7,3,6,3,5,2,5,0,8,2,5,6,5,6,6,5,8,6,8,5,7,6,7,5,6,6,6,5,5,6,5,5,4,6,4,3,5,3,5,2,4,2,5,2,4,2,5,2,4,2,3,5,7,5,6,6,2,6,2],"v":5,"s":1276490469,"l":382,"n":"0382_1382v03_V","c":0,"p":0,"k":"H4sIAFd/rmoA/+3a61LUMBQH8HNIFFj2wkVB0BFHR99nywP4OvssjvpBPzgMODryYqbNOelJmkrZJfV2tt0F2qb5/dP0Qrtw8xT24Q2sFgDwdiszQt8MPzYFLRhANxhRxv9t3WdncWwKmMzi9XsNys3Z7wlRNQvEi2OzeJeC9Nkf4hQW44TAelzNxCyrIcT44wnM4fV4IaZuVkURZHeytKfYiIKUAP79DCd3zcDrTTKYzH46VoZjmG2UYd6TwftN6PUFM3x/DFN4NUKG+rXaoRn+rQk0gSa4rwTfHrkELwcnQL+6NADSoAH+wwBfj1yAF0MD+FdIQPyKBDFfnpHL8Q9hbx2+P7tOelpa+cpXvvKVr3zlZ/gHw/mY5TM+Fhm6FlK+8v9U/vU+TOB8EB86+noa27uX+6pXvepV3xmvFk7/fJDeP4hrqr4db5MLiDL4+eZ4/yhR4vn6pzR+1sFjW1bguQpM8RcUIPaMcpn2d+Ong/Gih7R4noSJBxWveMUrXvGKV7ziFX9H/N7meAPx80JL15Xl8ZP7x3t4PK0I/nLX4Z+lBZtf6hVKOpsEfdnUHGv4e3XF6V92HP1MFgQqJ+TQVIxpmy/dkMK50xT/B/DzNuzCyS1wRlvqG75JLcgbkpbmZnuKDW65bXhqpvIUjTH64VroKkyxtNIWXB796YFDHyf3CQy1YzD7lRsS1eYL4FsZbOYNUN780cI2HPnvrYYDiTQz0wRQ2+B0n4MPHvG9JGbasDruRka8PRi9MQVjqrXwwTjvYWlvJVrehi2GOa+vrZe7VYrbNisme+kG3PfouAeluAyVfX0pTkjEhaHad+C0C6+FDDamcr38M2BbarzJ2yLtwaSl/goLHetP068yNdcwAAA=","o":false,"sd":false,"r":[0,3,33,118,4,56],"g":"H4sIAFd/rmoA/wMAAAAAAAAAAAA=","pa":false,"ppc":0}
+19-09-2026 | 15:25:59.584 | Info | LostDialog:Goal Progress: Soda = 9/16Honey = 23/38
+19-09-2026 | 15:25:59.585 | Info | GamePlay:Lost Level:382 Name:0382_1382v03_V
+19-09-2026 | 15:25:59.585 | Info | Level:LevelHealth - [FallStatus] Mechanic:0,Stat:0,Shuffle:0,Fall:0,FallBlocker:0
+19-09-2026 | 15:25:59.586 | Info | UserStatistics:Weekly level wins event data filled. Total: 17 (Value: 17, Pending: 0)
+19-09-2026 | 15:25:59.586 | Info | EventSender:Adding new event to queue > [_custom]
+19-09-2026 | 15:25:59.586 | Info | CubeRatioAdjust:ResetRatios called with empty initialRatioByItemDescription
+19-09-2026 | 15:25:59.623 | Debug | AnalyticsV2:Event queued: ShowDialog
+19-09-2026 | 15:25:59.627 | Debug | AnalyticsV2:Event queued: _custom
+19-09-2026 | 15:25:59.640 | Debug | AnalyticsV2:Inserted 1 rows to SQLite
+19-09-2026 | 15:25:59.648 | Debug | AnalyticsV2:Inserted 1 rows to SQLite
+19-09-2026 | 15:25:59.649 | Debug | AnalyticsV2:Received batch with 2 items, sending requests...
+19-09-2026 | 15:25:59.792 | Debug | AnalyticsV2:[handler:uwr] done result=Success code=200 err=
+19-09-2026 | 15:25:59.793 | Debug | AnalyticsV2:[transport] POST https://api.peakgames.net/api/v2/event gzip=True bytes=2422 -> 200
+19-09-2026 | 15:25:59.793 | Debug | AnalyticsV2:Batch sent successfully: 2 events
+19-09-2026 | 15:25:59.793 | Debug | AnalyticsV2:Sent 2 items: [9057,9056], removing from store
+19-09-2026 | 15:25:59.793 | Debug | AnalyticsV2:Running SQL query: DELETE FROM events WHERE id IN (9057,9056)
+19-09-2026 | 15:25:59.804 | Debug | AnalyticsV2:Deleted 2 rows
+19-09-2026 | 15:25:59.859 | Info | Backend:Waiting for request with RequestNo: 510 TraceId: 0a107f34-2c65-42e1-b80c-69c008d64a3b ended.
+19-09-2026 | 15:25:59.859 | Info | Backend:Backend responded to request with RequestNo: 510 TraceId: 0a107f34-2c65-42e1-b80c-69c008d64a3b
+19-09-2026 | 15:25:59.859 | Info | Backend:Backend confirms request with RequestNo: 510 TraceId: 0a107f34-2c65-42e1-b80c-69c008d64a3b was received. SyncId:-119-09-2026 | 15:25:59.859 | Info | Backend:Message count in response for request with RequestNo: 510 TraceId: 0a107f34-2c65-42e1-b80c-69c008d64a3b is:1
+19-09-2026 | 15:25:59.859 | Info | Command:Success: SHIELD_CLASH_LEVEL_LOST_MSG, Id:0
+19-09-2026 | 15:25:59.859 | Info | Events:ShieldClashLevelLostReply success with status 1!
+19-09-2026 | 15:25:59.866 | Info | InventoryHelper:Checking hack status. DateTimeSet: True, TimeHack: False, FocusHack: False, TimeDiff: 1.126871
+19-09-2026 | 15:25:59.867 | Info | InventoryHelper:SyncInventory Unlimited Items: [UNLIMITED_HAMMER~0] [UNLIMITED_ANVIL~0] [UNLIMITED_BOXING_GLOVE~0] [UNLIMITED_ROCKET~0] [UNLIMITED_BOMB~0] [UNLIMITED_DISCO_BALL~0] [UNLIMITED_SUPER_BOMB~0] [DOUBLE_STAR~0] [DOUBLE_ALL~0]
+19-09-2026 | 15:25:59.867 | Info | Backend:Calling backend with request (RequestNo: 511 TraceId: 75b9f2a7-c6e9-41e0-9f91-e726a5665789 SyncId: 8993)  [SYNC_INVENTORY_MSG]
+19-09-2026 | 15:26:00.063 | Info | DialogManager:Close arrived for: [LostDialog(Clone)]
+19-09-2026 | 15:26:00.064 | Info | Profiling:PerformanceProfiler: Stopping at location LEVEL_END
+19-09-2026 | 15:26:00.065 | Info | EventSender:Adding new event to queue > [FPS]
+19-09-2026 | 15:26:00.065 | Info | Profiling:PerformanceProfiler: Starting at location LEVEL
+19-09-2026 | 15:26:00.065 | Info | EgoSystem:Destroying ego system.
+19-09-2026 | 15:26:00.065 | Info | EgoSystem:Destroying ego modules.
+19-09-2026 | 15:26:00.066 | Info | EgoSystem:New ego system created!
+19-09-2026 | 15:26:00.075 | Info | InventoryHelper:Sync is in progress.
+19-09-2026 | 15:26:00.075 | Info | InventoryHelper:Forced balance is 97866 for LAST_LEVEL_TRY_COUNT
+19-09-2026 | 15:26:00.075 | Info | LevelBuilder:Random initialized with Seed: -1257194825
+19-09-2026 | 15:26:00.076 | Info | AdHelper:CheckAndFillAdQueue > MediationSDKState: INITIALIZED, RewardedAdController?: True
+19-09-2026 | 15:26:00.076 | Info | AdHelper:RewardedAdController starting to load rewarded ads.
+19-09-2026 | 15:26:00.076 | Info | AdHelper:DynamicBidFloorHelper is eligible.
+19-09-2026 | 15:26:00.076 | Info | AdHelper:RewardedAdController filling rewarded ad queue.
+19-09-2026 | 15:26:00.076 | Info | AdHelper:RewardedAdController ready ad, increasing loaded ad count. Count: 1 Group: GROUP_ARewardedAdController ready ad, increasing loaded ad count. Count: 2 Group: GROUP_BRewardedAdController ready ad, increasing loaded ad count. Count: 3 Group: GROUP_C
+19-09-2026 | 15:26:00.076 | Info | AdHelper:DynamicBidFloorHelper is eligible.
+19-09-2026 | 15:26:00.076 | Info | AdHelper:RewardedAdController checking if all ads are ready.
+19-09-2026 | 15:26:00.076 | Info | AdHelper:RewardedAdController checked: GROUP_A is ready.
+19-09-2026 | 15:26:00.076 | Info | AdHelper:RewardedAdController checked: GROUP_B is ready.
+19-09-2026 | 15:26:00.076 | Info | AdHelper:RewardedAdController checked: GROUP_C is ready.
+19-09-2026 | 15:26:00.076 | Info | AdHelper:RewardedAdController checked: Ready state is True
+19-09-2026 | 15:26:00.076 | Info | AdHelper:RewardedAdController checked: All ads are ready, resetting retry count.
+19-09-2026 | 15:26:00.076 | Info | LifeStatusHelper:Using from unlimited life. Exp:Online: 09/19/2026 15:35:40, Offline: 09/19/2026 15:35:41 with Diff: 1.116717 Dur:584
+19-09-2026 | 15:26:00.078 | Info | CubeRatioAdjust:WelcomeBackCubeRatioAdjustHelper cannot activate! IsEligible: false
+19-09-2026 | 15:26:00.078 | Info | CubeRatioAdjust:TargetedRewardCubeRatioAdjustHelper cannot activate! IsEligible: false
+19-09-2026 | 15:26:00.078 | Info | CubeRatioAdjust:LevelConfigCubeRatioAdjustHelper cannot activate! IsEligible: false
+19-09-2026 | 15:26:00.078 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:26:00.079 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:26:00.079 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:26:00.079 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:26:00.079 | Info | CubeRatioAdjust:DynamicDifficultySuperDiscoLostCubeRatioAdjustHelper cannot activate! IsEligible: false
+19-09-2026 | 15:26:00.079 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:26:00.079 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:26:00.079 | Info | CubeRatioAdjust:DynamicDifficultySuperDiscoInactiveCubeRatioAdjustHelper cannot activate! IsEligible: false
+19-09-2026 | 15:26:00.079 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:26:00.079 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:26:00.079 | Info | CubeRatioAdjust:DynamicDifficultySuperDiscoActiveCubeRatioAdjustHelper cannot activate! IsEligible: false
+19-09-2026 | 15:26:00.079 | Info | CubeRatioAdjust:SuperDiscoWinAssistCubeRatioAdjustHelper cannot activate! IsEligible: false
+19-09-2026 | 15:26:00.079 | Info | SuperDiscoSkill:SuperDiscoSkillHelper TryPrepare called.
+19-09-2026 | 15:26:00.079 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:26:00.079 | Info | CubeRatioAdjust:SuperDiscoLoseAssistCubeRatioAdjustHelper cannot activate! IsEligible: false
+19-09-2026 | 15:26:00.079 | Info | GameplayKillHelper:SetState called from LevelStarted
+19-09-2026 | 15:26:00.080 | Info | InventoryHelper:Sync frame count is same with last sync: 287774.
+19-09-2026 | 15:26:00.080 | Info | InventoryHelper:Forced balance is 2572834 for UserType
+19-09-2026 | 15:26:00.081 | Info | Events:ShieldClashConsecutiveWin ConsecutiveWinCount:0
+19-09-2026 | 15:26:00.084 | Info | UserProfile:Level started, stopping periodic sync
+19-09-2026 | 15:26:00.084 | Info | UserStatistics:Backing up current streak. Current: 0
+19-09-2026 | 15:26:00.084 | Info | UserProfile:Setting sync required flag
+19-09-2026 | 15:26:00.085 | Info | UserProfile:Updated 3 entities in DB
+19-09-2026 | 15:26:00.086 | Info | UserStatistics:DB updated with 16 stats. Overwritten: False
+19-09-2026 | 15:26:00.086 | Info | UserStatistics:Level started stats backed up
+19-09-2026 | 15:26:00.087 | Info | DeepQuest:DeepQuest state is persist as {"EventId":8273,"Claimed":false,"ClaimedStageIds":[1],"ClaimedStepIds":[101,102,103,104,105,203,205],"ExtraData":{"SelectedTasks":[{"StageId":1,"StepId":101,"Type":2,"Goal":15},{"StageId":1,"StepId":102,"Type":11,"Goal":2},{"StageId":1,"StepId":103,"Type":4,"Goal":500},{"StageId":1,"StepId":104,"Type":6,"Goal":1},{"StageId":1,"StepId":105,"Type":3,"Goal":2},{"StageId":2,"StepId":201,"Type":2,"Goal":100},{"StageId":2,"StepId":202,"Type":11,"Goal":4},{"StageId":2,"StepId":203,"Type":4,"Goal":1000},{"StageId":2,"StepId":204,"Type":6,"Goal":2},{"StageId":2,"StepId":205,"Type":3,"Goal":10},{"StageId":3,"StepId":301,"Type":2,"Goal":200},{"StageId":3,"StepId":302,"Type":11,"Goal":8},{"StageId":3,"StepId":303,"Type":4,"Goal":1750},{"StageId":3,"StepId":304,"Type":6,"Goal":3},{"StageId":3,"StepId":305,"Type":3,"Goal":20},{"StageId":4,"StepId":401,"Type":2,"Goal":450},{"StageId":4,"StepId":402,"Type":11,"Goal":20},{"StageId":4,"StepId":403,"Type":4,"Goal":5500},{"StageId":4,"StepId":404,"Type":6,"Goal":4},{"StageId":4,"StepId":405,"Type":3,"Goal":35}],"TaskProgressions":[{"Type":2,"Progress":19,"LastShownProgress":19},{"Type":11,"Progress":3,"LastShownProgress":3},{"Type":4,"Progress":1448,"LastShownProgress":1448},{"Type":6,"Progress":1,"LastShownProgress":1},{"Type":3,"Progress":12,"LastShownProgress":12}],"ProgressBannerShownStepIds":[105,103,104,102,203,101,205],"ProgressBannerAddedStepIds":[105,103,104,102,203,101,205],"DialogShownForUnclaimedStageIds":[1],"InvalidFirstDeepQuest":false,"IsFirstDeepQuest":false,"ExtendedTimeEventDialogClosed":false,"StageNotificationShownDataList":[]},"StatusRequired":false,"UpdateRequired":true,"NeedsAdjustmentSync":false} for key DeepQuest215987837.
+19-09-2026 | 15:26:00.087 | Info | DeepQuest:Will not process cached event.
+19-09-2026 | 15:26:00.087 | Info | InventoryHelper:Sync frame count is same with last sync: 287774.
+19-09-2026 | 15:26:00.088 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:26:00.088 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:26:00.088 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:26:00.088 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:26:00.088 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:26:00.088 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:26:00.088 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:26:00.088 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:26:00.088 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:26:00.088 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:26:00.088 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:26:00.088 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:26:00.088 | Info | DeltaMoveExecutor:SegmentedDeltaMove not applied. Levels segmented delta move container is null or empty.
+19-09-2026 | 15:26:00.089 | Info | SuperDiscoSkill:SuperDiscoSkillHelper TryPrepare called.
+19-09-2026 | 15:26:00.089 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:26:00.090 | Info | LevelBuilder:Starting LevelName:0382_1382v03_V LevelNo:382 MoveCount:27 CL:False
+19-09-2026 | 15:26:00.099 | Info | Grid:Grid is ready w9xh9
+19-09-2026 | 15:26:00.111 | Info | LevelBuilder:Goal Added: Honey = 0/3819-09-2026 | 15:26:00.111 | Info | LevelBuilder:Goal Added: Soda = 0/16
+19-09-2026 | 15:26:00.116 | Info | Crown:CrownRush level is persist as 0 for key CrownRush215987837
+19-09-2026 | 15:26:00.116 | Info | LevelBuilder:Checking for crown logic: shouldShowTutorial:False prelevelCreationDataExists:False
+19-09-2026 | 15:26:00.116 | Info | LevelBuilder:Decided with goal banner animation.
+19-09-2026 | 15:26:00.117 | Info | DialogManager:Show Dialog: [GoalsBanner]
+19-09-2026 | 15:26:00.117 | Info | EventSender:Adding new event to queue > [ShowDialog]
+19-09-2026 | 15:26:00.118 | Info | EventSender:Adding new event to queue > [LevelStart]
+19-09-2026 | 15:26:00.133 | Debug | AnalyticsV2:Event queued: FPS
+19-09-2026 | 15:26:00.134 | Debug | AnalyticsV2:Event queued: ShowDialog
+19-09-2026 | 15:26:00.151 | Debug | AnalyticsV2:Event queued: LevelStart
+19-09-2026 | 15:26:00.167 | Debug | AnalyticsV2:Inserted 1 rows to SQLite
+19-09-2026 | 15:26:00.191 | Debug | AnalyticsV2:Inserted 1 rows to SQLite
+19-09-2026 | 15:26:00.192 | Debug | AnalyticsV2:Received batch with 3 items, sending requests...
+19-09-2026 | 15:26:00.192 | Info | Backend:Waiting for request with RequestNo: 511 TraceId: 75b9f2a7-c6e9-41e0-9f91-e726a5665789 ended.
+19-09-2026 | 15:26:00.192 | Info | Backend:Backend responded to request with RequestNo: 511 TraceId: 75b9f2a7-c6e9-41e0-9f91-e726a5665789
+19-09-2026 | 15:26:00.193 | Info | Backend:Backend confirms request with RequestNo: 511 TraceId: 75b9f2a7-c6e9-41e0-9f91-e726a5665789 was received. SyncId:8994
+19-09-2026 | 15:26:00.193 | Info | Backend:Message count in response for request with RequestNo: 511 TraceId: 75b9f2a7-c6e9-41e0-9f91-e726a5665789 is:1
+19-09-2026 | 15:26:00.193 | Info | Command:Success: SYNC_INVENTORY_MSG, Id:0
+19-09-2026 | 15:26:00.194 | Info | SyncInventoryReply:Inventory Reply Success
+19-09-2026 | 15:26:00.195 | Info | InventoryHelper:InventoryChanged started async inventory update process.
+19-09-2026 | 15:26:00.195 | Info | InventoryHelper:Forced balance is 581 for UnlimitedLife
+19-09-2026 | 15:26:00.196 | Info | CaravanDateTime:Time from server is updated as:09/19/2026 15:25:59
+19-09-2026 | 15:26:00.196 | Info | CaravanDateTime:Previous stored time was Online: 09/19/2026 15:25:57, Offline: 09/19/2026 15:25:58 with Diff: 1
+19-09-2026 | 15:26:00.197 | Info | CaravanDateTime:Previous time is set:Online: 09/19/2026 15:25:59, Offline: 09/19/2026 15:26:00 with Diff: 1.175885
+19-09-2026 | 15:26:00.198 | Info | LifeStatusHelper:LifeHack earned life count is reset, and passed time saved as 1439.
+19-09-2026 | 15:26:00.198 | Info | InventoryHelper:Processing updated userType value:-1.
+19-09-2026 | 15:26:00.352 | Debug | AnalyticsV2:[handler:uwr] done result=Success code=200 err=
+19-09-2026 | 15:26:00.353 | Debug | AnalyticsV2:[transport] POST https://api.peakgames.net/api/v2/event gzip=True bytes=1097 -> 200
+19-09-2026 | 15:26:00.353 | Debug | AnalyticsV2:Batch sent successfully: 3 events
+19-09-2026 | 15:26:00.353 | Debug | AnalyticsV2:Sent 3 items: [9058,9059,9060], removing from store
+19-09-2026 | 15:26:00.353 | Debug | AnalyticsV2:Running SQL query: DELETE FROM events WHERE id IN (9058,9059,9060)
+19-09-2026 | 15:26:00.365 | Debug | AnalyticsV2:Deleted 3 rows
+19-09-2026 | 15:26:00.390 | Info | InventoryHelper:Checking hack status. DateTimeSet: True, TimeHack: False, FocusHack: False, TimeDiff: 1.175838
+19-09-2026 | 15:26:00.391 | Info | InventoryHelper:SyncInventory Unlimited Items: [UNLIMITED_HAMMER~0] [UNLIMITED_ANVIL~0] [UNLIMITED_BOXING_GLOVE~0] [UNLIMITED_ROCKET~0] [UNLIMITED_BOMB~0] [UNLIMITED_DISCO_BALL~0] [UNLIMITED_SUPER_BOMB~0] [DOUBLE_STAR~0] [DOUBLE_ALL~0]
+19-09-2026 | 15:26:00.391 | Info | Backend:Calling backend with request (RequestNo: 512 TraceId: fe85cdbf-2f11-4c85-8cd2-8bd94958c6aa SyncId: 8994)  [SYNC_INVENTORY_MSG] [DEEP_QUEST_UPDATE_MSG]
+19-09-2026 | 15:26:00.642 | Info | Backend:Waiting for request with RequestNo: 512 TraceId: fe85cdbf-2f11-4c85-8cd2-8bd94958c6aa ended.
+19-09-2026 | 15:26:00.643 | Info | Backend:Backend responded to request with RequestNo: 512 TraceId: fe85cdbf-2f11-4c85-8cd2-8bd94958c6aa
+19-09-2026 | 15:26:00.643 | Info | Backend:Backend confirms request with RequestNo: 512 TraceId: fe85cdbf-2f11-4c85-8cd2-8bd94958c6aa was received. SyncId:8995
+19-09-2026 | 15:26:00.649 | Info | Backend:Message count in response for request with RequestNo: 512 TraceId: fe85cdbf-2f11-4c85-8cd2-8bd94958c6aa is:2
+19-09-2026 | 15:26:00.649 | Info | Command:Success: SYNC_INVENTORY_MSG, Id:0
+19-09-2026 | 15:26:00.649 | Info | SyncInventoryReply:Inventory Reply Success
+19-09-2026 | 15:26:00.654 | Info | InventoryHelper:InventoryChanged started async inventory update process.
+19-09-2026 | 15:26:00.654 | Info | InventoryHelper:Forced balance is 580 for UnlimitedLife
+19-09-2026 | 15:26:00.661 | Info | CaravanDateTime:Time from server is updated as:09/19/2026 15:25:59
+19-09-2026 | 15:26:00.661 | Info | CaravanDateTime:Previous stored time was Online: 09/19/2026 15:25:59, Offline: 09/19/2026 15:26:00 with Diff: 1
+19-09-2026 | 15:26:00.662 | Info | CaravanDateTime:Previous time is set:Online: 09/19/2026 15:25:59, Offline: 09/19/2026 15:26:00 with Diff: 1.122855
+19-09-2026 | 15:26:00.663 | Info | LifeStatusHelper:LifeHack earned life count is reset, and passed time saved as 1440.
+19-09-2026 | 15:26:00.664 | Info | InventoryHelper:Processing updated userType value:-1.
+19-09-2026 | 15:26:00.665 | Info | Command:Success: DEEP_QUEST_UPDATE_MSG, Id:1
+19-09-2026 | 15:26:00.665 | Info | Command:DeepQuestUpdateResponseMessage reply success!
+19-09-2026 | 15:26:00.666 | Info | DeepQuest:DeepQuest state is persist as {"EventId":8273,"Claimed":false,"ClaimedStageIds":[1],"ClaimedStepIds":[101,102,103,104,105,203,205],"ExtraData":{"SelectedTasks":[{"StageId":1,"StepId":101,"Type":2,"Goal":15},{"StageId":1,"StepId":102,"Type":11,"Goal":2},{"StageId":1,"StepId":103,"Type":4,"Goal":500},{"StageId":1,"StepId":104,"Type":6,"Goal":1},{"StageId":1,"StepId":105,"Type":3,"Goal":2},{"StageId":2,"StepId":201,"Type":2,"Goal":100},{"StageId":2,"StepId":202,"Type":11,"Goal":4},{"StageId":2,"StepId":203,"Type":4,"Goal":1000},{"StageId":2,"StepId":204,"Type":6,"Goal":2},{"StageId":2,"StepId":205,"Type":3,"Goal":10},{"StageId":3,"StepId":301,"Type":2,"Goal":200},{"StageId":3,"StepId":302,"Type":11,"Goal":8},{"StageId":3,"StepId":303,"Type":4,"Goal":1750},{"StageId":3,"StepId":304,"Type":6,"Goal":3},{"StageId":3,"StepId":305,"Type":3,"Goal":20},{"StageId":4,"StepId":401,"Type":2,"Goal":450},{"StageId":4,"StepId":402,"Type":11,"Goal":20},{"StageId":4,"StepId":403,"Type":4,"Goal":5500},{"StageId":4,"StepId":404,"Type":6,"Goal":4},{"StageId":4,"StepId":405,"Type":3,"Goal":35}],"TaskProgressions":[{"Type":2,"Progress":19,"LastShownProgress":19},{"Type":11,"Progress":3,"LastShownProgress":3},{"Type":4,"Progress":1448,"LastShownProgress":1448},{"Type":6,"Progress":1,"LastShownProgress":1},{"Type":3,"Progress":12,"LastShownProgress":12}],"ProgressBannerShownStepIds":[105,103,104,102,203,101,205],"ProgressBannerAddedStepIds":[105,103,104,102,203,101,205],"DialogShownForUnclaimedStageIds":[1],"InvalidFirstDeepQuest":false,"IsFirstDeepQuest":false,"ExtendedTimeEventDialogClosed":false,"StageNotificationShownDataList":[]},"StatusRequired":false,"UpdateRequired":false,"NeedsAdjustmentSync":false} for key DeepQuest215987837.
+19-09-2026 | 15:26:00.667 | Info | DeepQuest:Will not process cached event.
+19-09-2026 | 15:26:00.838 | Info | InventoryHelper:Sync will be ignored since not needed (False).
+19-09-2026 | 15:26:01.072 | Info | DialogManager:Close arrived for: [GoalsBanner(Clone)]
+19-09-2026 | 15:26:01.093 | Info | Crown:CrownRush level is persist as 0 for key CrownRush215987837
+19-09-2026 | 15:26:21.656 | Info | ScoreBarStar:Playing star 0
+19-09-2026 | 15:26:27.713 | Info | ShuffleManager:Level Lost - Reason: OUT_OF_MOVES
+19-09-2026 | 15:26:28.216 | Info | EgoSystem:Show ego requested by level.
+19-09-2026 | 15:26:28.216 | Info | Profiling:PerformanceProfiler: Stopping at location LEVEL
+19-09-2026 | 15:26:28.219 | Info | EventSender:Adding new event to queue > [FPS]
+19-09-2026 | 15:26:28.219 | Info | Profiling:PerformanceProfiler: Starting at location LEVEL_END
+19-09-2026 | 15:26:28.224 | Debug | AnalyticsV2:Event queued: FPS
+19-09-2026 | 15:26:28.232 | Info | InventoryHelper:InventoryChanged started async inventory update process.
+19-09-2026 | 15:26:28.232 | Info | InventoryHelper:Forced balance is 97861 for LAST_LEVEL_LOSE_COUNT
+19-09-2026 | 15:26:28.232 | Info | AdHelper:GROUP_A impression value is : 0.00213036925960637 -GROUP_B impression value is : 0.00198356919374248 -GROUP_C impression value is : 0.001125527 -Couldn't find zero valued ad -
+19-09-2026 | 15:26:28.232 | Info | AdHelper:GROUP_A impression value is : 0.00213036925960637 -GROUP_B impression value is : 0.00198356919374248 -GROUP_C impression value is : 0.001125527 -Found GROUP_A as most valued ad. Value: 0.00213036925960637
+19-09-2026 | 15:26:28.232 | Info | AdHelper:Ad is not available, reason: REACHED LIMIT. Placement:EGO
+19-09-2026 | 15:26:28.232 | Info | AdHelper:Ad is not available, reason: AD IS NOT READY TO SHOW. Placement:EGO
+19-09-2026 | 15:26:28.233 | Info | Offer:Checking offer conditions for availability offer-1287(TOON_PASS) withAnd: False ruleCount:  conditionsMet: True
+19-09-2026 | 15:26:28.233 | Info | EgoSystem:returning required ego modules : EGO_BANNER, BUY_COINS, PLAY_ON, TAP_TO_SEE_THE_BOARD.
+19-09-2026 | 15:26:28.233 | Info | EgoSystem:Destroying ego modules.
+19-09-2026 | 15:26:28.239 | Info | EgoSystem:Module PLAY_ON initializing.
+19-09-2026 | 15:26:28.239 | Info | EgoSystem:Ego Module Banner initialize requested!
+19-09-2026 | 15:26:28.241 | Info | Offer:Checking offer conditions for availability offer-1287(TOON_PASS) withAnd: False ruleCount:  conditionsMet: True
+19-09-2026 | 15:26:28.241 | Info | Offer:Checking offer conditions for availability offer-1294(TEAM_PACK) withAnd: False ruleCount:  conditionsMet: True
+19-09-2026 | 15:26:28.241 | Info | Offer:Offer products prepared. Shop Offer Id: 1304
+19-09-2026 | 15:26:28.241 | Info | Offer:Checking offer conditions for availability offer-1304(SHOP_OFFER) withAnd: False ruleCount:  conditionsMet: True
+19-09-2026 | 15:26:28.251 | Debug | AnalyticsV2:Inserted 1 rows to SQLite
+19-09-2026 | 15:26:28.251 | Info | Offer:Preparing offer ego entry. Shop Offer Id: 1304
+19-09-2026 | 15:26:28.251 | Info | Offer:Offer products prepared. Shop Offer Id: 1304
+19-09-2026 | 15:26:28.252 | Debug | AnalyticsV2:Received batch with 1 items, sending requests...
+19-09-2026 | 15:26:28.259 | Info | Offer:Preparing offer product content for productId:0
+19-09-2026 | 15:26:28.273 | Info | EgoSystem:Toon pass ego entry prepare called.
+19-09-2026 | 15:26:28.386 | Info | Offer:Preparing offer ego entry. Team Pack Offer Id: 1294
+19-09-2026 | 15:26:28.395 | Info | EgoSystem:Ego modules created. Active Ego Modules: PLAY_ON, EGO_BANNER, BUY_COINS, TAP_TO_SEE_THE_BOARD
+19-09-2026 | 15:26:28.395 | Info | EgoSystem:Preparing ego module base dialog.
+19-09-2026 | 15:26:28.395 | Info | EgoSystem:Preparing ego module play on.
+19-09-2026 | 15:26:28.403 | Info | EgoSystem:Preparing ego module banner.
+19-09-2026 | 15:26:28.403 | Info | Offer:Offer products prepared. Shop Offer Id: 1304
+19-09-2026 | 15:26:28.403 | Info | Offer:Checking offer conditions for availability offer-1304(SHOP_OFFER) withAnd: False ruleCount:  conditionsMet: True
+19-09-2026 | 15:26:28.405 | Info | Offer:Checking offer conditions for availability offer-1287(TOON_PASS) withAnd: False ruleCount:  conditionsMet: True
+19-09-2026 | 15:26:28.407 | Info | Offer:Checking offer conditions for availability offer-1294(TEAM_PACK) withAnd: False ruleCount:  conditionsMet: True
+19-09-2026 | 15:26:28.412 | Info | EgoSystem:Preparing ego module buy coins.
+19-09-2026 | 15:26:28.412 | Info | EgoSystem:Preparing ego module tap to see.
+19-09-2026 | 15:26:28.412 | Info | EgoSystem:Play ego animation requested. Module:  AnimationData: Type: DIALOG_IN, ReEvaluateContent: True, ReEvaluateLayout: True
+19-09-2026 | 15:26:28.412 | Info | EgoSystem:ReDraw requested!
+19-09-2026 | 15:26:28.412 | Info | Offer:Checking offer conditions for availability offer-1287(TOON_PASS) withAnd: False ruleCount:  conditionsMet: True
+19-09-2026 | 15:26:28.412 | Info | DialogManager:Show Dialog: [EgoModuleBase(Clone)]
+19-09-2026 | 15:26:28.415 | Info | EgoSystem:Content handler started. Content Count: 2
+19-09-2026 | 15:26:28.416 | Info | EgoSystem:Entered to content item. : EGO_BUNDLE
+19-09-2026 | 15:26:28.416 | Info | EgoSystem:All modules prepared!
+19-09-2026 | 15:26:28.416 | Info | EgoSystem:Executing all modules prepared logic for play on!
+19-09-2026 | 15:26:28.418 | Info | AdHelper:Available ad count is 3
+19-09-2026 | 15:26:28.418 | Info | EventSender:Adding new event to queue > [ShowEgoDialog]
+19-09-2026 | 15:26:28.427 | Debug | AnalyticsV2:Event queued: ShowEgoDialog
+19-09-2026 | 15:26:28.442 | Info | InventoryHelper:Checking hack status. DateTimeSet: True, TimeHack: False, FocusHack: False, TimeDiff: 1.121997
+19-09-2026 | 15:26:28.442 | Info | InventoryHelper:SyncInventory Unlimited Items: [UNLIMITED_HAMMER~0] [UNLIMITED_ANVIL~0] [UNLIMITED_BOXING_GLOVE~0] [UNLIMITED_ROCKET~0] [UNLIMITED_BOMB~0] [UNLIMITED_DISCO_BALL~0] [UNLIMITED_SUPER_BOMB~0] [DOUBLE_STAR~0] [DOUBLE_ALL~0]
+19-09-2026 | 15:26:28.442 | Info | Backend:Calling backend with request (RequestNo: 513 TraceId: b4e05b5e-e0a9-47c9-accb-81f5786c9bab SyncId: 8995)  [SYNC_INVENTORY_MSG]
+19-09-2026 | 15:26:28.461 | Debug | AnalyticsV2:Inserted 1 rows to SQLite
+19-09-2026 | 15:26:28.582 | Debug | AnalyticsV2:[handler:uwr] done result=Success code=200 err=
+19-09-2026 | 15:26:28.582 | Debug | AnalyticsV2:[transport] POST https://api.peakgames.net/api/v2/event gzip=False bytes=866 -> 200
+19-09-2026 | 15:26:28.582 | Debug | AnalyticsV2:Batch sent successfully: 1 events
+19-09-2026 | 15:26:28.582 | Debug | AnalyticsV2:Sent 1 items: [9061], removing from store
+19-09-2026 | 15:26:28.582 | Debug | AnalyticsV2:Running SQL query: DELETE FROM events WHERE id IN (9061)
+19-09-2026 | 15:26:28.596 | Debug | AnalyticsV2:Deleted 1 rows
+19-09-2026 | 15:26:28.597 | Debug | AnalyticsV2:Received batch with 1 items, sending requests...
+19-09-2026 | 15:26:28.752 | Debug | AnalyticsV2:[handler:uwr] done result=Success code=200 err=
+19-09-2026 | 15:26:28.752 | Debug | AnalyticsV2:[transport] POST https://api.peakgames.net/api/v2/event gzip=False bytes=1473 -> 200
+19-09-2026 | 15:26:28.753 | Debug | AnalyticsV2:Batch sent successfully: 1 events
+19-09-2026 | 15:26:28.753 | Debug | AnalyticsV2:Sent 1 items: [9062], removing from store
+19-09-2026 | 15:26:28.753 | Debug | AnalyticsV2:Running SQL query: DELETE FROM events WHERE id IN (9062)
+19-09-2026 | 15:26:28.765 | Debug | AnalyticsV2:Deleted 1 rows
+19-09-2026 | 15:26:28.765 | Info | Backend:Waiting for request with RequestNo: 513 TraceId: b4e05b5e-e0a9-47c9-accb-81f5786c9bab ended.
+19-09-2026 | 15:26:28.765 | Info | Backend:Backend responded to request with RequestNo: 513 TraceId: b4e05b5e-e0a9-47c9-accb-81f5786c9bab
+19-09-2026 | 15:26:28.765 | Info | Backend:Backend confirms request with RequestNo: 513 TraceId: b4e05b5e-e0a9-47c9-accb-81f5786c9bab was received. SyncId:8996
+19-09-2026 | 15:26:28.766 | Info | Backend:Message count in Debug | AnalyticsV2:Deleted 2 rows
+19-09-2026 | 15:26:44.021 | Info | Profiling:PerformanceProfiler: Stopping at location LEVEL_END
+19-09-2026 | 15:26:44.023 | Info | EventSender:Adding new event to queue > [FPS]
+19-09-2026 | 15:26:44.023 | Info | CaravanSceneManager:Async loading scene Map
+19-09-2026 | 15:26:44.023 | Info | CaravanSceneManager:Resetting for scene Map
+19-09-2026 | 15:26:44.023 | Info | CaravanSceneManager:Scene loading flag is: True
+19-09-2026 | 15:26:44.023 | Info | DialogManager:Clear All Dialogs.
+19-09-2026 | 15:26:44.023 | Info | AudioManager:All AudioClips are removed but still in memory. They will be removed at the next Resource GC.
+19-09-2026 | 15:26:44.023 | Info | UserProfile:Starting idle sync task
+19-09-2026 | 15:26:44.023 | Info | CaravanSceneManager:Selecting loading type for Map
+19-09-2026 | 15:26:44.023 | Info | LoadingScreenDisplayer:Loading screen with (2) type ToMap
+19-09-2026 | 15:26:44.023 | Info | LoadingScreenDisplayer:Is loading being displayed: True
+19-09-2026 | 15:26:44.023 | Info | LoadingScreenDisplayer:Loading Fade In Started
+19-09-2026 | 15:26:44.023 | Info | LoadingScreenDisplayer:Will load info.
+19-09-2026 | 15:26:44.064 | Info | LoadingScreenDisplayer:Info load completed.
+19-09-2026 | 15:26:44.098 | Debug | AnalyticsV2:Event queued: FPS
+19-09-2026 | 15:26:44.129 | Info | Backend:Waiting for request with RequestNo: 516 TraceId: 2dbbd92f-b3a1-499e-95e8-947011eb82cb ended.
+19-09-2026 | 15:26:44.129 | Info | Backend:Backend responded to request with RequestNo: 516 TraceId: 2dbbd92f-b3a1-499e-95e8-947011eb82cb
+19-09-2026 | 15:26:44.129 | Info | Backend:Backend confirms request with RequestNo: 516 TraceId: 2dbbd92f-b3a1-499e-95e8-947011eb82cb was received. SyncId:8997
+19-09-2026 | 15:26:44.129 | Debug | AnalyticsV2:Inserted 1 rows to SQLite
+19-09-2026 | 15:26:44.129 | Debug | AnalyticsV2:Received batch with 1 items, sending requests...
+19-09-2026 | 15:26:44.130 | Info | Backend:Message count in response for request with RequestNo: 516 TraceId: 2dbbd92f-b3a1-499e-95e8-947011eb82cb is:1
+19-09-2026 | 15:26:44.130 | Info | Command:Success: SYNC_INVENTORY_MSG, Id:0
+19-09-2026 | 15:26:44.130 | Info | SyncInventoryReply:Inventory Reply Success
+19-09-2026 | 15:26:44.132 | Info | InventoryHelper:InventoryChanged started async inventory update process.
+19-09-2026 | 15:26:44.132 | Info | InventoryHelper:Forced balance is 535 for UnlimitedLife
+19-09-2026 | 15:26:44.133 | Info | CaravanDateTime:Time from server is updated as:09/19/2026 15:26:43
+19-09-2026 | 15:26:44.133 | Info | CaravanDateTime:Previous stored time was Online: 09/19/2026 15:26:34, Offline: 09/19/2026 15:26:35 with Diff: 1
+19-09-2026 | 15:26:44.134 | Info | CaravanDateTime:Previous time is set:Online: 09/19/2026 15:26:43, Offline: 09/19/2026 15:26:44 with Diff: 1.119498
+19-09-2026 | 15:26:44.135 | Info | LifeStatusHelper:LifeHack earned life count is reset, and passed time saved as 1483.
+19-09-2026 | 15:26:44.135 | Info | InventoryHelper:Processing updated userType value:-1.
+19-09-2026 | 15:26:44.146 | Info | LoadingScreenDisplayer:DoFade > start:0 end:1 instant:False
+19-09-2026 | 15:26:44.245 | Info | LoadingScreenDisplayer:Loading Fade In Completed
+19-09-2026 | 15:26:44.246 | Info | CaravanSceneManager:GetShowLoadingEnumerator completed for Map
+19-09-2026 | 15:26:44.247 | Info | MiniGame:MiniGameLevelHelper cache clear. SceneToBeLoaded: Map
+19-09-2026 | 15:26:44.247 | Info | Offer:RegisterAssets for offer-987 _bundleReady:True
+19-09-2026 | 15:26:44.247 | Info | Offer:RegisterAssets for offer-1287 _bundleReady:True
+19-09-2026 | 15:26:44.247 | Info | Offer:RegisterAssets for offer-1294 _bundleReady:True
+19-09-2026 | 15:26:44.247 | Info | Offer:RegisterAssets for offer-1304 _bundleReady:True
+19-09-2026 | 15:26:44.271 | Info | Utils:Task Manager destroyed!
+19-09-2026 | 15:26:44.297 | Info | Utils:Task Manager destroyed!responseMessage reply success!
+19-09-2026 | 15:26:46.491 | Info | DiscardableInfo:DiscardableInfoResponseMessage status is SUCCESS.
+19-09-2026 | 15:26:46.491 | Info | DiscardableInfo:EventTypeIdTuples: OfferTypeIdTuples: 
+19-09-2026 | 15:26:46.491 | Info | Command:Success: MILESTONE_FETCH_MSG, Id:3
+19-09-2026 | 15:26:46.491 | Info | Command:MilestoneFetchResponseMessage reply success!
+19-09-2026 | 15:26:46.491 | Info | Milestone:MilestoneFetchResponseMessage Status: SUCCESS OldVersion: 1 NewVersion: 1
+19-09-2026 | 15:26:46.491 | Info | Command:Success: PROGRESS_MULTIPLIER_FETCH_MSG, Id:4
+19-09-2026 | 15:26:46.491 | Info | Command:ProgressMultiplierFetchResponseMessage reply success!
+19-09-2026 | 15:26:46.491 | Info | ProgressMultiplier:ProgressMultiplierFetchResponseMessage Status: SUCCESS OldVersion: 15 NewVersion: 15
+19-09-2026 | 15:26:46.491 | Info | Command:Success: DAILY_INFO_MSG, Id:5
+19-09-2026 | 15:26:46.491 | Info | Command:DailyInfoReply success! Status: 1
+19-09-2026 | 15:26:46.491 | Info | Command:Success: GET_EVENTS_MSG, Id:6
+19-09-2026 | 15:26:46.491 | Info | MapDisplayStateController:Strategy: [DefaultStrategy]
+19-09-2026 | 15:26:46.491 | Info | UserSegmentation:Segment not fetched in this session.
+19-09-2026 | 15:26:46.491 | Info | SegmentAndABCaller:FetchForId called for id: 215987837
+19-09-2026 | 15:26:46.491 | Info | Command:Success: TT_STATUS_MSG, Id:7
+19-09-2026 | 15:26:46.491 | Info | Events:TtGetStatusCommand 1 - 0 - 5687 - 0 - 1
+19-09-2026 | 15:26:46.493 | Info | Events:TeamTournament state is persist as 8269:1:0:0:1 for key TeamTournament215987837.
+19-09-2026 | 15:26:46.493 | Info | Command:Success: SHIELD_CLASH_STATUS_MSG, Id:8
+19-09-2026 | 15:26:46.493 | Info | Command:ShieldClashGetStatusReply success! Status: 2, group id: 7576458492595857718
+19-09-2026 | 15:26:46.497 | Info | Events:Shield Clash state is persist as 8268:JOINED:7576458492595857718:37:0:19:0::0:0 for key ShieldClash215987837.
+19-09-2026 | 15:26:46.497 | Info | Command:Success: DRAGONS_TREASURE_STATUS_MSG, Id:9
+19-09-2026 | 15:26:46.497 | Info | Events:Dragon's Treasure status reply success!
+19-09-2026 | 15:26:46.497 | Info | Events:Dragon's Treasure status: EVENT_FAILED
+19-09-2026 | 15:26:46.497 | Info | Events:Dragon's Treasure EventId: 8276 Progress: 0
+19-09-2026 | 15:26:46.497 | Info | Events:Dragons Treasure: status received. Status: EVENT_FAILED, Caller:FOCUS
+19-09-2026 | 15:26:46.497 | Info | Events:Dragons Treasure state updating from backend. Local stage 0, Remote Stage 0 Local Target 7, Remote Target 7
+19-09-2026 | 15:26:46.497 | Info | Events:Dragons Treasure: Trying to downloadable player contents. Size:10
+19-09-2026 | 15:26:46.498 | Info | Events:Dragons Treasure state is persist as 8276:0:7:3:1789830395643:1789830895998:99,52,32,26,22,13,9,5:FAILED:False:BACKEND_AUTHORIZED:False:5:0 for key DragonsTreasureState:215987837.
+19-09-2026 | 15:26:46.498 | Info | Command:Success: CANNON_FEST_ADJUSTMENT_MSG, Id:10
+19-09-2026 | 15:26:46.498 | Info | Command:CannonFestAdjustmentResponseMessage reply success!
+19-09-2026 | 15:26:46.498 | Info | Command:Success: COLLECTION_ADJUSTMENT_MSG, Id:11
+19-09-2026 | 15:26:46.498 | Info | Command:CollectionAdjustmentResponseMessage reply success!
+19-09-2026 | 15:26:46.498 | Info | CollectionEvent:Collection Adjustment Response: OnAdjustmentResponse could not completed. Response waiting adjustment is null!
+19-09-2026 | 15:26:46.498 | Info | Command:Success: MARATHON_ADJUSTMENT_MSG, Id:12
+19-09-2026 | 15:26:46.498 | Info | Command:MarathonAdjustmentResponseMessage reply success!
+19-09-2026 | 15:26:46.498 | Info | Command:Success: DEEP_QUEST_ADJUSTMENT_MSG, Id:13
+19-09-2026 | 15:26:46.498 | Info | Command:DeepQuestAdjustmentResponseMessage reply success!
+19-09-2026 | 15:26:46.498 | Info | Command:Success: WEEKLY_CONTEST_STATUS_MSG, Id:14
+19-09-2026 | 15:26:46.498 | Info | Command:WeeklyContestStatusResponseMessage reply success!
+19-09-2026 | 15:26:46.517 | Info | WeeklyContest:WeeklyContest state is persist as EventId: 8252 - Status: JOINED  - Members: ,197528247;126 ,215987837;17 ,252159453;14 ,222120037;2 ,178920260;1 ,113053741;1 ,257298224;0 ,232246836;0 ,256688840;0 ,43260613;0  for key WeeklyContest215987837.
+19-09-2026 | 15:26:46.517 | Info | Command:Success: TEMPLE_STATUS_MSG, Id:1519-09-2026 | 15:26:46.517 | Info | Command:TempleStatusResponseMessage reply success!
+19-09-2026 | 15:26:46.519 | Info | Temple:Temple state is persist as EventId: 8229, CharactersCount: 3, BallCount: 0, Finished: False, TutorialState: 255 MaxShownBallCount: 22 Characters: [Stage: 2, MyProgress: 17210, PartnerProgress: 22590 PartnerUserId: -258975059 BotType: FIRST_DAY_PUSHER BotEffort: 50.0]  [Stage: 0, MyProgress: 100, PartnerProgress: 550 PartnerUserId: 257339379 BotType: NONE BotEffort: ]  [Stage: 0, MyProgress: 0, PartnerProgress: 4440 PartnerUserId: -257286647 BotType: FIRST_DAY_PUSHER BotEffort: 50.0]  for key Temple215987837.
+19-09-2026 | 15:26:46.519 | Info | DeepQuest:Skipping progress for taskType: TEMPLE_STAGE_PASS, tracker or progression state not found.
+19-09-2026 | 15:26:46.519 | Info | Command:Success: TEMPLE_ADJUSTMENT_MSG, Id:16
+19-09-2026 | 15:26:46.519 | Info | Command:TempleAdjustmentResponseMessage reply success!
+19-09-2026 | 15:26:46.521 | Info | Temple:Temple state is persist as EventId: 8229, CharactersCount: 3, BallCount: 0, Finished: False, TutorialState: 255 MaxShownBallCount: 22 Characters: [Stage: 2, MyProgress: 17210, PartnerProgress: 22590 PartnerUserId: -258975059 BotType: FIRST_DAY_PUSHER BotEffort: 50.0]  [Stage: 0, MyProgress: 100, PartnerProgress: 550 PartnerUserId: 257339379 BotType: NONE BotEffort: ]  [Stage: 0, MyProgress: 0, PartnerProgress: 4440 PartnerUserId: -257286647 BotType: FIRST_DAY_PUSHER BotEffort: 50.0]  for key Temple215987837.
+19-09-2026 | 15:26:46.522 | Info | MapFlow:MapFlowItem: TEMPLE_REWARD_TRANSACTION with DEFAULT priority called RegisterAndStartFlow. CanForceSingleList: True SkipReasonsCheck: True HasBlockerMapFlowItemTypes: False
+19-09-2026 | 15:26:46.522 | Info | MapFlow:RegisterAndStartFlow blocked. ShouldBlockFocus: True
+19-09-2026 | 15:26:46.522 | Info | Command:Success: PET_ADJUSTMENT_MSG, Id:17
+19-09-2026 | 15:26:46.522 | Info | Command:PetAdjustmentResponseMessage reply success!
+19-09-2026 | 15:26:46.522 | Info | Command:Success: TEAM_BATTLE_STATUS_MSG, Id:18
+19-09-2026 | 15:26:46.522 | Info | Command:TeamBattleStatusResponseMessage reply success!
+19-09-2026 | 15:26:46.522 | Info | Command:Success: COSMETICS_DOWNLOAD_MSG, Id:19
+19-09-2026 | 15:26:46.522 | Info | Command:CosmeticsDownloadResponseMessage reply success!
+19-09-2026 | 15:26:46.528 | Info | Command:Success: EMOTE_DOWNLOAD_MSG, Id:20
+19-09-2026 | 15:26:46.528 | Info | Command:EmoteDownloadReply success! Status: 1 Version: 388 Emotes: 55
+19-09-2026 | 15:26:46.532 | Info | Command:Success: GAMEPLAY_CHARACTER_ANIMATION_DOWNLOAD_MSG, Id:21
+19-09-2026 | 15:26:46.532 | Info | Command:GameplayCharacterAnimationDownloadReply success! Status: 1
+19-09-2026 | 15:26:46.532 | Info | GamePlay:Active GameplayCharacterAnimation is Summer
+19-09-2026 | 15:26:46.545 | Info | Command:Success: PRELEVEL_SKIN_DOWNLOAD_MSG, Id:22
+19-09-2026 | 15:26:46.545 | Info | Command:PrelevelSkinDownloadReply success! Status: 1
+19-09-2026 | 15:26:46.547 | Info | Command:Success: GET_OFFERS_MSG, Id:23
+19-09-2026 | 15:26:46.547 | Info | Command:GetOffersReply success! Status: 1 Offers: 8
+19-09-2026 | 15:26:46.553 | Info | Offer:ToonPass data initializing. OfferId:1287
+19-09-2026 | 15:26:46.554 | Info | Offer:Offer products prepared. Offer Id: 1294
+19-09-2026 | 15:26:46.554 | Info | Offer:CheckOfferToDownload update: offer-1294
+19-09-2026 | 15:26:46.554 | Info | Offer:Offer CheckAndUpdateOffer for offer-1294
+19-09-2026 | 15:26:46.555 | Info | Offer:Shop offer data parsed and current variant set. Shop Offer Id: 1304
+19-09-2026 | 15:26:46.556 | Info | Offer:Offer products prepared. Shop Offer Id: 1304
+19-09-2026 | 15:26:46.556 | Info | Offer:Offer products prepared. Shop Offer Id: 1304
+19-09-2026 | 15:26:46.556 | Info | Offer:CheckOfferToDownload update: offer-1304
+19-09-2026 | 15:26:46.556 | Info | Offer:Offer CheckAndUpdateOffer for offer-1304
+19-09-2026 | 15:26:46.557 | Info | Offer:Shop offer data parsed and current variant set. Shop Offer Id: 987
+19-09-2026 | 15:26:46.557 | Info | Offer:Offer products prepared. Shop Offer Id: 987
+19-09-2026 | 15:26:46.557 | Info | Offer:Offer products prepared. Shop Offer Id: 987
+19-09-2026 | 15:26:46.557 | Info | Offer:CheckOfferToDownload update: offer-987
+19-09-2026 | 15:26:46.557 | Info | Offer:Offer CheckAndUpdateOffer for offer-987
+19-09-2026 | 15:26:46.557 | Info | Offer:GetOffersReply check for segment: offer-1096
+19-09-2026 | 15:26:46.558 | Info | Offer:GetOffersReply offer has segment adding to check list: offer-1096
+19-09-2026 | 15:26:46.558 | Info | Offer:GetOffersReply check for segment: offer-886
+19-09-2026 | 15:26:46.558 | Info | Offer:GetOffersReply offer has segment adding to check list: offer-886
+19-09-2026 | 15:26:46.558 | Info | Offer:GetOffersReply check for segment: offer-1009
+19-09-2026 | 15:26:46.558 | Info | Offer:GetOffersReply offer has segment adding to check list: offer-1009
+19-09-2026 | 15:26:46.560 | Info | Offer:ToonPass data initializing. OfferId:1287
+19-09-2026 | 15:26:46.560 | Info | Offer:CheckOfferToDownload update: offer-1287
+19-09-2026 | 15:26:46.560 | Info | Offer:Offer CheckAndUpdateOffer for offer-1287
+19-09-2026 | 15:26:46.560 | Info | Offer:GetOffersReply calling FetchSegmentsIfOutdated
+19-09-2026 | 15:26:46.560 | Info | UserSegmentation:Segment not fetched in this session.
+19-09-2026 | 15:26:46.560 | Info | SegmentAndABCaller:FetchForId called for id: 215987837
+19-09-2026 | 15:26:46.560 | Info | Command:Success: CHECK_CONSENT_MSG, Id:24
+19-09-2026 | 15:26:46.560 | Info | Command:Check Consent Reply Success. showConsent:False, policyVersion:4
+19-09-2026 | 15:26:46.560 | Info | Command:Success: GET_RENOVATION_HISTORY_MSG, Id:25
+19-09-2026 | 15:26:46.566 | Info | Command:Success: WELCOME_BACK_INFO_MSG, Id:26
+19-09-2026 | 15:26:46.566 | Info | Command:WelcomeBackInfoReply success! Status: 1 giftData: 
+19-09-2026 | 15:26:46.566 | Info | WelcomeBack:WelcomeBackInfoCommand giftData is null or empty.
+19-09-2026 | 15:26:46.566 | Info | Command:Success: COMPENSATION_CHECK_MSG, Id:27
+19-09-2026 | 15:26:46.566 | Info | Command:CompensationCheckResponseMessage reply success!
+19-09-2026 | 15:26:46.566 | Info | Compensation:Compensation gift is not available.
+19-09-2026 | 15:26:46.566 | Info | Command:Success: TARGETED_REWARD_DATA_GET_MSG, Id:28
+19-09-2026 | 15:26:46.566 | Info | Command:TargetedRewardDataGetResponseMessage reply success!
+19-09-2026 | 15:26:46.566 | Info | Command:Success: DYNAMIC_BID_FLOOR_INFO_MSG, Id:29
+19-09-2026 | 15:26:46.566 | Info | Command:DynamicBidFloorInfoResponseMessage reply success!
+19-09-2026 | 15:26:46.566 | Info | AdHelper:DynamicBidFloorInfoCommandResponse: current version is not outdated. No update needed. Current version:21 Response version:21
+19-09-2026 | 15:26:46.566 | Info | Command:Success: SEGMENT_AD_UNITS_FETCH_MSG, Id:30
+19-09-2026 | 15:26:46.566 | Info | Command:SegmentAdUnitsFetchResponseMessage reply success!
+19-09-2026 | 15:26:46.566 | Info | AdHelper:Trying persisting ad units for segment android_ad_revenue_segment_max_1 and variant 2
+19-09-2026 | 15:26:46.566 | Info | AdHelper:Persisting ad units: Name: toon_android_w2e_adunit1_ab1_default, Id: 91e7d5820891e573,Name: toon_android_w2e_adunit2_ab1_default, Id: fc6d899fec9caf86,Name: toon_android_w2e_adunit3_ab1_default, Id: 59aa6778c4e32185
+19-09-2026 | 15:26:46.567 | Info | Command:Success: REMAINING_AD_DATA_MSG, Id:31
+19-09-2026 | 15:26:46.567 | Info | AdHelper:RemainingAdData replied successfully. Status:1
+19-09-2026 | 15:26:46.567 | Info | AdHelper:Remaining watch count updated. Placement:EGO, Count:0
+19-09-2026 | 15:26:46.569 | Info | AdHelper:Remaining watch count updated. Placement:LIFE_REFILL, Count:17
+19-09-2026 | 15:26:46.571 | Info | AdHelper:Remaining watch count updated. Placement:DAILY_DEALS, Count:1
+19-09-2026 | 15:26:46.572 | Info | Command:Success: DYNAMIC_DIFFICULTY_INFO_MSG, Id:32
+19-09-2026 | 15:26:46.572 | Info | Command:DynamicDifficultyInfoResponseMessage reply success!
+19-09-2026 | 15:26:46.572 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:26:46.573 | Info | DynamicDifficulty:Skipping Dynamic Difficulty Table generation, already done. Size: 201 FirstLevelNo: 380 LastLevelNo: 579
+19-09-2026 | 15:26:46.574 | Info | Command:Success: SHOP_CONFIG_GET_MSG, Id:33
+19-09-2026 | 15:26:46.574 | Info | Command:ShopConfigGetResponseMessage reply success!
+19-09-2026 | 15:26:46.574 | Info | Shop:The current local shop config is up to date. The remote shop config will be ignored.
+19-09-2026 | 15:26:46.574 | Info | Command:Success: DAILY_DEALS_STATUS_MSG, Id:34
+19-09-2026 | 15:26:46.574 | Info | Command:DailyDealsStatusResponseMessage reply success!
+19-09-2026 | 15:26:46.574 | Info | DailyDeals:Daily Deals data is up to date.
+19-09-2026 | 15:26:46.577 | Info | Backend:Calling backend with request (RequestNo: 518 TraceId: b32ea2e1-69b1-4cfe-8422-ca8ef66beb9f SyncId: 8997)  [FRIENDS_LIST_MSG]
+19-09-2026 | 15:26:46.593 | Info | Offer:Offer products prepared. Offer Id: 1294
+19-09-2026 | 15:26:46.638 | Info | LoadingScreenDisplayer:Is loading being displayed: False
+19-09-2026 | 15:26:46.972 | Info | SegmentAndABCaller:AB and segment data fetched successfully for id 215987837.
+19-09-2026 | 15:26:46.972 | Info | UserSegmentation:Last segment updating time: Online: 09/19/2026 15:26:45, Offline: 09/19/2026 15:26:46 with Diff: 1.119245
+19-09-2026 | 15:26:46.972 | Info | UserSegmentation:Consuming segments. Segments Count: 41
+19-09-2026 | 15:26:46.981 | Info | UserSegmentation:Incoming user segments and current segments are same.
+19-09-2026 | 15:26:46.982 | Info | AbTesting:Consuming ABTests. ABTests Count: 15
+19-09-2026 | 15:26:46.982 | Info | AbTesting:ABTest: 20230724_WelcomeBackRatio Status: Process
+19-09-2026 | 15:26:46.982 | Warning | AbTesting:Cannot process AB name:20230724_WelcomeBackRatio  type:clientdecided
+19-09-2026 | 15:26:46.982 | Info | AbTesting:ABTest: bigdata-matchmaking-ab-test Status: Process
+19-09-2026 | 15:26:46.982 | Warning | AbTesting:Cannot process AB name:bigdata-matchmaking-ab-test  type:bigdata-test
+19-09-2026 | 15:26:46.982 | Info | AbTesting:ABTest: 20240729_OldUserNewUI Status: Process
+19-09-2026 | 15:26:46.982 | Info | AbTesting:ABTest: 20241125_ProfileABExtension Status: Process
+19-09-2026 | 15:26:46.982 | Info | AbTesting:ABTest: 20251017_DeepQuest2ndAB Status: Process
+19-09-2026 | 15:26:46.983 | Info | AbTesting:PeakABParser > Evaluating condition:level with value:>38 Status:Process
+19-09-2026 | 15:26:46.983 | Info | AbTesting:ABTest: 20251205_TempleGuardians_Rollout Status: Process
+19-09-2026 | 15:26:46.983 | Info | AbTesting:ABTest: 20260301_DiamondPassGoal&ContentAB Status: Process
+19-09-2026 | 15:26:46.983 | Info | AbTesting:ABTest: 20260330_WelcomeBackAssist Status: Process
+19-09-2026 | 15:26:46.983 | Info | AbTesting:ABTest: 20260629_RailRush_V2_1 Status: Process
+19-09-2026 | 15:26:46.983 | Info | AbTesting:PeakAB > 20260629_RailRush_V2_1 is already consumed.
+19-09-2026 | 15:26:46.983 | Info | AbTesting:ABTest: 20260713_ChurnAB Status: Process
+19-09-2026 | 15:26:46.983 | Info | AbTesting:PeakAB > 20260713_ChurnAB is already consumed.
+19-09-2026 | 15:26:46.983 | Info | AbTesting:ABTest: 270727_RailRush_V2_1_new_users Status: Process
+19-09-2026 | 15:26:46.983 | Info | AbTesting:PeakAB > 270727_RailRush_V2_1_new_users is already consumed.
+19-09-2026 | 15:26:46.983 | Info | AbTesting:ABTest: 20260817_DynamicDifficultyPetRollout Status: Process
+19-09-2026 | 15:26:46.984 | Info | AbTesting:PeakAB > 20260817_DynamicDifficultyPetRollout is already consumed.
+19-09-2026 | 15:26:46.984 | Info | AbTesting:ABTest: 20260817_EarlySkillDifficulty Status: Process
+19-09-2026 | 15:26:46.984 | Info | AbTesting:PeakAB > 20260817_EarlySkillDifficulty is already consumed.
+19-09-2026 | 15:26:46.984 | Info | AbTesting:ABTest: 20260901_WebPurchaseAB Status: Process
+19-09-2026 | 15:26:46.984 | Info | AbTesting:PeakAB > 20260901_WebPurchaseAB is already consumed.
+19-09-2026 | 15:26:46.984 | Info | AbTesting:ABTest: 20260914_CLDifficultyAB Status: Process
+19-09-2026 | 15:26:46.984 | Info | AbTesting:PeakAB > 20260914_CLDifficultyAB is already consumed.
+19-09-2026 | 15:26:46.984 | Info | AbTesting:Checking finished AB Test(s).
+19-09-2026 | 15:26:46.985 | Info | AbTesting:All ABTests are processed, removing persisted entries.
+19-09-2026 | 15:26:46.985 | Info | EventSegment:SegmentsFetched called. Success: True
+19-09-2026 | 15:26:46.994 | Info | Offer:Offer SegmentsFetched is called with success: true _offersToCheckSegment count: 3
+19-09-2026 | 15:26:46.995 | Info | Offer:Offer variant data not found
+19-09-2026 | 15:26:46.995 | Info | Offer:Offer not valid because variant data is null. Wheel of Luck Offer Id: 1096
+19-09-2026 | 15:26:46.995 | Info | Offer:CheckOfferToDownload offer not valid or available: offer-1096
+19-09-2026 | 15:26:46.995 | Info | Offer:Shop offer variant data not found.
+19-09-2026 | 15:26:46.995 | Info | Offer:Offer not valid because variants not match with any ab group or segment. Shop Offer Id: 886
+19-09-2026 | 15:26:46.995 | Info | Offer:CheckOfferToDownload offer not valid or available: offer-886
+19-09-2026 | 15:26:46.995 | Info | Offer:ProgressiveOffer variant data not found.
+19-09-2026 | 15:26:46.995 | Info | Offer:ProgressiveOffer variant couldn't set, removing offer. Progressive Offer Id: 1009
+19-09-2026 | 15:26:46.995 | Info | Offer:RemoveOffer called! offerId-1009
+19-09-2026 | 15:26:46.996 | Info | Events:Unregistering assets for offer-1009
+19-09-2026 | 15:26:46.996 | Info | Events:Unregistered 0 assets for offer-1009
+19-09-2026 | 15:26:46.996 | Info | Offer:ProgressiveOffer data initializing. OfferId:1009
+19-09-2026 | 15:26:46.996 | Info | Offer:CheckOfferToDownload offer not valid or available: offer-1009
+19-09-2026 | 15:26:46.996 | Info | Backend:Waiting for request with RequestNo: 518 TraceId: b32ea2e1-69b1-4cfe-8422-ca8ef66beb9f ended.
+19-09-2026 | 15:26:46.996 | Info | Backend:Backend responded to request with RequestNo: 518 TraceId: b32ea2e1-69b1-4cfe-8422-ca8ef66beb9f
+19-09-2026 | 15:26:46.996 | Info | Backend:Backend confirms request with RequestNo: 518 TraceId: b32ea2e1-69b1-4cfe-8422-ca8ef66beb9f was received. SyncId:-1
+19-09-2026 | 15:26:46.996 | Info | Backend:Message count in response for request with RequestNo: 518 TraceId: b32ea2e1-69b1-4cfe-8422-ca8ef66beb9f is:1
+19-09-2026 | 15:26:46.996 | Info | Command:Success: FRIENDS_LIST_MSG, Id:0
+19-09-2026 | 15:26:46.996 | Info | Command:FriendsListResponseMessage reply success!
+19-09-2026 | 15:26:46.996 | Error | FriendSystem:Friend list response could not completed. Status: FAIL
+19-09-2026 | 15:26:47.014 | Info | UserStatistics:Profile metadata updated with weekly wins: 17
+19-09-2026 | 15:26:47.036 | Info | CaravanSceneManager:Scene loading flag is: False
+19-09-2026 | 15:26:47.036 | Info | CaravanSceneManager:Loading logic completed for scene Map
+19-09-2026 | 15:26:47.038 | Info | MapFlow:MapFlowItem: SHIELD_CLASH_INFO AreShowLimitConditions not met! Identifier: 8268-8268 IdentifierShowInfo: 1-1 CumulativeShowInfo: 0-1
+19-09-2026 | 15:26:47.038 | Info | Offer:Checking offer conditions for availability offer-987(SHOP_OFFER) withAnd: False ruleCount:  conditionsMet: True
+19-09-2026 | 15:26:47.038 | Info | MapDisplayStateController:Checking map display state for 9: Can Show : True
+19-09-2026 | 15:26:47.038 | Info | Offer:Checking offer conditions for availability offer-1304(SHOP_OFFER) withAnd: False ruleCount:  conditionsMet: True
+19-09-2026 | 15:26:47.038 | Info | Offer:Checking offer conditions for availability offer-1287(TOON_PASS) withAnd: False ruleCount:  conditionsMet: True
+19-09-2026 | 15:26:47.039 | Info | Offer:Auto show cap reached. autoShowCount: 1 - autoShowCountCap: 1
+19-09-2026 | 15:26:47.039 | Info | Offer:Checking offer conditions for availability offer-1287(TOON_PASS) withAnd: False ruleCount:  conditionsMet: True
+19-09-2026 | 15:26:47.039 | Info | Offer:ShouldShowExtended for offer-1287 OfferReady: True InExtendedTime: False AreAvailabilityConditionsMet: True ExtraExtendedCheckNeeded: False19-09-2026 | 15:26:47.039 | Info | MapFlow:MapFlowItem: TEMPLE_ANNOUNCEMENT AreShowLimitConditions not met! Identifier: 8229-8229 IdentifierShowInfo: 1-1 CumulativeShowInfo: 0-1
+19-09-2026 | 15:26:47.039 | Info | MapFlow:MapFlowItem: DISCO_EVENT_JOIN AreShowLimitConditions not met! Identifier: 8277-8277 IdentifierShowInfo: 1-1 CumulativeShowInfo: 0-1
+19-09-2026 | 15:26:47.039 | Info | MapFlow:MapFlowItem: DISCO_EVENT_INFO AreShowLimitConditions not met! Identifier: 8277-8277 IdentifierShowInfo: 1-1 CumulativeShowInfo: 0-0
+19-09-2026 | 15:26:47.039 | Info | MapFlow:MapFlowItem: TEAM_TOURNAMENT_INFO AreShowLimitConditions not met! Identifier: 8269-8269 IdentifierShowInfo: 1-1 CumulativeShowInfo: 0-0
+19-09-2026 | 15:26:47.039 | Info | MapFlow:MapFlowItem: MARATHON_EVENT_STEP AreShowLimitConditions not met! Identifier: 8272-8272 IdentifierShowInfo: 1-1 CumulativeShowInfo: 0-0
+19-09-2026 | 15:26:47.039 | Info | MapFlow:MapFlowItem: MARATHON_EVENT_STEP_AB AreShowLimitConditions not met! Identifier: 8272-8272 IdentifierShowInfo: 1-1 CumulativeShowInfo: 3-2
+19-09-2026 | 15:26:47.039 | Info | MapFlow:MapFlowItem: DEEP_QUEST_ANNOUNCEMENT AreShowLimitConditions not met! Identifier: 8273-8273 IdentifierShowInfo: 1-1 CumulativeShowInfo: 0-2
+19-09-2026 | 15:26:47.039 | Info | MapFlow:MapFlowItem: CANNON_FEST_ANNOUNCEMENT AreShowLimitConditions not met! Identifier: 8270-8270 IdentifierShowInfo: 1-1 CumulativeShowInfo: 0-1
+19-09-2026 | 15:26:47.039 | Info | MapFlow:LockCounter changed EnableClicks: True
+19-09-2026 | 15:26:47.039 | Info | MapFlow:Flow MAP_RETURN started. Count: 2 LockCounter: 0
+19-09-2026 | 15:26:47.039 | Info | MapFlow:TemporaryLockEnabled changed EnableClicks: True
+19-09-2026 | 15:26:47.039 | Info | MapFlow:MapFlowItem: MARATHON_EVENT_PROGRESS is executing.
+19-09-2026 | 15:26:47.045 | Info | Events:Updating progress from flow CurrentAmount: 138
+19-09-2026 | 15:26:47.045 | Info | Events:MarathonEvent UpdateProgress play progress animation.
+19-09-2026 | 15:26:47.045 | Info | Events:MarathonEvent PlayProgressAnimation progress same as last shown.
+19-09-2026 | 15:26:47.045 | Info | MapFlow:MapFlowItem: DISPLAY_COLLECT is executing.
+19-09-2026 | 15:26:47.086 | Info | EventSender:Adding new event to queue > [ActiveMapPage] [Map]
+19-09-2026 | 15:26:47.171 | Info | Level:Level Button Click level:382 Server MaxLevel:12350
+19-09-2026 | 15:26:47.171 | Info | ChampionsLeague:_levels is null: False, _levels.Length: 0, _levelInfo.Index: 0. Cached user id: 215987837
+19-09-2026 | 15:26:47.172 | Info | Level:IsInChampionsLeague:False Status:CLOSED Duration:0 level:1 Rank:-1 StageString:Stage 1 CanJoin:False
+19-09-2026 | 15:26:47.172 | Info | MapFlow:MapFlowItem: CHAMPIONS_LEAGUE_ENTRANCE with FIRST priority called RegisterAndStartFlow. CanForceSingleList: True SkipReasonsCheck: True HasBlockerMapFlowItemTypes: False
+19-09-2026 | 15:26:47.181 | Debug | AnalyticsV2:Event queued: ActiveMapPage
+19-09-2026 | 15:26:47.200 | Debug | AnalyticsV2:Inserted 1 rows to SQLite
+19-09-2026 | 15:26:47.200 | Debug | AnalyticsV2:Received batch with 1 items, sending requests...
+19-09-2026 | 15:26:47.214 | Info | DialogManager:Show Dialog: [PrelevelDialog]
+19-09-2026 | 15:26:47.214 | Info | EventSender:Adding new event to queue > [ShowDialog]
+19-09-2026 | 15:26:47.283 | Debug | AnalyticsV2:Event queued: ShowDialog
+19-09-2026 | 15:26:47.285 | Info | UserModule:Social OnDoAuthenticate > Reply Authenticate > UserId:215987837 Version:23951
+19-09-2026 | 15:26:47.292 | Debug | AnalyticsV2:Inserted 1 rows to SQLite
+19-09-2026 | 15:26:47.403 | Debug | AnalyticsV2:[handler:uwr] done result=Success code=200 err=
+19-09-2026 | 15:26:47.403 | Debug | AnalyticsV2:[transport] POST https://api.peakgames.net/api/v2/event gzip=False bytes=580 -> 200
+19-09-2026 | 15:26:47.403 | Debug | AnalyticsV2:Batch sent successfully: 1 events
+19-09-2026 | 15:26:47.403 | Debug | AnalyticsV2:Sent 1 items: [9069], removing from store
+19-09-2026 | 15:26:47.403 | Debug | AnalyticsV2:Running SQL query: DELETE FROM events WHERE id IN (9069)
+19-09-2026 | 15:26:47.412 | Debug | AnalyticsV2:Deleted 1 rows
+19-09-2026 | 15:26:47.413 | Debug | AnalyticsV2:Received batch with 1 items, sending requests...
+19-09-2026 | 15:26:47.453 | Info | UserModule:Updating user level as 382
+19-09-2026 | 15:26:47.453 | Info | SocialLoading:Showing loading:, 1
+19-09-2026 | 15:26:47.453 | Info | JoinTeamAction:Performing joining to team.
+19-09-2026 | 15:26:47.453 | Info | UserModule:Updating user level as 382
+19-09-2026 | 15:26:47.570 | Debug | AnalyticsV2:[handler:uwr] done result=Success code=200 err=
+19-09-2026 | 15:26:47.570 | Debug | AnalyticsV2:[transport] POST https://api.peakgames.net/api/v2/event gzip=False bytes=573 -> 200
+19-09-2026 | 15:26:47.570 | Debug | AnalyticsV2:Batch sent successfully: 1 events
+19-09-2026 | 15:26:47.570 | Debug | AnalyticsV2:Sent 1 items: [9070], removing from store
+19-09-2026 | 15:26:47.570 | Debug | AnalyticsV2:Running SQL query: DELETE FROM events WHERE id IN (9070)
+19-09-2026 | 15:26:47.580 | Debug | AnalyticsV2:Deleted 1 rows
+19-09-2026 | 15:26:47.620 | Info | SocialLoading:Hiding loading:, 0
+19-09-2026 | 15:26:47.621 | Info | JoinTeamAction:Host change is needed:social72.toonblast.net:443
+19-09-2026 | 15:26:47.621 | Info | SocialSession:Changing host to social72.toonblast.net:443
+19-09-2026 | 15:26:47.621 | Info | SocialHelper:Switching to state: ChangingHost
+19-09-2026 | 15:26:47.621 | Info | SocialSession:Connecting to https://social72.toonblast.net:443/socket.io/
+19-09-2026 | 15:26:47.621 | Info | SocialLoading:Showing loading:, 1
+19-09-2026 | 15:26:47.790 | Info | Profiling:PerformanceProfiler: Stopping at location MAP
+19-09-2026 | 15:26:47.791 | Info | EventSender:Adding new event to queue > [FPS]
+19-09-2026 | 15:26:47.791 | Info | EventSender:Adding new event to queue > [MapIconShown]
+19-09-2026 | 15:26:47.791 | Info | MapDisplayStateController:Active Displays: MARATHON-8272:SUPER_DISCO:TEMPLE-8229:DEEP_QUEST-8273:TOON_PASS-1287:SHOP_OFFER-987-1304:TEAM_PACK-1294:SHIELD_CLASH-8268:CANNON_FEST-8270:DRAGONS_TREASURE-8276:PET-7023
+19-09-2026 | 15:26:47.791 | Info | CaravanSceneManager:Async loading scene GamePlay
+19-09-2026 | 15:26:47.791 | Info | CaravanSceneManager:Resetting for scene GamePlay
+19-09-2026 | 15:26:47.791 | Info | CaravanSceneManager:Scene loading flag is: True
+19-09-2026 | 15:26:47.791 | Info | DialogManager:Clear All Dialogs.
+19-09-2026 | 15:26:47.791 | Info | MapFlow:MapFlow reset because of scene change.
+19-09-2026 | 15:26:47.886 | Debug | AnalyticsV2:Event queued: FPS
+19-09-2026 | 15:26:47.887 | Debug | AnalyticsV2:Event queued: MapIconShown
+19-09-2026 | 15:26:47.902 | Debug | AnalyticsV2:Inserted 1 rows to SQLite
+19-09-2026 | 15:26:47.903 | Debug | AnalyticsV2:Received batch with 2 items, sending requests...
+19-09-2026 | 15:26:47.981 | Info | UserProfile:Periodic sync task stopped
+19-09-2026 | 15:26:47.981 | Info | CaravanSceneManager:Selecting loading type for GamePlay
+19-09-2026 | 15:26:47.981 | Info | LoadingScreenDisplayer:Loading screen with (2) type DoubleBomb
+19-09-2026 | 15:26:47.981 | Info | LoadingScreenDisplayer:Is loading being displayed: True
+19-09-2026 | 15:26:47.981 | Info | LoadingScreenDisplayer:Loading Fade In Started
+19-09-2026 | 15:26:47.981 | Info | LoadingScreenDisplayer:Will load info.
+19-09-2026 | 15:26:48.016 | Info | LoadingScreenDisplayer:Info load completed.
+19-09-2026 | 15:26:48.164 | Debug | AnalyticsV2:[handler:uwr] done result=Success code=200 err=
+19-09-2026 | 15:26:48.165 | Debug | AnalyticsV2:[transport] POST https://api.peakgames.net/api/v2/event gzip=True bytes=736 -> 200
+19-09-2026 | 15:26:48.165 | Debug | AnalyticsV2:Batch sent successfully: 2 events
+19-09-2026 | 15:26:48.165 | Debug | AnalyticsV2:Sent 2 items: [9071,9072], removing from store
+19-09-2026 | 15:26:48.165 | Debug | AnalyticsV2:Running SQL query: DELETE FROM events WHERE id IN (9071,9072)
+19-09-2026 | 15:26:48.167 | Info | LoadingScreenDisplayer:DoFade > start:0 end:1 instant:False
+19-09-2026 | 15:26:48.174 | Debug | AnalyticsV2:Deleted 2 rows
+19-09-2026 | 15:26:48.270 | Info | LoadingScreenDisplayer:Loading Fade In Completed
+19-09-2026 | 15:26:48.270 | Info | CaravanSceneManager:GetShowLoadingEnumerator completed for GamePlay
+19-09-2026 | 15:26:48.271 | Info | MiniGame:MiniGameLevelHelper cache clear. SceneToBeLoaded: GamePlay
+19-09-2026 | 15:26:48.293 | Info | Utils:Task Manager destroyed!
+19-09-2026 | 15:26:48.340 | Info | Utils:Task Manager destroyed!
+19-09-2026 | 15:26:48.896 | Info | DialogManager:Clear All Dialogs.
+19-09-2026 | 15:26:48.896 | Info | CaravanSceneManager:Waiting GamePlay to be loaded
+19-09-2026 | 15:26:49.024 | Info | ContentDownload:Map 15 is used from bundle!
+19-09-2026 | 15:26:49.632 | Info | LevelBuilder:Requested level 382 found in asset bundle.
+19-09-2026 | 15:26:49.632 | Info | LevelBuilder:Loaded Level name is:0382_1382v03_V
+19-09-2026 | 15:26:49.671 | Info | EgoSystem:New ego system created!
+19-09-2026 | 15:26:49.679 | Info | InventoryHelper:InventoryChanged started async inventory update process.
+19-09-2026 | 15:26:49.679 | Info | InventoryHelper:Forced balance is 97867 for LAST_LEVEL_TRY_COUNT
+19-09-2026 | 15:26:49.679 | Info | LevelBuilder:Random initialized with Seed: -370579360
+19-09-2026 | 15:26:49.679 | Info | AdHelper:CheckAndFillAdQueue > MediationSDKState: INITIALIZED, RewardedAdController?: True
+19-09-2026 | 15:26:49.679 | Info | AdHelper:RewardedAdController starting to load rewarded ads.
+19-09-2026 | 15:26:49.679 | Info | AdHelper:DynamicBidFloorHelper is eligible.
+19-09-2026 | 15:26:49.679 | Info | AdHelper:RewardedAdController filling rewarded ad queue.
+19-09-2026 | 15:26:49.679 | Info | AdHelper:RewardedAdController ready ad, increasing loaded ad count. Count: 1 Group: GROUP_ARewardedAdController ready ad, increasing loaded ad count. Count: 2 Group: GROUP_BRewardedAdController ready ad, increasing loaded ad count. Count: 3 Group: GROUP_C
+19-09-2026 | 15:26:49.679 | Info | AdHelper:DynamicBidFloorHelper is eligible.
+19-09-2026 | 15:26:49.679 | Info | AdHelper:RewardedAdController checking if all ads are ready.
+19-09-2026 | 15:26:49.679 | Info | AdHelper:RewardedAdController checked: GROUP_A is ready.
+19-09-2026 | 15:26:49.679 | Info | AdHelper:RewardedAdController checked: GROUP_B is ready.
+19-09-2026 | 15:26:49.679 | Info | AdHelper:RewardedAdController checked: GROUP_C is ready.
+19-09-2026 | 15:26:49.679 | Info | AdHelper:RewardedAdController checked: Ready state is True
+19-09-2026 | 15:26:49.679 | Info | AdHelper:RewardedAdController checked: All ads are ready, resetting retry count.
+19-09-2026 | 15:26:49.679 | Info | LifeStatusHelper:Using from unlimited life. Exp:Online: 09/19/2026 15:35:38, Offline: 09/19/2026 15:35:39 with Diff: 1.129452 Dur:535
+19-09-2026 | 15:26:49.694 | Info | CubeRatioAdjust:WelcomeBackCubeRatioAdjustHelper cannot activate! IsEligible: false
+19-09-2026 | 15:26:49.694 | Info | CubeRatioAdjust:TargetedRewardCubeRatioAdjustHelper cannot activate! IsEligible: false
+19-09-2026 | 15:26:49.694 | Info | CubeRatioAdjust:LevelConfigCubeRatioAdjustHelper cannot activate! IsEligible: false
+19-09-2026 | 15:26:49.694 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:26:49.694 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:26:49.694 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:26:49.694 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:26:49.694 | Info | CubeRatioAdjust:DynamicDifficultySuperDiscoLostCubeRatioAdjustHelper cannot activate! IsEligible: false
+19-09-2026 | 15:26:49.694 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:26:49.694 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:26:49.694 | Info | CubeRatioAdjust:DynamicDifficultySuperDiscoInactiveCubeRatioAdjustHelper cannot activate! IsEligible: false
+19-09-2026 | 15:26:49.694 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:26:49.694 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:26:49.694 | Info | CubeRatioAdjust:DynamicDifficultySuperDiscoActiveCubeRatioAdjustHelper cannot activate! IsEligible: false
+19-09-2026 | 15:26:49.694 | Info | CubeRatioAdjust:SuperDiscoWinAssistCubeRatioAdjustHelper cannot activate! IsEligible: false
+19-09-2026 | 15:26:49.694 | Info | SuperDiscoSkill:SuperDiscoSkillHelper TryPrepare called.
+19-09-2026 | 15:26:49.694 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:26:49.694 | Info | CubeRatioAdjust:SuperDiscoLoseAssistCubeRatioAdjustHelper cannot activate! IsEligible: false
+19-09-2026 | 15:26:49.694 | Info | GameplayKillHelper:SetState called from LevelStarted
+19-09-2026 | 15:26:49.698 | Info | InventoryHelper:Sync is in progress.
+19-09-2026 | 15:26:49.698 | Info | InventoryHelper:Forced balance is 2572834 for UserType
+19-09-2026 | 15:26:49.698 | Info | Events:ShieldClashConsecutiveWin ConsecutiveWinCount:0
+19-09-2026 | 15:26:49.702 | Info | UserProfile:Level started, stopping periodic sync
+19-09-2026 | 15:26:49.702 | Info | UserStatistics:Backing up current streak. Current: 0
+19-09-2026 | 15:26:49.702 | Info | UserProfile:Setting sync required flag
+19-09-2026 | 15:26:49.703 | Info | UserProfile:Updated 3 entities in DB
+19-09-2026 | 15:26:49.704 | Info | UserStatistics:DB updated with 16 stats. Overwritten: False
+19-09-2026 | 15:26:49.704 | Info | UserStatistics:Level started stats backed up
+19-09-2026 | 15:26:49.705 | Info | DeepQuest:DeepQuest state is persist as {"EventId":8273,"Claimed":false,"ClaimedStageIds":[1],"ClaimedStepIds":[101,102,103,104,105,203,205],"ExtraData":{"SelectedTasks":[{"StageId":1,"StepId":101,"Type":2,"Goal":15},{"StageId":1,"StepId":102,"Type":11,"Goal":2},{"StageId":1,"StepId":103,"Type":4,"Goal":500},{"StageId":1,"StepId":104,"Type":6,"Goal":1},{"StageId":1,"StepId":105,"Type":3,"Goal":2},{"StageId":2,"StepId":201,"Type":2,"Goal":100},{"StageId":2,"StepId":202,"Type":11,"Goal":4},{"StageId":2,"StepId":203,"Type":4,"Goal":1000},{"StageId":2,"StepId":204,"Type":6,"Goal":2},{"StageId":2,"StepId":205,"Type":3,"Goal":10},{"StageId":3,"StepId":301,"Type":2,"Goal":200},{"StageId":3,"StepId":302,"Type":11,"Goal":8},{"StageId":3,"StepId":303,"Type":4,"Goal":1750},{"StageId":3,"StepId":304,"Type":6,"Goal":3},{"StageId":3,"StepId":305,"Type":3,"Goal":20},{"StageId":4,"StepId":401,"Type":2,"Goal":450},{"StageId":4,"StepId":402,"Type":11,"Goal":20},{"StageId":4,"StepId":403,"Type":4,"Goal":5500},{"StageId":4,"StepId":404,"Type":6,"Goal":4},{"StageId":4,"StepId":405,"Type":3,"Goal":35}],"TaskProgressions":[{"Type":2,"Progress":19,"LastShownProgress":19},{"Type":11,"Progress":3,"LastShownProgress":3},{"Type":4,"Progress":1448,"LastShownProgress":1448},{"Type":6,"Progress":1,"LastShownProgress":1},{"Type":3,"Progress":12,"LastShownProgress":12}],"ProgressBannerShownStepIds":[105,103,104,102,203,101,205],"ProgressBannerAddedStepIds":[105,103,104,102,203,101,205],"DialogShownForUnclaimedStageIds":[1],"InvalidFirstDeepQuest":false,"IsFirstDeepQuest":false,"ExtendedTimeEventDialogClosed":false,"StageNotificationShownDataList":[]},"StatusRequired":false,"UpdateRequired":true,"NeedsAdjustmentSync":false} for key DeepQuest215987837.
+19-09-2026 | 15:26:49.705 | Info | DeepQuest:Will not process cached event.
+19-09-2026 | 15:26:49.705 | Info | InventoryHelper:Sync frame count is same with last sync: 290105.
+19-09-2026 | 15:26:49.707 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.19-09-2026 | 15:26:49.707 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:26:49.707 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:26:49.707 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:26:49.707 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:26:49.707 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:26:49.707 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:26:49.707 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:26:49.707 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:26:49.707 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:26:49.707 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:26:49.707 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:26:49.707 | Info | DeltaMoveExecutor:SegmentedDeltaMove not applied. Levels segmented delta move container is null or empty.
+19-09-2026 | 15:26:49.707 | Info | SuperDiscoSkill:SuperDiscoSkillHelper TryPrepare called.
+19-09-2026 | 15:26:49.707 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:26:49.709 | Info | LevelBuilder:Starting LevelName:0382_1382v03_V LevelNo:382 MoveCount:27 CL:False
+19-09-2026 | 15:26:49.718 | Info | Grid:Grid is ready w9xh9
+19-09-2026 | 15:26:49.742 | Info | LevelBuilder:Goal Added: Honey = 0/38
+19-09-2026 | 15:26:49.742 | Info | LevelBuilder:Goal Added: Soda = 0/16
+19-09-2026 | 15:26:49.748 | Info | Crown:CrownRush level is persist as 0 for key CrownRush215987837
+19-09-2026 | 15:26:49.748 | Info | LevelBuilder:Checking for crown logic: shouldShowTutorial:False prelevelCreationDataExists:False
+19-09-2026 | 15:26:49.748 | Info | LevelBuilder:Decided with goal banner animation.
+19-09-2026 | 15:26:49.749 | Info | DialogManager:Show Dialog: [GoalsBanner]
+19-09-2026 | 15:26:49.749 | Info | EventSender:Adding new event to queue > [ShowDialog]
+19-09-2026 | 15:26:49.751 | Info | EventSender:Adding new event to queue > [LevelStart]
+19-09-2026 | 15:26:49.831 | Debug | AnalyticsV2:Event queued: ShowDialog
+19-09-2026 | 15:26:49.832 | Debug | AnalyticsV2:Event queued: LevelStart
+19-09-2026 | 15:26:49.844 | Debug | AnalyticsV2:Inserted 1 rows to SQLite
+19-09-2026 | 15:26:49.844 | Debug | AnalyticsV2:Received batch with 2 items, sending requests...
+19-09-2026 | 15:26:50.047 | Info | CaravanSceneManager:GamePlay loaded in 0 sec.
+19-09-2026 | 15:26:50.047 | Info | CaravanSceneManager:Async loading is completed. Starting fadeout. GamePlay
+19-09-2026 | 15:26:50.047 | Info | LoadingScreenDisplayer:Fade out requested.
+19-09-2026 | 15:26:50.047 | Info | LoadingScreenDisplayer:DoFade > start:1 end:0 instant:False
+19-09-2026 | 15:26:50.047 | Info | Profiling:PerformanceProfiler: Starting at location LEVEL
+19-09-2026 | 15:26:50.047 | Info | CaravanSceneManager:Scene loading flag is: False
+19-09-2026 | 15:26:50.047 | Info | CaravanSceneManager:Loading logic completed for scene GamePlay
+19-09-2026 | 15:26:50.054 | Info | InventoryHelper:Checking hack status. DateTimeSet: True, TimeHack: False, FocusHack: False, TimeDiff: 1.119641
+19-09-2026 | 15:26:50.054 | Info | InventoryHelper:SyncInventory Unlimited Items: [UNLIMITED_HAMMER~0] [UNLIMITED_ANVIL~0] [UNLIMITED_BOXING_GLOVE~0] [UNLIMITED_ROCKET~0] [UNLIMITED_BOMB~0] [UNLIMITED_DISCO_BALL~0] [UNLIMITED_SUPER_BOMB~0] [DOUBLE_STAR~0] [DOUBLE_ALL~0]
+19-09-2026 | 15:26:50.055 | Info | Backend:Calling backend with request (RequestNo: 519 TraceId: f90e2b68-35c8-4c70-9088-53345ba1eeb3 SyncId: 8997)  [SYNC_INVENTORY_MSG] [DEEP_QUEST_UPDATE_MSG]
+19-09-2026 | 15:26:50.097 | Info | LoadingScreenDisplayer:Is loading being displayed: False
+19-09-2026 | 15:26:50.369 | Debug | AnalyticsV2:[handler:uwr] done result=Success code=200 err=
+19-09-2026 | 15:26:50.369 | Debug | AnalyticsV2:[transport] POST https://api.peakgames.net/api/v2/event gzip=True bytes=885 -> 200
+19-09-2026 | 15:26:50.369 | Debug | AnalyticsV2:Batch sent successfully: 2 events
+19-09-2026 | 15:26:50.369 | Debug | AnalyticsV2:Sent 2 items: [9073,9074], removing from store
+19-09-2026 | 15:26:50.369 | Debug | AnalyticsV2:Running SQL query: DELETE FROM events WHERE id IN (9073,9074)
+19-09-2026 | 15:26:50.386 | Debug | AnalyticsV2:Deleted 2 rows
+19-09-2026 | 15:26:50.427 | Info | Backend:Waiting for request with RequestNo: 519 TraceId: f90e2b68-35c8-4c70-9088-53345ba1eeb3 ended.
+19-09-2026 | 15:26:50.427 | Info | Backend:Backend responded to request with RequestNo: 519 TraceId: f90e2b68-35c8-4c70-9088-53345ba1eeb3
+19-09-2026 | 15:26:50.428 | Info | Backend:Backend confirms request with RequestNo: 519 TraceId: f90e2b68-35c8-4c70-9088-53345ba1eeb3 was received. SyncId:8998
+19-09-2026 | 15:26:50.434 | Info | Backend:Message count in response for request with RequestNo: 519 TraceId: f90e2b68-35c8-4c70-9088-53345ba1eeb3 is:2
+19-09-2026 | 15:26:50.434 | Info | Command:Success: SYNC_INVENTORY_MSG, Id:0
+19-09-2026 | 15:26:50.434 | Info | SyncInventoryReply:Inventory Reply Success
+19-09-2026 | 15:26:50.437 | Info | InventoryHelper:InventoryChanged started async inventory update process.
+19-09-2026 | 15:26:50.437 | Info | InventoryHelper:Forced balance is 528 for UnlimitedLife
+19-09-2026 | 15:26:50.438 | Info | CaravanDateTime:Time from server is updated as:09/19/2026 15:26:49
+19-09-2026 | 15:26:50.438 | Info | CaravanDateTime:Previous stored time was Online: 09/19/2026 15:26:43, Offline: 09/19/2026 15:26:44 with Diff: 1
+19-09-2026 | 15:26:50.439 | Info | CaravanDateTime:Previous time is set:Online: 09/19/2026 15:26:49, Offline: 09/19/2026 15:26:50 with Diff: 1.254579
+19-09-2026 | 15:26:50.441 | Info | LifeStatusHelper:LifeHack earned life count is reset, and passed time saved as 1489.
+19-09-2026 | 15:26:50.441 | Info | InventoryHelper:Processing updated userType value:-1.
+19-09-2026 | 15:26:50.443 | Info | Command:Success: DEEP_QUEST_UPDATE_MSG, Id:1
+19-09-2026 | 15:26:50.443 | Info | Command:DeepQuestUpdateResponseMessage reply success!
+19-09-2026 | 15:26:50.445 | Info | DeepQuest:DeepQuest state is persist as {"EventId":8273,"Claimed":false,"ClaimedStageIds":[1],"ClaimedStepIds":[101,102,103,104,105,203,205],"ExtraData":{"SelectedTasks":[{"StageId":1,"StepId":101,"Type":2,"Goal":15},{"StageId":1,"StepId":102,"Type":11,"Goal":2},{"StageId":1,"StepId":103,"Type":4,"Goal":500},{"StageId":1,"StepId":104,"Type":6,"Goal":1},{"StageId":1,"StepId":105,"Type":3,"Goal":2},{"StageId":2,"StepId":201,"Type":2,"Goal":100},{"StageId":2,"StepId":202,"Type":11,"Goal":4},{"StageId":2,"StepId":203,"Type":4,"Goal":1000},{"StageId":2,"StepId":204,"Type":6,"Goal":2},{"StageId":2,"StepId":205,"Type":3,"Goal":10},{"StageId":3,"StepId":301,"Type":2,"Goal":200},{"StageId":3,"StepId":302,"Type":11,"Goal":8},{"StageId":3,"StepId":303,"Type":4,"Goal":1750},{"StageId":3,"StepId":304,"Type":6,"Goal":3},{"StageId":3,"StepId":305,"Type":3,"Goal":20},{"StageId":4,"StepId":401,"Type":2,"Goal":450},{"StageId":4,"StepId":402,"Type":11,"Goal":20},{"StageId":4,"StepId":403,"Type":4,"Goal":5500},{"StageId":4,"StepId":404,"Type":6,"Goal":4},{"StageId":4,"StepId":405,"Type":3,"Goal":35}],"TaskProgressions":[{"Type":2,"Progress":19,"LastShownProgress":19},{"Type":11,"Progress":3,"LastShownProgress":3},{"Type":4,"Progress":1448,"LastShownProgress":1448},{"Type":6,"Progress":1,"LastShownProgress":1},{"Type":3,"Progress":12,"LastShownProgress":12}],"ProgressBannerShownStepIds":[105,103,104,102,203,101,205],"ProgressBannerAddedStepIds":[105,103,104,102,203,101,205],"DialogShownForUnclaimedStageIds":[1],"InvalidFirstDeepQuest":false,"IsFirstDeepQuest":false,"ExtendedTimeEventDialogClosed":false,"StageNotificationShownDataList":[]},"StatusRequired":false,"UpdateRequired":false,"NeedsAdjustmentSync":false} for key DeepQuest215987837.
+19-09-2026 | 15:26:50.445 | Info | DeepQuest:Will not process cached event.
+19-09-2026 | 15:26:50.628 | Info | InventoryHelper:Sync will be ignored since not needed (False).
+19-09-2026 | 15:26:50.980 | Info | DialogManager:Close arrived for: [GoalsBanner(Clone)]
+19-09-2026 | 15:26:51.008 | Info | Crown:CrownRush level is persist as 0 for key CrownRush215987837
+19-09-2026 | 15:27:05.232 | Info | ScoreBarStar:Playing star 0
+19-09-2026 | 15:27:19.833 | Debug | AnalyticsV2:Event queued: PeakSDKPing
+19-09-2026 | 15:27:19.853 | Debug | AnalyticsV2:Inserted 1 rows to SQLite
+19-09-2026 | 15:27:19.854 | Debug | AnalyticsV2:Received batch with 1 items, sending requests...
+19-09-2026 | 15:27:20.035 | Debug | AnalyticsV2:[handler:uwr] done result=Success code=200 err=
+19-09-2026 | 15:27:20.035 | Debug | AnalyticsV2:[transport] POST https://api.peakgames.net/api/v2/event gzip=False bytes=226 -> 200
+19-09-2026 | 15:27:20.035 | Debug | AnalyticsV2:Batch sent successfully: 1 events
+19-09-2026 | 15:27:20.035 | Debug | AnalyticsV2:Sent 1 items: [9075], removing from store
+19-09-2026 | 15:27:20.035 | Debug | AnalyticsV2:Running SQL query: DELETE FROM events WHERE id IN (9075)
+19-09-2026 | 15:27:20.045 | Debug | AnalyticsV2:Deleted 1 rows
+19-09-2026 | 15:27:27.554 | Info | ScoreBarStar:Playing star 1
+19-09-2026 | 15:27:32.650 | Info | ScoreBarStar:Playing star 2
+19-09-2026 | 15:27:35.775 | Info | ShuffleManager:Level Lost - Reason: OUT_OF_MOVES
+19-09-2026 | 15:27:36.276 | Info | EgoSystem:Show ego requested by level.
+19-09-2026 | 15:27:36.276 | Info | Profiling:PerformanceProfiler: Stopping at location LEVEL
+19-09-2026 | 15:27:36.277 | Info | EventSender:Adding new event to queue > [FPS]
+19-09-2026 | 15:27:36.277 | Info | Profiling:PerformanceProfiler: Starting at location LEVEL_END
+19-09-2026 | 15:27:36.289 | Info | InventoryHelper:InventoryChanged started async inventory update process.
+19-09-2026 | 15:27:36.289 | Info | InventoryHelper:Forced balance is 97862 for LAST_LEVEL_LOSE_COUNT
+19-09-2026 | 15:27:36.290 | Info | AdHelper:GROUP_A impression value is : 0.00213036925960637 -GROUP_B impression value is : 0.00198356919374248 -GROUP_C impression value is : 0.001125527 -Couldn't find zero valued ad -
+19-09-2026 | 15:27:36.290 | Info | AdHelper:GROUP_A impression value is : 0.00213036925960637 -GROUP_B impression value is : 0.00198356919374248 -GROUP_C impression value is : 0.001125527 -Found GROUP_A as most valued ad. Value: 0.00213036925960637
+19-09-2026 | 15:27:36.290 | Info | AdHelper:Ad is not available, reason: REACHED LIMIT. Placement:EGO
+19-09-2026 | 15:27:36.290 | Info | AdHelper:Ad is not available, reason: AD IS NOT READY TO SHOW. Placement:EGO
+19-09-2026 | 15:27:36.290 | Info | Offer:Checking offer conditions for availability offer-1287(TOON_PASS) withAnd: False ruleCount:  conditionsMet: True
+19-09-2026 | 15:27:36.290 | Info | EgoSystem:returning required ego modules : EGO_BANNER, BUY_COINS, PLAY_ON, TAP_TO_SEE_THE_BOARD.
+19-09-2026 | 15:27:36.290 | Info | EgoSystem:Destroying ego modules.
+19-09-2026 | 15:27:36.294 | Info | EgoSystem:Module PLAY_ON initializing.
+19-09-2026 | 15:27:36.294 | Info | EgoSystem:Ego Module Banner initialize requested!
+19-09-2026 | 15:27:36.295 | Info | Offer:Checking offer conditions for availability offer-1287(TOON_PASS) withAnd: False ruleCount:  conditionsMet: True
+19-09-2026 | 15:27:36.295 | Info | Offer:Checking offer conditions for availability offer-1294(TEAM_PACK) withAnd: False ruleCount:  conditionsMet: True
+19-09-2026 | 15:27:36.295 | Info | Offer:Offer products prepared. Shop Offer Id: 1304
+19-09-2026 | 15:27:36.295 | Info | Offer:Checking offer conditions for availability offer-1304(SHOP_OFFER) withAnd: False ruleCount:  conditionsMet: True
+19-09-2026 | 15:27:36.301 | Info | Offer:Preparing offer ego entry. Shop Offer Id: 1304
+19-09-2026 | 15:27:36.301 | Info | Offer:Offer products prepared. Shop Offer Id: 1304
+19-09-2026 | 15:27:36.306 | Info | Offer:Preparing offer product content for productId:0
+19-09-2026 | 15:27:36.313 | Info | EgoSystem:Toon pass ego entry prepare called.
+19-09-2026 | 15:27:36.378 | Debug | AnalyticsV2:Event queued: FPS
+19-09-2026 | 15:27:36.390 | Debug | AnalyticsV2:Inserted 1 rows to SQLite
+19-09-2026 | 15:27:36.390 | Debug | AnalyticsV2:Received batch with 1 items, sending requests...
+19-09-2026 | 15:27:36.403 | Info | Offer:Preparing offer ego entry. Team Pack Offer Id: 1294
+19-09-2026 | 15:27:36.411 | Info | EgoSystem:Ego modules created. Active Ego Modules: PLAY_ON, EGO_BANNER, BUY_COINS, TAP_TO_SEE_THE_BOARD
+19-09-2026 | 15:27:36.411 | Info | EgoSystem:Preparing ego module base dialog.
+19-09-2026 | 15:27:36.411 | Info | EgoSystem:Preparing ego module play on.
+19-09-2026 | 15:27:36.414 | Info | EgoSystem:Preparing ego module banner.
+19-09-2026 | 15:27:36.414 | Info | Offer:Offer products prepared. Shop Offer Id: 1304
+19-09-2026 | 15:27:36.414 | Info | Offer:Checking offer conditions for availability offer-1304(SHOP_OFFER) withAnd: False ruleCount:  conditionsMet: True
+19-09-2026 | 15:27:36.416 | Info | Offer:Checking offer conditions for availability offer-1287(TOON_PASS) withAnd: False ruleCount:  conditionsMet: True
+19-09-2026 | 15:27:36.418 | Info | Offer:Checking offer conditions for availability offer-1294(TEAM_PACK) withAnd: False ruleCount:  conditionsMet: True
+19-09-2026 | 15:27:36.422 | Info | EgoSystem:Preparing ego module buy coins.
+19-09-2026 | 15:27:36.422 | Info | EgoSystem:Preparing ego module tap to see.
+19-09-2026 | 15:27:36.422 | Info | EgoSystem:Play ego animation requested. Module:  AnimationData: Type: DIALOG_IN, ReEvaluateContent: True, ReEvaluateLayout: True
+19-09-2026 | 15:27:36.422 | Info | EgoSystem:ReDraw requested!
+19-09-2026 | 15:27:36.422 | Info | Offer:Checking offer conditions for availability offer-1287(TOON_PASS) withAnd: False ruleCount:  conditionsMet: True
+19-09-2026 | 15:27:36.422 | Info | DialogManager:Show Dialog: [EgoModuleBase(Clone)]
+19-09-2026 | 15:27:36.425 | Info | EgoSystem:Content handler started. Content Count: 2
+19-09-2026 | 15:27:36.426 | Info | EgoSystem:Entered to content item. : EGO_BUNDLE
+19-09-2026 | 15:27:36.426 | Info | EgoSystem:All modules prepared!
+19-09-2026 | 15:27:36.426 | Info | EgoSystem:Executing all modules prepared logic for play on!
+19-09-2026 | 15:27:36.428 | Info | AdHelper:Available ad count is 3
+19-09-2026 | 15:27:36.428 | Info | EventSender:Adding new event to queue > [ShowEgoDialog]
+19-09-2026 | 15:27:36.479 | Debug | AnalyticsV2:Event queued: ShowEgoDialog
+19-09-2026 | 15:27:36.486 | Info | InventoryHelper:Checking hack status. DateTimeSet: True, TimeHack: False, FocusHack: False, TimeDiff: 1.254587
+19-09-2026 | 15:27:36.487 | Info | InventoryHelper:SyncInventory Unlimited Items: [UNLIMITED_HAMMER~0] [UNLIMITED_ANVIL~0] [UNLIMITED_BOXING_GLOVE~0] [UNLIMITED_ROCKET~0] [UNLIMITED_BOMB~0] [UNLIMITED_DISCO_BALL~0] [UNLIMITED_SUPER_BOMB~0] [DOUBLE_STAR~0] [DOUBLE_ALL~0]
+19-09-2026 | 15:27:36.487 | Info | Backend:Calling backend with request (RequestNo: 520 TraceId: e1417c21-c452-46de-838c-085ba8f3a3d0 SyncId: 8998)  [SYNC_INVENTORY_MSG]
+19-09-2026 | 15:27:36.491 | Debug | AnalyticsV2:Inserted 1 rows to SQLite
+19-09-2026 | 15:27:36.568 | Debug | AnalyticsV2:[handler:uwr] done result=Success code=200 err=
+19-09-2026 | 15:27:36.568 | Debug | AnalyticsV2:[transport] POST https://api.peakgames.net/api/v2/event gzip=False bytes=866 -> 200
+19-09-2026 | 15:27:36.568 | Debug | AnalyticsV2:Batch sent successfully: 1 events
+19-09-2026 | 15:27:36.568 | Debug | AnalyticsV2:Sent 1 items: [9076], removing from store
+19-09-2026 | 15:27:36.568 | Debug | AnalyticsV2:Running SQL query: DELETE FROM events WHERE id IN (9076)
+19-09-2026 | 15:27:36.573 | Debug | AnalyticsV2:Deleted 1 rows
+19-09-2026 | 15:27:36.573 | Debug | AnalyticsV2:Received batch with 1 items, sending requests...
+19-09-2026 | 15:27:36.717 | Debug | AnalyticsV2:[handler:uwr] done result=Success code=200 err=
+19-09-2026 | 15:27:36.718 | Debug | AnalyticsV2:[transport] POST https://api.peakgames.net/api/v2/event gzip=False bytes=1473 -> 20019-09-2026 | 15:27:36.718 | Debug | AnalyticsV2:Batch sent successfully: 1 events
+19-09-2026 | 15:27:36.718 | Debug | AnalyticsV2:Sent 1 items: [9077], removing from store
+19-09-2026 | 15:27:36.718 | Debug | AnalyticsV2:Running SQL query: DELETE FROM events WHERE id IN (9077)
+19-09-2026 | 15:27:36.723 | Debug | AnalyticsV2:Deleted 1 rows
+19-09-2026 | 15:27:36.802 | Info | Backend:Waiting for request with RequestNo: 520 TraceId: e1417c21-c452-46de-838c-085ba8f3a3d0 ended.
+19-09-2026 | 15:27:36.802 | Info | Backend:Backend responded to request with RequestNo: 520 TraceId: e1417c21-c452-46de-838c-085ba8f3a3d0
+19-09-2026 | 15:27:36.802 | Info | Backend:Backend confirms request with RequestNo: 520 TraceId: e1417c21-c452-46de-838c-085ba8f3a3d0 was received. SyncId:8999
+19-09-2026 | 15:27:36.807 | Info | Backend:Message count in response for request with RequestNo: 520 TraceId: e1417c21-c452-46de-838c-085ba8f3a3d0 is:1
+19-09-2026 | 15:27:36.807 | Info | Command:Success: SYNC_INVENTORY_MSG, Id:0
+19-09-2026 | 15:27:36.807 | Info | SyncInventoryReply:Inventory Reply Success
+19-09-2026 | 15:27:36.810 | Info | InventoryHelper:InventoryChanged started async inventory update process.
+19-09-2026 | 15:27:36.810 | Info | InventoryHelper:Forced balance is 481 for UnlimitedLife
+19-09-2026 | 15:27:36.811 | Info | CaravanDateTime:Time from server is updated as:09/19/2026 15:27:35
+19-09-2026 | 15:27:36.811 | Info | CaravanDateTime:Previous stored time was Online: 09/19/2026 15:26:49, Offline: 09/19/2026 15:26:50 with Diff: 1
+19-09-2026 | 15:27:36.812 | Info | CaravanDateTime:Previous time is set:Online: 09/19/2026 15:27:35, Offline: 09/19/2026 15:27:36 with Diff: 1.103842
+19-09-2026 | 15:27:36.813 | Info | LifeStatusHelper:LifeHack earned life count is reset, and passed time saved as 1536.
+19-09-2026 | 15:27:36.813 | Info | InventoryHelper:Processing updated userType value:-1.
+19-09-2026 | 15:27:37.003 | Info | InventoryHelper:Sync will be ignored since not needed (False).
+19-09-2026 | 15:27:37.238 | Info | EgoSystem:Update content layers requested.
+19-09-2026 | 15:27:37.238 | Info | EgoSystem:Exit requested from content item. : EGO_BUNDLE
+19-09-2026 | 15:27:37.421 | Info | EgoSystem:EgoContentHandler can't handle close signal since there is already an active animation! : EGO_BUNDLE
+19-09-2026 | 15:27:37.421 | Info | EgoSystem:Acceleration requested from content item. : EGO_BUNDLE
+19-09-2026 | 15:27:37.436 | Info | EgoSystem:Exit from content item completed. : EGO_BUNDLE
+19-09-2026 | 15:27:37.436 | Info | EgoSystem:Active ego content item exit completed.
+19-09-2026 | 15:27:37.436 | Info | EgoSystem:Entered to content item. : WARNING_SPEECH
+19-09-2026 | 15:27:37.787 | Info | EgoSystem:Plan in animation completed
+19-09-2026 | 15:27:37.923 | Info | EgoSystem:EgoContentHandler can't handle close signal since there is already an active animation! : WARNING_SPEECH
+19-09-2026 | 15:27:37.923 | Info | EgoSystem:Acceleration requested from content item. : WARNING_SPEECH
+19-09-2026 | 15:27:38.089 | Info | EgoSystem:Last content item exit started.
+19-09-2026 | 15:27:38.090 | Info | EventSender:Adding new event to queue > [EgoAction]
+19-09-2026 | 15:27:38.090 | Info | EgoSystem:Control taken by Module: BASE
+19-09-2026 | 15:27:38.090 | Info | EgoSystem:Exit requested from content item. : WARNING_SPEECH
+19-09-2026 | 15:27:38.106 | Info | EgoSystem:Active ego content item exit completed.
+19-09-2026 | 15:27:38.106 | Info | EgoSystem:Last content item exit completed.
+19-09-2026 | 15:27:38.106 | Info | EgoSystem:Close ego requested by module. Sending out animation request! : ALREADY_IN : BASE Mode: SHOW_FAIL_SCREEN ContinueReasonType: NONE
+19-09-2026 | 15:27:38.106 | Info | EgoSystem:Play ego animation requested. Module: BASE AnimationData: Type: DIALOG_OUT, ReEvaluateContent: False, ReEvaluateLayout: False
+19-09-2026 | 15:27:38.106 | Info | DialogManager:Close arrived for: [EgoModuleBase(Clone)]
+19-09-2026 | 15:27:38.183 | Debug | AnalyticsV2:Event queued: EgoAction
+19-09-2026 | 15:27:38.202 | Debug | AnalyticsV2:Inserted 1 rows to SQLite
+19-09-2026 | 15:27:38.202 | Debug | AnalyticsV2:Received batch with 1 items, sending requests...
+19-09-2026 | 15:27:38.372 | Debug | AnalyticsV2:[handler:uwr] done result=Success code=200 err=
+19-09-2026 | 15:27:38.372 | Debug | AnalyticsV2:[transport] POST https://api.peakgames.net/api/v2/event gzip=False bytes=1227 -> 200
+19-09-2026 | 15:27:38.372 | Debug | AnalyticsV2:Batch sent successfully: 1 events
+19-09-2026 | 15:27:38.372 | Debug | AnalyticsV2:Sent 1 items: [9078], removing from store
+19-09-2026 | 15:27:38.372 | Debug | AnalyticsV2:Running SQL query: DELETE FROM events WHERE id IN (9078)
+19-09-2026 | 15:27:38.377 | Debug | AnalyticsV2:Deleted 1 rows
+19-09-2026 | 15:27:38.707 | Info | EgoSystem:Plan out animation completed
+19-09-2026 | 15:27:38.708 | Info | EgoSystem:Module requested to show fail screen, Dialogs.Ego.EgoData
+19-09-2026 | 15:27:38.738 | Info | DialogManager:Show Dialog: [LostDialog]
+19-09-2026 | 15:27:38.738 | Info | EventSender:Adding new event to queue > [ShowDialog]
+19-09-2026 | 15:27:38.742 | Info | GameplayKillHelper:ResetState called from LevelLost
+19-09-2026 | 15:27:38.751 | Info | InventoryHelper:InventoryChanged started async inventory update process.
+19-09-2026 | 15:27:38.751 | Info | InventoryHelper:Forced balance is 2507298 for UserType
+19-09-2026 | 15:27:38.751 | Info | UserProfile:Updating stats for reason: LEVEL_LOST
+19-09-2026 | 15:27:38.751 | Info | UserStatistics:Updating stats for reason: LEVEL_LOST
+19-09-2026 | 15:27:38.751 | Info | UserStatistics:Level lost - Current streak reset from: 0
+19-09-2026 | 15:27:38.751 | Info | UserProfile:Setting sync required flag
+19-09-2026 | 15:27:38.752 | Info | UserProfile:Updated 3 entities in DB
+19-09-2026 | 15:27:38.753 | Info | UserStatistics:DB updated with 16 stats. Overwritten: False
+19-09-2026 | 15:27:38.755 | Info | Backend:Calling backend with request (RequestNo: 521 TraceId: d3a76723-21a3-48fe-889a-f24eb5254ebd SyncId: 8999)  [SHIELD_CLASH_LEVEL_LOST_MSG]
+19-09-2026 | 15:27:38.757 | Info | Replay:{"b":[],"e":[],"w":[17,25,37,30,45,28,43,35,43,33,45,69,43,89,207,55,114,100,319,135,37,125,632,99,69,221,125,65,381,144,32,72,60,37,617,142],"m":[3,5,5,5,2,6,5,5,5,7,5,6,3,6,2,7,3,7,3,5,2,6,2,7,2,7,5,6,5,5,6,6,7,6,6,5,7,4,6,6,6,5,7,4,7,4,6,5,7,5,7,5,5,4,6,4,6,3,6,5,6,6,5,6,6,6,6,6,6,5,3,6,3,4],"v":5,"s":-370579360,"l":382,"n":"0382_1382v03_V","c":0,"p":0,"k":"H4sIALp/rmoA/+3Xz1LbMBAG8N1ICQSahH+lFE4MTN8HnJkeeZ08SKc32gzDmYHhxbClXe1Klpk0wyhJCXEO2LL8+2R55cDrBRzAD5hNAOCul9mg64Df3IkIhr5yjq3/a76Ya46Z5tbtsctQ/o8Q5zApGWJcHzIUw25D6BDfVxHC0jcNYbtC4CcIcbaaEDbzYPu9bQpuQ2xMiG/LhWBAFCIuNxhJtyE+RYjTJUJgNkRaM5G+2xALhXj5CmO4Lhdi4ELc0PyT5rwAxosdX6gpcp0Rnk/qCFdpBOyKgB0RMDuwPkQmQrseGwqAaYQevWZBF/D5eH0SeOo/JzhaTQKTFDFOkJlGleul5eDt6RBGcFkuQQ/aK3jzdxM6UZQqNO30Px7AHpzJSRjh5USpCJF+x3HaU4KBsZ73UVa38bn+x91s5K8g+4iAocvmzj1MavVpMbUN00PUBqahfDm1CT5DAhv2NZ+NNI/X01yFJ1bM3m1gPoIhnOTNzfHY7C/HtcAVCFbEy5KhYYrFhmxuwQpi9qKIbTLKqEZ+/qWw2HIXSnzbFnOtFzGHm++vp/iWppoeY/+W83cPduE4FWNejBQ/AmOE4yvolSSdFPE0NiH0rA8QTpUaJ9jm82dYg4/KgKvAdb3JzaFXq370zHZ4d0t6bWhP3ipoUbz2He/9DgzgcDmvjb2uCagHXa2vyVqmp2RYsC2AqsLC1QN+PyjJNeGxE+6U9r3D5dM2j9svzeXbr7nu/XMhri3LFbZwPX4xrinLFapwfclIuCbDNfC7B33Y11wHxBRrQi1RVg6Ayipl5w6j0eSpIGPMk4L7ZqV+geAjv7B2DrVTlhit5B4TJarR88qf3PBDlbCYknuJlHw3RTl1Svr58GHKN31XCbOWGwAA","o":false,"sd":false,"r":[0,3,33,38,1,52,60,3,33],"g":"H4sIALp/rmoA/wMAAAAAAAAAAAA=","pa":false,"ppc":0}
+19-09-2026 | 15:27:38.757 | Info | LostDialog:Goal Progress: Soda = 11/16Honey = 29/38
+19-09-2026 | 15:27:38.758 | Info | GamePlay:Lost Level:382 Name:0382_1382v03_V
+19-09-2026 | 15:27:38.758 | Info | Level:LevelHealth - [FallStatus] Mechanic:0,Stat:0,Shuffle:0,Fall:0,FallBlocker:0
+19-09-2026 | 15:27:38.758 | Info | UserStatistics:Weekly level wins event data filled. Total: 17 (Value: 17, Pending: 0)
+19-09-2026 | 15:27:38.758 | Info | EventSender:Adding new event to queue > [_custom]
+19-09-2026 | 15:27:38.758 | Info | CubeRatioAdjust:ResetRatios called with empty initialRatioByItemDescription
+19-09-2026 | 15:27:38.786 | Debug | AnalyticsV2:Event queued: ShowDialog
+19-09-2026 | 15:27:38.788 | Debug | AnalyticsV2:Event queued: _custom
+19-09-2026 | 15:27:38.803 | Debug | AnalyticsV2:Inserted 1 rows to SQLite
+19-09-2026 | 15:27:38.815 | Debug | AnalyticsV2:Inserted 1 rows to SQLite
+19-09-2026 | 15:27:38.816 | Debug | AnalyticsV2:Received batch with 2 items, sending requests...
+19-09-2026 | 15:27:39.004 | Debug | AnalyticsV2:[handler:uwr] done result=Success code=200 err=
+19-09-2026 | 15:27:39.005 | Debug | AnalyticsV2:[transport] POST https://api.peakgames.net/api/v2/event gzip=True bytes=2425 -> 200
+19-09-2026 | 15:27:39.005 | Debug | AnalyticsV2:Batch sent successfully: 2 events
+19-09-2026 | 15:27:39.005 | Debug | AnalyticsV2:Sent 2 items: [9080,9079], removing from store
+19-09-2026 | 15:27:39.005 | Debug | AnalyticsV2:Running SQL query: DELETE FROM events WHERE id IN (9080,9079)
+19-09-2026 | 15:27:39.005 | Info | Backend:Waiting for request with RequestNo: 521 TraceId: d3a76723-21a3-48fe-889a-f24eb5254ebd ended.
+19-09-2026 | 15:27:39.006 | Info | Backend:Backend responded to request with RequestNo: 521 TraceId: d3a76723-21a3-48fe-889a-f24eb5254ebd
+19-09-2026 | 15:27:39.006 | Info | Backend:Backend confirms request with RequestNo: 521 TraceId: d3a76723-21a3-48fe-889a-f24eb5254ebd was received. SyncId:-1
+19-09-2026 | 15:27:39.006 | Info | Backend:Message count in response for request with RequestNo: 521 TraceId: d3a76723-21a3-48fe-889a-f24eb5254ebd is:1
+19-09-2026 | 15:27:39.006 | Info | Command:Success: SHIELD_CLASH_LEVEL_LOST_MSG, Id:0
+19-09-2026 | 15:27:39.006 | Info | Events:ShieldClashLevelLostReply success with status 1!
+19-09-2026 | 15:27:39.016 | Info | InventoryHelper:Checking hack status. DateTimeSet: True, TimeHack: False, FocusHack: False, TimeDiff: 1.104023
+19-09-2026 | 15:27:39.016 | Debug | AnalyticsV2:Deleted 2 rows
+19-09-2026 | 15:27:39.016 | Info | InventoryHelper:SyncInventory Unlimited Items: [UNLIMITED_HAMMER~0] [UNLIMITED_ANVIL~0] [UNLIMITED_BOXING_GLOVE~0] [UNLIMITED_ROCKET~0] [UNLIMITED_BOMB~0] [UNLIMITED_DISCO_BALL~0] [UNLIMITED_SUPER_BOMB~0] [DOUBLE_STAR~0] [DOUBLE_ALL~0]
+19-09-2026 | 15:27:39.017 | Info | Backend:Calling backend with request (RequestNo: 522 TraceId: dcd3c2b7-6d84-4039-b9ec-5ffbf4f9c82d SyncId: 8999)  [SYNC_INVENTORY_MSG]
+19-09-2026 | 15:27:39.249 | Info | Backend:Waiting for request with RequestNo: 522 TraceId: dcd3c2b7-6d84-4039-b9ec-5ffbf4f9c82d ended.
+19-09-2026 | 15:27:39.249 | Info | Backend:Backend responded to request with RequestNo: 522 TraceId: dcd3c2b7-6d84-4039-b9ec-5ffbf4f9c82d
+19-09-2026 | 15:27:39.249 | Info | Backend:Backend confirms request with RequestNo: 522 TraceId: dcd3c2b7-6d84-4039-b9ec-5ffbf4f9c82d was received. SyncId:9000
+19-09-2026 | 15:27:39.255 | Info | Backend:Message count in response for request with RequestNo: 522 TraceId: dcd3c2b7-6d84-4039-b9ec-5ffbf4f9c82d is:1
+19-09-2026 | 15:27:39.255 | Info | Command:Success: SYNC_INVENTORY_MSG, Id:0
+19-09-2026 | 15:27:39.255 | Info | SyncInventoryReply:Inventory Reply Success
+19-09-2026 | 15:27:39.258 | Info | InventoryHelper:InventoryChanged started async inventory update process.
+19-09-2026 | 15:27:39.258 | Info | InventoryHelper:Forced balance is 478 for UnlimitedLife
+19-09-2026 | 15:27:39.259 | Info | CaravanDateTime:Time from server is updated as:09/19/2026 15:27:38
+19-09-2026 | 15:27:39.259 | Info | CaravanDateTime:Previous stored time was Online: 09/19/2026 15:27:36, Offline: 09/19/2026 15:27:37 with Diff: 1
+19-09-2026 | 15:27:39.260 | Info | CaravanDateTime:Previous time is set:Online: 09/19/2026 15:27:38, Offline: 09/19/2026 15:27:39 with Diff: 1.123859
+19-09-2026 | 15:27:39.261 | Info | LifeStatusHelper:LifeHack earned life count is reset, and passed time saved as 1538.
+19-09-2026 | 15:27:39.261 | Info | InventoryHelper:Processing updated userType value:-1.
+19-09-2026 | 15:27:39.302 | Info | DialogManager:Close arrived for: [LostDialog(Clone)]
+19-09-2026 | 15:27:39.303 | Info | Profiling:PerformanceProfiler: Stopping at location LEVEL_END
+19-09-2026 | 15:27:39.305 | Info | EventSender:Adding new event to queue > [FPS]
+19-09-2026 | 15:27:39.305 | Info | Profiling:PerformanceProfiler: Starting at location LEVEL
+19-09-2026 | 15:27:39.305 | Info | EgoSystem:Destroying ego system.
+19-09-2026 | 15:27:39.305 | Info | EgoSystem:Destroying ego modules.
+19-09-2026 | 15:27:39.305 | Info | EgoSystem:New ego system created!
+19-09-2026 | 15:27:39.311 | Info | InventoryHelper:Sync is in progress.
+19-09-2026 | 15:27:39.311 | Info | InventoryHelper:Forced balance is 97868 for LAST_LEVEL_TRY_COUNT
+19-09-2026 | 15:27:39.311 | Info | LevelBuilder:Random initialized with Seed: 846645007
+19-09-2026 | 15:27:39.312 | Info | AdHelper:CheckAndFillAdQueue > MediationSDKState: INITIALIZED, RewardedAdController?: True
+19-09-2026 | 15:27:39.312 | Info | AdHelper:RewardedAdController starting to load rewarded ads.
+19-09-2026 | 15:27:39.312 | Info | AdHelper:DynamicBidFloorHelper is eligible.
+19-09-2026 | 15:27:39.312 | Info | AdHelper:RewardedAdController filling rewarded ad queue.
+19-09-2026 | 15:27:39.312 | Info | AdHelper:RewardedAdController ready ad, increasing loaded ad count. Count: 1 Group: GROUP_ARewardedAdController ready ad, increasing loaded ad count. Count: 2 Group: GROUP_BRewardedAdController ready ad, increasing loaded ad count. Count: 3 Group: GROUP_C
+19-09-2026 | 15:27:39.312 | Info | AdHelper:DynamicBidFloorHelper is eligible.
+19-09-2026 | 15:27:39.312 | Info | AdHelper:RewardedAdController checking if all ads are ready.
+19-09-2026 | 15:27:39.312 | Info | AdHelper:RewardedAdController checked: GROUP_A is ready.
+19-09-2026 | 15:27:39.312 | Info | AdHelper:RewardedAdController checked: GROUP_B is ready.
+19-09-2026 | 15:27:39.312 | Info | AdHelper:RewardedAdController checked: GROUP_C is ready.
+19-09-2026 | 15:27:39.312 | Info | AdHelper:RewardedAdController checked: Ready state is True
+19-09-2026 | 15:27:39.312 | Info | AdHelper:RewardedAdController checked: All ads are ready, resetting retry count.
+19-09-2026 | 15:27:39.312 | Info | LifeStatusHelper:Using from unlimited life. Exp:Online: 09/19/2026 15:35:36, Offline: 09/19/2026 15:35:37 with Diff: 1.103779 Dur:478
+19-09-2026 | 15:27:39.316 | Info | CubeRatioAdjust:WelcomeBackCubeRatioAdjustHelper cannot activate! IsEligible: false
+19-09-2026 | 15:27:39.316 | Info | CubeRatioAdjust:TargetedRewardCubeRatioAdjustHelper cannot activate! IsEligible: false
+19-09-2026 | 15:27:39.316 | Info | CubeRatioAdjust:LevelConfigCubeRatioAdjustHelper cannot activate! IsEligible: false
+19-09-2026 | 15:27:39.316 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:27:39.316 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:27:39.316 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:27:39.316 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:27:39.316 | Info | CubeRatioAdjust:DynamicDifficultySuperDiscoLostCubeRatioAdjustHelper cannot activate! IsEligible: false
+19-09-2026 | 15:27:39.316 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:27:39.316 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:27:39.316 | Info | CubeRatioAdjust:DynamicDifficultySuperDiscoInactiveCubeRatioAdjustHelper cannot activate! IsEligible: false
+19-09-2026 | 15:27:39.316 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:27:39.316 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:27:39.316 | Info | CubeRatioAdjust:DynamicDifficultySuperDiscoActiveCubeRatioAdjustHelper cannot activate! IsEligible: false
+19-09-2026 | 15:27:39.316 | Info | CubeRatioAdjust:SuperDiscoWinAssistCubeRatioAdjustHelper cannot activate! IsEligible: false
+19-09-2026 | 15:27:39.316 | Info | SuperDiscoSkill:SuperDiscoSkillHelper TryPrepare called.
+19-09-2026 | 15:27:39.316 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:27:39.316 | Info | CubeRatioAdjust:SuperDiscoLoseAssistCubeRatioAdjustHelper cannot activate! IsEligible: false
+19-09-2026 | 15:27:39.316 | Info | GameplayKillHelper:SetState called from LevelStarted
+19-09-2026 | 15:27:39.318 | Info | InventoryHelper:Sync frame count is same with last sync: 293025.
+19-09-2026 | 15:27:39.318 | Info | InventoryHelper:Forced balance is 2572834 for UserType
+19-09-2026 | 15:27:39.319 | Info | Events:ShieldClashConsecutiveWin ConsecutiveWinCount:0
+19-09-2026 | 15:27:39.322 | Info | UserProfile:Level started, stopping periodic sync
+19-09-2026 | 15:27:39.322 | Info | UserStatistics:Backing up current streak. Current: 0
+19-09-2026 | 15:27:39.322 | Info | UserProfile:Setting sync required flag
+19-09-2026 | 15:27:39.323 | Info | UserProfile:Updated 3 entities in DB
+19-09-2026 | 15:27:39.324 | Info | UserStatistics:DB updated with 16 stats. Overwritten: False
+19-09-2026 | 15:27:39.325 | Info | UserStatistics:Level started stats backed up
+19-09-2026 | 15:27:39.326 | Info | DeepQuest:DeepQuest state is persist as {"EventId":8273,"Claimed":false,"ClaimedStageIds":[1],"ClaimedStepIds":[101,102,103,104,105,203,205],"ExtraData":{"SelectedTasks":[{"StageId":1,"StepId":101,"Type":2,"Goal":15},{"StageId":1,"StepId":102,"Type":11,"Goal":2},{"StageId":1,"StepId":103,"Type":4,"Goal":500},{"StageId":1,"StepId":104,"Type":6,"Goal":1},{"StageId":1,"StepId":105,"Type":3,"Goal":2},{"StageId":2,"StepId":201,"Type":2,"Goal":100},{"StageId":2,"StepId":202,"Type":11,"Goal":4},{"StageId":2,"StepId":203,"Type":4,"Goal":1000},{"StageId":2,"StepId":204,"Type":6,"Goal":2},{"StageId":2,"StepId":205,"Type":3,"Goal":10},{"StageId":3,"StepId":301,"Type":2,"Goal":200},{"StageId":3,"StepId":302,"Type":11,"Goal":8},{"StageId":3,"StepId":303,"Type":4,"Goal":1750},{"StageId":3,"StepId":304,"Type":6,"Goal":3},{"StageId":3,"StepId":305,"Type":3,"Goal":20},{"StageId":4,"StepId":401,"Type":2,"Goal":450},{"StageId":4,"StepId":402,"Type":11,"Goal":20},{"StageId":4,"StepId":403,"Type":4,"Goal":5500},{"StageId":4,"StepId":404,"Type":6,"Goal":4},{"StageId":4,"StepId":405,"Type":3,"Goal":35}],"TaskProgressions":[{"Type":2,"Progress":19,"LastShownProgress":19},{"Type":11,"Progress":3,"LastShownProgress":3},{"Type":4,"Progress":1448,"LastShownProgress":1448},{"Type":6,"Progress":1,"LastShownProgress":1},{"Type":3,"Progress":12,"LastShownProgress":12}],"ProgressBannerShownStepIds":[105,103,104,102,203,101,205],"ProgressBannerAddedStepIds":[105,103,104,102,203,101,205],"DialogShownForUnclaimedStageIds":[1],"InvalidFirstDeepQuest":false,"IsFirstDeepQuest":false,"ExtendedTimeEventDialogClosed":false,"StageNotificationShownDataList":[]},"StatusRequired":false,"UpdateRequired":true,"NeedsAdjustmentSync":false} for key DeepQuest215987837.
+19-09-2026 | 15:27:39.326 | Info | DeepQuest:Will not process cached event.
+19-09-2026 | 15:27:39.326 | Info | InventoryHelper:Sync frame count is same with last sync: 293025.
+19-09-2026 | 15:27:39.327 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:27:39.327 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:27:39.327 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:27:39.327 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:27:39.327 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:27:39.327 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:27:39.327 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:27:39.327 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:27:39.327 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:27:39.327 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:27:39.327 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:27:39.327 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:27:39.327 | Info | DeltaMoveExecutor:SegmentedDeltaMove not applied. Levels segmented delta move container is null or empty.
+19-09-2026 | 15:27:39.327 | Info | SuperDiscoSkill:SuperDiscoSkillHelper TryPrepare called.
+19-09-2026 | 15:27:39.328 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:27:39.329 | Info | LevelBuilder:Starting LevelName:0382_1382v03_V LevelNo:382 MoveCount:27 CL:False
+19-09-2026 | 15:27:39.337 | Info | Grid:Grid is ready w9xh9
+19-09-2026 | 15:27:39.350 | Info | LevelBuilder:Goal Added: Honey = 0/38
+19-09-2026 | 15:27:39.350 | Info | LevelBuilder:Goal Added: Soda = 0/16
+19-09-2026 | 15:27:39.356 | Info | Crown:CrownRush level is persist as 0 for key CrownRush215987837
+19-09-2026 | 15:27:39.356 | Info | LevelBuilder:Checking for crown logic: shouldShowTutorial:False prelevelCreationDataExists:False
+19-09-2026 | 15:27:39.356 | Info | LevelBuilder:Decided with goal banner animation.
+19-09-2026 | 15:27:39.358 | Info | DialogManager:Show Dialog: [GoalsBanner]
+19-09-2026 | 15:27:39.358 | Info | EventSender:Adding new event to queue > [ShowDialog]
+19-09-2026 | 15:27:39.360 | Info | EventSender:Adding new event to queue > [LevelStart]
+19-09-2026 | 15:27:39.390 | Debug | AnalyticsV2:Event queued: FPS
+19-09-2026 | 15:27:39.391 | Debug | AnalyticsV2:Event queued: ShowDialog
+19-09-2026 | 15:27:39.391 | Debug | AnalyticsV2:Event queued: LevelStart
+19-09-2026 | 15:27:39.408 | Debug | AnalyticsV2:Inserted 1 rows to SQLite
+19-09-2026 | 15:27:39.409 | Debug | AnalyticsV2:Received batch with 3 items, sending requests...
+19-09-2026 | 15:27:39.460 | Info | InventoryHelper:Checking hack status. DateTimeSet: True, TimeHack: False, FocusHack: False, TimeDiff: 1.123207
+19-09-2026 | 15:27:39.460 | Info | InventoryHelper:SyncInventory Unlimited Items: [UNLIMITED_HAMMER~0] [UNLIMITED_ANVIL~0] [UNLIMITED_BOXING_GLOVE~0] [UNLIMITED_ROCKET~0] [UNLIMITED_BOMB~0] [UNLIMITED_DISCO_BALL~0] [UNLIMITED_SUPER_BOMB~0] [DOUBLE_STAR~0] [DOUBLE_ALL~0]
+19-09-2026 | 15:27:39.460 | Info | Backend:Calling backend with request (RequestNo: 523 TraceId: a5f52ff3-1777-45e7-a7d4-4ccfd4bd0fe3 SyncId: 9000)  [SYNC_INVENTORY_MSG] [DEEP_QUEST_UPDATE_MSG]
+19-09-2026 | 15:27:39.592 | Debug | AnalyticsV2:[handler:uwr] done result=Success code=200 err=
+19-09-2026 | 15:27:39.592 | Debug | AnalyticsV2:[transport] POST https://api.peakgames.net/api/v2/event gzip=True bytes=1100 -> 200
+19-09-2026 | 15:27:39.592 | Debug | AnalyticsV2:Batch sent successfully: 3 events
+19-09-2026 | 15:27:39.592 | Debug | AnalyticsV2:Sent 3 items: [9081,9082,9083], removing from store
+19-09-2026 | 15:27:39.592 | Debug | AnalyticsV2:Running SQL query: DELETE FROM events WHERE id IN (9081,9082,9083)
+19-09-2026 | 15:27:39.604 | Debug | AnalyticsV2:Deleted 3 rows
+19-09-2026 | 15:27:39.685 | Info | Backend:Waiting for request with RequestNo: 523 TraceId: a5f52ff3-1777-45e7-a7d4-4ccfd4bd0fe3 ended.
+19-09-2026 | 15:27:39.685 | Info | Backend:Backend responded to request with RequestNo: 523 TraceId: a5f52ff3-1777-45e7-a7d4-4ccfd4bd0fe3
+19-09-2026 | 15:27:39.685 | Info | Backend:Backend confirms request with RequestNo: 523 TraceId: a5f52ff3-1777-45e7-a7d4-4ccfd4bd0fe3 was received. SyncId:9001
+19-09-2026 | 15:27:39.690 | Info | Backend:Message count in response for request with RequestNo: 523 TraceId: a5f52ff3-1777-45e7-a7d4-4ccfd4bd0fe3 is:2
+19-09-2026 | 15:27:39.690 | Info | Command:Success: SYNC_INVENTORY_MSG, Id:0
+19-09-2026 | 15:27:39.690 | Info | SyncInventoryReply:Inventory Reply Success
+19-09-2026 | 15:27:39.693 | Info | InventoryHelper:InventoryChanged started async inventory update process.
+19-09-2026 | 15:27:39.693 | Info | InventoryHelper:Forced balance is 477 for UnlimitedLife
+19-09-2026 | 15:27:39.694 | Info | CaravanDateTime:Time from server is updated as:09/19/2026 15:27:38
+19-09-2026 | 15:27:39.694 | Info | CaravanDateTime:Previous stored time was Online: 09/19/2026 15:27:38, Offline: 09/19/2026 15:27:39 with Diff: 1
+19-09-2026 | 15:27:39.695 | Info | CaravanDateTime:Previous time is set:Online: 09/19/2026 15:27:38, Offline: 09/19/2026 15:27:39 with Diff: 1.105653
+19-09-2026 | 15:27:39.696 | Info | LifeStatusHelper:LifeHack earned life count is reset, and passed time saved as 1539.
+19-09-2026 | 15:27:39.696 | Info | InventoryHelper:Processing updated userType value:-1.
+19-09-2026 | 15:27:39.698 | Info | Command:Success: DEEP_QUEST_UPDATE_MSG, Id:1
+19-09-2026 | 15:27:39.698 | Info | Command:DeepQuestUpdateResponseMessage reply success!
+19-09-2026 | 15:27:39.700 | Info | DeepQuest:DeepQuest state is persist as {"EventId":8273,"Claimed":false,"ClaimedStageIds":[1],"ClaimedStepIds":[101,102,103,104,105,203,205],"ExtraData":{"SelectedTasks":[{"StageId":1,"StepId":101,"Type":2,"Goal":15},{"StageId":1,"StepId":102,"Type":11,"Goal":2},{"StageId":1,"StepId":103,"Type":4,"Goal":500},{"StageId":1,"StepId":104,"Type":6,"Goal":1},{"StageId":1,"StepId":105,"Type":3,"Goal":2},{"StageId":2,"StepId":201,"Type":2,"Goal":100},{"StageId":2,"StepId":202,"Type":11,"Goal":4},{"StageId":2,"StepId":203,"Type":4,"Goal":1000},{"StageId":2,"StepId":204,"Type":6,"Goal":2},{"StageId":2,"StepId":205,"Type":3,"Goal":10},{"StageId":3,"StepId":301,"Type":2,"Goal":200},{"StageId":3,"StepId":302,"Type":11,"Goal":8},{"StageId":3,"StepId":303,"Type":4,"Goal":1750},{"StageId":3,"StepId":304,"Type":6,"Goal":3},{"StageId":3,"StepId":305,"Type":3,"Goal":20},{"StageId":4,"StepId":401,"Type":2,"Goal":450},{"StageId":4,"StepId":402,"Type":11,"Goal":20},{"StageId":4,"StepId":403,"Type":4,"Goal":5500},{"StageId":4,"StepId":404,"Type":6,"Goal":4},{"StageId":4,"StepId":405,"Type":3,"Goal":35}],"TaskProgressions":[{"Type":2,"Progress":19,"LastShownProgress":19},{"Type":11,"Progress":3,"LastShownProgress":3},{"Type":4,"Progress":1448,"LastShownProgress":1448},{"Type":6,"Progress":1,"LastShownProgress":1},{"Type":3,"Progress":12,"LastShownProgress":12}],"ProgressBannerShownStepIds":[105,103,104,102,203,101,205],"ProgressBannerAddedStepIds":[105,103,104,102,203,101,205],"DialogShownForUnclaimedStageIds":[1],"InvalidFirstDeepQuest":false,"IsFirstDeepQuest":false,"ExtendedTimeEventDialogClosed":false,"StageNotificationShownDataList":[]},"StatusRequired":false,"UpdateRequired":false,"NeedsAdjustmentSync":false} for key DeepQuest215987837.
+19-09-2026 | 15:27:39.700 | Info | DeepQuest:Will not process cached event.
+19-09-2026 | 15:27:39.886 | Info | InventoryHelper:Sync will be ignored since not needed (False).
+19-09-2026 | 15:27:40.377 | Info | DialogManager:Close arrived for: [GoalsBanner(Clone)]
+19-09-2026 | 15:27:40.403 | Info | Crown:CrownRush level is persist as 0 for key CrownRush215987837
+19-09-2026 | 15:28:05.406 | Info | ScoreBarStar:Playing star 0
+19-09-2026 | 15:28:09.392 | Debug | AnalyticsV2:Event queued: PeakSDKPing
+19-09-2026 | 15:28:09.410 | Debug | AnalyticsV2:Inserted 1 rows to SQLite
+19-09-2026 | 15:28:09.410 | Debug | AnalyticsV2:Received batch with 1 items, sending requests...
+19-09-2026 | 15:28:09.684 | Debug | AnalyticsV2:[handler:uwr] done result=Success code=200 err=
+19-09-2026 | 15:28:09.685 | Debug | AnalyticsV2:[transport] POST https://api.peakgames.net/api/v2/event gzip=False bytes=226 -> 200
+19-09-2026 | 15:28:09.685 | Debug | AnalyticsV2:Batch sent successfully: 1 events
+19-09-2026 | 15:28:09.685 | Debug | AnalyticsV2:Sent 1 items: [9084], removing from store
+19-09-2026 | 15:28:09.685 | Debug | AnalyticsV2:Running SQL query: DELETE FROM events WHERE id IN (9084)
+19-09-2026 | 15:28:09.697 | Debug | AnalyticsV2:Deleted 1 rows
+19-09-2026 | 15:28:14.179 | Info | ShuffleManager:Level Lost - Reason: OUT_OF_MOVES
+19-09-2026 | 15:28:14.682 | Info | EgoSystem:Show ego requested by level.
+19-09-2026 | 15:28:14.682 | Info | Profiling:PerformanceProfiler: Stopping at location LEVEL
+19-09-2026 | 15:28:14.685 | Info | EventSender:Adding new event to queue > [FPS]
+19-09-2026 | 15:28:14.685 | Info | Profiling:PerformanceProfiler: Starting at location LEVEL_END
+19-09-2026 | 15:28:14.697 | Info | InventoryHelper:InventoryChanged started async inventory update process.
+19-09-2026 | 15:28:14.697 | Info | InventoryHelper:Forced balance is 97863 for LAST_LEVEL_LOSE_COUNT
+19-09-2026 | 15:28:14.698 | Info | AdHelper:GROUP_A impression value is : 0.00213036925960637 -GROUP_B impression value is : 0.00198356919374248 -GROUP_C impression value is : 0.001125527 -Couldn't find zero valued ad -
+19-09-2026 | 15:28:14.698 | Info | AdHelper:GROUP_A impression value is : 0.00213036925960637 -GROUP_B impression value is : 0.00198356919374248 -GROUP_C impression value is : 0.001125527 -Found GROUP_A as most valued ad. Value: 0.00213036925960637
+19-09-2026 | 15:28:14.698 | Info | AdHelper:Ad is not available, reason: REACHED LIMIT. Placement:EGO
+19-09-2026 | 15:28:14.698 | Info | AdHelper:Ad is not available, reason: AD IS NOT READY TO SHOW. Placement:EGO
+19-09-2026 | 15:28:14.698 | Info | Offer:Checking offer conditions for availability offer-1287(TOON_PASS) withAnd: False ruleCount:  conditionsMet: True
+19-09-2026 | 15:28:14.698 | Info | EgoSystem:returning required ego modules : EGO_BANNER, BUY_COINS, PLAY_ON, TAP_TO_SEE_THE_BOARD.
+19-09-2026 | 15:28:14.698 | Info | EgoSystem:Destroying ego modules.
+19-09-2026 | 15:28:14.703 | Info | EgoSystem:Module PLAY_ON initializing.
+19-09-2026 | 15:28:14.703 | Info | EgoSystem:Ego Module Banner initialize requested!
+19-09-2026 | 15:28:14.704 | Info | Offer:Checking offer conditions for availability offer-1287(TOON_PASS) withAnd: False ruleCount:  conditionsMet: True
+19-09-2026 | 15:28:14.704 | Info | Offer:Checking offer conditions for availability offer-1294(TEAM_PACK) withAnd: False ruleCount:  conditionsMet: TrueoAdjust:DynamicDifficultySuperDiscoLostCubeRatioAdjustHelper cannot activate! IsEligible: false
+19-09-2026 | 15:28:17.093 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:28:17.093 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:28:17.093 | Info | CubeRatioAdjust:DynamicDifficultySuperDiscoInactiveCubeRatioAdjustHelper cannot activate! IsEligible: false
+19-09-2026 | 15:28:17.093 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:28:17.093 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:28:17.093 | Info | CubeRatioAdjust:DynamicDifficultySuperDiscoActiveCubeRatioAdjustHelper cannot activate! IsEligible: false
+19-09-2026 | 15:28:17.093 | Info | CubeRatioAdjust:SuperDiscoWinAssistCubeRatioAdjustHelper cannot activate! IsEligible: false
+19-09-2026 | 15:28:17.093 | Info | SuperDiscoSkill:SuperDiscoSkillHelper TryPrepare called.
+19-09-2026 | 15:28:17.093 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:28:17.093 | Info | CubeRatioAdjust:SuperDiscoLoseAssistCubeRatioAdjustHelper cannot activate! IsEligible: false
+19-09-2026 | 15:28:17.093 | Info | GameplayKillHelper:SetState called from LevelStarted
+19-09-2026 | 15:28:17.094 | Info | InventoryHelper:Sync frame count is same with last sync: 295268.
+19-09-2026 | 15:28:17.094 | Info | InventoryHelper:Forced balance is 2572834 for UserType
+19-09-2026 | 15:28:17.095 | Info | Events:ShieldClashConsecutiveWin ConsecutiveWinCount:0
+19-09-2026 | 15:28:17.098 | Info | UserProfile:Level started, stopping periodic sync
+19-09-2026 | 15:28:17.098 | Info | UserStatistics:Backing up current streak. Current: 0
+19-09-2026 | 15:28:17.098 | Info | UserProfile:Setting sync required flag
+19-09-2026 | 15:28:17.099 | Info | UserProfile:Updated 3 entities in DB
+19-09-2026 | 15:28:17.101 | Debug | AnalyticsV2:Event queued: FPS
+19-09-2026 | 15:28:17.101 | Info | UserStatistics:DB updated with 16 stats. Overwritten: False
+19-09-2026 | 15:28:17.101 | Info | UserStatistics:Level started stats backed up
+19-09-2026 | 15:28:17.102 | Info | DeepQuest:DeepQuest state is persist as {"EventId":8273,"Claimed":false,"ClaimedStageIds":[1],"ClaimedStepIds":[101,102,103,104,105,203,205],"ExtraData":{"SelectedTasks":[{"StageId":1,"StepId":101,"Type":2,"Goal":15},{"StageId":1,"StepId":102,"Type":11,"Goal":2},{"StageId":1,"StepId":103,"Type":4,"Goal":500},{"StageId":1,"StepId":104,"Type":6,"Goal":1},{"StageId":1,"StepId":105,"Type":3,"Goal":2},{"StageId":2,"StepId":201,"Type":2,"Goal":100},{"StageId":2,"StepId":202,"Type":11,"Goal":4},{"StageId":2,"StepId":203,"Type":4,"Goal":1000},{"StageId":2,"StepId":204,"Type":6,"Goal":2},{"StageId":2,"StepId":205,"Type":3,"Goal":10},{"StageId":3,"StepId":301,"Type":2,"Goal":200},{"StageId":3,"StepId":302,"Type":11,"Goal":8},{"StageId":3,"StepId":303,"Type":4,"Goal":1750},{"StageId":3,"StepId":304,"Type":6,"Goal":3},{"StageId":3,"StepId":305,"Type":3,"Goal":20},{"StageId":4,"StepId":401,"Type":2,"Goal":450},{"StageId":4,"StepId":402,"Type":11,"Goal":20},{"StageId":4,"StepId":403,"Type":4,"Goal":5500},{"StageId":4,"StepId":404,"Type":6,"Goal":4},{"StageId":4,"StepId":405,"Type":3,"Goal":35}],"TaskProgressions":[{"Type":2,"Progress":19,"LastShownProgress":19},{"Type":11,"Progress":3,"LastShownProgress":3},{"Type":4,"Progress":1448,"LastShownProgress":1448},{"Type":6,"Progress":1,"LastShownProgress":1},{"Type":3,"Progress":12,"LastShownProgress":12}],"ProgressBannerShownStepIds":[105,103,104,102,203,101,205],"ProgressBannerAddedStepIds":[105,103,104,102,203,101,205],"DialogShownForUnclaimedStageIds":[1],"InvalidFirstDeepQuest":false,"IsFirstDeepQuest":false,"ExtendedTimeEventDialogClosed":false,"StageNotificationShownDataList":[]},"StatusRequired":false,"UpdateRequired":true,"NeedsAdjustmentSync":false} for key DeepQuest215987837.
+19-09-2026 | 15:28:17.102 | Info | DeepQuest:Will not process cached event.
+19-09-2026 | 15:28:17.102 | Info | InventoryHelper:Sync frame count is same with last sync: 295268.19-09-2026 | 15:28:17.103 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:28:17.103 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:28:17.103 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:28:17.103 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:28:17.103 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:28:17.103 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:28:17.103 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:28:17.103 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:28:17.103 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:28:17.103 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:28:17.103 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:28:17.103 | Info | DynamicDifficulty:DynamicDifficultyABHelper TryPrepare: false
+19-09-2026 | 15:28:17.103 | Info | DeltaMoveExecutor:SegmentedDeltaMove not applied. Levels segmented delta move container is null or empty.
+19-09-2026 | 15:28:17.105 | Info | SuperDiscoSkill:SuperDiscoSkillHelper TryPrepare called.
+19-09-2026 | 15:28:17.105 | Info | DynamicDifficulty:DynamicDifficultyABHelper is eligible.
+19-09-2026 | 15:28:17.106 | Debug | AnalyticsV2:Inserted 1 rows to SQLite
+19-09-2026 | 15:28:17.106 | Info | LevelBuilder:Starting LevelName:0382_1382v03_V LevelNo:382 MoveCount:27 CL:False
+19-09-2026 | 15:28:17.106 | Debug | AnalyticsV2:Received batch with 1 items, sending requests...
+19-09-2026 | 15:28:17.115 | Info | Grid:Grid is ready w9xh9
+19-09-2026 | 15:28:17.133 | Info | LevelBuilder:Goal Added: Honey = 0/38
+19-09-2026 | 15:28:17.134 | Info | LevelBuilder:Goal Added: Soda = 0/16
+19-09-2026 | 15:28:17.136 | Info | Crown:CrownRush level is persist as 0 for key CrownRush215987837
+19-09-2026 | 15:28:17.136 | Info | LevelBuilder:Checking for crown logic: shouldShowTutorial:False prelevelCreationDataExists:False
+19-09-2026 | 15:28:17.136 | Info | LevelBuilder:Decided with goal banner animation.
+19-09-2026 | 15:28:17.137 | Info | DialogManager:Show Dialog: [GoalsBanner]
+19-09-2026 | 15:28:17.137 | Info | EventSender:Adding new event to queue > [ShowDialog]
+19-09-2026 | 15:28:17.186 | Info | EventSender:Adding new event to queue > [LevelStart]
+19-09-2026 | 15:28:17.202 | Debug | AnalyticsV2:Event queued: ShowDialog
+19-09-2026 | 15:28:17.203 | Debug | AnalyticsV2:Event queued: LevelStart
+19-09-2026 | 15:28:17.213 | Debug | AnalyticsV2:Inserted 1 rows to SQLite
+19-09-2026 | 15:28:17.213 | Info | Backend:Waiting for request with RequestNo: 526 TraceId: 432affa0-d106-4140-a558-2a20acd7fa69 ended.
+19-09-2026 | 15:28:17.213 | Info | Backend:Backend responded to request with RequestNo: 526 TraceId: 432affa0-d106-4140-a558-2a20acd7fa69
+19-09-2026 | 15:28:17.213 | Info | Backend:Backend confirms request with RequestNo: 526 TraceId: 432affa0-d106-4140-a558-2a20acd7fa69 was received. SyncId:9003
+19-09-2026 | 15:28:17.214 | Info | Backend:Message count in response for request with RequestNo: 526 TraceId: 432affa0-d106-4140-a558-2a20acd7fa69 is:1
+19-09-2026 | 15:28:17.214 | Info | Command:Success: SYNC_INVENTORY_MSG, Id:0
+19-09-2026 | 15:28:17.214 | Info | SyncInventoryReply:Inventory Reply Success
+19-09-2026 | 15:28:17.216 | Info | InventoryHelper:InventoryChanged started async inventory update process.
+19-09-2026 | 15:28:17.217 | Info | InventoryHelper:Forced balance is 439 for UnlimitedLife
+19-09-2026 | 15:28:17.217 | Info | CaravanDateTime:Time from server is updated as:09/19/2026 15:28:16
+19-09-2026 | 15:28:17.218 | Info | CaravanDateTime:Previous stored time was Online: 09/19/2026 15:28:14, Offline: 09/19/2026 15:28:15 with Diff: 1
+19-09-2026 | 15:28:17.219 | Info | CaravanDateTime:Previous time is set:Online: 09/19/2026 15:28:16, Offline: 09/19/2026 15:28:17 with Diff: 1.132371
