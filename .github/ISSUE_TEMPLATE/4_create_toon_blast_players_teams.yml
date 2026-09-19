@@ -1,8 +1,8 @@
 name: ➕ Create Players or Friends and Teams on Toon Blast
 description: Create a Toon Blast player, friend, or team
 title: "Create Toon Blast: "
-labels: lrfeditor
-  - toon-blast
+labels: toonblast
+  
 body:
   - type: markdown
     attributes:
