@@ -1,0 +1,11 @@
+{
+  "title": "Thriller 4K Remaster",
+  "artist": "Michael Jackson",
+  "year": 2009,
+  "timezone": "America/Santiago",
+  "nightWindow": { "start": "20:00", "end": "07:15", "crossesMidnight": true },
+  "embeds": {
+    "youtube": "https://www.youtube.com/embed/sOnqjkJTMaA",
+    "spotify": "https://open.spotify.com/embed/artist/3fMbdgg4jU18AjLCKBhRSm?utm_source=generator"
+  }
+}
