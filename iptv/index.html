@@ -62,7 +62,7 @@
     function render() {
       const q=search.value.toLowerCase(), g=group.value;
       list.replaceChildren(); const filtered=channels.filter(c=>(!g||c.group===g)&&(!q||(c.title+' '+c.group).toLowerCase().includes(q)));
-      if (!filtered.length) { list.innerHTML='<div class="empty">No channels found / No se encontraron canales.</div>'; return; }
+      if (!filtered.length) { list.innerHTML='<div class="empty">No channels found.</div>'; return; }
       for (const c of filtered) { const b=document.createElement('button'); b.className='channel'; b.title=c.url;
         if(c.logo){const img=document.createElement('img');img.src=c.logo;img.alt='';img.loading='lazy';b.append(img)}
         const text=document.createElement('span'); text.textContent=c.title; const small=document.createElement('small');small.textContent=c.group;text.append(small);b.append(text);b.onclick=()=>play(c);list.append(b);
