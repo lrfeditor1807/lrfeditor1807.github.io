@@ -31,4 +31,6 @@
 [Jumbo Chile](https://lrfeditor1807.github.io/redirect/JumboChile)
 ## 404 Not Found
 [LogoRemakeFour 404](https://lrfeditor1807.github.io/404.html)
+## JKAnime
+[JKAnime](https://lrfeditor1807.github.io/jkanime)
 
