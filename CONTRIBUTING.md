@@ -33,4 +33,4 @@
 [LogoRemakeFour 404](https://lrfeditor1807.github.io/404.html)
 ## JKAnime
 [JKAnime](https://lrfeditor1807.github.io/jkanime)
-
+[JKAnime Playlist: ZMdbAzY7sEfVuEH](https://lrfeditor1807.github.io/jkanime/playlist/ZMdbAzY7sEfVuEH)
