@@ -25,4 +25,10 @@
 [Screen Mirroring for Windows 7 Emulator](https://lrfeditor1807.github.io/windows-7-emulator/screen-mirroring.html)
 [Cast to TV - Screen Mirroring for Windows 7 Emulator](https://lrfeditor1807.github.io/windows-7-emulator/tv-cast.html)
 [Printer for Windows 7 Emulator](https://lrfeditor1807.github.io/windows-7-emulator/printer.html)
+[Aero Golden](https://lrfeditor1807.github.io/windows-7-emulator/aero-golden)
+## Redirect
+[Logos](https://lrfeditor1807.github.io/logo)
+[Jumbo Chile](https://lrfeditor1807.github.io/redirect/JumboChile)
+## 404 Not Found
+[LogoRemakeFour 404](https://lrfeditor1807.github.io/404.html)
 
