@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARASAAC Global Grid Core Comunicador - Español</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .info-section {
+            padding: 20px 30px;
+            border-bottom: 1px solid #e0e0e0;
+            background: #f9f9f9;
+        }
+        
+        .info-section h2 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .info-item {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .info-item label {
+            font-weight: bold;
+            color: #667eea;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .info-item value {
+            color: #555;
+        }
+        
+        .grids-section {
+            padding: 30px;
+        }
+        
+        .grid-container {
+            margin-bottom: 30px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .grid-header {
+            background: #667eea;
+            color: white;
+            padding: 15px 20px;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        .grid-content {
+            padding: 20px;
+        }
+        
+        .cells {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+        }
+        
+        .cell {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            word-wrap: break-word;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .cell:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .cell img {
+            max-width: 80px;
+            max-height: 80px;
+            margin-bottom: 5px;
+        }
+        
+        .metadata {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .meta-item {
+            background: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+        
+        .meta-label {
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        footer {
+            background: #f0f0f0;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .timestamp {
+            color: #999;
+            font-size: 0.85em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 ARASAAC Global Grid Core Comunicador</h1>
+            <p>Comunicador Aumentativo y Alternativo - Español</p>
+        </header>
+        
+        <div class="info-section">
+            <h2>Información del Archivo</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <label>Nombre del Archivo</label>
+                    <value>ARASAAC_Global_Grid_Core_Communicator_ES.grd.json</value>
+                </div>
+                <div class="info-item">
+                    <label>Formato</label>
+                    <value>AsTeRICS Grid (.grd.json)</value>
+                </div>
+                <div class="info-item">
+                    <label>Idioma</label>
+                    <value>Español (es)</value>
+                </div>
+                <div class="info-item">
+                    <label>Versión del Modelo</label>
+                    <value>6.0.0</value>
+                </div>
+                <div class="info-item">
+                    <label>Tipo</label>
+                    <value>Comunicador Core</value>
+                </div>
+                <div class="info-item">
+                    <label>Símbolos</label>
+                    <value>ARASAAC</value>
+                </div>
+            </div>
+        </div>
+        
+        <div class="grids-section">
+            <h2 style="margin-bottom: 20px; color: #333;">Grillas de Comunicación</h2>
+            
+            <div class="grid-container">
+                <div class="grid-header">Grilla Principal - Acciones Básicas</div>
+                <div class="grid-content">
+                    <div class="cells">
+                        <div class="cell">Sí</div>
+                        <div class="cell">No</div>
+                        <div class="cell">Ayuda</div>
+                        <div class="cell">Más opciones</div>
+                        <div class="cell">Atrás</div>
+                    </div>
+                    <div class="metadata">
+                        <div class="meta-item"><span class="meta-label">ID:</span> grid-data-1739803610418-234</div>
+                        <div class="meta-item"><span class="meta-label">Última actualización:</span> <span class="timestamp">2025-02-17</span></div>
+                        <div class="meta-item"><span class="meta-label">Estado:</span> Activo</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid-container">
+                <div class="grid-header">Grilla de Comunicación - Frases Comunes</div>
+                <div class="grid-content">
+                    <div class="cells">
+                        <div class="cell">Buenos días</div>
+                        <div class="cell">Buenas tardes</div>
+                        <div class="cell">Buenas noches</div>
+                        <div class="cell">¿Cómo estás?</div>
+                        <div class="cell">Gracias</div>
+                        <div class="cell">De nada</div>
+                        <div class="cell">Lo siento</div>
+                        <div class="cell">Por favor</div>
+                    </div>
+                    <div class="metadata">
+                        <div class="meta-item"><span class="meta-label">Células:</span> 8</div>
+                        <div class="meta-item"><span class="meta-label">Categoría:</span> Frases de Cortesía</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid-container">
+                <div class="grid-header">Grilla de Comunicación - Necesidades Básicas</div>
+                <div class="grid-content">
+                    <div class="cells">
+                        <div class="cell">Hambre</div>
+                        <div class="cell">Sed</div>
+                        <div class="cell">Dolor</div>
+                        <div class="cell">Baño</div>
+                        <div class="cell">Cansancio</div>
+                        <div class="cell">Frío</div>
+                        <div class="cell">Calor</div>
+                        <div class="cell">Medicamento</div>
+                    </div>
+                    <div class="metadata">
+                        <div class="meta-item"><span class="meta-label">Células:</span> 8</div>
+                        <div class="meta-item"><span class="meta-label">Categoría:</span> Necesidades Básicas</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid-container">
+                <div class="grid-header">Grilla de Comunicación - Emociones</div>
+                <div class="grid-content">
+                    <div class="cells">
+                        <div class="cell">Feliz</div>
+                        <div class="cell">Triste</div>
+                        <div class="cell">Enojado</div>
+                        <div class="cell">Asustado</div>
+                        <div class="cell">Sorprendido</div>
+                        <div class="cell">Avergonzado</div>
+                    </div>
+                    <div class="metadata">
+                        <div class="meta-item"><span class="meta-label">Células:</span> 6</div>
+                        <div class="meta-item"><span class="meta-label">Categoría:</span> Estados Emocionales</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p><strong>Sobre ARASAAC:</strong> ARASAAC (Aragonese Portal of Augmentative and Alternative Communication) proporciona símbolos libres para comunicación aumentativa y alternativa.</p>
+            <p><strong>Sobre AsTeRICS Grid:</strong> Software gratuito y de código abierto para la comunicación aumentativa y alternativa.</p>
+            <p class="timestamp">Generado: 2025-02-17 | Versión de Archivo: 6.0.0</p>
+        </footer>
+    </div>
+</body>
+                                                 </html>
