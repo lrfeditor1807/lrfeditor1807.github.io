@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YouTube Videos Gallery</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #111827;
+      --card2: #1f2937;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #ff0000;
+      --accent2: #3b82f6;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(135deg, var(--bg), #111827);
+      color: var(--text);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 28px;
+      font-size: 2.2rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      background: rgba(17, 24, 39, 0.9);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+
+    .video-wrap {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 */
+      background: #000;
+    }
+
+    .video-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .info {
+      padding: 14px 16px 18px;
+    }
+
+    .info h2 {
+      font-size: 1.05rem;
+      margin: 0 0 8px;
+      line-height: 1.4;
+    }
+
+    .info p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .note {
+      margin-top: 24px;
+      padding: 14px 16px;
+      background: rgba(59,130,246,0.10);
+      border: 1px solid rgba(59,130,246,0.30);
+      border-radius: 12px;
+      color: #dbeafe;
+      font-size: 0.94rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>YouTube Videos Gallery</h1>
+
+    <div class="grid" id="videoGrid"></div>
+
+    <div class="note">
+      Use only videos that are properly licensed or explicitly allowed to be embedded.
+      Public-domain and Creative Commons content must be confirmed before publication.
+    </div>
+  </div>
+
+  <script>
+    const videos = [
+      { title: "Never Gonna Give You Up - Rick Astley", id: "dQw4w9WgXcQ", note: "Known YouTube embed ID" },
+      { title: "Plants vs Zombies (Complete Walkthrough)", id: "YOUR_VIDEO_ID_1", note: "Replace with the exact YouTube video ID" },
+      { title: "Season 1 Marathon - Talking Tom Shorts", id: "YOUR_VIDEO_ID_2", note: "Replace with the exact YouTube video ID" },
+      { title: "Ako Ay May Lobo - Pambata TV", id: "YOUR_VIDEO_ID_3", note: "Replace with the exact YouTube video ID" },
+      { title: "Phonics Song", id: "HcOcYbHC9hY", note: "Common Phonics Song video ID" },
+      { title: "Yahoo! Logo", id: "YOUR_VIDEO_ID_4", note: "Replace with the exact YouTube video ID" },
+      { title: "Full Best Animation Logos", id: "YOUR_VIDEO_ID_5", note: "Replace with the exact YouTube video ID" },
+      { title: "Samsung Galaxy A34 Unboxing en Español", id: "YOUR_VIDEO_ID_6", note: "Replace with the exact YouTube video ID" },
+      { title: "Hit the Road - Talking Tom Shorts", id: "YOUR_VIDEO_ID_7", note: "Replace with the exact YouTube video ID" },
+      { title: "Papa Johns Commercial", id: "YOUR_VIDEO_ID_8", note: "Replace with the exact YouTube video ID" },
+      { title: "Windows 11 Commercial", id: "YOUR_VIDEO_ID_9", note: "Replace with the exact YouTube video ID" },
+      { title: "Cómo crear cuenta en Correo Yahoo!", id: "YOUR_VIDEO_ID_10", note: "Replace with the exact YouTube video ID" },
+      { title: "Minecraft Bedrock Mods Tutorial", id: "YOUR_VIDEO_ID_11", note: "Replace with the exact YouTube video ID" }
+    ];
+
+    const grid = document.getElementById("videoGrid");
+
+    videos.forEach((video) => {
+      const card = document.createElement("article");
+      card.className = "card";
+
+      const embedUrl = `https://www.youtube.com/embed/${video.id}`;
+
+      card.innerHTML = `
+        <div class="video-wrap">
+          <iframe
+            src="${embedUrl}"
+            title="${video.title}"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="info">
+          <h2>${video.title}</h2>
+          <p>${video.note}</p>
+        </div>
+      `;
+
+      grid.appendChild(card);
+    });
+
+    // Optional: YouTube IFrame API demo
+    const tag = document.createElement("script");
+    tag.src = "https://www.youtube.com/iframe_api";
+    const firstScriptTag = document.getElementsByTagName("script")[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    let player;
+    function onYouTubeIframeAPIReady() {
+      // A sample player can be created if needed:
+      // player = new YT.Player("player", { videoId: "dQw4w9WgXcQ" });
+    }
+  </script>
+</body>
+</html>
