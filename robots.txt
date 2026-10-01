@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: 
+
+Sitemap: https://lrfeditor1807.github.io/sitemap.xml
